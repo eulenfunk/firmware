@@ -9,7 +9,9 @@
 
 	timezone = 'CET-1CEST,M3.5.0,M10.5.0/3', -- Europe/Berlin
 	ntp_servers = {
-		'gl1.ffgl',
+		'ntp1.ffgl',
+		'ntp2.ffgl',
+		'ntp3.ffgl',
 		'ntp1.ptb.de',
 		'ntp2.ptb.de',
 	},
@@ -77,7 +79,9 @@
 			stable = {
 				name = 'stable',
 				mirrors = {
-					'http://gl1.ffgl/firmware/bcd/stable/sysupgrade',
+					'http://bcd1.firmware.ffgl/stable/sysupgrade',
+					'http://bcd2.firmware.ffgl/stable/sysupgrade',
+					'http://bcd3.firmware.ffgl/stable/sysupgrade',
 				},
 				good_signatures = 2,
 				pubkeys = {
@@ -89,7 +93,9 @@
 			beta = {
 				name = 'beta',
 				mirrors = {
-					'http://gl1.ffgl/firmware/bcd/beta/sysupgrade',
+					'http://bcd1.firmware.ffgl/beta/sysupgrade',
+					'http://bcd2.firmware.ffgl/beta/sysupgrade',
+					'http://bcd3.firmware.ffgl/beta/sysupgrade',
 				},
 				good_signatures = 1,
 				pubkeys = {
@@ -101,7 +107,9 @@
 			experimental = {
 				name = 'experimental',
 				mirrors = {
-					'http://gl1.ffgl/firmware/bcd/experimental/sysupgrade',
+					'http://bcd1.firmware.ffgl/experimental/sysupgrade',
+					'http://bcd2.firmware.ffgl/experimental/sysupgrade',
+					'http://bcd3.firmware.ffgl/experimental/sysupgrade',
 				},
 				good_signatures = 1,
 				pubkeys = {
@@ -118,7 +126,7 @@
 			ifname = 'mesh-vpn',
 			enabled = false,
 			limit_egress = 300,
-			limit_ingress = 10000,
+			limit_ingress = 5000,
 		},
 	},
 
