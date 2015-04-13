@@ -9,9 +9,7 @@
 
 	timezone = 'CET-1CEST,M3.5.0,M10.5.0/3', -- Europe/Berlin
 	ntp_servers = {
-		'ntp1.ffgl',
-		'ntp2.ffgl',
-		'ntp3.ffgl',
+		'ntp.ffgl',
 		'ntp1.ptb.de',
 		'ntp2.ptb.de',
 	},
@@ -79,11 +77,9 @@
 			stable = {
 				name = 'stable',
 				mirrors = {
-					'http://bgl1.firmware.ffgl/stable/sysupgrade',
-					'http://bgl2.firmware.ffgl/stable/sysupgrade',
-					'http://bgl3.firmware.ffgl/stable/sysupgrade',
+					'http://bgl.firmware.ffgl/stable/sysupgrade',
 				},
-				good_signatures = 2,
+				good_signatures = 1,
 				pubkeys = {
 					'2dc329f4d5fd7ab5c17310bec66f3701960f52af68769865cc54257685e41f0b', -- PetaByteBoy
 					'4e260211c6723d9dfa91d06c376ce500cca6052396f270474bbb70d19cf4f472', -- DSchmidtberg
@@ -93,9 +89,7 @@
 			beta = {
 				name = 'beta',
 				mirrors = {
-					'http://bgl1.firmware.ffgl/beta/sysupgrade',
-					'http://bgl2.firmware.ffgl/beta/sysupgrade',
-					'http://bgl3.firmware.ffgl/beta/sysupgrade',
+					'http://bgl.firmware.ffgl/beta/sysupgrade',
 				},
 				good_signatures = 1,
 				pubkeys = {
@@ -107,9 +101,7 @@
 			experimental = {
 				name = 'experimental',
 				mirrors = {
-					'http://bgl1.firmware.ffgl/experimental/sysupgrade',
-					'http://bgl2.firmware.ffgl/experimental/sysupgrade',
-					'http://bgl3.firmware.ffgl/experimental/sysupgrade',
+					'http://bgl.firmware.ffgl/experimental/sysupgrade',
 				},
 				good_signatures = 1,
 				pubkeys = {
@@ -126,7 +118,7 @@
 			ifname = 'mesh-vpn',
 			enabled = false,
 			limit_egress = 300,
-			limit_ingress = 5000,
+			limit_ingress = 10000,
 		},
 	},
 
