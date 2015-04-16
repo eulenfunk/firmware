@@ -1,7 +1,7 @@
 {
 	hostname_prefix = 'freifunk',
-	site_name = 'Freifunk Odenthal',
-	site_code = 'ffode',
+	site_name = 'Freifunk Kuerten',
+	site_code = 'ffkut',
 	opkg_repo = 'http://openwrt.ffwtal.net/gluon/14.07/%S/packages',
 
 	prefix4 = '10.156.0.0/16',
@@ -16,7 +16,7 @@
 	regdom = 'DE',
 
 	wifi24 = {
-		ssid = 'Freifunk-Odenthal',
+		ssid = 'Freifunk-Kuerten',
 		channel = 1,
 		htmode = 'HT40+',
 		mesh_ssid = 'FFGL-BATBONE',
@@ -24,7 +24,7 @@
 		mesh_mcast_rate = 1000,
 	},
 	wifi5 = {
-		ssid = 'Freifunk-Odenthal',
+		ssid = 'Freifunk-Kuerten',
 		channel = 52,
 		htmode = 'HT40+',
 		mesh_ssid = 'FFGL-BATBONE',
@@ -43,7 +43,7 @@
 		methods = {
 			'salsa2012+umac'
 		},
-		mtu = 1426,
+		mtu = 1406,
 		backbone = {
 			limit = 2,
 			peers = {
@@ -125,7 +125,7 @@
 	config_mode = {
 		msg_welcome = [[
 Willkommen zum Einrichtungsassistenten für deinen neuen
-Freifunk-Knoten im Rheinisch-Bergischem Kreis (Odenthal).
+Freifunk-Knoten im Rheinisch-Bergischem Kreis (Kuerten).
 Fülle das folgende Formular deinen Vorstellungen
 entsprechend aus und sende es ab.
 <br /> Es wird empfohlen – wenn es sein muss – zuerst die Einstellungen
@@ -140,8 +140,8 @@ Server automatisch eingetragen und Du musst dich nicht darum kümmern.
 Dein Knoten startet gerade neu und wird anschließend versuchen,
 sich mit anderen Freifunkknoten in seiner Nähe zu
 verbinden. Weitere Informationen zur
-Odenthaler Freifunk-Community findest Du auf
-<a href="http://freifunk-odenthal.de/">unserer Webseite</a>.
+Kuertener Freifunk-Community findest Du auf
+<a href="http://freifunk-kuerten.de/">unserer Webseite</a>.
 </p>
 <p>
 Viel Spaß mit deinem Knoten und der Erkundung und Nutzung von Freifunk!

@@ -43,7 +43,7 @@
 		methods = {
 			'salsa2012+umac'
 		},
-		mtu = 1426,
+		mtu = 1406,
 		backbone = {
 			limit = 2,
 			peers = {
