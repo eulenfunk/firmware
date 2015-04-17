@@ -1,17 +1,17 @@
 {
-	hostname_prefix = 'freifunk',
+	hostname_prefix = 'ovr',
 	site_name = 'Freifunk Overath',
-	site_code = 'ffovr',
+	site_code = 'ffgl-ovr',
 	opkg_repo = 'http://openwrt.ffwtal.net/gluon/14.07/%S/packages',
 
 	prefix4 = '10.156.0.0/16',
 	prefix6 = 'fda0:747e:ab29:5142::/64',
 
-	timezone = 'CET-1CEST,M3.5.0,M10.5.0/3', -- Europe/Berlin
+	timezone = 'CET-1CEST,M3.5.0,M10.5.0/3',
 	ntp_servers = {
-		'ntp.ffgl',
-		'ntp1.ptb.de',
-		'ntp2.ptb.de',
+		'ntp.services.ffgl',
+		'ntp.wupper.freifunk-rheinland.net',
+		'ntp.wupper.ffrl.de'
 	},
 	regdom = 'DE',
 
@@ -25,7 +25,7 @@
 	},
 	wifi5 = {
 		ssid = 'Freifunk-Overath',
-		channel = 52,
+		channel = 34,
 		htmode = 'HT40+',
 		mesh_ssid = 'FFGL-BATBONE',
 		mesh_bssid = '02:ca:ff:ee:51:42',
@@ -39,33 +39,53 @@
 	},
 
 	fastd_mesh_vpn = {
-		enable = true;
-		methods = {
-			'salsa2012+umac'
-		},
-		mtu = 1426,
+		enabled = true,
+		methods = {'salsa2012+umac'},
+		mtu = 1406,
 		backbone = {
 			limit = 2,
 			peers = {
-				wupper0 = {
+				peer1 = {
 					key = 'e52daa654abcf5c20c5b7a74b5145f70a7491435c6ef334ae352e4f19c00e8f5',
-					remotes = {'ipv4 "wupper0.gl.ffwtal.net" port 42799'},
+					remotes = {
+						'"a.ovr.wupper.freifunk-rheinland.net" port 51491',
+						'"a.ovr.wupper.ffrl.de" port 51491'
+					},
 				},
-				wupper1 = {
+				peer2 = {
 					key = '6eae041199ee627689bfa026afbd8a9ab299eca8aed4144321d098cffd62668e',
-					remotes = {'ipv4 "wupper1.gl.ffwtal.net" port 42799'},
+					remotes = {
+						'"b.ovr.wupper.freifunk-rheinland.net" port 51491',
+						'"b.ovr.wupper.ffrl.de" port 51491'
+					},
 				},
-				wupper7 = {
-					key = '9916d2e9e89452ae7e1b9c58038a3b16b75e49d51afd0440d915adcdac561739',
-					remotes = {'ipv4 "wupper7.gl.ffwtal.net" port 42799'},
+				peer3 = {
+					key = 'b7f319d59d8383ba813c3503416bca45f70852e4d207b1743bb6cdca1e30d9f5',
+					remotes = {
+						'"c.ovr.wupper.freifunk-rheinland.net" port 51491',
+						'"c.ovr.wupper.ffrl.de" port 51491'
+					},
 				},
-				wupper8 = {
-					key = '332bfb0c3c4bba4a5c7f36721ff52f484603bf2a4a233a3776e9d4f8b9567078',
-					remotes = {'ipv4 "wupper8.gl.ffwtal.net" port 42799'},
+				peer4 = {
+					key = 'c8f3d1d10b0d6389e39c3c3cb08adfa3123e821fd5bfd6262d2161d80ee4b06c',
+					remotes = {
+						'"d.ovr.wupper.freifunk-rheinland.net" port 51491',
+						'"d.ovr.wupper.ffrl.de" port 51491'
+					},
 				},
-				wupper9 = {
-					key = '62b1b37c2343a4c0165cfb9cc8a87b65d1ffd04136aa5d24c1147f6fb1637f39',
-					remotes = {'ipv4 "wupper9.gl.ffwtal.net" port 42799'},
+				peer5 = {
+					key = '5e7fa122990dbc34b8cae7ece2cd4ef919d3f8c23a674b7bbcf05bfebe6a6e8a',
+					remotes = {
+						'"e.ovr.wupper.freifunk-rheinland.net" port 51491',
+						'"e.ovr.wupper.ffrl.de" port 51491'
+					},
+				},
+				peer6 = {
+					key = 'd49256cbc83e206c9afb3c8f757f1a318a18e16933b9b05015926d0849b3cd89',
+					remotes = {
+						'"f.ovr.wupper.freifunk-rheinland.net" port 51491',
+						'"f.ovr.wupper.ffrl.de" port 51491'
+					},
 				},
 			},
 		},
@@ -81,33 +101,9 @@
 				},
 				good_signatures = 1,
 				pubkeys = {
-					'2dc329f4d5fd7ab5c17310bec66f3701960f52af68769865cc54257685e41f0b', -- PetaByteBoy
 					'4e260211c6723d9dfa91d06c376ce500cca6052396f270474bbb70d19cf4f472', -- DSchmidtberg
 					'15495f8ffa45f7a02fd8889fb90bbf1b3c8f2930962fda566db956904b01733d', -- phip
-				},
-			},
-			beta = {
-				name = 'beta',
-				mirrors = {
-					'http://ode.firmware.ffgl/beta/sysupgrade',
-				},
-				good_signatures = 1,
-				pubkeys = {
-					'2dc329f4d5fd7ab5c17310bec66f3701960f52af68769865cc54257685e41f0b', -- PetaByteBoy
-					'4e260211c6723d9dfa91d06c376ce500cca6052396f270474bbb70d19cf4f472', -- DSchmidtberg
-					'15495f8ffa45f7a02fd8889fb90bbf1b3c8f2930962fda566db956904b01733d', -- phip
-				},
-			},
-			experimental = {
-				name = 'experimental',
-				mirrors = {
-					'http://ode.firmware.ffgl/experimental/sysupgrade',
-				},
-				good_signatures = 1,
-				pubkeys = {
-					'2dc329f4d5fd7ab5c17310bec66f3701960f52af68769865cc54257685e41f0b', -- PetaByteBoy
-					'4e260211c6723d9dfa91d06c376ce500cca6052396f270474bbb70d19cf4f472', -- DSchmidtberg
-					'15495f8ffa45f7a02fd8889fb90bbf1b3c8f2930962fda566db956904b01733d', -- phip
+					'2dc329f4d5fd7ab5c17310bec66f3701960f52af68769865cc54257685e41f0b', -- PetaByteBoy',
 				},
 			},
 		},
@@ -124,28 +120,14 @@
 
 	config_mode = {
 		msg_welcome = [[
-Willkommen zum Einrichtungsassistenten für deinen neuen
-Freifunk-Knoten im Rheinisch-Bergischem Kreis (Overath).
-Fülle das folgende Formular deinen Vorstellungen
-entsprechend aus und sende es ab.
-<br /> Es wird empfohlen – wenn es sein muss – zuerst die Einstellungen
-für Experten zu bearbeiten, da dies später nicht mehr möglich ist.
-]],
+			Willkommen zum Einrichtungsassistenten für deinen neuen Freifunk-Knoten im Rheinisch-Bergischem Kreis.<br />Fülle das folgende Formular deinen Vorstellungen entsprechend aus und sende es ab.<br />Es wird empfohlen – wenn es sein muss – zuerst die Einstellungen für Experten zu bearbeiten, da dies später nicht mehr möglich ist.
+		]],
 		msg_pubkey = [[
-Dies ist der öffentliche Schlüssel deines Freifunkknotens. Dieser wird beim
-Server automatisch eingetragen und Du musst dich nicht darum kümmern.
-]],
+			Dies ist der öffentliche Schlüssel deines Freifunkknotens. Dieser wird beim Server automatisch eingetragen und Du musst dich nicht darum kümmern.
+		]],
 		msg_reboot = [[
-<p>
-Dein Knoten startet gerade neu und wird anschließend versuchen,
-sich mit anderen Freifunkknoten in seiner Nähe zu
-verbinden. Weitere Informationen zur
-Overather Freifunk-Community findest Du auf
-<a href="http://freifunk-overath.de/">unserer Webseite</a>.
-</p>
-<p>
-Viel Spaß mit deinem Knoten und der Erkundung und Nutzung von Freifunk!
-</p>
-]],
+			<p>Dein Knoten startet gerade neu und wird anschließend versuchen, sich mit anderen Freifunkknoten in seiner Nähe zu verbinden. Weitere Informationen zu Freifunk im Rheinisch-Bergischem Kreis findest Du auf <a href="http://freifunk-gl.de">unserer Webseite</a>.</p>
+			<p>Viel Spaß mit deinem Knoten und der Erkundung und Nutzung von Freifunk!</p>
+		]],
 	},
 }
