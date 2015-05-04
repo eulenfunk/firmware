@@ -130,8 +130,8 @@
 				name = 'stable',
 				mirrors = {
 					'http://rrh.firmware.ffgl/stable/sysupgrade',
-					'http://rrh.firmware.gl.wupper.freifunk-rheinland.net',
-					'http://rrh.firmware.gl.wupper.ffrl.de'
+					'http://rrh.firmware.gl.wupper.freifunk-rheinland.net/stable/sysupgrade',
+					'http://rrh.firmware.gl.wupper.ffrl.de/stable/sysupgrade'
 				},
 				good_signatures = 1,
 				pubkeys = {

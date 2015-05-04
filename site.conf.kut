@@ -130,8 +130,8 @@
 				name = 'stable',
 				mirrors = {
 					'http://kut.firmware.ffgl/stable/sysupgrade',
-					'http://kut.firmware.gl.wupper.freifunk-rheinland.net',
-					'http://kut.firmware.gl.wupper.ffrl.de'
+					'http://kut.firmware.gl.wupper.freifunk-rheinland.net/stable/sysupgrade',
+					'http://kut.firmware.gl.wupper.ffrl.de/stable/sysupgrade'
 				},
 				good_signatures = 1,
 				pubkeys = {

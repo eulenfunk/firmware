@@ -130,8 +130,8 @@
 				name = 'stable',
 				mirrors = {
 					'http://ovr.firmware.ffgl/stable/sysupgrade',
-					'http://ovr.firmware.gl.wupper.freifunk-rheinland.net',
-					'http://ovr.firmware.gl.wupper.ffrl.de'
+					'http://ovr.firmware.gl.wupper.freifunk-rheinland.net/stable/sysupgrade',
+					'http://ovr.firmware.gl.wupper.ffrl.de/stable/sysupgrade'
 				},
 				good_signatures = 1,
 				pubkeys = {

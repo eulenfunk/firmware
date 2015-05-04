@@ -130,8 +130,8 @@
 				name = 'stable',
 				mirrors = {
 					'http://lln.firmware.ffgl/stable/sysupgrade',
-					'http://lln.firmware.gl.wupper.freifunk-rheinland.net',
-					'http://lln.firmware.gl.wupper.ffrl.de'
+					'http://lln.firmware.gl.wupper.freifunk-rheinland.net/stable/sysupgrade',
+					'http://lln.firmware.gl.wupper.ffrl.de/stable/sysupgrade'
 				},
 				good_signatures = 1,
 				pubkeys = {
