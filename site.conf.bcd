@@ -129,9 +129,9 @@
 			stable = {
 				name = 'stable',
 				mirrors = {
-					'http://bcd.firmware.ffgl/stable/sysupgrade',
-					'http://bcd.firmware.gl.wupper.freifunk-rheinland.net/stable/sysupgrade',
-					'http://bcd.firmware.gl.wupper.ffrl.de/stable/sysupgrade'
+					'http://bcd.images.ffgl/stable/sysupgrade',
+					'http://bcd.images.gl.wupper.freifunk-rheinland.net/stable/sysupgrade',
+					'http://bcd.images.gl.wupper.ffrl.de/stable/sysupgrade'
 				},
 				good_signatures = 1,
 				pubkeys = {

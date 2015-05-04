@@ -129,9 +129,9 @@
 			stable = {
 				name = 'stable',
 				mirrors = {
-					'http://kut.firmware.ffgl/stable/sysupgrade',
-					'http://kut.firmware.gl.wupper.freifunk-rheinland.net/stable/sysupgrade',
-					'http://kut.firmware.gl.wupper.ffrl.de/stable/sysupgrade'
+					'http://kut.images.ffgl/stable/sysupgrade',
+					'http://kut.images.gl.wupper.freifunk-rheinland.net/stable/sysupgrade',
+					'http://kut.images.gl.wupper.ffrl.de/stable/sysupgrade'
 				},
 				good_signatures = 1,
 				pubkeys = {
