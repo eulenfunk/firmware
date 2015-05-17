@@ -1,4 +1,0 @@
-GLUON_SITE_FEEDS='gluon_community_repositorys'
-
-PACKAGES_GLUON_COMMUNITY_REPOSITORYS_REPO=https://github.com/plumpudding/v2015.1
-PACKAGES_GLUON_COMMUNITY_REPOSITORYS_COMMIT=8a89dc0bdf83b1cf24b7c6fccf8e9cdcf6a6060f
