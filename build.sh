@@ -11,6 +11,7 @@ function mksite {
 	sed -e "s/examplename/$2/g" -i $SCRIPTHOME/sites/$4/$1/site.conf
 	sed -e "s/examplearch/$4/g" -i $SCRIPTHOME/sites/$4/$1/site.conf
 	sed -e "s/examplehomepage/$3/g" -i $SCRIPTHOME/sites/$4/$1/i18n/en.po
+	sed -e "s/examplehomepage/$3/g" -i $SCRIPTHOME/sites/$4/$1/i18n/de.po
 	sed -e "s/examplename/$2/g" -i $SCRIPTHOME/sites/$4/$1/i18n/en.po
 	sed -e "s/examplename/$2/g" -i $SCRIPTHOME/sites/$4/$1/i18n/de.po
 	sed -e "s/examplessid/$5/g" -i $SCRIPTHOME/sites/$4/$1/site.conf
@@ -18,7 +19,7 @@ function mksite {
 
 rm -rf $SCRIPTHOME/sites
 
-for ARCH in ar71xx-generic x86-generic x86-kvm
+for ARCH in ar71xx-generic x86-generic x86-kvm_guest
 do
 	mkdir -p $SCRIPTHOME/sites/$ARCH
 	mksite bcd Burscheid freifunk-burscheid.de $ARCH Freifunk-Burscheid
@@ -36,7 +37,7 @@ cd $SCRIPTHOME/build
 rm -rf $SCRIPTHOME/oldimages
 mv $SCRIPTHOME/images $SCRIPTHOME/oldimages
 
-for g in ar71xx-generic x86-kvm x86-generic
+for g in ar71xx-generic x86-kvm_guest x86-generic
 do
 	for f in bcd bgl kut lln ode ovr rrh
 	do
