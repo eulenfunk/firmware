@@ -8,14 +8,14 @@ ARCHS="ar71xx-generic ar71xx-nand mpc85xx-generic ramips-rt305x x86-kvm_guest x8
 
 function mksite {
 	#site_code name homepage SSID
-	cp -r $SCRIPTHOME/examplesitecode $SCRIPTHOME/sites/$1
-	sed -e "s/examplesitecode/$1/g" -i $SCRIPTHOME/sites/$1/site.conf
-	sed -e "s/examplename/$2/g" -i $SCRIPTHOME/sites/$1/site.conf
-	sed -e "s/examplehomepage/$3/g" -i $SCRIPTHOME/sites/$1/i18n/en.po
-	sed -e "s/examplehomepage/$3/g" -i $SCRIPTHOME/sites/$1/i18n/de.po
-	sed -e "s/examplename/$2/g" -i $SCRIPTHOME/sites/$1/i18n/en.po
-	sed -e "s/examplename/$2/g" -i $SCRIPTHOME/sites/$1/i18n/de.po
-	sed -e "s/examplessid/$4/g" -i $SCRIPTHOME/sites/$1/site.conf
+	cp -r $SCRIPTHOME/basesitecode $SCRIPTHOME/sites/$1
+	sed -e "s/basesitecode/$1/g" -i $SCRIPTHOME/sites/$1/site.conf
+	sed -e "s/basename/$2/g" -i $SCRIPTHOME/sites/$1/site.conf
+	sed -e "s/basehomepage/$3/g" -i $SCRIPTHOME/sites/$1/i18n/en.po
+	sed -e "s/basehomepage/$3/g" -i $SCRIPTHOME/sites/$1/i18n/de.po
+	sed -e "s/basename/$2/g" -i $SCRIPTHOME/sites/$1/i18n/en.po
+	sed -e "s/basename/$2/g" -i $SCRIPTHOME/sites/$1/i18n/de.po
+	sed -e "s/basessid/$4/g" -i $SCRIPTHOME/sites/$1/site.conf
 }
 
 rm -rf $SCRIPTHOME/sites
