@@ -28,7 +28,8 @@ GLUON_SITE_PACKAGES := \
 	nano
 
 
-DEFAULT_GLUON_RELEASE := 0.7.2-$(shell date '+%Y%m%d')
+#DEFAULT_GLUON_RELEASE := 0.7.2-$(shell date '+%Y%m%d')
+DEFAULT_GLUON_RELEASE := 0.7.2-20150710
 
 # Allow overriding the release number from the command line
 GLUON_RELEASE ?= $(DEFAULT_GLUON_RELEASE)
