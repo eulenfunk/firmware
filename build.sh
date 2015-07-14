@@ -19,11 +19,13 @@ function sites {
 	echo -generating sites-
 	rm -rf $SCRIPTHOME/sites
 	mkdir -p $SCRIPTHOME/sites
-	mksite bcd Burscheid freifunk-burscheid.de wupper Freifunk-Burscheid
-	mksite ode Odenthal "odenthal.de\/freifunk.html" wupper Freifunk
+	mksite bcd Burscheid freifunk-burscheid.de gl Freifunk-Burscheid
 	mksite bgl "Bergisch Gladbach" freifunk-bergisch-gladbach.de gl Freifunk
+	mksite cgr Rechtsrheinisch-Köln freifunk-gl.de gl Freifunk
 	mksite kut Kürten freifunk-gl.de gl Freifunk
+	mksite lgn Langenfeld freifunk-gl.de gl Freifunk
 	mksite lln Leichlingen leichlingen.freifunk.net gl Freifunk
+	mksite ode Odenthal "odenthal.de\/freifunk.html" gl Freifunk
 	mksite ovr Overath freifunk-gl.de gl Freifunk
 	mksite rrh Rösrath freifunk-gl.de gl Freifunk
 	cp -r $SCRIPTHOME/basesites/gek/ $SCRIPTHOME/sites/gek
@@ -34,7 +36,8 @@ function images {
 	cd $SCRIPTHOME/build
 	rm -rf $SCRIPTHOME/oldimages
 	mv $SCRIPTHOME/images $SCRIPTHOME/oldimages
-	for f in gek
+#	for f in gek
+	for f in bcd bgl cgr kut lgn lln ode ovr rrh
 	do
 		for g in ar71xx-generic ar71xx-nand mpc85xx-generic x86-kvm_guest x86-generic
 		do
