@@ -1,0 +1,4 @@
+- [x] patch sites for diff. communities based on a template
+- [ ] build all targets
+- [ ] c-respondd
+- [ ] switch for ssh keys
