@@ -1,0 +1,21 @@
+GLUON_SITE_FEEDS='ffho ssidchanger weeklyreboot wificheck txpowerfix'
+
+PACKAGES_FFHO_REPO=http://git.c3pb.de/freifunk-pb/ffho-packages.git
+PACKAGES_FFHO_BRANCH=master
+PACKAGES_FFHO_COMMIT=
+
+PACKAGES_SSIDCHANGER_REPO=https://github.com/eulenfunk/gluon-ssid-changer
+PACKAGES_SSIDCHANGER_COMMIT=
+PACKAGES_SSIDCHANGER_BRANCH=chaos-calmer
+
+PACKAGES_WEEKLYREBOOT_REPO=https://github.com/eulenfunk/gluon-weeklyreboot
+PACKAGES_WEEKLYREBOOT_COMMIT=
+PACKAGES_WEEKLYREBOOT_BRANCH=master
+
+PACKAGES_WIFICHECK_REPO=https://github.com/eulenfunk/gluon-wificheck
+PACKAGES_WIFICHECK_COMMIT=
+PACKAGES_WIFICHECK_BRANCH=master
+
+PACKAGES_TXPOWERFIX_REPO=https://github.com/eulenfunk/gluon-txpowerfix
+PACKAGES_TXPOWERFIX_COMMIT=
+PACKAGES_TXPOWERFIX_BRANCH=master
