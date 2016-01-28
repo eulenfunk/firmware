@@ -1,6 +1,6 @@
 GLUON_SITE_PACKAGES := \
 	gluon-mesh-batman-adv-15 \
-	gluon-respondd \
+	gluon-announced \
 	gluon-autoupdater \
 	gluon-config-mode-autoupdater \
 	gluon-config-mode-contact-info \
@@ -19,16 +19,9 @@ GLUON_SITE_PACKAGES := \
 	gluon-radvd \
 	gluon-setup-mode \
 	gluon-status-page \
-	gluon-ssid-changer \
 	haveged \
 	iptables \
 	iwinfo \
-	ffho-ebtables-net-rules \
-	gluon-txpowerfix \
-	gluon-weeklyreboot \
-	gluon-wificheck \
-	ffho-wifi-blackout-workaround 
-
 
 DEFAULT_GLUON_RELEASE := $(shell date '+%Y%m%d%H')-exp-ssid
 

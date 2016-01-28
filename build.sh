@@ -1,78 +1,66 @@
 #!/bin/bash
+#replace $2 with $3 in directory $1 recursively
+function replace {
+	find $1 -type f -print0 | xargs -0 sed -i "s;$2;$3;g"
+}
 
-##########################################################
-
-#sites and architectures to build
-
-#SITE="gek"
-SITE="bcd bgl cgr kut lgn lln ode ovr rrh"
-ARCHS="ar71xx-generic ar71xx-nand mpc85xx-generic x86-kvm_guest x86-generic"
-
-##########################################################
-
-SCRIPTHOME=$(pwd)
-
-function mksite {
-	#ARGS: site_code name homepage base SSID
-	echo $1
-	cp -r $SCRIPTHOME/basesites/$4/ $SCRIPTHOME/sites/$1
-	sed -e "s/basesitecode/$1/g" -i $SCRIPTHOME/sites/$1/site.conf
-	sed -e "s/basename/$2/g" -i $SCRIPTHOME/sites/$1/site.conf
-	sed -e "s/basehomepage/$3/g" -i $SCRIPTHOME/sites/$1/i18n/en.po
-	sed -e "s/basehomepage/$3/g" -i $SCRIPTHOME/sites/$1/i18n/de.po
-	sed -e "s/basename/$2/g" -i $SCRIPTHOME/sites/$1/i18n/en.po
-	sed -e "s/basename/$2/g" -i $SCRIPTHOME/sites/$1/i18n/de.po
-	sed -e "s/basessid/$5/g" -i $SCRIPTHOME/sites/$1/site.conf
+#copy template $3 to sitecode $4 and replace SITECODE with $4, NAME with $5, and WEBSITE with $6
+function makesite {
+	DIR=assembled/$3/$4
+	rm -rf $DIR
+	mkdir -p assembled/$3
+	cp -r templates/$3 $DIR
+	replace $DIR SITECODE "$4"
+	replace $DIR NAME "$5"
+	replace $DIR WEBSITE "$6"
+	replace $DIR RELBRANCH "$1"
 }
 
 function sites {
-	echo -generating sites-
-	#clean generated sites dir
-	rm -rf $SCRIPTHOME/sites
-	mkdir -p $SCRIPTHOME/sites
+	rm -rf assembled
+	while read L
+	do
+		makesite $L
+	done < sites
+	echo --- sites assembled ---
+}
 
-	#call mksite function for each site to copy the corresponding base site and replace values
-	mksite bcd Burscheid freifunk-burscheid.de gl Freifunk-Burscheid
-	mksite bgl "Bergisch Gladbach" freifunk-bergisch-gladbach.de gl Freifunk
-	mksite cgr Rechtsrheinisch-Köln freifunk-gl.de gl Freifunk
-	mksite kut Kürten freifunk-gl.de gl Freifunk
-	mksite lgn Langenfeld freifunk-gl.de gl Freifunk
-	mksite lln Leichlingen leichlingen.freifunk.net gl Freifunk
-	mksite ode Odenthal "odenthal.de\/freifunk.html" gl Freifunk
-	mksite ovr Overath freifunk-gl.de gl Freifunk
-	mksite rrh Rösrath freifunk-gl.de gl Freifunk
-
-	#just copy gek basesite as there is nothing to be replaced
-	cp -r $SCRIPTHOME/basesites/gek/ $SCRIPTHOME/sites/gek
-
-	echo done.
+#build image for autoupdater branch $2, gluon branch $3, target $1, template $4, site $5
+function image {
+	cd $GLUON_DIR
+	git fetch
+	git stash
+	git checkout $3 -f
+	ARGS="GLUON_SITEDIR=$HOME_DIR/assembled/$4/$5 GLUON_IMAGEDIR=$HOME_DIR/images/$4/$5 GLUON_MODULEDIR=$HOME_DIR/modules GLUON_TARGET=$1 GLUON_BRANCH=$2"
+	make update $ARGS
+	make clean -j10 $ARGS
+	$HOME_DIR/assembled/$4/$5/prepare.sh
+	make -j10 $ARGS
+	make manifest $ARGS
+	cd $HOME_DIR
 }
 
 function images {
-	cd $SCRIPTHOME/build
-	#clean images dirs
-	rm -rf $SCRIPTHOME/oldimages
-	mv $SCRIPTHOME/images $SCRIPTHOME/oldimages
-
-	for f in $SITES
+	if [ -z "$1" ]; then TARGET=ar71xx-generic; else TARGET="$1"; fi
+	while read L
 	do
-		for g in $ARCHS
-		do
-			echo -building $f $g-
-			ARGS="GLUON_TARGET=$g GLUON_SITEDIR=$SCRIPTHOME/sites/$f GLUON_IMAGEDIR=$SCRIPTHOME/images/$f/stable GLUON_BRANCH=stable"
-#			make update $ARGS
-#			make clean $ARGS
-			make -j20 BROKEN=1 $ARGS
-		done
-		make manifest $ARGS
-		contrib/sign.sh $SCRIPTHOME/secret.key $SCRIPTHOME/images/$f/stable/sysupgrade/stable.manifest
-	done
+		image $TARGET $L
+	done < sites
+	mv images{,-$(date +%s)}
+	mv modules{,-$(date +%s)}
 }
 
-if [ -z "$1" ]
-then
+function all {
 	sites
 	images
-else
-	$1
-fi
+}
+
+function init {
+	rm -rf gluon.bak
+	mv gluon{.bak} 2>/dev/null
+	git clone https://github.com/freifunk-gluon/gluon
+}
+
+HOME_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+GLUON_DIR="$HOME_DIR/gluon"
+$@

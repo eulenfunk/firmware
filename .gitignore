@@ -1,4 +1,6 @@
-build
+gluon
 secret.key
 images
-oldimages
+images-*
+assembled
+modules
