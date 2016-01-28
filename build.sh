@@ -41,10 +41,13 @@ function image {
 }
 
 function images {
-	if [ -z "$1" ]; then TARGET=ar71xx-generic; else TARGET="$1"; fi
+	if [ -z "$@" ]; then TARGETS="ar71xx-generic ar71xx-nand mpc85xx-generic x86-generic x86-kvm_guest x86-xen_domu x86-64"; else TARGETS="$@"; fi
 	while read L
 	do
-		image $TARGET $L
+		for TARGET in $TARGETS
+		do
+			image $TARGET $L
+		done
 	done < sites
 	mv images{,-$(date +%s)}
 	mv modules{,-$(date +%s)}
@@ -52,7 +55,7 @@ function images {
 
 function all {
 	sites
-	images
+	images $1
 }
 
 function init {
