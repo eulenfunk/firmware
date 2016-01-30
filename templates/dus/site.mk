@@ -1,6 +1,6 @@
 GLUON_SITE_PACKAGES := \
 	gluon-mesh-batman-adv-15 \
-	gluon-announced \
+	gluon-respondd \
 	gluon-autoupdater \
 	gluon-config-mode-autoupdater \
 	gluon-config-mode-contact-info \
@@ -19,11 +19,14 @@ GLUON_SITE_PACKAGES := \
 	gluon-radvd \
 	gluon-setup-mode \
 	gluon-status-page \
+	gluon-weeklyreboot \
+	gluon-wificheck \
+	gluon-ssid-changer \
 	haveged \
 	iptables \
 	iwinfo \
 
-DEFAULT_GLUON_RELEASE := $(shell date '+%Y%m%d%H')-exp-ssid
+DEFAULT_GLUON_RELEASE := $(shell date '+%Y%m%d%H')-exp
 
 # Allow overriding the release number from the command line
 GLUON_RELEASE ?= $(DEFAULT_GLUON_RELEASE)

@@ -27,28 +27,26 @@ function sites {
 
 #build image for autoupdater branch $2, gluon branch $3, target $1, template $4, site $5
 function image {
-	cd $GLUON_DIR
-	git fetch
-	git stash
-	git checkout $3 -f
-	ARGS="GLUON_SITEDIR=$HOME_DIR/assembled/$4/$5 GLUON_IMAGEDIR=$HOME_DIR/images/$4/$5 GLUON_MODULEDIR=$HOME_DIR/modules GLUON_TARGET=$1 GLUON_BRANCH=$2"
-	make update $ARGS
-	make clean -j10 $ARGS
-	$HOME_DIR/assembled/$4/$5/prepare.sh
-	make -j10 $ARGS
-	make manifest $ARGS
-	cd $HOME_DIR
+                ARGS="GLUON_SITEDIR=$HOME_DIR/assembled/$3/$4 GLUON_IMAGEDIR=$HOME_DIR/images/$3/$4 GLUON_MODULEDIR=$HOME_DIR/modules GLUON_BRANCH=$1"
+		git checkout $2
+                make update $ARGS
+		make clean $ARGS GLUON_TARGET=ar71xx-generic
+                $HOME_DIR/assembled/$3/$4/prepare.sh
+                for TARGET in $TARGETS
+                do
+			make -j10 $ARGS GLUON_TARGET=$TARGET && echo build successful || exit 1
+                done
+                make manifest $ARGS
 }
 
 function images {
-	if [ -z "$@" ]; then TARGETS="ar71xx-generic ar71xx-nand mpc85xx-generic x86-generic x86-kvm_guest x86-xen_domu x86-64"; else TARGETS="$@"; fi
+	if [ -z "$@" ]; then export TARGETS="ar71xx-generic ar71xx-nand mpc85xx-generic x86-generic x86-kvm_guest x86-xen_domu x86-64"; else export TARGETS="$@"; fi
+        cd $GLUON_DIR
 	while read L
 	do
-		for TARGET in $TARGETS
-		do
-			image $TARGET $L
-		done
-	done < sites
+		image $L
+	done < $HOME_DIR/sites
+	cd $HOME_DIR
 	mv images{,-$(date +%s)}
 	mv modules{,-$(date +%s)}
 }
