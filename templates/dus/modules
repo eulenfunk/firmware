@@ -1,0 +1,3 @@
+GLUON_SITE_FEEDS="eulenfunk"
+PACKAGES_EULENFUNK_REPO=https://github.com/eulenfunk/packages.git
+PACKAGES_EULENFUNK_COMMIT=71854b0f2dd7a04fb5840c44315e8f82dbfb72ae

@@ -3,5 +3,6 @@ secret.key
 images
 images-*
 assembled
-modules
+modules/
 modules-*
+*.key
