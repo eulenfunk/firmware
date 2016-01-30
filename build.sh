@@ -34,7 +34,13 @@ function image {
                 $HOME_DIR/assembled/$3/$4/prepare.sh
                 for TARGET in $TARGETS
                 do
-			make -j10 $ARGS GLUON_TARGET=$TARGET && echo build successful || exit 1
+			if make -j10 $ARGS GLUON_TARGET=$TARGET
+			then
+				echo build successful
+			else
+				make V=s $ARGS GLUON_TARGET=$TARGET
+				exit 1
+			fi
                 done
                 make manifest $ARGS
 }
