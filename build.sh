@@ -34,7 +34,7 @@ function image {
                 $HOME_DIR/assembled/$3/$4/prepare.sh
                 for TARGET in $TARGETS
                 do
-			if make -j10 $ARGS GLUON_TARGET=$TARGET
+			if make -j24 $ARGS GLUON_TARGET=$TARGET
 			then
 				echo build successful
 			else
@@ -42,6 +42,7 @@ function image {
 				exit 1
 			fi
                 done
+		cp -r $HOME_DIR/assembled/$3/$4 $HOME_DIR/images/$3/$4/site
                 make manifest $ARGS
 }
 
