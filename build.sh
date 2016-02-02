@@ -29,6 +29,7 @@ function sites {
 function image {
                 ARGS="GLUON_SITEDIR=$HOME_DIR/assembled/$3/$4 GLUON_IMAGEDIR=$HOME_DIR/images/$3/$4 GLUON_MODULEDIR=$HOME_DIR/modules GLUON_BRANCH=$1"
 		git checkout $2
+		git stash
                 make update $ARGS
 		make clean $ARGS GLUON_TARGET=ar71xx-generic
                 $HOME_DIR/assembled/$3/$4/prepare.sh
@@ -42,7 +43,8 @@ function image {
 				exit 1
 			fi
                 done
-		cp -r $HOME_DIR/assembled/$3/$4 $HOME_DIR/images/$3/$4/site
+                mkdir $HOME_DIR/images/$3/$4/site
+		cp -r $HOME_DIR/assembled/$3/$4/* $HOME_DIR/images/$3/$4/site
                 make manifest $ARGS
 }
 
