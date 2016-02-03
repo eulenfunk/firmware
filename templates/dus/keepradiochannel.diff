@@ -1,0 +1,13 @@
+diff --git a/package/gluon-core/files/lib/gluon/upgrade/200-wireless b/package/gluon-core/files/lib/gluon/upgrade/200-wireless
+index b9495d8..9753e32 100755
+--- a/package/gluon-core/files/lib/gluon/upgrade/200-wireless
++++ b/package/gluon-core/files/lib/gluon/upgrade/200-wireless
+@@ -14,7 +14,7 @@ local function configure_radio(radio, index, config)
+   if config then
+     uci:delete('wireless', radio, 'disabled')
+
+-    uci:set('wireless', radio, 'channel', config.channel)
++-- keep channel    uci:set('wireless', radio, 'channel', config.channel)
+     uci:set('wireless', radio, 'htmode', 'HT20')
+     uci:set('wireless', radio, 'country', site.regdom)
+   end
