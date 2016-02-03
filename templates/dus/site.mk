@@ -23,6 +23,7 @@ GLUON_SITE_PACKAGES := \
 	gluon-wificheck \
 	gluon-ssid-changer \
 	gluon-aptimeclock \
+	gluon-vpnlimittimeclock \
 	gluon-txpowerfix \
 	haveged \
 	iptables \
