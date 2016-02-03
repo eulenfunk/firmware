@@ -22,6 +22,7 @@ GLUON_SITE_PACKAGES := \
 	gluon-weeklyreboot \
 	gluon-wificheck \
 	gluon-ssid-changer \
+	gluon-aptimeclock \
 	gluon-txpowerfix \
 	haveged \
 	iptables \
