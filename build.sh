@@ -35,7 +35,7 @@ function image {
                 $HOME_DIR/assembled/$3/$4/prepare.sh
                 for TARGET in $TARGETS
                 do
-			if make -j24 $ARGS GLUON_TARGET=$TARGET
+			if make -j12 $ARGS GLUON_TARGET=$TARGET
 			then
 				echo build successful
 			else
