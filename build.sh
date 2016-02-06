@@ -69,7 +69,14 @@ function all {
 function init {
 	rm -rf gluon.bak
 	mv gluon{.bak} 2>/dev/null
-	git clone https://github.com/freifunk-gluon/gluon
+	git clone https://github.com/freifunk-gluon/gluon $GLUON_DIR
+}
+
+function ci {
+	if [ ! -d "GLUON_DIR" ]; then
+		init
+	fi
+	all
 }
 
 HOME_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
