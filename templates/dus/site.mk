@@ -28,9 +28,9 @@ GLUON_SITE_PACKAGES := \
 	haveged \
 	iptables \
 	iwinfo \
-	ffho-ebtables-net-rules \
 	ffho-wifi-blackout-workaround \
-	gluon-ebtables-filter-roguenets  
+	gluon-ebtables-filter-roguenets \
+        ffffm-keep-radio-channel  
 
 DEFAULT_GLUON_RELEASE := $(shell date '+%Y%m%d%H')-exp
 
