@@ -11,7 +11,8 @@ function makesite {
 	mkdir -p assembled/$3
 	cp -r templates/$3 $DIR
 	replace $DIR SITECODE "$4"
-	replace $DIR NAME "$5"
+	NAME=$(echo $5 | sed 's/:/ /g')
+	replace $DIR NAME "$NAME"
 	replace $DIR WEBSITE "$6"
 	replace $DIR RELBRANCH "$1"
 }
