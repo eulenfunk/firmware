@@ -22,8 +22,7 @@ GLUON_SITE_PACKAGES := \
 	gluon-txpowerfix \
 	haveged \
 	iptables \
-	iwinfo \
-	iperf
+	iwinfo
 
 DEFAULT_GLUON_RELEASE := $(shell date '+%Y%m%d%H')
 GLUON_RELEASE ?= $(DEFAULT_GLUON_RELEASE)

@@ -28,12 +28,17 @@ function sites {
 
 #build image for autoupdater branch $2, gluon branch $3, target $1, template $4, site $5
 function image {
+		PREP=$(cat $HOME_DIR/prepared)
+		rm $HOME_DIR/prepared
                 ARGS="GLUON_SITEDIR=$HOME_DIR/assembled/$3/$4 GLUON_IMAGEDIR=$HOME_DIR/images/$3/$4 GLUON_MODULEDIR=$HOME_DIR/modules GLUON_BRANCH=$1"
-		git fetch --all
-		git reset --hard $2
-                make update $ARGS
-		make clean $ARGS GLUON_TARGET=ar71xx-generic
-                $HOME_DIR/assembled/$3/$4/prepare.sh
+		if [ "$PREP" != "$3" ]
+		then
+			git fetch --all
+			git reset --hard $2
+	                make update $ARGS
+			make clean $ARGS GLUON_TARGET=ar71xx-generic
+	                $HOME_DIR/assembled/$3/$4/prepare.sh
+		fi
                 for TARGET in $TARGETS
                 do
 			if make -j12 $ARGS GLUON_TARGET=$TARGET
@@ -44,6 +49,7 @@ function image {
 				exit 1
 			fi
                 done
+		echo $3 > $HOME_DIR/prepared
                 mkdir $HOME_DIR/images/$3/$4/site
 		cp -r $HOME_DIR/assembled/$3/$4/* $HOME_DIR/images/$3/$4/site
                 make manifest $ARGS
