@@ -51,7 +51,7 @@ function image {
 		done
 		echo $3 > $HOME_DIR/.prepared
 		mkdir $HOME_DIR/images/$3/$4/site
-		cp -r $HOME_DIR/assembled/$3/$4/* $HOME_DIR/images/$3/$4/site
+		cp -r --exclude='*~' --exclude='*.old' --exclude='*.backup' $HOME_DIR/assembled/$3/$4/* $HOME_DIR/images/$3/$4/site
 		make manifest $ARGS
 }
 

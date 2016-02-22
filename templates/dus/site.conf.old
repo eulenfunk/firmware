@@ -185,8 +185,8 @@
 					'd02f8e60fb7a5069556500694ebe512b6017b01e9950476e4cfcf10d5130c296', -- JJX
 					'7afe187ceb34e83b2cb33c244ab5c8a7e80829c3e83b8d3fc471d2642eb6a602', -- limlug
 					'610e9acf4d550c3a272b88ec5b4cf0a0e382be203f98b860181fb1bcb1641abd', -- mathias
-					'dd6a9d1aefc175f885705691498e904cbda12cc4602316f04816d78026c7c0f0', -- Benedikt Wi
-					'579de7b1ded1dc39583515f722d72524f6dce78da635a7ac2d11cfe1dc046e7e', -- tuennes
+					'dd6a9d1aefc175f885705691498e904cbda12cc4602316f04816d78026c7c0f0', –- Benedikt Wi
+					'579de7b1ded1dc39583515f722d72524f6dce78da635a7ac2d11cfe1dc046e7e', –- tuennes
                                 },
                         },
                         beta = {
@@ -204,9 +204,8 @@
 					'd02f8e60fb7a5069556500694ebe512b6017b01e9950476e4cfcf10d5130c296', -- JJX
 					'7afe187ceb34e83b2cb33c244ab5c8a7e80829c3e83b8d3fc471d2642eb6a602', -- limlug
 					'610e9acf4d550c3a272b88ec5b4cf0a0e382be203f98b860181fb1bcb1641abd', -- mathias
-					'dd6a9d1aefc175f885705691498e904cbda12cc4602316f04816d78026c7c0f0', -- Benedikt Wi
-					'579de7b1ded1dc39583515f722d72524f6dce78da635a7ac2d11cfe1dc046e7e', -- tuennes                                
-				},
+					'dd6a9d1aefc175f885705691498e904cbda12cc4602316f04816d78026c7c0f0', –- Benedikt Wi
+					'579de7b1ded1dc39583515f722d72524f6dce78da635a7ac2d11cfe1dc046e7e', –- tuennes                                },
                         },
                         experimental = {
                                 name = 'experimental',
@@ -223,9 +222,8 @@
 					'd02f8e60fb7a5069556500694ebe512b6017b01e9950476e4cfcf10d5130c296', -- JJX
 					'7afe187ceb34e83b2cb33c244ab5c8a7e80829c3e83b8d3fc471d2642eb6a602', -- limlug
 					'610e9acf4d550c3a272b88ec5b4cf0a0e382be203f98b860181fb1bcb1641abd', -- mathias
-					'dd6a9d1aefc175f885705691498e904cbda12cc4602316f04816d78026c7c0f0', -- Benedikt Wi
-					'579de7b1ded1dc39583515f722d72524f6dce78da635a7ac2d11cfe1dc046e7e', -- tuennes                                
-				},
+					'dd6a9d1aefc175f885705691498e904cbda12cc4602316f04816d78026c7c0f0', –- Benedikt Wi
+					'579de7b1ded1dc39583515f722d72524f6dce78da635a7ac2d11cfe1dc046e7e', –- tuennes                                },
                         },
                         broken = {
                                 name = 'broken',
@@ -242,9 +240,8 @@
 					'd02f8e60fb7a5069556500694ebe512b6017b01e9950476e4cfcf10d5130c296', -- JJX
 					'7afe187ceb34e83b2cb33c244ab5c8a7e80829c3e83b8d3fc471d2642eb6a602', -- limlug
 					'610e9acf4d550c3a272b88ec5b4cf0a0e382be203f98b860181fb1bcb1641abd', -- mathias
-					'dd6a9d1aefc175f885705691498e904cbda12cc4602316f04816d78026c7c0f0', -- Benedikt Wi
-					'579de7b1ded1dc39583515f722d72524f6dce78da635a7ac2d11cfe1dc046e7e', -- tuennes                                
-				},
+					'dd6a9d1aefc175f885705691498e904cbda12cc4602316f04816d78026c7c0f0', –- Benedikt Wi
+					'579de7b1ded1dc39583515f722d72524f6dce78da635a7ac2d11cfe1dc046e7e', –- tuennes                                },
                         },
                 },
         },
