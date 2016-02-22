@@ -56,20 +56,15 @@ function image {
 }
 
 function images {
-	if [ -z "$@" ]; then export TARGETS="ar71xx-generic ar71xx-nand mpc85xx-generic x86-generic x86-kvm_guest x86-xen_domu x86-64"; else export TARGETS="$@"; fi
+	if [ -z "$2" ]; then TARGETS="ar71xx-generic ar71xx-nand mpc85xx-generic x86-generic x86-kvm_guest x86-xen_domu x86-64"; else TARGETS=$(echo $@ | cut -d' ' -f2-); fi
 	cd $GLUON_DIR
 	while read L
 	do
 		image $L
-	done < $HOME_DIR/sites
+	done < $HOME_DIR/$1
 	cd $HOME_DIR
 	mv images{,-$(date +%s)}
 	mv modules{,-$(date +%s)}
-}
-
-function all {
-	sites
-	images $1
 }
 
 function init {
@@ -91,4 +86,11 @@ if [ $(ps aux | grep $0 | grep -v grep | wc -l) -gt 2 ] ; then
         echo already running, exiting.
         exit
 fi
-$@
+
+if [ -f $1 ]
+then
+	sites
+	images $@
+else
+	$@
+fi
