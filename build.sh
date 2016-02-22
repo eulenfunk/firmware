@@ -28,36 +28,36 @@ function sites {
 
 #build image for autoupdater branch $2, gluon branch $3, target $1, template $4, site $5
 function image {
-		PREP=$(cat $HOME_DIR/prepared)
-		rm $HOME_DIR/prepared
-                ARGS="GLUON_SITEDIR=$HOME_DIR/assembled/$3/$4 GLUON_IMAGEDIR=$HOME_DIR/images/$3/$4 GLUON_MODULEDIR=$HOME_DIR/modules GLUON_BRANCH=$1"
+		PREP=$(cat $HOME_DIR/.prepared)
+		rm $HOME_DIR/.prepared
+		ARGS="GLUON_SITEDIR=$HOME_DIR/assembled/$3/$4 GLUON_IMAGEDIR=$HOME_DIR/images/$3/$4 GLUON_MODULEDIR=$HOME_DIR/modules GLUON_BRANCH=$1"
 		if [ "$PREP" != "$3" ]
 		then
 			git fetch --all
 			git reset --hard $2
-	                make update $ARGS
+			make update $ARGS || end 1
 			make clean $ARGS GLUON_TARGET=ar71xx-generic
-	                $HOME_DIR/assembled/$3/$4/prepare.sh
+			$HOME_DIR/assembled/$3/$4/prepare.sh
 		fi
-                for TARGET in $TARGETS
-                do
+		for TARGET in $TARGETS
+		do
 			if make -j12 $ARGS GLUON_TARGET=$TARGET
 			then
 				echo build successful
 			else
 				make V=s $ARGS GLUON_TARGET=$TARGET
-				exit 1
+				end 1
 			fi
-                done
-		echo $3 > $HOME_DIR/prepared
-                mkdir $HOME_DIR/images/$3/$4/site
+		done
+		echo $3 > $HOME_DIR/.prepared
+		mkdir $HOME_DIR/images/$3/$4/site
 		cp -r $HOME_DIR/assembled/$3/$4/* $HOME_DIR/images/$3/$4/site
-                make manifest $ARGS
+		make manifest $ARGS
 }
 
 function images {
 	if [ -z "$@" ]; then export TARGETS="ar71xx-generic ar71xx-nand mpc85xx-generic x86-generic x86-kvm_guest x86-xen_domu x86-64"; else export TARGETS="$@"; fi
-        cd $GLUON_DIR
+	cd $GLUON_DIR
 	while read L
 	do
 		image $L
@@ -85,6 +85,18 @@ function ci {
 	all
 }
 
+function end {
+	rm -f $LOCK
+	exit $1
+}
+
 HOME_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 GLUON_DIR="$HOME_DIR/gluon"
+LOCK=/tmp/eulenfw_build.sh.running
+if [[ -f $LOCK ]] ; then
+	echo already running, exiting. if you are sure, delete $LOCK
+	exit
+fi
+touch $LOCK
 $@
+end
