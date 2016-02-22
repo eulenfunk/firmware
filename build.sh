@@ -35,7 +35,7 @@ function image {
 		then
 			git fetch --all
 			git reset --hard $2
-			make update $ARGS || end 1
+			make update $ARGS || exit 1
 			make clean $ARGS GLUON_TARGET=ar71xx-generic
 			$HOME_DIR/assembled/$3/$4/prepare.sh
 		fi
@@ -46,7 +46,7 @@ function image {
 				echo build successful
 			else
 				make V=s $ARGS GLUON_TARGET=$TARGET
-				end 1
+				exit 1
 			fi
 		done
 		echo $3 > $HOME_DIR/.prepared
@@ -85,18 +85,10 @@ function ci {
 	all
 }
 
-function end {
-	rm -f $LOCK
-	exit $1
-}
-
 HOME_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 GLUON_DIR="$HOME_DIR/gluon"
-LOCK=/tmp/eulenfw_build.sh.running
-if [[ -f $LOCK ]] ; then
-	echo already running, exiting. if you are sure, delete $LOCK
-	exit
+if [ $(ps aux | grep $0 | grep -v grep | wc -l) -gt 2 ] ; then
+        echo already running, exiting.
+        exit
 fi
-touch $LOCK
 $@
-end
