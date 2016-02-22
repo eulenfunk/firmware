@@ -22,7 +22,7 @@ function sites {
 	while read L
 	do
 		makesite $L
-	done < sites
+	done < $1
 	echo --- sites assembled ---
 }
 
@@ -86,16 +86,17 @@ function help {
 
 HOME_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 GLUON_DIR="$HOME_DIR/gluon"
-if [ $(ps aux | grep $0 | grep -v grep | wc -l) -gt 2 ] ; then
+if [ $(pgrep $(basename $0) | wc -l) -gt 2 ]
+then
         echo already running, exiting.
         exit
 fi
 
-if [ -f $1 ]
+if [ -f "$1" ]
 then
-	sites
+	sites $1
 	images $@
-elif [ -z "$@" ]
+elif [ -z "$1" ]
 then
 	help
 else
