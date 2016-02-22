@@ -30,7 +30,8 @@ GLUON_SITE_PACKAGES := \
 	iwinfo \
 	ffho-wifi-blackout-workaround \
 	gluon-ebtables-filter-roguenets \
-        ffffm-keep-radio-channel  
+        ffffm-keep-radio-channel \
+        gluon-banner
 
 DEFAULT_GLUON_RELEASE := $(shell date '+%Y%m%d%H')-exp
 
