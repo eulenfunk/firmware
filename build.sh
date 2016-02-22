@@ -80,6 +80,10 @@ function ci {
 	all
 }
 
+function help {
+	echo 'Usage: build.sh <sites file> [target1] [target2] [...]'
+}
+
 HOME_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 GLUON_DIR="$HOME_DIR/gluon"
 if [ $(ps aux | grep $0 | grep -v grep | wc -l) -gt 2 ] ; then
@@ -91,6 +95,9 @@ if [ -f $1 ]
 then
 	sites
 	images $@
+elif [ -z "$@" ]
+then
+	help
 else
 	$@
 fi
