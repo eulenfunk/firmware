@@ -19,19 +19,19 @@ GLUON_SITE_PACKAGES := \
 	gluon-radvd \
 	gluon-setup-mode \
 	gluon-status-page \
+	haveged \
+	iptables \
+	iwinfo  \
+	gluon-ebtables-filter-roguenets \
+	ffffm-keep-radio-channel \
+	ffho-wifi-blackout-workaround \
 	gluon-weeklyreboot \
-	gluon-wificheck \
 	gluon-ssid-changer \
 	gluon-aptimeclock \
 	gluon-vpnlimittimeclock \
-	gluon-txpowerfix \
-	haveged \
-	iptables \
-	iwinfo \
-	ffho-wifi-blackout-workaround \
-	gluon-ebtables-filter-roguenets \
-        ffffm-keep-radio-channel 
-#        gluon-banner
+	gluon-wificheck \
+  	gluon-txpowerfix \
+	gluon-banner
 
 DEFAULT_GLUON_RELEASE := $(shell date '+%Y%m%d%H')-exp
 
