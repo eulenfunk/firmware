@@ -15,6 +15,7 @@ function makesite {
 	replace $DIR NAME "$NAME"
 	replace $DIR WEBSITE "$6"
 	replace $DIR RELBRANCH "$1"
+	replace $DIR STARTDATE "$STARTDATE"
 }
 
 function sites {
@@ -89,6 +90,7 @@ function help {
 
 HOME_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 GLUON_DIR="$HOME_DIR/gluon"
+STARTDATE="$(date +%Y%m%d)"
 if [ $(pgrep $(basename $0) | wc -l) -gt 2 ]
 then
         echo already running, exiting.
