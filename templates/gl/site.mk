@@ -34,7 +34,7 @@ GLUON_SITE_PACKAGES += \
 	kmod-usb-net-dm9601-ether \
 	kmod-r8169 \
 	iperf \
-	vnstat \
+	vnstat
 endif
 
 DEFAULT_GLUON_RELEASE := $(shell date '+%Y%m%d')
