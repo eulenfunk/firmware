@@ -36,7 +36,10 @@ function image {
 			git fetch --all
 			git reset --hard $2
 			make update $ARGS || exit 1
-			make clean $ARGS GLUON_TARGET=ar71xx-generic
+			for TARGET in $TARGETS
+			do
+				make clean $ARGS GLUON_TARGET=$TARGET
+			done
 			$HOME_DIR/assembled/$3/$4/prepare.sh
 		fi
 		for TARGET in $TARGETS
@@ -51,7 +54,7 @@ function image {
 		done
 		echo $3 > $HOME_DIR/.prepared
 		mkdir $HOME_DIR/images/$3/$4/site
-		rsync -a $HOME_DIR/assembled/$3/$4/ --exclude '*.old' --exclude '*.backup' $HOME_DIR/images/$3/$4/site
+		rsync -a $HOME_DIR/assembled/$3/$4/ --exclude '*.old' --exclude '*.backup'  --exclude '*~'  --exclude '*.nonworking'   $HOME_DIR/images/$3/$4/site
 		make manifest $ARGS
 }
 
