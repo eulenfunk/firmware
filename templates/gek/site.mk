@@ -30,7 +30,7 @@ GLUON_SITE_PACKAGES := \
 	gluon-aptimeclock \
 	gluon-vpnlimittimeclock \
 	gluon-wificheck \
-  	gluon-txpowerfix \
+	gluon-txpowerfix \
 	gluon-banner
 
 DEFAULT_GLUON_RELEASE := $(shell date '+%Y%m%d%H')-exp
