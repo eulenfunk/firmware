@@ -22,7 +22,10 @@ function sites {
 	rm -rf assembled
 	while read L
 	do
-		makesite $L
+	 	if [[ ! -z "${L// }" ]]
+	 	then
+ 			makesite $L
+ 		fi
 	done < $1
 	echo --- sites assembled ---
 }
