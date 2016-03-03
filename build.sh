@@ -6,6 +6,7 @@ function replace {
 
 #copy template $3 to sitecode $4 and replace SITECODE with $4, NAME with $5, and WEBSITE with $6
 function makesite {
+	RELBRANCH=$1
 	DIR=assembled/$3/$4
 	rm -rf $DIR
 	mkdir -p assembled/$3
@@ -16,6 +17,8 @@ function makesite {
 	replace $DIR WEBSITE "$6"
 	replace $DIR RELBRANCH "$1"
 	replace $DIR STARTDATE "$STARTDATE"
+	SBRANCH="$(date +%Y%m%d%H)-$(echo $RELBRANCH| cut -c1-3|tr '[:upper:]' '[:lower:]')"
+	echo sbranch $SBRANCH
 	replace $DIR SBRANCH "$SBRANCH"
 }
 
@@ -96,8 +99,7 @@ function help {
 HOME_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 GLUON_DIR="$HOME_DIR/gluon"
 STARTDATE="$(date +%Y%m%d)"
-SBRANCH="$(date +%Y%m%d%H)-$(echo $RELBRANCH| cut -c1-3|tr '[:upper:]' '[:lower:]')"
-if [ $(pgrep $(basename $0) | wc -l) -gt 2 ]
+if [ $(pgrep $(basename $1) | wc -l) -gt 2 ]
 then
         echo already running, exiting.
         exit
