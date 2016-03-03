@@ -33,7 +33,7 @@ GLUON_SITE_PACKAGES := \
         ffffm-keep-radio-channel \
         gluon-banner
 
-DEFAULT_GLUON_RELEASE := $(shell date '+%Y%m%d%H')-exp
+DEFAULT_GLUON_RELEASE := STARTDATE
 
 # Allow overriding the release number from the command line
 GLUON_RELEASE ?= $(DEFAULT_GLUON_RELEASE)
