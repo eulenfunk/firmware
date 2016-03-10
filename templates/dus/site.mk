@@ -20,7 +20,7 @@ GLUON_SITE_PACKAGES := \
 	gluon-setup-mode \
 	gluon-status-page \
 	gluon-weeklyreboot \
-	gluon-wificheck \
+	gluon-linkcheck \
 	gluon-ssid-changer \
 	gluon-aptimeclock \
 	gluon-vpnlimittimeclock \
