@@ -28,7 +28,6 @@ GLUON_SITE_PACKAGES := \
 	haveged \
 	iptables \
 	iwinfo \
-	ffho-wifi-blackout-workaround \
 	gluon-ebtables-filter-roguenets \
         ffffm-keep-radio-channel \
         gluon-banner
