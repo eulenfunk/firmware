@@ -34,11 +34,11 @@ function sites {
 	echo --- sites assembled ---
 }
 
-#build image for autoupdater branch $2, gluon branch $3, target $1, template $4, site $5
+#build image for autoupdater branch $2, gluon branch $3, target $1, template $4, site $5, broken $5
 function image {
 		PREP=$(cat $HOME_DIR/.prepared)
 		rm $HOME_DIR/.prepared
-		ARGS="GLUON_SITEDIR=$HOME_DIR/assembled/$3/$4 GLUON_IMAGEDIR=$HOME_DIR/images/$3/$4 GLUON_MODULEDIR=$HOME_DIR/modules GLUON_BRANCH=$1"
+		ARGS="GLUON_SITEDIR=$HOME_DIR/assembled/$3/$4 GLUON_IMAGEDIR=$HOME_DIR/images/$3/$4 GLUON_MODULEDIR=$HOME_DIR/modules GLUON_BRANCH=$1 BROKEN=$6"
 		if [ "$PREP" != "$3" ]
 		then
 			git fetch --all
@@ -108,6 +108,7 @@ fi
 if [ -f "$1" ]
 then
 	sites $1
+	6=1
 	images $@
 elif [ -z "$1" ]
 then
