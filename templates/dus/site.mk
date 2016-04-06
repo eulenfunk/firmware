@@ -29,7 +29,8 @@ GLUON_SITE_PACKAGES := \
 	iwinfo \
 	gluon-ebtables-filter-roguenets \
         ffffm-keep-radio-channel \
-        gluon-banner
+        gluon-banner \
+	gluon-linkcheck
 
 DEFAULT_GLUON_RELEASE := SBRANCH
 
