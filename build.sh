@@ -68,7 +68,7 @@ function image {
 
 function images {
 	# if [ -z "$2" ]; then TARGETS="ar71xx-generic ar71xx-nand mpc85xx-generic x86-generic x86-kvm_guest x86-xen_domu x86-64"; else TARGETS=$(echo $@ | cut -d' ' -f2-); fi
-	if [ -z "$2" ]; then TARGETS="ar71xx-generic ar71xx-nand mpc85xx-generic x86-generic x86-kvm_guest x86-xen_domu"; else TARGETS=$(echo $@ | cut -d' ' -f2-); fi
+	if [ -z "$2" ]; then TARGETS="ar71xx-generic ar71xx-nand mpc85xx-generic x86-generic x86-kvm_guest x86-xen_domu brcm2708-bcm2709"; else TARGETS=$(echo $@ | cut -d' ' -f2-); fi
 	cd $GLUON_DIR
 	while read L
 	do
