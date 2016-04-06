@@ -31,7 +31,7 @@ GLUON_SITE_PACKAGES := \
 	gluon-ebtables-filter-roguenets \
         ffffm-keep-radio-channel \
         gluon-banner \
-	gluon-migrade-vpn \
+	gluon-migrate-vpn \
 	gluon-linkcheck
 
 DEFAULT_GLUON_RELEASE := SBRANCH
