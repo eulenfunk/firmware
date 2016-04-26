@@ -52,11 +52,11 @@ function image {
 		fi
 		for TARGET in $TARGETS
 		do
-			if make -j12 $ARGS GLUON_TARGET=$TARGET
+			if make -j12 $ARGS GLUON_TARGET=$TARGET BROKEN=1
 			then
 				echo build successful
 			else
-				make V=s $ARGS GLUON_TARGET=$TARGET
+				make V=s $ARGS GLUON_TARGET=$TARGET BROKEN=1
 				exit 1
 			fi
 		done
