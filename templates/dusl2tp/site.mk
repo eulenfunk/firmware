@@ -26,7 +26,7 @@ GLUON_SITE_PACKAGES := \
 	gluon-vpnlimittimeclock \
 	gluon-legacy \
 	gluon-txpowerfix \
-	autoupdater-wifi-fallback \
+	ffho-autoupdater-wifi-fallback
 	haveged \
 	iptables \
 	iwinfo \
