@@ -1,4 +1,4 @@
-GLUON_SITE_FEEDS="eulenfunk ffho ffrl_packages ffffm_packages ffddorf"
+GLUON_SITE_FEEDS="eulenfunk ffho ffrl_packages ffffm_packages"
 
 PACKAGES_EULENFUNK_REPO=https://github.com/eulenfunk/packages.git
 PACKAGES_EULENFUNK_BRANCH=master
@@ -15,7 +15,3 @@ PACKAGES_FFHO_COMMIT=80c8d7cd7fc9efd4d11ec9d6e0148c985abc9c64
 PACKAGES_FFRL_PACKAGES_REPO=https://github.com/ffrl/ffrl-packages.git
 PACKAGES_FFRL_PACKAGES_BRANCH=master
 PACKAGES_FFRL_PACKAGES_COMMIT=37618c0a3c33420f713080b3b66758b2fe533cbc
-
-PACKAGES_FFDDORF_PACKAGES_REPO=https://github.com/ffddorf/gluon-rfkill-disable.git
-PACKAGES_FFDDORF_PACKAGES_BRANCH=master
-PACKAGES_FFDDORF_PACKAGES_COMMIT=673ee2610d5f3c4528b1393dc283fa25d46770c8
