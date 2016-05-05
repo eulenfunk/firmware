@@ -24,7 +24,7 @@ GLUON_SITE_PACKAGES := \
 	gluon-ssid-changer \
 	gluon-aptimeclock \
 	gluon-vpnlimittimeclock \
-	gluon-legacy \
+	gluon-hotfix \
 	gluon-txpowerfix \
 	ffho-autoupdater-wifi-fallback \
 	haveged \
