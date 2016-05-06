@@ -26,7 +26,6 @@ GLUON_SITE_PACKAGES := \
 	gluon-vpnlimittimeclock \
 	gluon-hotfix \
 	gluon-txpowerfix \
-	gluon-nodeinfoplus \
 	ffho-autoupdater-wifi-fallback \
 	haveged \
 	iptables \
