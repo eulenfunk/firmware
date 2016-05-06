@@ -49,7 +49,8 @@ GLUON_WNDR3700_SITE_PACKAGES := mod-usb-core kmod-usb2
 GLUON_WZRHPG450H_SITE_PACKAGES := mod-usb-core kmod-usb2
 GLUON_WZRHPAG300H_SITE_PACKAGES := mod-usb-core kmod-usb2
 GLUON_ARCHERC7_SITE_PACKAGES := mod-usb-core kmod-usb2
-GLUON_DIR505A1_SITE_PACKAGES := kmod-usb-core kmod-usb2 mod-video-core kmod-video-gspca-core kmod-video-gspca-zc3xx kmod-video-uvc kmod-video-videobuf2
+GLUON_DIR505A1_SITE_PACKAGES := kmod-usb-core kmod-usb2 
+#GLUON_DIR505A1_SITE_PACKAGES := kmod-usb-core kmod-usb2 mod-video-core kmod-video-gspca-core kmod-video-gspca-zc3xx kmod-video-uvc kmod-video-videobuf2
 
 #mpc85xx-generic
 GLUON_TLWDR4900_SITE_PACKAGES := mod-usb-core kmod-usb2
