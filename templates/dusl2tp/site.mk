@@ -26,6 +26,7 @@ GLUON_SITE_PACKAGES := \
 	gluon-vpnlimittimeclock \
 	gluon-hotfix \
 	gluon-txpowerfix \
+	gluon-nodinfoplus
 	ffho-autoupdater-wifi-fallback \
 	haveged \
 	iptables \
@@ -43,7 +44,6 @@ GLUON_TLWDR4300_SITE_PACKAGES := mod-usb-core kmod-usb2
 GLUON_TLWR2543_SITE_PACKAGES := mod-usb-core kmod-usb2
 GLUON_WRT160NL_SITE_PACKAGES := mod-usb-core kmod-usb2
 GLUON_DIR825B1_SITE_PACKAGES := mod-usb-core kmod-usb2
-GLUON_TLWR710_SITE_PACKAGES := mod-usb-core kmod-usb2 fswebcam kmod-video-core kmod-video-cpia2  kmod-video-gspca-core kmod-video-pwc kmod-video-sn9c102 kmod-video-uvc kmod-video-videobuf2
 GLUON_GLINET_SITE_PACKAGES := mod-usb-core kmod-usb2
 GLUON_WNDR3700_SITE_PACKAGES := mod-usb-core kmod-usb2
 GLUON_WZRHPG450H_SITE_PACKAGES := mod-usb-core kmod-usb2
