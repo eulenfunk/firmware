@@ -36,10 +36,6 @@ GLUON_SITE_PACKAGES := \
 	gluon-migrate-vpn \
 	gluon-linkcheck
 
-
-#mpc85xx-generic
-GLUON_TLWDR4900_SITE_PACKAGES := mod-usb-core kmod-usb2
-
 DEFAULT_GLUON_RELEASE := SBRANCH
 
 # Allow overriding the release number from the command line
