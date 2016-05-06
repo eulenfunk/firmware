@@ -36,20 +36,6 @@ GLUON_SITE_PACKAGES := \
 	gluon-migrate-vpn \
 	gluon-linkcheck
 
-#ar71xx-generic
-GLUON_TLWR1043_SITE_PACKAGES := mod-usb-core kmod-usb2
-GLUON_TLWR842_SITE_PACKAGES := mod-usb-core kmod-usb2
-GLUON_TLWDR4300_SITE_PACKAGES := mod-usb-core kmod-usb2
-GLUON_TLWR2543_SITE_PACKAGES := mod-usb-core kmod-usb2
-GLUON_WRT160NL_SITE_PACKAGES := mod-usb-core kmod-usb2
-GLUON_DIR825B1_SITE_PACKAGES := mod-usb-core kmod-usb2
-GLUON_GLINET_SITE_PACKAGES := mod-usb-core kmod-usb2
-GLUON_WNDR3700_SITE_PACKAGES := mod-usb-core kmod-usb2
-GLUON_WZRHPG450H_SITE_PACKAGES := mod-usb-core kmod-usb2
-GLUON_WZRHPAG300H_SITE_PACKAGES := mod-usb-core kmod-usb2
-GLUON_ARCHERC7_SITE_PACKAGES := mod-usb-core kmod-usb2
-GLUON_DIR505A1_SITE_PACKAGES := kmod-usb-core kmod-usb2 
-#GLUON_DIR505A1_SITE_PACKAGES := kmod-usb-core kmod-usb2 mod-video-core kmod-video-gspca-core kmod-video-gspca-zc3xx kmod-video-uvc kmod-video-videobuf2
 
 #mpc85xx-generic
 GLUON_TLWDR4900_SITE_PACKAGES := mod-usb-core kmod-usb2
