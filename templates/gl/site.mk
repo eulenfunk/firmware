@@ -19,8 +19,6 @@ GLUON_SITE_PACKAGES := \
 	gluon-radvd \
 	gluon-setup-mode \
 	gluon-status-page \
-	gluon-txpowerfix \
-	gluon-banner \
 	haveged \
 	iptables \
 	iwinfo \
@@ -42,3 +40,5 @@ DEFAULT_GLUON_RELEASE := STARTDATE
 GLUON_RELEASE ?= $(DEFAULT_GLUON_RELEASE)
 GLUON_PRIORITY ?= 0
 GLUON_LANGS ?= de en fr
+
+GLUON_TARGET ?= ar71xx-generic

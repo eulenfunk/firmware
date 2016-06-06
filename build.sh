@@ -15,11 +15,14 @@ function makesite {
 	NAME=$(echo $5 | sed 's/:/ /g')
 	replace $DIR NAME "$NAME"
 	replace $DIR WEBSITE "$6"
+	replace $DIR V4NET "$7"
+	replace $DIR V6NET "$8"
 	replace $DIR RELBRANCH "$1"
 	replace $DIR STARTDATE "$STARTDATE"
-	SBRANCH="$(date +%Y%m%d%H)-$(echo $RELBRANCH| cut -c1-3|tr '[:upper:]' '[:lower:]')"
-	echo sbranch $SBRANCH
-	replace $DIR SBRANCH "$SBRANCH"
+	#SBRANCH="$(date +%Y%m%d%H)-$(echo $RELBRANCH| cut -c1-3|tr '[:upper:]' '[:lower:]')"
+	#replace $DIR SBRANCH "$SBRANCH"
+	sed "s;PEERS;$(cat $HOME_DIR/peers/peers.$4);" -i $DIR/site.conf
+	sed "s;KEYS;$(cat $HOME_DIR/$9);" -i $DIR/site.conf
 }
 
 function sites {
@@ -49,18 +52,18 @@ function image {
 				make clean $ARGS GLUON_TARGET=$TARGET
 			done
 			$HOME_DIR/assembled/$3/$4/prepare.sh
+			echo $3 > $HOME_DIR/.prepared
 		fi
 		for TARGET in $TARGETS
 		do
-			if make -j12 $ARGS GLUON_TARGET=$TARGET BROKEN=1
+			if make -j12 $ARGS GLUON_TARGET=$TARGET
 			then
 				echo build successful
 			else
-				make V=s $ARGS GLUON_TARGET=$TARGET BROKEN=1
+				make V=s $ARGS GLUON_TARGET=$TARGET
 				exit 1
 			fi
 		done
-		echo $3 > $HOME_DIR/.prepared
 		mkdir $HOME_DIR/images/$3/$4/site
 		rsync -a $HOME_DIR/assembled/$3/$4/ --exclude '*.old' --exclude '*.backup'  --exclude '*~'  --exclude '*.nonworking'   $HOME_DIR/images/$3/$4/site
 		make manifest $ARGS
@@ -108,7 +111,6 @@ fi
 if [ -f "$1" ]
 then
 	sites $1
-	6=1
 	images $@
 elif [ -z "$1" ]
 then
