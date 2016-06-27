@@ -25,15 +25,15 @@ GLUON_SITE_PACKAGES := \
 	gluon-vpnlimittimeclock \
 	gluon-txpowerfix \
 	gluon-hotfix\
-	ffho-autoupdater-wifi-fallback \
 	haveged \
 	iptables \
 	iwinfo \
 	gluon-ebtables-filter-roguenets \
         ffffm-keep-radio-channel \
         gluon-banner \
-	gluon-linkcheck
-
+	gluon-linkcheck \
+	gluon-airtime
+	
 DEFAULT_GLUON_RELEASE := SBRANCH
 
 # Allow overriding the release number from the command line
