@@ -108,7 +108,6 @@ fi
 if [ -f "$1" ]
 then
 	sites $1
-	6=1
 	images $@
 elif [ -z "$1" ]
 then
