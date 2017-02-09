@@ -1,6 +1,7 @@
 GLUON_SITE_PACKAGES := \
 	gluon-mesh-batman-adv-15 \
 	gluon-respondd \
+	gluon-next-node \
 	respondd-module-airtime \
 	gluon-autoupdater \
 	gluon-config-mode-autoupdater \
@@ -15,7 +16,6 @@ GLUON_SITE_PACKAGES := \
 	gluon-luci-autoupdater \
 	gluon-luci-portconfig \
 	gluon-luci-wifi-config \
-	gluon-next-node \
 	gluon-mesh-vpn-tunneldigger \
 	gluon-tunneldigger-watchdog \
 	gluon-radvd \
