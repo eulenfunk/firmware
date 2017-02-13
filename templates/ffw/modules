@@ -1,0 +1,5 @@
+GLUON_SITE_FEEDS='fastd_auto_mtu'
+PACKAGES_FASTD_AUTO_MTU_REPO=https://github.com/ffwtal/fastd-auto-mtu.git
+PACKAGES_FASTD_AUTO_MTU_COMMIT=0b2cde936906d503e34559c7dec80bd5e854f528
+PACKAGES_FASTD_AUTO_MTU_BRANCH=master
+

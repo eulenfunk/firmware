@@ -34,7 +34,7 @@ function sites {
 	echo --- sites assembled ---
 }
 
-#build image for autoupdater branch $2, gluon branch $3, target $1, template $4, site $5, broken $5
+#build image for autoupdater branch $2, gluon branch $3, target $1, template $4, site $5, broken $6
 function image {
 		PREP=$(cat $HOME_DIR/.prepared)
 		rm $HOME_DIR/.prepared
@@ -42,7 +42,7 @@ function image {
 		if [ "$PREP" != "$3" ]
 		then
 			git fetch --all
-			git reset --hard $2
+#			git reset --hard $2
 			make update $ARGS || exit 1
 			for TARGET in $TARGETS
 			do
