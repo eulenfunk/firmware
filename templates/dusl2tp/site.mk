@@ -23,7 +23,6 @@ GLUON_SITE_PACKAGES := \
 	gluon-weeklyreboot \
 	gluon-ssid-changer \
 	gluon-hotfix \
-	gluon-txpowerfix \
 	ffho-ath9k-blackout-workaround \
 	haveged \
 	iptables \
@@ -32,7 +31,9 @@ GLUON_SITE_PACKAGES := \
         ffffm-keep-radio-channel \
         gluon-banner \
 	gluon-migrate-vpn \
-	gluon-linkcheck
+	gluon-linkcheck \
+	gluon-config-mode-ppa \
+	socat
 
 
 

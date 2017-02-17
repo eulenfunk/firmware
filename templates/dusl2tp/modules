@@ -1,8 +1,8 @@
-GLUON_SITE_FEEDS="eulenfunk ffho ffrl_packages ffffm_packages airtime"
+GLUON_SITE_FEEDS="eulenfunk ffho ffrl_packages ffffm_packages airtime ffki"
 
 PACKAGES_EULENFUNK_REPO=https://github.com/eulenfunk/packages.git
 PACKAGES_EULENFUNK_BRANCH=master
-PACKAGES_EULENFUNK_COMMIT=e053b2c7ca19db054152c8375a2d31e0d6939261
+PACKAGES_EULENFUNK_COMMIT=2c92bc5845979edd615ac7f71fd775ed99152fdf
 
 PACKAGES_FFFFM_PACKAGES_REPO=https://github.com/freifunk-ffm/packages.git
 PACKAGES_FFFFM_PACKAGES_BRANCH=master
@@ -19,3 +19,7 @@ PACKAGES_FFRL_PACKAGES_BRANCH=Branch_v2016.2.x
 PACKAGES_AIRTIME_REPO=https://github.com/viisauksena/gluon-airtime
 PACKAGES_AIRTIME_COMMIT=c6bad50e159f58648718b5ca26ea48dddbc2cf44
 PACKAGES_AIRTIME_BRANCH=master
+
+PACKAGES_FFKI_REPO=git://github.com/freifunk-kiel/ffki-packages.git
+PACKAGES_FFKI_COMMIT=5ba5aaf73aab4937978ad98150518e0d1f32d611
+PACKAGES_FFKI_BRANCH=master

@@ -46,7 +46,8 @@ function image {
 			make update $ARGS || exit 1
 			for TARGET in $TARGETS
 			do
-				make clean $ARGS GLUON_TARGET=$TARGET
+			echo 	make clean $ARGS GLUON_TARGET=$TARGET
+#				make clean $ARGS GLUON_TARGET=$TARGET
 			done
 			$HOME_DIR/assembled/$3/$4/prepare.sh
 		fi

@@ -1,6 +1,7 @@
 GLUON_SITE_PACKAGES := \
 	gluon-mesh-batman-adv-15 \
 	gluon-respondd \
+	respondd-module-airtime \
 	gluon-autoupdater \
 	gluon-config-mode-autoupdater \
 	gluon-config-mode-contact-info \
@@ -14,17 +15,14 @@ GLUON_SITE_PACKAGES := \
 	gluon-luci-autoupdater \
 	gluon-luci-portconfig \
 	gluon-luci-wifi-config \
-	gluon-next-node \
 	gluon-mesh-vpn-fastd \
 	gluon-radvd \
 	gluon-setup-mode \
 	gluon-status-page \
 	gluon-weeklyreboot \
 	gluon-ssid-changer \
-	gluon-aptimeclock \
-	gluon-vpnlimittimeclock \
-	gluon-txpowerfix \
-	gluon-hotfix\
+	gluon-hotfix \
+	ffho-ath9k-blackout-workaround \
 	haveged \
 	iptables \
 	iwinfo \
@@ -32,8 +30,11 @@ GLUON_SITE_PACKAGES := \
         ffffm-keep-radio-channel \
         gluon-banner \
 	gluon-linkcheck \
-	gluon-airtime
-	
+	gluon-config-mode-ppa \
+	socat
+
+
+
 DEFAULT_GLUON_RELEASE := SBRANCH
 
 # Allow overriding the release number from the command line
@@ -41,3 +42,5 @@ GLUON_RELEASE ?= $(DEFAULT_GLUON_RELEASE)
 
 GLUON_PRIORITY ?= 0
 GLUON_LANGS ?= de en 
+GLUON_REGION ?= eu
+GLUON_ATH10K_MESH ?= 11s
