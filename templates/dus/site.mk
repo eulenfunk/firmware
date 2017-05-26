@@ -8,8 +8,10 @@ GLUON_SITE_PACKAGES := \
 	gluon-config-mode-geo-location \
 	gluon-config-mode-hostname \
 	gluon-config-mode-mesh-vpn \
-	gluon-ebtables-filter-multicast \
-	gluon-ebtables-filter-ra-dhcp \
+	gluon-ebtables \
+        gluon-ebtables-filter-multicast \
+        gluon-ebtables-filter-ra-dhcp \
+        gluon-ebtables-limit-arp \
 	gluon-luci-admin \
 	gluon-luci-autoupdater \
 	gluon-luci-portconfig \
