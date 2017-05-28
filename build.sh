@@ -47,7 +47,7 @@ function image {
 			for TARGET in $TARGETS
 			do
 			echo 	make clean $ARGS GLUON_TARGET=$TARGET
-#				make clean $ARGS GLUON_TARGET=$TARGET
+				make clean $ARGS GLUON_TARGET=$TARGET
 			done
 			$HOME_DIR/assembled/$3/$4/prepare.sh
 		fi
@@ -68,8 +68,19 @@ function image {
 }
 
 function images {
+## choices:
+# * ar71xx-generic
+# * ar71xx-nand
+# * brcm2708-bcm2708
+# * brcm2708-bcm2709
+# * mpc85xx-generic
+# * x86-generic
+# * x86-kvm_guest
+# * x86-64
+# * x86-xen_domu
+
 	# if [ -z "$2" ]; then TARGETS="ar71xx-generic ar71xx-nand mpc85xx-generic x86-generic x86-kvm_guest x86-xen_domu x86-64"; else TARGETS=$(echo $@ | cut -d' ' -f2-); fi
-	if [ -z "$2" ]; then TARGETS="ar71xx-generic ar71xx-nand mpc85xx-generic x86-generic x86-kvm_guest x86-xen_domu"; else TARGETS=$(echo $@ | cut -d' ' -f2-); fi
+	if [ -z "$2" ]; then TARGETS="ar71xx-generic ar71xx-nand mpc85xx-generic x86-generic x86-kvm_guest x86-64 brcm2708-bcm2708 brcm2708-bcm2709"; else TARGETS=$(echo $@ | cut -d' ' -f2-); fi
 	cd $GLUON_DIR
 	while read L
 	do
