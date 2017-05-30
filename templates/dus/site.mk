@@ -24,6 +24,7 @@ GLUON_SITE_PACKAGES := \
 	gluon-ssid-changer \
 	gluon-hotfix \
 	gluon-quickfix \
+	gluon-txpowerfix \
 	ffho-ath9k-blackout-workaround \
 	haveged \
 	iptables \
