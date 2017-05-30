@@ -9,10 +9,10 @@ GLUON_SITE_PACKAGES := \
 	gluon-config-mode-hostname \
 	gluon-config-mode-mesh-vpn \
 	gluon-ebtables \
-	gluon-ebtables-segment-mld \
         gluon-ebtables-filter-multicast \
         gluon-ebtables-filter-ra-dhcp \
         gluon-ebtables-limit-arp \
+	gluon-ebtables-segment-mld \
 	gluon-luci-admin \
 	gluon-luci-autoupdater \
 	gluon-luci-portconfig \
