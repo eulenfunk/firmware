@@ -21,7 +21,6 @@ GLUON_SITE_PACKAGES := \
 	gluon-migrate-vpn \
 	gluon-tunneldigger-watchdog \
 	gluon-radvd \
-        gluon-dns-cache \
  	gluon-setup-mode \
 	gluon-status-page \
 	gluon-weeklyreboot \
@@ -35,6 +34,7 @@ GLUON_SITE_PACKAGES := \
 	iwinfo \
 	gluon-ebtables-filter-roguenets \
         ffffm-keep-radio-channel \
+        gluon-dns-config \
         gluon-banner \
 	gluon-linkcheck \
 	gluon-config-mode-ppa \
