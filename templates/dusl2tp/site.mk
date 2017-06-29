@@ -18,9 +18,11 @@ GLUON_SITE_PACKAGES := \
 	gluon-luci-portconfig \
 	gluon-luci-wifi-config \
 	gluon-mesh-vpn-tunneldigger \
+	gluon-migrate-vpn \
 	gluon-tunneldigger-watchdog \
 	gluon-radvd \
-	gluon-setup-mode \
+        gluon-dns-cache \
+ 	gluon-setup-mode \
 	gluon-status-page \
 	gluon-weeklyreboot \
 	gluon-ssid-changer \
@@ -34,7 +36,6 @@ GLUON_SITE_PACKAGES := \
 	gluon-ebtables-filter-roguenets \
         ffffm-keep-radio-channel \
         gluon-banner \
-	gluon-migrate-vpn \
 	gluon-linkcheck \
 	gluon-config-mode-ppa \
 	socat

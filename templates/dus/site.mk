@@ -19,6 +19,7 @@ GLUON_SITE_PACKAGES := \
 	gluon-luci-wifi-config \
 	gluon-mesh-vpn-fastd \
 	gluon-radvd \
+	gluon-dns-cache \
 	gluon-setup-mode \
 	gluon-status-page \
 	gluon-weeklyreboot \
