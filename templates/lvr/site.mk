@@ -34,7 +34,7 @@ GLUON_SITE_PACKAGES := \
 	iwinfo \
 	gluon-ebtables-filter-roguenets \
         ffffm-keep-radio-channel \
-	gluon-dns-config \
+	gluon-dns-cache \
         gluon-banner \
 	gluon-linkcheck \
 	gluon-config-mode-ppa \
