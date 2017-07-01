@@ -14,7 +14,6 @@ GLUON_SITE_PACKAGES := \
 	gluon-ebtables-filter-ra-dhcp \
 	gluon-ebtables-limit-arp \
 	gluon-next-node \
-        gluon-authorized-keys \
 	gluon-luci-admin \
 	gluon-luci-autoupdater \
 	gluon-luci-portconfig \
@@ -36,7 +35,7 @@ GLUON_SITE_PACKAGES := \
 	iwinfo \
 	gluon-ebtables-filter-roguenets \
         ffffm-keep-radio-channel \
-        gluon-dns-cache \
+	eulenfunk-dns-cache \
         gluon-banner \
 	gluon-linkcheck \
 	gluon-config-mode-ppa \
