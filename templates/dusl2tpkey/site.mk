@@ -1,7 +1,6 @@
 GLUON_SITE_PACKAGES := \
 	gluon-mesh-batman-adv-15 \
 	gluon-respondd \
-	respondd-module-airtime \
 	gluon-autoupdater \
 	gluon-config-mode-autoupdater \
 	gluon-config-mode-contact-info \
@@ -9,31 +8,38 @@ GLUON_SITE_PACKAGES := \
 	gluon-config-mode-geo-location \
 	gluon-config-mode-hostname \
 	gluon-config-mode-tunneldigger \
+	gluon-ebtables \
+	gluon-ebtables-segment-mld \
 	gluon-ebtables-filter-multicast \
 	gluon-ebtables-filter-ra-dhcp \
+	gluon-ebtables-limit-arp \
+	gluon-next-node \
+        gluon-authorized-keys \
 	gluon-luci-admin \
 	gluon-luci-autoupdater \
 	gluon-luci-portconfig \
 	gluon-luci-wifi-config \
 	gluon-mesh-vpn-tunneldigger \
+	gluon-migrate-vpn \
 	gluon-tunneldigger-watchdog \
 	gluon-radvd \
-	gluon-setup-mode \
+ 	gluon-setup-mode \
 	gluon-status-page \
 	gluon-weeklyreboot \
 	gluon-ssid-changer \
 	gluon-hotfix \
+        gluon-quickfix \
+	gluon-txpowerfix \
 	ffho-ath9k-blackout-workaround \
 	haveged \
 	iptables \
 	iwinfo \
 	gluon-ebtables-filter-roguenets \
         ffffm-keep-radio-channel \
+	eulenfunk-dns-cache \
         gluon-banner \
-	gluon-migrate-vpn \
 	gluon-linkcheck \
 	gluon-config-mode-ppa \
-	gluon-authorized-keys \
 	socat
 
 

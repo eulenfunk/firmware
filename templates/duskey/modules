@@ -1,24 +1,20 @@
-GLUON_SITE_FEEDS="eulenfunk ffho ffrl_packages ffffm_packages airtime ffki"
+GLUON_SITE_FEEDS="eulenfunk ffho ffrl_packages ffffm_packages ffki"
 
 PACKAGES_EULENFUNK_REPO=https://github.com/eulenfunk/packages.git
-PACKAGES_EULENFUNK_BRANCH=master
-PACKAGES_EULENFUNK_COMMIT=c3d83dd923d97149948acdcf4126216f1b2ae07a
+PACKAGES_EULENFUNK_BRANCH=v2016.2.x
+PACKAGES_EULENFUNK_COMMIT=35d0055cf8c5f113f78febb03cc54322d62890cf
 
 PACKAGES_FFFFM_PACKAGES_REPO=https://github.com/freifunk-ffm/packages.git
 PACKAGES_FFFFM_PACKAGES_BRANCH=master
-PACKAGES_FFFFM_PACKAGES_COMMIT=67286778b9f480b5c9532a8c9f1a136953f4864c
+PACKAGES_FFFFM_PACKAGES_COMMIT=ea0cc9c62831984ec6f9690c85425c437a7ac827
 
-PACKAGES_FFHO_REPO=http://git.c3pb.de/freifunk-pb/ffho-packages.git
+PACKAGES_FFHO_REPO=https://github.com/FreifunkHochstift/ffho-packages
 PACKAGES_FFHO_BRANCH=v2016.2.x
 PACKAGES_FFHO_COMMIT=b4924e41bb3622b57e7ab8514dacbaa1d1133c45
 
 PACKAGES_FFRL_PACKAGES_REPO=https://github.com/ffrl/ffrl-packages.git
 PACKAGES_FFRL_PACKAGES_COMMIT=9ef54396cf79031b1b7e35af038b8a0f2ec1bd90
 PACKAGES_FFRL_PACKAGES_BRANCH=Branch_v2016.2.x
-
-PACKAGES_AIRTIME_REPO=https://github.com/viisauksena/gluon-airtime
-PACKAGES_AIRTIME_COMMIT=c6bad50e159f58648718b5ca26ea48dddbc2cf44
-PACKAGES_AIRTIME_BRANCH=master
 
 PACKAGES_FFKI_REPO=git://github.com/freifunk-kiel/ffki-packages.git
 PACKAGES_FFKI_COMMIT=5ba5aaf73aab4937978ad98150518e0d1f32d611
