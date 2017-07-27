@@ -1,0 +1,21 @@
+GLUON_SITE_FEEDS="eulenfunk ffho ffrl_packages ffffm_packages ffki"
+
+PACKAGES_EULENFUNK_REPO=https://github.com/eulenfunk/packages.git
+PACKAGES_EULENFUNK_BRANCH=v2016.2.x
+PACKAGES_EULENFUNK_COMMIT=d0d6baa7fb2a4ff2cf4825095e82c58ad793b97b
+
+PACKAGES_FFFFM_PACKAGES_REPO=https://github.com/freifunk-ffm/packages.git
+PACKAGES_FFFFM_PACKAGES_BRANCH=master
+PACKAGES_FFFFM_PACKAGES_COMMIT=ea0cc9c62831984ec6f9690c85425c437a7ac827
+
+PACKAGES_FFHO_REPO=https://github.com/FreifunkHochstift/ffho-packages
+PACKAGES_FFHO_BRANCH=v2016.2.x
+PACKAGES_FFHO_COMMIT=b4924e41bb3622b57e7ab8514dacbaa1d1133c45
+
+PACKAGES_FFRL_PACKAGES_REPO=https://github.com/ffrl/ffrl-packages.git
+PACKAGES_FFRL_PACKAGES_COMMIT=9ef54396cf79031b1b7e35af038b8a0f2ec1bd90
+PACKAGES_FFRL_PACKAGES_BRANCH=Branch_v2016.2.x
+
+PACKAGES_FFKI_REPO=git://github.com/freifunk-kiel/ffki-packages.git
+PACKAGES_FFKI_COMMIT=5ba5aaf73aab4937978ad98150518e0d1f32d611
+PACKAGES_FFKI_BRANCH=master
