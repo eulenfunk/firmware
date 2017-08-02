@@ -47,7 +47,7 @@ function image {
 			for TARGET in $TARGETS
 			do
 			echo 	make clean $ARGS GLUON_TARGET=$TARGET
-				make clean $ARGS GLUON_TARGET=$TARGET
+#				make clean $ARGS GLUON_TARGET=$TARGET
 			done
 			$HOME_DIR/assembled/$3/$4/prepare.sh
 		fi
@@ -64,6 +64,8 @@ function image {
 		echo $3 > $HOME_DIR/.prepared
 		mkdir $HOME_DIR/images/$3/$4/site
 		rsync -a $HOME_DIR/assembled/$3/$4/ --exclude '*.old' --exclude '*.backup'  --exclude '*~'  --exclude '*.nonworking'   $HOME_DIR/images/$3/$4/site
+		rsync -a $HOME_DIR/build.sh --exclude '*.old' --exclude '*.backup'  --exclude '*~'  --exclude '*.nonworking'   $HOME_DIR/images/$3/$4/site
+		rsync -a $HOME_DIR/$1 --exclude '*.old' --exclude '*.backup'  --exclude '*~'  --exclude '*.nonworking'   $HOME_DIR/images/$3/$4/site
 		make manifest $ARGS
 }
 
