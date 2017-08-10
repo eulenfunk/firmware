@@ -17,7 +17,8 @@ function makesite {
 	replace $DIR WEBSITE "$6"
 	replace $DIR RELBRANCH "$1"
 	replace $DIR STARTDATE "$STARTDATE"
-	SBRANCH="$(date +%Y%m%d%H)-$(echo $RELBRANCH| cut -c1-3|tr '[:upper:]' '[:lower:]')"
+#	SBRANCH="$(date +%Y%m%d%H)-$(echo $RELBRANCH| cut -c1-3|tr '[:upper:]' '[:lower:]')"
+	SBRANCH="$(date +%Y%m%d%H%M)"
 	echo sbranch $SBRANCH
 	replace $DIR SBRANCH "$SBRANCH"
 }
@@ -41,19 +42,19 @@ function image {
 		ARGS="GLUON_SITEDIR=$HOME_DIR/assembled/$3/$4 GLUON_IMAGEDIR=$HOME_DIR/images/$3/$4 GLUON_MODULEDIR=$HOME_DIR/modules GLUON_BRANCH=$1 BROKEN=$6"
 		if [ "$PREP" != "$3" ]
 		then
-			git fetch --all
+			git fetch --all 2>&1 >> $HOME_DIR/assembled/$3/$4/build.log
 #			git reset --hard $2
-			make update $ARGS || exit 1
+			make update $ARGS  2>&1 >>  $HOME_DIR/assembled/$3/$4/build.log || exit 1
 			for TARGET in $TARGETS
 			do
-			echo 	make clean $ARGS GLUON_TARGET=$TARGET
-#				make clean $ARGS GLUON_TARGET=$TARGET
+			echo 	make clean $ARGS GLUON_TARGET=$TARGET 
+#				make clean $ARGS GLUON_TARGET=$TARGET  2>&1 >>  $HOME_DIR/assembled/$3/$4/build.log
 			done
 			$HOME_DIR/assembled/$3/$4/prepare.sh
 		fi
 		for TARGET in $TARGETS
 		do
-			if make -j12 $ARGS GLUON_TARGET=$TARGET BROKEN=1
+			if make -j12 $ARGS GLUON_TARGET=$TARGET BROKEN=1 V=s  2>&1 >>  $HOME_DIR/assembled/$3/$4/build.log
 			then
 				echo build successful
 			else
@@ -62,11 +63,12 @@ function image {
 			fi
 		done
 		echo $3 > $HOME_DIR/.prepared
+		make manifest $ARGS  2>&1 >>  $HOME_DIR/assembled/$3/$4/build.log
+		gzip $HOME_DIR/images/$3/$4/build.log
 		mkdir $HOME_DIR/images/$3/$4/site
 		rsync -a $HOME_DIR/assembled/$3/$4/ --exclude '*.old' --exclude '*.backup'  --exclude '*~'  --exclude '*.nonworking'   $HOME_DIR/images/$3/$4/site
 		rsync -a $HOME_DIR/build.sh --exclude '*.old' --exclude '*.backup'  --exclude '*~'  --exclude '*.nonworking'   $HOME_DIR/images/$3/$4/site
 		rsync -a $HOME_DIR/$1 --exclude '*.old' --exclude '*.backup'  --exclude '*~'  --exclude '*.nonworking'   $HOME_DIR/images/$3/$4/site
-		make manifest $ARGS
 }
 
 function images {
