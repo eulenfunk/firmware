@@ -37,6 +37,7 @@ GLUON_SITE_PACKAGES := \
         gluon-banner \
 	gluon-linkcheck \
 	gluon-config-mode-ppa \
+ 	gluon-authorized-keys \
 	socat
 
 DEFAULT_GLUON_RELEASE := SBRANCH

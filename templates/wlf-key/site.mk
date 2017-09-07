@@ -14,7 +14,6 @@ GLUON_SITE_PACKAGES := \
         gluon-ebtables-filter-ra-dhcp \
         gluon-ebtables-limit-arp \
 	gluon-next-node \
-	gluon-authorized-keys \
 	gluon-luci-admin \
 	gluon-luci-autoupdater \
 	gluon-luci-portconfig \
@@ -38,6 +37,7 @@ GLUON_SITE_PACKAGES := \
         gluon-banner \
 	gluon-linkcheck \
 	gluon-config-mode-ppa \
+ 	gluon-authorized-keys \
 	socat
 
 DEFAULT_GLUON_RELEASE := SBRANCH

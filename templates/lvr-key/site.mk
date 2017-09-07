@@ -8,8 +8,12 @@ GLUON_SITE_PACKAGES := \
 	gluon-config-mode-geo-location \
 	gluon-config-mode-hostname \
 	gluon-config-mode-mesh-vpn \
-	gluon-ebtables-filter-multicast \
-	gluon-ebtables-filter-ra-dhcp \
+	gluon-ebtables \
+	gluon-ebtables-segment-mld \
+        gluon-ebtables-filter-multicast \
+        gluon-ebtables-filter-ra-dhcp \
+        gluon-ebtables-limit-arp \
+	gluon-next-node \
 	gluon-luci-admin \
 	gluon-luci-autoupdater \
 	gluon-luci-portconfig \
@@ -22,14 +26,18 @@ GLUON_SITE_PACKAGES := \
 	gluon-ssid-changer \
 	gluon-hotfix \
 	gluon-quickfix \
+	gluon-txpowerfix \
 	ffho-ath9k-blackout-workaround \
 	haveged \
 	iptables \
 	iwinfo \
 	gluon-ebtables-filter-roguenets \
         ffffm-keep-radio-channel \
+	eulenfunk-dns-cache \
         gluon-banner \
 	gluon-linkcheck \
+	gluon-config-mode-ppa \
+ 	gluon-authorized-keys \
 	socat
 
 DEFAULT_GLUON_RELEASE := SBRANCH
