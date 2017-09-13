@@ -7,27 +7,25 @@ GLUON_SITE_PACKAGES := \
 	gluon-config-mode-core \
 	gluon-config-mode-geo-location \
 	gluon-config-mode-hostname \
-	gluon-config-mode-tunneldigger \
+	gluon-config-mode-mesh-vpn \
 	gluon-ebtables \
 	gluon-ebtables-segment-mld \
-	gluon-ebtables-filter-multicast \
-	gluon-ebtables-filter-ra-dhcp \
-	gluon-ebtables-limit-arp \
+        gluon-ebtables-filter-multicast \
+        gluon-ebtables-filter-ra-dhcp \
+        gluon-ebtables-limit-arp \
 	gluon-next-node \
 	gluon-luci-admin \
 	gluon-luci-autoupdater \
 	gluon-luci-portconfig \
 	gluon-luci-wifi-config \
-	gluon-mesh-vpn-tunneldigger \
-	gluon-migrate-vpn \
-	gluon-tunneldigger-watchdog \
+	gluon-mesh-vpn-fastd \
 	gluon-radvd \
- 	gluon-setup-mode \
+	gluon-setup-mode \
 	gluon-status-page \
 	gluon-weeklyreboot \
 	gluon-ssid-changer \
 	gluon-hotfix \
-        gluon-quickfix \
+	gluon-quickfix \
 	gluon-txpowerfix \
 	ffho-ath9k-blackout-workaround \
 	haveged \
@@ -35,13 +33,13 @@ GLUON_SITE_PACKAGES := \
 	iwinfo \
 	gluon-ebtables-filter-roguenets \
         ffffm-keep-radio-channel \
+ 	ffffm-additional-wifi-json-info \
 	eulenfunk-dns-cache \
         gluon-banner \
 	gluon-linkcheck \
 	gluon-config-mode-ppa \
+ 	gluon-authorized-keys \
 	socat
-
-
 
 DEFAULT_GLUON_RELEASE := SBRANCH
 

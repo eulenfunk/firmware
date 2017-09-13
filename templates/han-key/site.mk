@@ -33,6 +33,7 @@ GLUON_SITE_PACKAGES := \
 	iwinfo \
 	gluon-ebtables-filter-roguenets \
         ffffm-keep-radio-channel \
+ 	ffffm-additional-wifi-json-info \
 	eulenfunk-dns-cache \
         gluon-banner \
 	gluon-linkcheck \
