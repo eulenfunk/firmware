@@ -37,8 +37,8 @@ GLUON_SITE_PACKAGES := \
 	eulenfunk-dns-cache \
         gluon-banner \
 	gluon-linkcheck \
-	gluon-config-mode-ppa \
  	gluon-authorized-keys \
+        gluon-config-mode-ppa \
 	socat
 
 DEFAULT_GLUON_RELEASE := SBRANCH
