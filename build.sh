@@ -17,8 +17,11 @@ function makesite {
 	replace $DIR WEBSITE "$6"
 	replace $DIR RELBRANCH "$1"
 	replace $DIR STARTDATE "$STARTDATE"
-#	SBRANCH="$(date +%Y%m%d%H)-$(echo $RELBRANCH| cut -c1-3|tr '[:upper:]' '[:lower:]')"
-	SBRANCH="$(date +%Y%m%d%H%M)"
+##ffdus
+	SBRANCH="$(date +%Y%m%d%H)-$(echo $RELBRANCH| cut -c1-3|tr '[:upper:]' '[:lower:]')"
+
+##neander
+#	SBRANCH="$(date +%Y%m%d%H%M)"
 	echo sbranch $SBRANCH
 	replace $DIR SBRANCH "$SBRANCH"
 }
@@ -48,13 +51,13 @@ function image {
 			for TARGET in $TARGETS
 			do
 			echo 	make clean $ARGS GLUON_TARGET=$TARGET 
-#				make clean $ARGS GLUON_TARGET=$TARGET >> $HOME_DIR/assembled/$3/$4/build.log
+				make clean $ARGS GLUON_TARGET=$TARGET >> $HOME_DIR/assembled/$3/$4/build.log
 			done
 			$HOME_DIR/assembled/$3/$4/prepare.sh
 		fi
 		for TARGET in $TARGETS
 		do
-			if make -j12 $ARGS GLUON_TARGET=$TARGET BROKEN=1 V=s >> $HOME_DIR/assembled/$3/$4/build.log 
+			if make -j16 $ARGS GLUON_TARGET=$TARGET BROKEN=1 V=s >> $HOME_DIR/assembled/$3/$4/build.log 
 			then
 				echo build successful
 			else
@@ -86,6 +89,7 @@ function images {
 	# if [ -z "$2" ]; then TARGETS="ar71xx-generic ar71xx-nand mpc85xx-generic x86-generic x86-kvm_guest x86-xen_domu x86-64"; else TARGETS=$(echo $@ | cut -d' ' -f2-); fi
 #	if [ -z "$2" ]; then TARGETS="ar71xx-generic ar71xx-nand mpc85xx-generic x86-generic x86-kvm_guest x86-64 brcm2708-bcm2708 brcm2708-bcm2709"; else TARGETS=$(echo $@ | cut -d' ' -f2-); fi
 	if [ -z "$2" ]; then TARGETS="ar71xx-generic ar71xx-nand mpc85xx-generic x86-generic x86-kvm_guest x86-64"; else TARGETS=$(echo $@ | cut -d' ' -f2-); fi
+#	if [ -z "$2" ]; then TARGETS="ar71xx-generic"; else TARGETS=$(echo $@ | cut -d' ' -f2-); fi
 	cd $GLUON_DIR
 	while read L
 	do
