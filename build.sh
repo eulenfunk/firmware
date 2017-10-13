@@ -18,10 +18,10 @@ function makesite {
 	replace $DIR RELBRANCH "$1"
 	replace $DIR STARTDATE "$STARTDATE"
 ##ffdus
-	SBRANCH="$(date +%Y%m%d%H)-$(echo $RELBRANCH| cut -c1-3|tr '[:upper:]' '[:lower:]')"
-
+#	SBRANCH="$(date +%Y%m%d%H)-$(echo $RELBRANCH| cut -c1-3|tr '[:upper:]' '[:lower:]')"
 ##neander
-#	SBRANCH="$(date +%Y%m%d%H%M)"
+	SBRANCH="$(date +%Y%m%d%H%M)"
+
 	echo sbranch $SBRANCH
 	replace $DIR SBRANCH "$SBRANCH"
 }
@@ -51,7 +51,7 @@ function image {
 			for TARGET in $TARGETS
 			do
 			echo 	make clean $ARGS GLUON_TARGET=$TARGET 
-				make clean $ARGS GLUON_TARGET=$TARGET >> $HOME_DIR/assembled/$3/$4/build.log
+#			make clean $ARGS GLUON_TARGET=$TARGET >> $HOME_DIR/assembled/$3/$4/build.log
 			done
 			$HOME_DIR/assembled/$3/$4/prepare.sh
 		fi
