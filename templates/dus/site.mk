@@ -16,6 +16,12 @@ GLUON_FEATURES := \
 	radvd \
 	status-page
 
+# PROBLEM:
+# diese 3 pakete machen alle das selbe:
+# - gluon-hotfix 
+# - gluon-quickfix
+# - ffho-ath9k-blackout-workaround
+
 # eulenfunk:
 GLUON_SITE_PACKAGES := \
 	gluon-weeklyreboot \
@@ -25,19 +31,25 @@ GLUON_SITE_PACKAGES := \
 	gluon-banner \
 	gluon-linkcheck \
 	gluon-ssid-changer 
+
 # ffho not working, see https://github.com/FreifunkHochstift/ffho-packages/pull/8
 #GLUON_SITE_PACKAGES += \
 #	ffho-ath9k-blackout-workaround
-# ffrl
+
+# ffrl (ev. das selbe wie standard gluon ebtables-source-filter, dann kann es weg)
 GLUON_SITE_PACKAGES += \
 	gluon-ebtables-filter-roguenets
-# ffffm
+
+# ffffm 
+# ev. kann man ffffm-additional-wifi-json-info teilweise durch standard gluon respondd-module-airtime ersetzen
 GLUON_SITE_PACKAGES += \
 	ffffm-keep-radio-channel \
 	ffffm-additional-wifi-json-info
+
 # ffki:
 GLUON_SITE_PACKAGES += \
 	gluon-config-mode-ppa
+
 # openwrt:
 GLUON_SITE_PACKAGES += \
 	haveged \
