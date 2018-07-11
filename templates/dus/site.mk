@@ -14,12 +14,7 @@ GLUON_SITE_PACKAGES := \
 	gluon-ebtables \
 	gluon-ebtables-segment-mld \
 	gluon-ebtables-filter-multicast \
-	gluon-ebtables-filter-ra-dhcp
-# eulenfunk:
-GLUON_SITE_PACKAGES += \
-	gluon-ebtables-limit-arp
-# standard gluon:
-GLUON_SITE_PACKAGES += \
+	gluon-ebtables-filter-ra-dhcp \
 	gluon-next-node \
 	gluon-luci-admin \
 	gluon-luci-autoupdater \
@@ -31,34 +26,31 @@ GLUON_SITE_PACKAGES += \
 	gluon-status-page
 # eulenfunk:
 GLUON_SITE_PACKAGES += \
+	gluon-ebtables-limit-arp \
 	gluon-weeklyreboot \
 	gluon-ssid-changer \
 	gluon-hotfix \
 	gluon-quickfix \
-	gluon-txpowerfix
+	gluon-txpowerfix \
+	eulenfunk-dns-cache \
+	gluon-banner \
+	gluon-linkcheck
 # ffho:
 GLUON_SITE_PACKAGES += \
 	ffho-ath9k-blackout-workaround
-# openwrt:
-GLUON_SITE_PACKAGES += \
-	haveged \
-	iptables \
-	iwinfo
 # ffrl_packages:
 GLUON_SITE_PACKAGES += \
 	gluon-ebtables-filter-roguenets \
 	ffffm-keep-radio-channel \
 	ffffm-additional-wifi-json-info
-# eulenfunk:
-GLUON_SITE_PACKAGES += \
-	eulenfunk-dns-cache \
-	gluon-banner \
-	gluon-linkcheck
 # ffki:
 GLUON_SITE_PACKAGES += \
 	gluon-config-mode-ppa
 # openwrt:
 GLUON_SITE_PACKAGES += \
+	haveged \
+	iptables \
+	iwinfo \
 	socat
 
 DEFAULT_GLUON_RELEASE := SBRANCH
