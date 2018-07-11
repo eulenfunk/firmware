@@ -70,12 +70,12 @@ while read packet; do
     echo -n "# $packet"
     FOUND="$(find $testpath/packages/ -type d -name "$packet")"
     if [ "$FOUND" '!=' '' ]; then
-      echo " from $(echo $FOUND|sed 's|'$testpath'/packages||g')"
+      echo " found as feature in $(echo $FOUND|sed 's|'$testpath'/packages||g')"
     else
       # check again with prefix gluon-
       FOUND="$(find $testpath/packages/ -type d -name "gluon-$packet")"
       if [ "$FOUND" '!=' '' ]; then
-        echo " from $(echo $FOUND|sed 's|'$testpath'/packages||g')"
+        echo " found in $(echo $FOUND|sed 's|'$testpath'/packages||g')"
       else
         echo
         echo "ERROR: $packet missing"
