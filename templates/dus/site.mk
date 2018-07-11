@@ -1,5 +1,6 @@
 # site.mk for Freifunk Duesseldorf-Flingern
 
+# for feature packs see https://github.com/freifunk-gluon/gluon/blob/v2018.1.x/package/features
 GLUON_FEATURES := \
 	web-wizard \
 	web-advanced \
@@ -24,9 +25,7 @@ GLUON_SITE_PACKAGES := \
 	gluon-txpowerfix \
 	eulenfunk-dns-cache \
 	gluon-banner \
-	gluon-linkcheck
-# ssid_changer (Freifunk Nord):
-GLUON_SITE_PACKAGES += \
+	gluon-linkcheck \
 	gluon-ssid-changer 
 # ffho:
 GLUON_SITE_PACKAGES += \
