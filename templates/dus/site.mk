@@ -37,9 +37,11 @@ GLUON_SITE_PACKAGES += \
 # ffho:
 GLUON_SITE_PACKAGES += \
 	ffho-ath9k-blackout-workaround
-# ffrl_packages:
+# ffrl
 GLUON_SITE_PACKAGES += \
-	gluon-ebtables-filter-roguenets \
+	gluon-ebtables-filter-roguenets
+# ffffm
+GLUON_SITE_PACKAGES += \
 	ffffm-keep-radio-channel \
 	ffffm-additional-wifi-json-info
 # ffki:
