@@ -1,3 +1,6 @@
+# site.mk for Freifunk Duesseldorf-Flingern
+
+# standard gluon:
 GLUON_SITE_PACKAGES := \
 	gluon-mesh-batman-adv-15 \
 	gluon-respondd \
@@ -10,9 +13,8 @@ GLUON_SITE_PACKAGES := \
 	gluon-config-mode-mesh-vpn \
 	gluon-ebtables \
 	gluon-ebtables-segment-mld \
-        gluon-ebtables-filter-multicast \
-        gluon-ebtables-filter-ra-dhcp \
-        gluon-ebtables-limit-arp \
+	gluon-ebtables-filter-multicast \
+	gluon-ebtables-filter-ra-dhcp \
 	gluon-next-node \
 	gluon-luci-admin \
 	gluon-luci-autoupdater \
@@ -21,23 +23,34 @@ GLUON_SITE_PACKAGES := \
 	gluon-mesh-vpn-fastd \
 	gluon-radvd \
 	gluon-setup-mode \
-	gluon-status-page \
+	gluon-status-page
+# eulenfunk:
+GLUON_SITE_PACKAGES += \
+	gluon-ebtables-limit-arp \
 	gluon-weeklyreboot \
 	gluon-ssid-changer \
 	gluon-hotfix \
 	gluon-quickfix \
 	gluon-txpowerfix \
-	ffho-ath9k-blackout-workaround \
+	eulenfunk-dns-cache \
+	gluon-banner \
+	gluon-linkcheck
+# ffho:
+GLUON_SITE_PACKAGES += \
+	ffho-ath9k-blackout-workaround
+# ffrl_packages:
+GLUON_SITE_PACKAGES += \
+	gluon-ebtables-filter-roguenets \
+	ffffm-keep-radio-channel \
+	ffffm-additional-wifi-json-info
+# ffki:
+GLUON_SITE_PACKAGES += \
+	gluon-config-mode-ppa
+# openwrt:
+GLUON_SITE_PACKAGES += \
 	haveged \
 	iptables \
 	iwinfo \
-	gluon-ebtables-filter-roguenets \
-        ffffm-keep-radio-channel \
- 	ffffm-additional-wifi-json-info \
-	eulenfunk-dns-cache \
-        gluon-banner \
-	gluon-linkcheck \
-	gluon-config-mode-ppa \
 	socat
 
 DEFAULT_GLUON_RELEASE := SBRANCH
