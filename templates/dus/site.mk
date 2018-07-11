@@ -18,12 +18,10 @@ GLUON_FEATURES := \
 
 # eulenfunk:
 GLUON_SITE_PACKAGES := \
-	gluon-ebtables-limit-arp \
 	gluon-weeklyreboot \
 	gluon-hotfix \
 	gluon-quickfix \
 	gluon-txpowerfix \
-	eulenfunk-dns-cache \
 	gluon-banner \
 	gluon-linkcheck \
 	gluon-ssid-changer 
