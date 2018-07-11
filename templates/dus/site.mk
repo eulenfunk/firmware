@@ -1,8 +1,8 @@
 # site.mk for Freifunk Duesseldorf-Flingern
 
 GLUON_FEATURES := \
-	web-wizard
-	web-advanced
+	web-wizard \
+	web-advanced \
 	mesh-batman-adv-15 \
 	respondd \
 	autoupdater \
