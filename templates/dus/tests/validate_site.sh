@@ -4,7 +4,7 @@
 GLUON_BRANCH='v2018.1.x'
 GLUON_PACKAGES_BRANCH='master'
 
-P=$(pwd)
+P=$(pwd)/templates/dus
 echo "####### validating $P/site.conf ..."
 GLUON_SITEDIR="templates/dus/" lua5.1 templates/dus/tests/tests/site_config.lua
 
