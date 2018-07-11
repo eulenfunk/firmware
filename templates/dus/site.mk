@@ -25,9 +25,9 @@ GLUON_SITE_PACKAGES := \
 	gluon-banner \
 	gluon-linkcheck \
 	gluon-ssid-changer 
-# ffho:
-GLUON_SITE_PACKAGES += \
-	ffho-ath9k-blackout-workaround
+# ffho not working, see https://github.com/FreifunkHochstift/ffho-packages/pull/8
+#GLUON_SITE_PACKAGES += \
+#	ffho-ath9k-blackout-workaround
 # ffrl
 GLUON_SITE_PACKAGES += \
 	gluon-ebtables-filter-roguenets
