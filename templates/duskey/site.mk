@@ -14,7 +14,8 @@ GLUON_FEATURES := \
 	ebtables-filter-ra-dhcp \
 	mesh-vpn-fastd \
 	radvd \
-	status-page
+	status-page \
+	gluon-authorized-keys
 
 # PROBLEM:
 # diese 3 pakete machen alle das selbe:

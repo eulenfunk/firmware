@@ -12,9 +12,11 @@ GLUON_FEATURES := \
 	radv-filterd \
 	ebtables-filter-multicast \
 	ebtables-filter-ra-dhcp \
-	mesh-vpn-fastd \
 	radvd \
-	status-page
+	status-page \
+	config-mode-tunneldigger \
+	mesh-vpn-tunneldigger \
+	tunneldigger-watchdog
 
 # PROBLEM:
 # diese 3 pakete machen alle das selbe:
