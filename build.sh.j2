@@ -1,0 +1,25 @@
+#!/bin/bash
+
+[ -n "$GLUON_DIR" ] || GLUON_DIR="$1"
+[ ! -d "$GLUON_DIR" ] && echo "$0 <GLUON DIRECTORY>" && exit
+
+cd $(dirname $0)
+
+SITESDIR="$PWD/sites"
+OUTPUTDIR="$PWD/output"
+
+cd $GLUON_DIR
+
+make update GLUON_SITEDIR="$SITESDIR/{{ sites[0].site_code }}"
+
+function site {
+	for ARCH in ar71xx-generic ar71xx-tiny x86-generic x86-64
+	do
+		make GLUON_TARGET="$ARCH" GLUON_BRANCH="stable" GLUON_SITEDIR="$SITESDIR/$1" GLUON_OUTPUTDIR="$OUTPUTDIR" -j12 || exit 1
+	done
+	cp -r "$SITESDIR/$1" "$OUTPUTDIR/$1/site"
+}
+
+{% for site in sites %}
+site {{ site.site_code }}
+{% endfor %}

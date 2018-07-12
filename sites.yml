@@ -1,0 +1,139 @@
+---
+
+- site_code: "bcd"
+  site_name: "Burscheid"
+  domain_seed: "6a0080e78fce55cbe310db336d152bbb3a56691a7e528653df401a042d873265"
+  prefix4: "172.29"
+  prefix6: "fda0:cab1:e1e5:5bcd"
+  autoupdate_pubkeys:
+    - "fb919d4adc69bd404f5093ce6b43badf351f9e642ad458406be986baf6096247" # PetaByteBoy
+    - "579de7b1ded1dc39583515f722d72524f6dce78da635a7ac2d11cfe1dc046e7e" # tuennes
+    - "2a61930930a240c027f6ca4197203d400b6e4a32f9e92041e5f086907796c9bc" # adorfer
+    - "5ba52e98d0f33b8f2047aa6257981982e914e1ce1a2eb2842b8a7be995975668" # fwerner
+    - "303594c0e84c030d734b50d5efe67f2ec18b9f4b3e7a07250f28e11b5be0bb3d" # mkirch
+    - "82582834467d0ea6466146682f13679e6d6e3440838aaf38fd98cdd574581320" # DSchmidtberg
+  fastd_servers:
+    - name: "bcd0"
+      key: "270a05639022a46deb434f352ba0174a44f3e16b0443b93aa14940a39a982ab7"
+      remote: '"bcd0.ffgl.eu" port 51399'
+    - name: "bcd1"
+      key: "49fd0d8d978c891d3622e0f82c9e1e4a1ccea8b8ef09b28abcc6b6e695f9b475"
+      remote: '"bcd1.ffgl.eu" port 51399'
+    - name: "bcd2"
+      key: "33787a29a230bb0997872cc3772426ca2971af9bd0609eae33946a07df6d5c05"
+      remote: '"bcd2.ffgl.eu" port 51399'
+  
+- site_code: "bgl"
+  site_name: "Bergisch Gladbach"
+  domain_seed: "12b202c1059fae4ca275783d13b5215c29c1ddb9c8519f29b1157a70f4fa01a1"
+  prefix4: "172.30"
+  prefix6: "fda0:cab1:e1e5:5b91"
+  autoupdate_pubkeys:
+    - "fb919d4adc69bd404f5093ce6b43badf351f9e642ad458406be986baf6096247" # PetaByteBoy
+    - "579de7b1ded1dc39583515f722d72524f6dce78da635a7ac2d11cfe1dc046e7e" # tuennes
+    - "2a61930930a240c027f6ca4197203d400b6e4a32f9e92041e5f086907796c9bc" # adorfer
+    - "5ba52e98d0f33b8f2047aa6257981982e914e1ce1a2eb2842b8a7be995975668" # fwerner
+    - "303594c0e84c030d734b50d5efe67f2ec18b9f4b3e7a07250f28e11b5be0bb3d" # mkirch
+    - "82582834467d0ea6466146682f13679e6d6e3440838aaf38fd98cdd574581320" # DSchmidtberg
+  fastd_servers:
+    - name: "bgl0"
+      key: "32e445421e8166027c1bd0761fc18dbe4f994a1f6fa18428f39be2ffb76aa616"
+      remote: '"bgl0.ffgl.eu" port 51399'
+    - name: "bgl1"
+      key: "0864586fd1c139efedef531acf4402239f354649d093ac5895048c2257f5bdba"
+      remote: '"bgl1.ffgl.eu" port 51399'
+    - name: "bgl2"
+      key: "f0bed788e414e4731bdca5daab334db6df07531bad83b73c02c47d2caf6d8552"
+      remote: '"bgl2.ffgl.eu" port 51399'
+  
+- site_code: "lln"
+  site_name: "Leichlingen"
+  domain_seed: "23aac40e4a00f1a286c03c730194099bd116eea474a4c65a4b4b44f16308f155"
+  prefix4: "10.21"
+  prefix6: "fda0:cab1:e1e5:5116"
+  autoupdate_pubkeys:
+    - "fb919d4adc69bd404f5093ce6b43badf351f9e642ad458406be986baf6096247" # PetaByteBoy
+    - "579de7b1ded1dc39583515f722d72524f6dce78da635a7ac2d11cfe1dc046e7e" # tuennes
+    - "2a61930930a240c027f6ca4197203d400b6e4a32f9e92041e5f086907796c9bc" # adorfer
+    - "5ba52e98d0f33b8f2047aa6257981982e914e1ce1a2eb2842b8a7be995975668" # fwerner
+    - "303594c0e84c030d734b50d5efe67f2ec18b9f4b3e7a07250f28e11b5be0bb3d" # mkirch
+    - "82582834467d0ea6466146682f13679e6d6e3440838aaf38fd98cdd574581320" # DSchmidtberg
+  fastd_servers:
+    - name: "lln0"
+      key: "427cd3cd31321e98c9d893bf6ffde6cdeefdd65a7adb5e171d5134072a930f52"
+      remote: '"lln0.ffgl.eu" port 51399'
+    - name: "lln1"
+      key: "49367499fe03651c3e6a155a73660a601cfc5c3f41dff6df5a52dd0d8adf84c6"
+      remote: '"lln1.ffgl.eu" port 51399'
+    - name: "lln2"
+      key: "1e3af1cde2c69608c951713daa1ef8e8002dac8c90a086574a8525723ab2ef56"
+      remote: '"lln2.ffgl.eu" port 51399'
+  
+- site_code: "ode"
+  site_name: "Odenthal"
+  domain_seed: "43606d123346c61d6e14890f920e0970c8f6cc551b83cf39f413b89091686b8b"
+  prefix4: "172.28"
+  prefix6: "fda0:cab1:e1e5:50de"
+  autoupdate_pubkeys:
+    - "fb919d4adc69bd404f5093ce6b43badf351f9e642ad458406be986baf6096247" # PetaByteBoy
+    - "579de7b1ded1dc39583515f722d72524f6dce78da635a7ac2d11cfe1dc046e7e" # tuennes
+    - "2a61930930a240c027f6ca4197203d400b6e4a32f9e92041e5f086907796c9bc" # adorfer
+    - "5ba52e98d0f33b8f2047aa6257981982e914e1ce1a2eb2842b8a7be995975668" # fwerner
+    - "303594c0e84c030d734b50d5efe67f2ec18b9f4b3e7a07250f28e11b5be0bb3d" # mkirch
+    - "82582834467d0ea6466146682f13679e6d6e3440838aaf38fd98cdd574581320" # DSchmidtberg
+  fastd_servers:
+    - name: "ode0"
+      key: "5b267327ac49f350481cc2deda1db2f5a183d0ce1c7d2b463974c07208ba0c01"
+      remote: '"ode0.ffgl.eu" port 51399'
+    - name: "ode1"
+      key: "af2a202b0fb1fce6d0b0f214801666145f213c32c7619f4d7c932945e0e271db"
+      remote: '"ode1.ffgl.eu" port 51399'
+    - name: "ode2"
+      key: "e8e5c0104121a3dbb9261e73692924ea71e16f513c0128e139644c83e268f52f"
+      remote: '"ode2.ffgl.eu" port 51399'
+  
+- site_code: "ovr"
+  site_name: "Overath"
+  domain_seed: "9a49ca9ed213f2a2bd64239b3f2dc937fe3bbcd8046516286e5ed0ddd3d3cdfa"
+  prefix4: "172.26"
+  prefix6: "fda0:cab1:e1e5:5947"
+  autoupdate_pubkeys:
+    - "fb919d4adc69bd404f5093ce6b43badf351f9e642ad458406be986baf6096247" # PetaByteBoy
+    - "579de7b1ded1dc39583515f722d72524f6dce78da635a7ac2d11cfe1dc046e7e" # tuennes
+    - "2a61930930a240c027f6ca4197203d400b6e4a32f9e92041e5f086907796c9bc" # adorfer
+    - "5ba52e98d0f33b8f2047aa6257981982e914e1ce1a2eb2842b8a7be995975668" # fwerner
+    - "303594c0e84c030d734b50d5efe67f2ec18b9f4b3e7a07250f28e11b5be0bb3d" # mkirch
+    - "82582834467d0ea6466146682f13679e6d6e3440838aaf38fd98cdd574581320" # DSchmidtberg
+  fastd_servers:
+    - name: "ovr0"
+      key: "a563694786a3e5adcf388e1bc5f0c9126b2a7bc1bca6112fed4fc5a1e8927823"
+      remote: '"ovr0.ffgl.eu" port 51399'
+    - name: "ovr1"
+      key: "70bfcc84e3847c774922a8e09d869fbc6e51b1ab297936ad888643eb8dea02e6"
+      remote: '"ovr1.ffgl.eu" port 51399'
+    - name: "ovr2"
+      key: "40a69562d01bf5791cbd8f4be8a51311d6f89ee21ee7b36c115c6833bdb922d9"
+      remote: '"ovr2.ffgl.eu" port 51399'
+  
+- site_code: "rrh"
+  site_name: "Rösrath"
+  domain_seed: "d0900be0314e5871ead328d5f1dd00a23225bf98c74da7030d4a779c9b0cb231"
+  prefix4: "172.27"
+  prefix6: "fda0:cab1:e1e5:5776"
+  autoupdate_pubkeys:
+    - "fb919d4adc69bd404f5093ce6b43badf351f9e642ad458406be986baf6096247" # PetaByteBoy
+    - "579de7b1ded1dc39583515f722d72524f6dce78da635a7ac2d11cfe1dc046e7e" # tuennes
+    - "2a61930930a240c027f6ca4197203d400b6e4a32f9e92041e5f086907796c9bc" # adorfer
+    - "5ba52e98d0f33b8f2047aa6257981982e914e1ce1a2eb2842b8a7be995975668" # fwerner
+    - "303594c0e84c030d734b50d5efe67f2ec18b9f4b3e7a07250f28e11b5be0bb3d" # mkirch
+    - "82582834467d0ea6466146682f13679e6d6e3440838aaf38fd98cdd574581320" # DSchmidtberg
+  fastd_servers:
+    - name: "rrh0"
+      key: "0d46efe2f75f3e4e9dcd429f4608d50719d0d6a1d813e2bd47808bde362847d6"
+      remote: '"rrh0.ffgl.eu" port 51399'
+    - name: "rrh1"
+      key: "98f036011391bbf0698cc0b66bb5e33538d87ce8da4faa9e11503c49197f9e86"
+      remote: '"rrh1.ffgl.eu" port 51399'
+    - name: "rrh2"
+      key: "3e830cae83cabcd659c8b628a6ea1e12e6432e4fcbd3ca585db2d033ab5dbcca"
+      remote: '"rrh2.ffgl.eu" port 51399'
