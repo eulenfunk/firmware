@@ -12,6 +12,7 @@ GLUON_FEATURES := \
 	radv-filterd \
 	ebtables-filter-multicast \
 	ebtables-filter-ra-dhcp \
+	ebtables-source-filter \
 	mesh-vpn-fastd \
 	radvd \
 	status-page
@@ -35,10 +36,6 @@ GLUON_SITE_PACKAGES := \
 # ffho not working, see https://github.com/FreifunkHochstift/ffho-packages/pull/8
 #GLUON_SITE_PACKAGES += \
 #	ffho-ath9k-blackout-workaround
-
-# ffrl (ev. das selbe wie standard gluon ebtables-source-filter, dann kann es weg)
-GLUON_SITE_PACKAGES += \
-	gluon-ebtables-filter-roguenets
 
 # ffffm 
 # ev. kann man ffffm-additional-wifi-json-info teilweise durch standard gluon respondd-module-airtime ersetzen
