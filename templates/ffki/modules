@@ -1,0 +1,26 @@
+# This file allows specifying additional repositories to use
+# when building gluon.
+
+# for each feed name given, add the corresponding PACKAGES_* lines
+GLUON_SITE_FEEDS='ffki sargon eulenfunk ssidchanger button'
+
+# the git repository from where to clone the package feed
+PACKAGES_FFKI_REPO=https://github.com/freifunk-kiel/ffki-packages
+PACKAGES_SARGON_REPO=https://github.com/sargon/gluon-sargon
+PACKAGES_EULENFUNK_REPO=https://github.com/Freifunk-Nord/eulenfunk-packages
+PACKAGES_SSIDCHANGER_REPO=https://github.com/Freifunk-Nord/gluon-ssid-changer
+PACKAGES_BUTTON_REPO=https://github.com/rubo77/ffm-packages
+
+#	the version/commit of the git repository to clone
+PACKAGES_FFKI_COMMIT=32f059d61b6c3382ab3dc7dc8e3c699b844c4552
+PACKAGES_SARGON_COMMIT=4e84477564ffc67cb2cf690edc8dea37d6fe0cad
+PACKAGES_EULENFUNK_COMMIT=a4be61c88e4628d3f039510c86cd20fe7f417261
+PACKAGES_SSIDCHANGER_COMMIT=222b96a30259a03ca8ecdb173d9d326077a6efec
+PACKAGES_BUTTON_COMMIT=1abb767553429bac6a7031ac6882dce7ce225013
+
+# the branch to check out
+PACKAGES_FFKI_BRANCH=2018.1.x
+PACKAGES_SARGON_BRANCH=v2018.x
+PACKAGES_EULENFUNK_BRANCH=lede
+PACKAGES_SSIDCHANGER_BRANCH=2018.1.x
+PACKAGES_BUTTON_BRANCH=2018.1.x
