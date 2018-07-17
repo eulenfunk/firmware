@@ -17,11 +17,6 @@ GLUON_FEATURES := \
 	radvd \
 	status-page
 
-# PROBLEM:
-# diese 3 pakete machen alle das selbe:
-# - gluon-hotfix 
-# - gluon-quickfix
-# - ffho-ath9k-blackout-workaround
 
 # eulenfunk:
 GLUON_SITE_PACKAGES := \
@@ -33,6 +28,12 @@ GLUON_SITE_PACKAGES := \
 	gluon-linkcheck \
 	gluon-ssid-changer 
 
+# PROBLEM:
+# ev. macht dieses paket:
+# - ffho-ath9k-blackout-workaround
+# das selbe wie diese beiden zusammen:
+# - gluon-hotfix 
+# - gluon-quickfix
 # ffho not working, see https://github.com/FreifunkHochstift/ffho-packages/pull/8
 #GLUON_SITE_PACKAGES += \
 #	ffho-ath9k-blackout-workaround
