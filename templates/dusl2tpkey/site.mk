@@ -12,18 +12,12 @@ GLUON_FEATURES := \
 	radv-filterd \
 	ebtables-filter-multicast \
 	ebtables-filter-ra-dhcp \
-	radvd \
-	status-page \
-	config-mode-tunneldigger \
+	ebtables-source-filter \
 	mesh-vpn-tunneldigger \
 	tunneldigger-watchdog \
-	gluon-authorized-keys
-
-# PROBLEM:
-# diese 3 pakete machen alle das selbe:
-# - gluon-hotfix 
-# - gluon-quickfix
-# - ffho-ath9k-blackout-workaround
+	radvd \
+	status-page \
+	authorized-keys
 
 # eulenfunk:
 GLUON_SITE_PACKAGES := \
@@ -33,15 +27,18 @@ GLUON_SITE_PACKAGES := \
 	gluon-txpowerfix \
 	gluon-banner \
 	gluon-linkcheck \
-	gluon-ssid-changer 
+	gluon-ssid-changer
+
+# PROBLEM:
+# ev. macht dieses paket:
+# - ffho-ath9k-blackout-workaround
+# das selbe wie diese beiden zusammen:
+# - gluon-hotfix 
+# - gluon-quickfix
 
 # ffho not working, see https://github.com/FreifunkHochstift/ffho-packages/pull/8
 #GLUON_SITE_PACKAGES += \
 #	ffho-ath9k-blackout-workaround
-
-# ffrl (ev. das selbe wie standard gluon ebtables-source-filter, dann kann es weg)
-GLUON_SITE_PACKAGES += \
-	gluon-ebtables-filter-roguenets
 
 # ffffm 
 # ev. kann man ffffm-additional-wifi-json-info teilweise durch standard gluon respondd-module-airtime ersetzen
