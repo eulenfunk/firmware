@@ -77,18 +77,28 @@ function image {
 function images {
 ## choices:
 # * ar71xx-generic
+# * ar71xx-tiny
 # * ar71xx-nand
 # * brcm2708-bcm2708
 # * brcm2708-bcm2709
 # * mpc85xx-generic
+# * ramips-mt7621
+# * sunxi
 # * x86-generic
-# * x86-kvm_guest
+# * x86-geode
 # * x86-64
-# * x86-xen_domu
+# * ipq806x
+# * ramips-mt7620
+# * ramips-mt7628
+# * ramips-rt305x
+# * ar71xx-mikrotik
+# * brcm2708-bcm2710
+# * mvebu
 
-	# if [ -z "$2" ]; then TARGETS="ar71xx-generic ar71xx-nand mpc85xx-generic x86-generic x86-kvm_guest x86-xen_domu x86-64"; else TARGETS=$(echo $@ | cut -d' ' -f2-); fi
+	if [ -z "$2" ]; then TARGETS="ar71xx-generic ar71xx-tiny ar71xx-nand brcm2708-bcm2708 brcm2708-bcm2709 mpc85xx-generic ramips-mt7621 sunxi x86-generic x86-geode x86-64 ipq806x ramips-mt7620 ramips-mt7628 ramips-rt305x ar71xx-mikrotik brcm2708-bcm2710 mvebu"; else TARGETS=$(echo $@ | cut -d' ' -f2-); fi
+#	# if [ -z "$2" ]; then TARGETS="ar71xx-generic ar71xx-nand mpc85xx-generic x86-generic x86-kvm_guest x86-xen_domu x86-64"; else TARGETS=$(echo $@ | cut -d' ' -f2-); fi
 #	if [ -z "$2" ]; then TARGETS="ar71xx-generic ar71xx-nand mpc85xx-generic x86-generic x86-kvm_guest x86-64 brcm2708-bcm2708 brcm2708-bcm2709"; else TARGETS=$(echo $@ | cut -d' ' -f2-); fi
-	if [ -z "$2" ]; then TARGETS="ar71xx-generic ar71xx-nand mpc85xx-generic x86-generic x86-kvm_guest x86-64"; else TARGETS=$(echo $@ | cut -d' ' -f2-); fi
+#	if [ -z "$2" ]; then TARGETS="ar71xx-generic ar71xx-nand mpc85xx-generic x86-generic x86-kvm_guest x86-64"; else TARGETS=$(echo $@ | cut -d' ' -f2-); fi
 #	if [ -z "$2" ]; then TARGETS="ar71xx-generic"; else TARGETS=$(echo $@ | cut -d' ' -f2-); fi
 	cd $GLUON_DIR
 	while read L
