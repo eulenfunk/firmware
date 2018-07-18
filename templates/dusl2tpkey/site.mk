@@ -16,8 +16,7 @@ GLUON_FEATURES := \
 	mesh-vpn-tunneldigger \
 	tunneldigger-watchdog \
 	radvd \
-	status-page \
-	authorized-keys
+	status-page
 
 # eulenfunk:
 GLUON_SITE_PACKAGES := \
@@ -28,6 +27,7 @@ GLUON_SITE_PACKAGES := \
 	gluon-banner \
 	gluon-linkcheck \
 	gluon-ssid-changer
+
 
 # PROBLEM:
 # ev. macht dieses paket:
@@ -49,6 +49,11 @@ GLUON_SITE_PACKAGES += \
 # ffki:
 GLUON_SITE_PACKAGES += \
 	gluon-config-mode-ppa
+
+# ffrl:
+GLUON_SITE_PACKAGES += \
+	gluon-tunneldigger-watchdog
+
 
 # openwrt:
 GLUON_SITE_PACKAGES += \
