@@ -20,13 +20,13 @@ GLUON_FEATURES := \
 	
 # eulenfunk:
 GLUON_SITE_PACKAGES := \
-gluon-weeklyreboot \
-gluon-hotfix \
-gluon-quickfix \
-gluon-txpowerfix \
-gluon-banner \
-gluon-linkcheck \
-gluon-ssid-changer
+	gluon-weeklyreboot \
+	gluon-hotfix \
+	gluon-quickfix \
+	gluon-txpowerfix \
+	gluon-banner \
+	gluon-linkcheck \
+	gluon-ssid-changer
 
 # PROBLEM:
 # ev. macht dieses paket:
