@@ -44,7 +44,7 @@ msgstr ""
 "Betrieb für ca. 10 Sekunden den Reset/WPS-Button. Das Gerät wird dann im Config "
 "Mode neustarten. (Nach dem jetzt erfolgenden Neustart ist diese Seite nicht "
 "mehr erreichbar! Das soll so sein!)</p>"
-"<p>Viel Spa&szlig; mit deinem Knoten und der Erkundung von Freifunk!</p>"
+"<p>Viel Spaß mit deinem Knoten und der Erkundung von Freifunk!</p>"
 "<p></p><p>P.S. Wenn alles richtig funktioniert, dann sollte der Router unter "
 "dem Namen <em><%= pcdata(hostname) %></em> auf <a href=\"https://map.ffdus.de/#!v:g\" target=\"_blank\">der Karte</a> auftauchen.</p>"
 
