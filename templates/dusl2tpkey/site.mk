@@ -16,7 +16,8 @@ GLUON_FEATURES := \
 	mesh-vpn-tunneldigger \
 	tunneldigger-watchdog \
 	radvd \
-	status-page
+	status-page \
+	authorized-keys
 
 # eulenfunk:
 GLUON_SITE_PACKAGES := \
