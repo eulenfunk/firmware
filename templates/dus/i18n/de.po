@@ -53,7 +53,7 @@ msgstr "Höhe (3m pro Stock)"
 
 msgid "gluon-config-mode:altitude-help"
 msgstr ""
-"Die Höhenangabe ist optional und kann geschätzt werden mit 3m pro Stockwerk."
+"Die Höhenangabe ist optional und ist 'über Grund' gemeint. Sie kann geschätzt werden mit 3m pro Stockwerk."
 
 msgid "gluon-config-mode:contact-note"
 msgstr "E-Mail-Adresse"
