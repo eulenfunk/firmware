@@ -51,7 +51,7 @@ function image {
 			for TARGET in $TARGETS
 			do
 			echo 	make clean $ARGS GLUON_TARGET=$TARGET 
-			make clean $ARGS GLUON_TARGET=$TARGET >> $HOME_DIR/assembled/$3/$4/build.log
+#			make clean $ARGS GLUON_TARGET=$TARGET >> $HOME_DIR/assembled/$3/$4/build.log
 			done
 			$HOME_DIR/assembled/$3/$4/prepare.sh
 		fi
