@@ -61,7 +61,7 @@ function image {
 			then
 				echo build successful
 			else
-				make V=s $ARGS GLUON_TARGET=$TARGET BROKEN=1
+				make V=s -j1 $ARGS GLUON_TARGET=$TARGET BROKEN=1
 				exit 1
 			fi
 		done
