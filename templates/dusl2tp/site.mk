@@ -25,9 +25,7 @@ GLUON_SITE_PACKAGES := \
 	gluon-quickfix \
 	gluon-txpowerfix \
 	gluon-banner \
-	gluon-linkcheck \
-	gluon-ssid-changer
-
+	gluon-linkcheck 
 
 # PROBLEM:
 # ev. macht dieses paket:
@@ -48,7 +46,8 @@ GLUON_SITE_PACKAGES += \
 
 # ffki:
 GLUON_SITE_PACKAGES += \
-	gluon-config-mode-ppa
+	gluon-config-mode-ppa \
+        gluon-ssid-changer
 
 # ffrl:
 GLUON_SITE_PACKAGES += \
