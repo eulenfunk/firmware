@@ -46,7 +46,10 @@ GLUON_SITE_PACKAGES += \
 
 # ffki:
 GLUON_SITE_PACKAGES += \
-	gluon-config-mode-ppa \
+	gluon-config-mode-ppa 
+
+# ffnord:
+GLUON_SITE_PACKAGES += \
         gluon-ssid-changer
 
 # openwrt:
