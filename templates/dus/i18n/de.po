@@ -88,4 +88,4 @@ msgstr ""
 "Beachte, dass eine Bandbreitenbegrenzung von unter 1000kBit/s (auch im Upload) unter Umständen zu einem deutlich geringeren Durchsatz führt.<br>" 
 "Wenn Du das VPN nicht aktivierst, dann ist im Freifunk der Internet-Zugriff nur über bereits vorhandene Router in der Nachbarschaft möglich. "
 "Ohne diesen Zugang hat dein Freifunk keinen Internetzugriff.<br>" 
-"<em>Diese Option sollte immer angeschaltet bleiben, es sei denn du weißt, was du tust.</em>
+"<em>Diese Option sollte immer angeschaltet bleiben, es sei denn du weißt, was du tust.</em>"
