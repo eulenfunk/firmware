@@ -43,7 +43,6 @@ GLUON_SITE_PACKAGES := \
 # ev. kann man ffffm-additional-wifi-json-info teilweise durch standard gluon respondd-module-airtime ersetzen
 GLUON_SITE_PACKAGES += \
         ffffm-keep-radio-channel \
-        ffffm-luci-switchconfig \
         ffffm-button-bind
 
 # ffki:

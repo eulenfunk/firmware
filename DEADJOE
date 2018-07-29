@@ -1,3 +1,8 @@
+
+*** These modified files were found in JOE when it aborted on Sun Jul 29 02:15:11 2018
+*** JOE was aborted by UNIX signal 1
+
+*** Datei 'build.sh'
 #!/bin/bash
 #replace $2 with $3 in directory $1 recursively
 function replace {
@@ -146,3 +151,46 @@ then
 else
 	$@
 fi
+
+*** Datei '(Unbenannt)'
+>>
+>>
+>>
+| tee -a 
+>>
+&uuml;
+&ouml;
+&auml;
+&szlig;
+experimental
+
+*** Datei '(Unbenannt)'
+clean
+clean
+clean
+tunnel
+enab
+disab
+clean
+j
+ssid
+neust
+
+*** Datei '(Unbenannt)'
+modules
+site.mk
+templates/dus/site.mk
+templates/dus/modules
+templates/dus/site.mk
+templates/duskey/site.mk
+templates/dusl2tpkey/site.mk
+templates/dusl2tp/site.mk
+build.sh
+/home/build/firmware2018/firmware/.git/COMMIT_EDITMSG
+build.sh
+
+*** Datei '* Startup Log *'
+Processing '/etc/joe/joerc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/joerc
