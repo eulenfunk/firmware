@@ -29,7 +29,7 @@ msgstr ""
 
 msgid "gluon-config-mode:novpn"
 msgstr ""
-"<p><div class=\"the-key\">Du hast ausgewählt die Internetverbindung (Mesh-VPN) nicht zu nutzen. "
+"<p><div class=\"the-key\">Du hast ausgewählt, die Internetverbindung (Mesh-VPN) nicht zu nutzen. "
 "Dein Knoten kann also nur eine Internetverbindung aufbauen, wenn andere "
 "Freifunk-Knoten in Funk-Reichweite schon eine Internetverbindung haben.</div>"
 "Dein Knoten startet gerade neu und wird anschließend versuchen, "
