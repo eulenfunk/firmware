@@ -19,9 +19,10 @@ function makesite {
 	replace $DIR STARTDATE "$STARTDATE"
 ##ffdus
 #	SBRANCH="$(date +%Y%m%d%H)-$(echo $RELBRANCH| cut -c1-3|tr '[:upper:]' '[:lower:]')"
+##ffdus-fakeold
+SBRANCH=2017121718-sta
 ##neander
-	SBRANCH="$(date +%Y%m%d%H%M)"
-#SBRANCH=2017121718-sta
+#	SBRANCH="$(date +%Y%m%d%H%M)"
 
 	echo sbranch $SBRANCH
 	replace $DIR SBRANCH "$SBRANCH"
