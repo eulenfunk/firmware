@@ -1,4 +1,4 @@
-# site.mk for Freifunk im Neanderland
+# site.mk for Freifunk im Neanderland - gluon 2018.1.x
 
 # for feature packs see https://github.com/freifunk-gluon/gluon/blob/v2018.1.x/package/features
 GLUON_FEATURES := \
