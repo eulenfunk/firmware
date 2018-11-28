@@ -1,150 +1,331 @@
 #!/bin/bash
-#replace $2 with $3 in directory $1 recursively
-function replace {
-	find $1 -type f -print0 | xargs -0 sed -i "s;$2;$3;g"
+
+# Copyright (c) 2018 R. Diez - Licensed under the GNU AGPLv3
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+
+abort ()
+{
+  echo >&2 && echo "Error in script \"$0\": $*" >&2
+  exit 1
 }
 
-#copy template $3 to sitecode $4 and replace SITECODE with $4, NAME with $5, and WEBSITE with $6
-function makesite {
-	RELBRANCH=$1
-	DIR=assembled/$3/$4
-	rm -rf $DIR
-	mkdir -p assembled/$3
-	cp -r templates/$3 $DIR
-	replace $DIR SITECODE "$4"
-	NAME=$(echo $5 | sed 's/:/ /g')
-	replace $DIR NAME "$NAME"
-	replace $DIR WEBSITE "$6"
-	replace $DIR RELBRANCH "$1"
-	replace $DIR STARTDATE "$STARTDATE"
-##ffdus
-#	SBRANCH="$(date +%Y%m%d%H)-$(echo $RELBRANCH| cut -c1-3|tr '[:upper:]' '[:lower:]')"
-##ffdus-fakeold
-SBRANCH=2017121718-sta
-##neander
-#	SBRANCH="$(date +%Y%m%d%H%M)"
 
-	echo sbranch $SBRANCH
-	replace $DIR SBRANCH "$SBRANCH"
+replace_string_in_files ()
+{
+  local DIR="$1"
+  local STRING_TO_REPLACE="$2"
+  local REPLACEMENT_STRING="$3"
+
+  find "$DIR" -type f -print0 | xargs -0 sed -i "s;$STRING_TO_REPLACE;$REPLACEMENT_STRING;g"
 }
 
-function sites {
-	rm -rf assembled
-	while read L
-	do
-	 	if [[ ! -z "${L// }" ]]
-	 	then
- 			makesite $L
- 		fi
-	done < $1
-	echo --- sites assembled ---
+
+get_site_log_filename ()
+{
+  local TEMPLATE_NAME="$1"
+  local SITE_CODE="$2"
+
+  LOG_FILENAME="$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE/build.log"
 }
 
-#build image for autoupdater branch $2, gluon branch $3, target $1, template $4, site $5, broken $6
-function image {
-		PREP=$(cat $HOME_DIR/.prepared)
-		rm $HOME_DIR/.prepared
-		ARGS="GLUON_SITEDIR=$HOME_DIR/assembled/$3/$4 GLUON_IMAGEDIR=$HOME_DIR/images/$3/$4 GLUON_MODULEDIR=$HOME_DIR/modules GLUON_BRANCH=$1 BROKEN=$6"
-		if [ "$PREP" != "$3" ]
-		then
-			git fetch --all >> $HOME_DIR/assembled/$3/$4/build.log
-#			git reset --hard $2
-			make update $ARGS >> $HOME_DIR/assembled/$3/$4/build.log || exit 1
-			for TARGET in $TARGETS
-			do
-			echo 	make clean $ARGS GLUON_TARGET=$TARGET 
-#			make clean $ARGS GLUON_TARGET=$TARGET >> $HOME_DIR/assembled/$3/$4/build.log
-			done
-			$HOME_DIR/assembled/$3/$4/prepare.sh
-		fi
-		for TARGET in $TARGETS
-		do
-			if make -j16 $ARGS GLUON_TARGET=$TARGET BROKEN=1 V=s >> $HOME_DIR/assembled/$3/$4/build.log 
-			then
-				echo build successful
-			else
-				make V=s -j1 $ARGS GLUON_TARGET=$TARGET BROKEN=1
-				exit 1
-			fi
-		done
-		echo $3 > $HOME_DIR/.prepared
-		make manifest $ARGS >> $HOME_DIR/assembled/$3/$4/build.log 
-		gzip $HOME_DIR/assembled/$3/$4/build.log
-		mkdir $HOME_DIR/images/$3/$4/site
-		rsync -a $HOME_DIR/assembled/$3/$4/ --exclude '*.old' --exclude '*.backup'  --exclude '*~'  --exclude '*.nonworking'   $HOME_DIR/images/$3/$4/site
-		rsync -a $HOME_DIR/build.sh --exclude '*.old' --exclude '*.backup'  --exclude '*~'  --exclude '*.nonworking'   $HOME_DIR/images/$3/$4/site
-		rsync -a $HOME_DIR/$1 --exclude '*.old' --exclude '*.backup'  --exclude '*~'  --exclude '*.nonworking'   $HOME_DIR/images/$3/$4/site
+
+declare -r SBRANCH="2017121718-sta"
+
+generate_site_config ()
+{
+  local RELBRANCH="$1"
+  local TEMPLATE_NAME="$2"
+  local SITE_CODE="$3"
+
+  echo "Generating site $SITE_CODE..."
+
+  local DIR="assembled/$TEMPLATE_NAME/$SITE_CODE"
+
+  mkdir -p "assembled/$TEMPLATE_NAME"
+  cp -r "templates/$TEMPLATE_NAME" "$DIR"
+
+  replace_string_in_files "$DIR" SITECODE  "$SITE_CODE"
+  replace_string_in_files "$DIR" RELBRANCH "$RELBRANCH"
+  replace_string_in_files "$DIR" SBRANCH   "$SBRANCH"
+
+  # Create the log file, or truncate it if it already exists.
+  get_site_log_filename  "$TEMPLATE_NAME"  "$SITE_CODE"
+  echo -n "" >"$LOG_FILENAME"
 }
 
-function images {
-## choices:
-# * ar71xx-generic
-# * ar71xx-tiny
-# * ar71xx-nand
-# * brcm2708-bcm2708
-# * brcm2708-bcm2709
-# * mpc85xx-generic
-# * ramips-mt7621
-# * sunxi
-# * x86-generic
-# * x86-geode
-# * x86-64
-# * ipq806x
-# * ramips-mt7620
-# * ramips-mt7628
-# * ramips-rt305x
-# * ar71xx-mikrotik
-# * brcm2708-bcm2710
-# * mvebu
 
-	if [ -z "$2" ]; then TARGETS="ar71xx-generic ar71xx-tiny ar71xx-nand brcm2708-bcm2708 brcm2708-bcm2709 mpc85xx-generic ramips-mt7621 sunxi x86-generic x86-geode x86-64 ipq806x ramips-mt7620 ramips-mt7628 ramips-rt305x ar71xx-mikrotik brcm2708-bcm2710 mvebu"; else TARGETS=$(echo $@ | cut -d' ' -f2-); fi
-#	# if [ -z "$2" ]; then TARGETS="ar71xx-generic ar71xx-nand mpc85xx-generic x86-generic x86-kvm_guest x86-xen_domu x86-64"; else TARGETS=$(echo $@ | cut -d' ' -f2-); fi
-#	if [ -z "$2" ]; then TARGETS="ar71xx-generic ar71xx-nand mpc85xx-generic x86-generic x86-kvm_guest x86-64 brcm2708-bcm2708 brcm2708-bcm2709"; else TARGETS=$(echo $@ | cut -d' ' -f2-); fi
-#	if [ -z "$2" ]; then TARGETS="ar71xx-generic ar71xx-nand mpc85xx-generic x86-generic x86-kvm_guest x86-64"; else TARGETS=$(echo $@ | cut -d' ' -f2-); fi
-#	if [ -z "$2" ]; then TARGETS="ar71xx-generic"; else TARGETS=$(echo $@ | cut -d' ' -f2-); fi
-	cd $GLUON_DIR
-	while read L
-	do
-		image $L
-	done < $HOME_DIR/$1
-	cd $HOME_DIR
-	mv images{,-$(date +%s)}
-	mv modules{,-$(date +%s)}
+generate_all_site_configs ()
+{
+  echo "Generating sites for sbranch $SBRANCH ..."
+
+  rm -rf assembled
+
+  local -i  index
+  for (( index=0; index < ${#ALL_SITE_RELBRANCHES[@]}; index += 1 )); do
+    generate_site_config "${ALL_SITE_RELBRANCHES[$index]}" \
+                         "${ALL_SITE_TEMPLATE_NAMES[$index]}" \
+                         "${ALL_SITE_CODES[$index]}"
+  done
+
+  echo "Finished generating sites."
 }
 
-function init {
-	rm -rf gluon.bak
-	mv gluon{.bak} 2>/dev/null
-	git clone https://github.com/freifunk-gluon/gluon $GLUON_DIR
+
+append_quoted_arg ()
+{
+  local APPEND_TO_VAR_NAME="$1"
+  local APPEND_ARG_NAME="$2"
+  local APPEND_PATH="$3"
+
+  printf -v "$APPEND_TO_VAR_NAME"  "%s $APPEND_ARG_NAME=%q"  "${!APPEND_TO_VAR_NAME}"  "$APPEND_PATH"
 }
 
-function ci {
-	if [ ! -d "GLUON_DIR" ]; then
-		init
-	fi
-	all
+
+build_images_for_site ()
+{
+  local RELBRANCH="$1"
+  local TEMPLATE_NAME="$2"
+  local SITE_CODE="$3"
+
+  local -i target_index
+  local TARGET
+
+
+  local ARGS=""
+
+  append_quoted_arg  ARGS  GLUON_SITEDIR   "$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE"
+  append_quoted_arg  ARGS  GLUON_IMAGEDIR  "$SANDBOX_DIR/images/$TEMPLATE_NAME/$SITE_CODE"
+  append_quoted_arg  ARGS  GLUON_MODULEDIR "$SANDBOX_DIR/modules"
+
+  # Setting GLUON_BRANCH enables the firmware autoupdater.
+  append_quoted_arg  ARGS  GLUON_BRANCH  "$RELBRANCH"
+
+
+  local MAKE_CMD
+
+  local PREPARED_FILENAME="$SANDBOX_DIR/.prepared"
+  local PREPARED_CONTENTS
+
+  if [ -f "PREPARED_FILENAME" ]; then
+    PREPARED_CONTENTS=$(<"$PREPARED_FILENAME")
+    rm -- "$PREPARED_FILENAME"
+  else
+    PREPARED_CONTENTS=""
+  fi
+
+  if [[ "$PREPARED_CONTENTS" != "$TEMPLATE_NAME" ]]; then
+
+    # git reset --hard $2
+
+    echo "Gluon make update..."
+
+    printf -v MAKE_CMD "make update %s"  "$ARGS"
+    echo "$MAKE_CMD"
+    eval "$MAKE_CMD"
+
+    for (( target_index=0; target_index < ${#TARGETS[@]}; target_index += 1 )); do
+
+      TARGET="${TARGETS[target_index]}"
+
+      if false; then
+        echo "Cleaning the firmware for site code: $SITE_CODE, target: $TARGET ..."
+        printf -v MAKE_CMD  "make clean GLUON_TARGET=%q  %s"  "$TARGET"  "$ARGS"
+        echo "$MAKE_CMD"
+        eval "$MAKE_CMD"
+      fi
+
+    done
+
+    echo "Site prepare.sh ..."
+    "$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE/prepare.sh"
+
+  fi
+
+  local MAKE_J_VAL
+  MAKE_J_VAL="$(( $(getconf _NPROCESSORS_ONLN) + 1 ))"
+
+  for (( target_index=0; target_index < ${#TARGETS[@]}; target_index += 1 )); do
+
+    TARGET="${TARGETS[target_index]}"
+
+    echo "Building the firmware for site code: $SITE_CODE, target: $TARGET ..."
+
+    printf -v MAKE_CMD "make GLUON_TARGET=%q"  "$TARGET"
+
+    # For the Gluon build system, V=s means generate a full build log (show build commands, compiler warnings etc.).
+    MAKE_CMD+=" V=s"
+
+    # For the Gluon build system, BROKEN=1 means "use the experimental/unstable branch".
+    MAKE_CMD+=" BROKEN=1"
+
+    MAKE_CMD+=" $ARGS"
+
+    MAKE_CMD+=" -j $MAKE_J_VAL  --output-sync=recurse"
+
+    echo "$MAKE_CMD"
+    eval "$MAKE_CMD"
+
+  done
+
+  echo "$TEMPLATE_NAME" > "$PREPARED_FILENAME"
+
+  echo "Making manifest..."
+
+  printf -v MAKE_CMD "make manifest %s"  "$ARGS"
+  echo "$MAKE_CMD"
+  eval "$MAKE_CMD"
+
+  local SITE_IMAGE_DIR="$SANDBOX_DIR/images/$TEMPLATE_NAME/$SITE_CODE/site"
+
+  echo "Copying build result to \"$SITE_IMAGE_DIR\" ..."
+  # This directory may already exist from a previous run.
+  mkdir --parents -- "$SITE_IMAGE_DIR"
+
+  rsync --archive "$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE/" --exclude '*.old' --exclude '*.backup'  --exclude '*~'  --exclude '*.nonworking'   "$SITE_IMAGE_DIR"
+  cp -- "$SANDBOX_DIR/build.sh" "$SITE_IMAGE_DIR/"
 }
 
-function help {
-	echo 'Usage: build.sh <sites file> [target1] [target2] [...]'
+
+build_all_images ()
+{
+  local -a TARGETS=("$@")
+
+  if (( ${#TARGETS[@]} == 0 )); then
+    TARGETS+=( ar71xx-generic )
+    TARGETS+=( ar71xx-tiny )
+    TARGETS+=( ar71xx-nand )
+    TARGETS+=( brcm2708-bcm2708 )
+    TARGETS+=( brcm2708-bcm2709 )
+    TARGETS+=( mpc85xx-generic )
+    TARGETS+=( ramips-mt7621 )
+    TARGETS+=( sunxi )
+    TARGETS+=( x86-generic )
+    TARGETS+=( x86-geode )
+    TARGETS+=( x86-64 )
+    TARGETS+=( ipq806x )
+    TARGETS+=( ramips-mt7620 )
+    TARGETS+=( ramips-mt7628 )
+    TARGETS+=( ramips-rt305x )
+    TARGETS+=( ar71xx-mikrotik )
+    TARGETS+=( brcm2708-bcm2710 )
+    TARGETS+=( mvebu )
+  fi
+
+  pushd "$GLUON_DIR" >/dev/null
+
+  echo "Git fetching..."
+  git fetch --all
+
+  local -i index
+  for (( index=0; index < ${#ALL_SITE_RELBRANCHES[@]}; index += 1 )); do
+
+    get_site_log_filename  "${ALL_SITE_TEMPLATE_NAMES[$index]}"  "${ALL_SITE_CODES[$index]}"
+
+    echo "Building the firmware for site code ${ALL_SITE_CODES[$index]} ..."
+    echo "The site build log file is: $LOG_FILENAME"
+
+    {
+      build_images_for_site "${ALL_SITE_RELBRANCHES[$index]}" \
+                            "${ALL_SITE_TEMPLATE_NAMES[$index]}" \
+                            "${ALL_SITE_CODES[$index]}"
+    } 2>&1 | tee --append -- "$LOG_FILENAME"
+
+    # We could compress the log file here, but it is not worth it.
+    # It saves little space compared to the rest of the generated files,
+    # and it makes it more inconvenient to open the log file.
+    if false; then
+      gzip --best -- "$LOG_FILENAME"
+    fi
+
+  done
+
+  popd >/dev/null
+
+  # I do not think that we build any modules yet.
+  if [ -d "modules" ]; then
+    ARE_THERE_MODULES=true
+  else
+    ARE_THERE_MODULES=false
+  fi
+
+  mv "images"  "images-$DATE_SUFFIX"
+
+  if $ARE_THERE_MODULES; then
+    mv "modules" "modules-$DATE_SUFFIX"
+  fi
+
+  echo "Finished building images:"
+  echo "- Images  dir: images-$DATE_SUFFIX"
+  if $ARE_THERE_MODULES; then
+    echo "- Modules dir: modules-$DATE_SUFFIX"
+  fi
 }
 
-HOME_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-GLUON_DIR="$HOME_DIR/gluon"
-STARTDATE="$(date +%Y%m%d)"
-if [ $(pgrep $(basename $1) | wc -l) -gt 2 ]
-then
-        echo already running, exiting.
-        exit
+
+declare -a ALL_SITE_RELBRANCHES=()
+declare -a ALL_SITE_GIT_BRANCHES=()  # TODO: Not used at the moment.
+declare -a ALL_SITE_TEMPLATE_NAMES=()
+declare -a ALL_SITE_CODES=()
+
+parse_sites_file ()
+{
+  local FILENAME="$1"
+
+  local LINE
+  local COMPONENTS
+
+  while read -r LINE; do
+
+    # We could allow comments in the file. Here we would remove them.
+
+    if [ -z "$LINE" ]; then
+      continue
+    fi
+
+    IFS=$' \t'  read -r -a COMPONENTS <<< "$LINE"
+
+    if (( ${#COMPONENTS[@]} != 4 )); then
+      abort "Syntax error parsing this line: $LINE"
+    fi
+
+    ALL_SITE_RELBRANCHES+=( "${COMPONENTS[0]}" )
+    ALL_SITE_GIT_BRANCHES+=( "${COMPONENTS[1]}" )
+    ALL_SITE_TEMPLATE_NAMES+=( "${COMPONENTS[2]}" )
+    ALL_SITE_CODES+=( "${COMPONENTS[3]}" )
+
+  done < "$FILENAME"
+
+  if (( ${#ALL_SITE_RELBRANCHES[@]} == 0 )); then
+    abort "Could not read any sites from the sites file."
+  fi
+}
+
+
+# ----------- Entry point -----------
+
+if (( $# == 0 )); then
+  echo "Usage: build.sh <sites file> [target1] [target2] [...]"
+  exit 0
 fi
 
-if [ -f "$1" ]
-then
-	sites $1
-	images $@
-elif [ -z "$1" ]
-then
-	help
-else
-	$@
+if ! [ -f "$1" ]; then
+  abort "File \"$1\" does not exist."
 fi
+
+parse_sites_file "$1"
+
+SANDBOX_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+generate_all_site_configs
+
+GLUON_DIR="$SANDBOX_DIR/gluon"
+
+DATE_SUFFIX="$(date +%s)"
+
+shift
+
+build_all_images "$@"
