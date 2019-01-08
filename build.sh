@@ -33,7 +33,7 @@ get_site_log_filename ()
 }
 
 
-declare -r SBRANCH="2017121718-sta"
+declare -r SBRANCH="$(date +%Y%m%d%H%M)"
 
 generate_site_config ()
 {
