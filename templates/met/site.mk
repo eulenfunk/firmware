@@ -25,7 +25,8 @@ GLUON_SITE_PACKAGES := \
 	gluon-txpowerfix \
 	gluon-banner \
 	gluon-linkcheck \
-	gluon-config-mode-geo-location-osm
+	gluon-config-mode-geo-location-osm \
+	gluon-web-private-wifi
 
 # PROBLEM:
 # ev. macht dieses paket:
