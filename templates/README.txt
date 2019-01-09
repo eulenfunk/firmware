@@ -8,7 +8,7 @@
 #
 # Freifunk/Gluon consists of opensource software including GNU/Linux
 # copyrighted under GNU GPL license https://www.gnu.org/licenses/gpl-2.0.html
-# sources available upon request: adorferen@gmail.com
+# sources available upon request: kontakt@neanderfunk.de
 #
 # documentation including building instructions can be found at http://gluon.readthedocs.io
 #

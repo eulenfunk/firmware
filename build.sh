@@ -209,7 +209,7 @@ build_all_images ()
     TARGETS+=( ipq40xx )
     TARGETS+=( ramips-mt7620 )
     TARGETS+=( ramips-mt76x8 )
-    TARGETS+=( ramips-rt305x )
+    #TARGETS+=( ramips-rt305x ) # excluded, bugs build fails 
     TARGETS+=( ar71xx-mikrotik )
     TARGETS+=( brcm2708-bcm2710 )
     TARGETS+=( ipq806x )
