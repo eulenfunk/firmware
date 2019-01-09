@@ -26,7 +26,7 @@ GLUON_SITE_PACKAGES := \
 	gluon-banner \
 	gluon-linkcheck \
 	gluon-config-mode-geo-location-osm \
-	gluon-web-private-wifi
+	
 
 # PROBLEM:
 # ev. macht dieses paket:
