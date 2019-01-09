@@ -1,6 +1,6 @@
 # site.mk for Freifunk im Neanderland - gluon 2018.1.x
 
-# for feature packs see https://github.com/freifunk-gluon/gluon/blob/v2018.1.x/package/features
+# for feature packs see https://github.com/freifunk-gluon/gluon/blob/v2018.2.x/package/features
 GLUON_FEATURES := \
 	web-wizard \
 	web-advanced \
@@ -15,7 +15,7 @@ GLUON_FEATURES := \
 	ebtables-source-filter \
 	mesh-vpn-fastd \
 	radvd \
-	status-page
+	status-page\
 
 # eulenfunk:
 GLUON_SITE_PACKAGES := \
@@ -24,7 +24,9 @@ GLUON_SITE_PACKAGES := \
 	gluon-quickfix \
 	gluon-txpowerfix \
 	gluon-banner \
-	gluon-linkcheck 
+	gluon-linkcheck \
+	gluon-config-mode-geo-location-osm \
+	
 
 # PROBLEM:
 # ev. macht dieses paket:
