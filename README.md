@@ -1,13 +1,13 @@
-# Eulenfunk Firmware Repository - Stand 08/01/2019
+# Eulenfunk Firmware Repository - Stand 09.01.2019
 
-# Firmware für Freifunk Düsseldorf-Flingern und Freifunk im Neanderland (Neanderfunk) 
+Freifunk Firmware für Freifunk Düsseldorf-Flingern und Freifunk im Neanderland (Neanderfunk) 
 
 ## build-Prozess
 
 
 Pre-Requsites:
 
-gluon-dependencies müssen ebenfalls auf dem System installiert sein.
+gluon-dependencies müssen ebenfalls auf dem System installiert sein (Stand 09.01.2019(.
 
 ```sudo apt install git subversion python build-essential gawk unzip libncurses5-dev zlib1g-dev libssl-dev wget time```
 
