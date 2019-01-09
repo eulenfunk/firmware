@@ -1,6 +1,6 @@
 # Eulenfunk Firmware Repository - Stand 08/01/2019
 
-# Firmware für Freifunk Düsseldorf-Flingern und Freifunk im Neanderland (Neanderfunk) 
+Freifunk Firmware für Freifunk Düsseldorf-Flingern und Freifunk im Neanderland (Neanderfunk) 
 
 ## build-Prozess
 
