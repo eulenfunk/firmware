@@ -14,7 +14,7 @@ gluon-dependencies müssen ebenfalls auf dem System installiert sein (Stand 09.0
 
 Sites-Dateien, wie `sites.ffmet` enthalten eine Liste an Site-Konfigurationen die aus dem Template (aus `templates/`) erstellt werden.
 Diese enthalten dann Zeilen im Format wie `experimentall2tp v2018.2.x dusl2tp dusl2tp`.
-Achtung, Zeile mit muss mit `<CR>` abgeschlossen sein,  Leerzeilen sind ungültig.
+Achtung, Zeile mit muss mit `<LR>` abgeschlossen sein,  Leerzeilen sind ungültig.
 
 ### Serviervorschlag:
 
