@@ -7,14 +7,14 @@ Freifunk Firmware für Freifunk Düsseldorf-Flingern und Freifunk im Neanderland
 
 Pre-Requsites:
 
-gluon-dependencies müssen ebenfalls auf dem System installiert sein (Stand 09.01.2019(.
+gluon-dependencies müssen ebenfalls auf dem System installiert sein (Stand 09.01.2019).
 
 ```sudo apt install git subversion python build-essential gawk unzip libncurses5-dev zlib1g-dev libssl-dev wget time```
 
 
 Sites-Dateien, wie `sites.ffmet` enthalten eine Liste an Site-Konfigurationen die aus dem Template (aus `templates/`) erstellt werden.
 Diese enthalten dann Zeilen im Format wie `experimentall2tp v2018.2.x dusl2tp dusl2tp`.
-Achtung, Zeile mit muss mit `<LR>` abgeschlossen sein,  Leerzeilen sind ungültig.
+**Zeilenumbrüche müssen im UNIX- Format** sein. Jede Zeile mit muss mit **`<LR>`** abgeschlossen sein,  Leerzeilen sind ungültig.
 
 ### Serviervorschlag:
 
