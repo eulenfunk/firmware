@@ -24,6 +24,59 @@ replace_string_in_files ()
 }
 
 
+read_uptime_as_integer ()
+{
+  local PROC_UPTIME_CONTENTS
+  PROC_UPTIME_CONTENTS="$(</proc/uptime)"
+
+  local PROC_UPTIME_COMPONENTS
+  IFS=$' \t' read -r -a PROC_UPTIME_COMPONENTS <<< "$PROC_UPTIME_CONTENTS"
+
+  local UPTIME_AS_FLOATING_POINT=${PROC_UPTIME_COMPONENTS[0]}
+
+  # The /proc/uptime format is not exactly documented, so I am not sure whether
+  # there will always be a decimal part. Therefore, capture the integer part
+  # of a value like "123" or "123.45".
+  # I hope /proc/uptime never yields a value like ".12" or "12.", because
+  # the following code does not cope with those.
+
+  local REGEXP="^([0-9]+)(\\.[0-9]+)?\$"
+
+  if ! [[ $UPTIME_AS_FLOATING_POINT =~ $REGEXP ]]; then
+    abort "Error parsing this uptime value: $UPTIME_AS_FLOATING_POINT"
+  fi
+
+  UPTIME=${BASH_REMATCH[1]}
+}
+
+
+get_human_friendly_elapsed_time ()
+{
+  local -i SECONDS="$1"
+
+  if (( SECONDS <= 59 )); then
+    ELAPSED_TIME_STR="$SECONDS seconds"
+    return
+  fi
+
+  local -i V="$SECONDS"
+
+  ELAPSED_TIME_STR="$(( V % 60 )) seconds"
+
+  V="$(( V / 60 ))"
+
+  ELAPSED_TIME_STR="$(( V % 60 )) minutes, $ELAPSED_TIME_STR"
+
+  V="$(( V / 60 ))"
+
+  if (( V > 0 )); then
+    ELAPSED_TIME_STR="$V hours, $ELAPSED_TIME_STR"
+  fi
+
+  printf -v ELAPSED_TIME_STR  "%s (%'d seconds)"  "$ELAPSED_TIME_STR"  "$SECONDS"
+}
+
+
 get_site_log_filename ()
 {
   local TEMPLATE_NAME="$1"
@@ -33,7 +86,7 @@ get_site_log_filename ()
 }
 
 
-declare -r SBRANCH="$(date +%Y%m%d%H%M)"
+SBRANCH="$(date +%Y%m%d%H%M)"
 
 generate_site_config ()
 {
@@ -229,11 +282,23 @@ build_all_images ()
     echo "Building the firmware for site code ${ALL_SITE_CODES[$index]} ..."
     echo "The site build log file is: $LOG_FILENAME"
 
+    local UPTIME
+    read_uptime_as_integer
+    local SITE_UPTIME_BEGIN="$UPTIME"
+
     {
       build_images_for_site "${ALL_SITE_RELBRANCHES[$index]}" \
                             "${ALL_SITE_TEMPLATE_NAMES[$index]}" \
                             "${ALL_SITE_CODES[$index]}"
     } 2>&1 | tee --append -- "$LOG_FILENAME"
+
+    # The whole build takes a long time. By recording the build time for each site,
+    # it is easier to measure any impact on the the build performance after
+    # making changes to the build system.
+    read_uptime_as_integer
+    local ELAPSED_TIME_STR
+    get_human_friendly_elapsed_time "$(( UPTIME - SITE_UPTIME_BEGIN ))"
+    echo "Finished building the firmware for site code ${ALL_SITE_CODES[$index]}. Elapsed time: $ELAPSED_TIME_STR."
 
     # We could compress the log file here, but it is not worth it.
     # It saves little space compared to the rest of the generated files,
