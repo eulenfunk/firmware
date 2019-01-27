@@ -28,7 +28,9 @@ GLUON_SITE_PACKAGES := \
 	gluon-banner \
 	gluon-linkcheck \
 	gluon-config-mode-geo-location-osm \
-	
+	gluon-config-mode-domain-select \
+	respondd-module-airtime \
+
 
 # PROBLEM:
 # ev. macht dieses paket:
