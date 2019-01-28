@@ -193,8 +193,8 @@ build_images_for_site ()
 
     done
 
-    echo "Site prepare.sh ..."
-    "$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE/prepare.sh"
+    # echo "Site prepare.sh ..."
+    # "$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE/prepare.sh"
 
   fi
 
