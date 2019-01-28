@@ -21,18 +21,6 @@ msgstr ""
 "nach der richtigen Firmware. Wir behalten uns ausdrücklich vor, Knoten mit "
 "inkorrekten Angaben (z.B. fehlenden oder nicht nutzbaren Kontakt-Infos) vom Netzbetrieb über die VPN-Gateways zu sperren.</p>"
 
-
-msgid "gluon-config-mode:domain"
-msgstr "Domäne / Stadt"
-
-msgid "gluon-config-mode:domain-select"
-msgstr ""
-"<b>Wähle hier bitte die Stadt (Mesh-Domäne) aus, in der dein Knoten "
-"betrieben werden soll. Bitte denke daran, dass sich dein Knoten nur mit anderen "
-      obligatory = true,
-"Knoten der ausgewählten Domäne verbinden kann.</b>"
-
-
 msgid "gluon-config-mode:pubkey"
 msgstr ""
 "<p>Dein Knoten startet gerade neu und wird anschließend versuchen, "
