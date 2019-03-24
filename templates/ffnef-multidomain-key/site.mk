@@ -1,4 +1,4 @@
-# site.mk for Freifunk im Neanderland - gluon 2018.2.x
+# site.mk for Freifunk im Neanderland - gluon 2018.2.1.x
 
 GLUON_MULTIDOMAIN=1
 
