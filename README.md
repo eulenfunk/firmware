@@ -46,7 +46,7 @@ broken, experimental und stable
 
 ## Development
 
-You van check the right modules with
+You can check the right modules with
 
     tests/validate_site.sh
 
