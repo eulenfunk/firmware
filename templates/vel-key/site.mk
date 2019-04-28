@@ -25,7 +25,19 @@ GLUON_SITE_PACKAGES := \
 	gluon-txpowerfix \
 	gluon-banner \
 	gluon-linkcheck \
-	gluon-config-mode-geo-location-osm \
+	gluon-authorized-keys \
+    gluon-config-mode-autoupdater \
+    gluon-config-mode-contact-info \
+    gluon-config-mode-core \
+    gluon-config-mode-hostname \
+    gluon-config-mode-mesh-vpn \
+    gluon-next-node \
+    gluon-luci-admin \
+    gluon-luci-autoupdater \
+    gluon-luci-portconfig \
+    gluon-luci-wifi-config \
+    gluon-ebtables-filter-roguenets \
+    eulenfunk-dns-cache \
 	
 
 # PROBLEM:
@@ -41,12 +53,15 @@ GLUON_SITE_PACKAGES := \
 # ffffm 
 # ev. kann man ffffm-additional-wifi-json-info teilweise durch standard gluon respondd-module-airtime ersetzen
 GLUON_SITE_PACKAGES += \
+	ffffm-additional-wifi-json-info \
 	ffffm-keep-radio-channel \
 	ffffm-button-bind 
 
 # ffki:
 GLUON_SITE_PACKAGES += \
-	gluon-config-mode-ppa 
+	gluon-config-mode-ppa \
+	gluon-config-mode-geo-location-osm \
+
 
 # ffnord:
 GLUON_SITE_PACKAGES += \
