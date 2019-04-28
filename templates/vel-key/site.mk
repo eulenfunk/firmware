@@ -25,7 +25,9 @@ GLUON_SITE_PACKAGES := \
 	gluon-txpowerfix \
 	gluon-banner \
 	gluon-linkcheck \
+	gluon-config-mode-geo-location-osm \
 	gluon-authorized-keys \
+
 	
 
 # PROBLEM:
@@ -47,7 +49,7 @@ GLUON_SITE_PACKAGES += \
 # ffki:
 GLUON_SITE_PACKAGES += \
 	gluon-config-mode-ppa \
-	gluon-config-mode-geo-location-osm \
+	
 
 
 # ffnord:
