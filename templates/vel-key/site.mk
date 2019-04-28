@@ -26,7 +26,6 @@ GLUON_SITE_PACKAGES := \
 	gluon-banner \
 	gluon-linkcheck \
 	gluon-authorized-keys \
-    eulenfunk-dns-cache \
 	
 
 # PROBLEM:
