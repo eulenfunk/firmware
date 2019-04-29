@@ -15,7 +15,7 @@ GLUON_FEATURES := \
 	ebtables-source-filter \
 	mesh-vpn-fastd \
 	radvd \
-	status-page
+	status-page\
 
 # eulenfunk:
 GLUON_SITE_PACKAGES := \
@@ -24,7 +24,11 @@ GLUON_SITE_PACKAGES := \
 	gluon-quickfix \
 	gluon-txpowerfix \
 	gluon-banner \
-	gluon-linkcheck 
+	gluon-linkcheck \
+	gluon-config-mode-geo-location-osm \
+	gluon-authorized-keys \
+
+	
 
 # PROBLEM:
 # ev. macht dieses paket:
@@ -44,7 +48,9 @@ GLUON_SITE_PACKAGES += \
 
 # ffki:
 GLUON_SITE_PACKAGES += \
-	gluon-config-mode-ppa 
+	gluon-config-mode-ppa \
+	
+
 
 # ffnord:
 GLUON_SITE_PACKAGES += \

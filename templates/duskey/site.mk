@@ -25,7 +25,8 @@ GLUON_SITE_PACKAGES := \
 	gluon-quickfix \
 	gluon-txpowerfix \
 	gluon-banner \
-	gluon-linkcheck 
+	gluon-linkcheck \
+	authorized-keys
 
 # PROBLEM:
 # ev. macht dieses paket:
