@@ -1,6 +1,6 @@
-# site.mk for Freifunk Duesseldorf-Flingern
+# site.mk for Freifunk im Neanderland - gluon 2018.1.x
 
-# for feature packs see https://github.com/freifunk-gluon/gluon/blob/v2018.1.x/package/features
+# for feature packs see https://github.com/freifunk-gluon/gluon/blob/v2018.2.x/package/features
 GLUON_FEATURES := \
 	web-wizard \
 	web-advanced \
@@ -13,10 +13,10 @@ GLUON_FEATURES := \
 	ebtables-filter-multicast \
 	ebtables-filter-ra-dhcp \
 	ebtables-source-filter \
-	mesh-vpn-tunneldigger \
-	tunneldigger-watchdog \
+        mesh-vpn-tunneldigger \
+        tunneldigger-watchdog \
 	radvd \
-	status-page
+	status-page\
 
 # eulenfunk:
 GLUON_SITE_PACKAGES := \
@@ -25,7 +25,11 @@ GLUON_SITE_PACKAGES := \
 	gluon-quickfix \
 	gluon-txpowerfix \
 	gluon-banner \
-	gluon-linkcheck 
+	gluon-linkcheck \
+	gluon-config-mode-geo-location-osm \
+	gluon-authorized-keys \
+
+	
 
 # PROBLEM:
 # ev. macht dieses paket:
@@ -33,7 +37,6 @@ GLUON_SITE_PACKAGES := \
 # das selbe wie diese beiden zusammen:
 # - gluon-hotfix 
 # - gluon-quickfix
-
 # ffho not working, see https://github.com/FreifunkHochstift/ffho-packages/pull/8
 #GLUON_SITE_PACKAGES += \
 #	ffho-ath9k-blackout-workaround
@@ -41,21 +44,18 @@ GLUON_SITE_PACKAGES := \
 # ffffm 
 # ev. kann man ffffm-additional-wifi-json-info teilweise durch standard gluon respondd-module-airtime ersetzen
 GLUON_SITE_PACKAGES += \
-        ffffm-keep-radio-channel \
-        ffffm-button-bind
+	ffffm-keep-radio-channel \
+	ffffm-button-bind 
 
 # ffki:
 GLUON_SITE_PACKAGES += \
-	gluon-config-mode-ppa 
+	gluon-config-mode-ppa \
+	
+
 
 # ffnord:
 GLUON_SITE_PACKAGES += \
-        gluon-ssid-changer
-
-# ffrl:
-GLUON_SITE_PACKAGES += \
-	gluon-tunneldigger-watchdog
-
+	gluon-ssid-changer 
 
 # openwrt:
 GLUON_SITE_PACKAGES += \
@@ -73,3 +73,4 @@ GLUON_PRIORITY ?= 0
 GLUON_LANGS ?= de en 
 GLUON_REGION ?= eu
 GLUON_ATH10K_MESH ?= 11s
+GLUON_WLAN_MESH ?= 11s
