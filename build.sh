@@ -87,6 +87,10 @@ get_site_log_filename ()
 
 
 SBRANCH="$(date +%Y%m%d%H%M)"
+# ffdus-hack: firmware-id ohne minute, dafür mit branch-namen
+if [ "$(head -1  $1|cut -d" " -f3)" == "dus" ] ; then
+  SBRANCH="$(date +%Y%m%d%H)-$(head -1  $1|cut -c1-3)"  
+ fi
 
 generate_site_config ()
 {
@@ -153,7 +157,7 @@ build_images_for_site ()
   append_quoted_arg  ARGS  GLUON_SITEDIR   "$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE"
   append_quoted_arg  ARGS  GLUON_IMAGEDIR  "$SANDBOX_DIR/images/$TEMPLATE_NAME/$SITE_CODE"
   append_quoted_arg  ARGS  GLUON_MODULEDIR "$SANDBOX_DIR/modules"
-  append_quoted_arg  ARGS  GLUON_SITE_VERSION "201904"
+  append_quoted_arg  ARGS  GLUON_SITE_VERSION "201905"
 
   # Setting GLUON_BRANCH enables the firmware autoupdater.
   append_quoted_arg  ARGS  GLUON_BRANCH  "$RELBRANCH"
