@@ -1,0 +1,1234 @@
+Running command: ./build.sh sites.dusall
+
+Generating sites for sbranch 2019060316-exp ...
+Generating site dus...
+Generating site duskey...
+Generating site dusl2tpkey...
+Generating site dusl2tp...
+Finished generating sites.
+Git fetching...
+Fordere an von origin
+Building the firmware for site code dus ...
+The site build log file is: /home/build/firmware2018/firmware/assembled/dus/dus/build.log
+Gluon make update...
+make update  GLUON_SITEDIR=/home/build/firmware2018/firmware/assembled/dus/dus GLUON_IMAGEDIR=/home/build/firmware2018/firmware/images/dus/dus GLUON_MODULEDIR=/home/build/firmware2018/firmware/modules GLUON_SITE_VERSION=201905 GLUON_BRANCH=experimental
+--- Updating module 'openwrt' ---
+Reinitialized existing Git repository in /home/build/firmware2018/firmware/gluon/openwrt/.git/
+--- Updating module 'packages/packages' ---
+Reinitialized existing Git repository in /home/build/firmware2018/firmware/gluon/packages/packages/.git/
+--- Updating module 'packages/routing' ---
+Reinitialized existing Git repository in /home/build/firmware2018/firmware/gluon/packages/routing/.git/
+--- Updating module 'packages/luci' ---
+Reinitialized existing Git repository in /home/build/firmware2018/firmware/gluon/packages/luci/.git/
+--- Updating module 'packages/gluon' ---
+Reinitialized existing Git repository in /home/build/firmware2018/firmware/gluon/packages/gluon/.git/
+--- Updating module 'packages/eulenfunk' ---
+Reinitialized existing Git repository in /home/build/firmware2018/firmware/gluon/packages/eulenfunk/.git/
+--- Updating module 'packages/ffffm' ---
+Reinitialized existing Git repository in /home/build/firmware2018/firmware/gluon/packages/ffffm/.git/
+--- Updating module 'packages/ffki' ---
+Reinitialized existing Git repository in /home/build/firmware2018/firmware/gluon/packages/ffki/.git/
+--- Updating module 'packages/ffrl' ---
+Reinitialized existing Git repository in /home/build/firmware2018/firmware/gluon/packages/ffrl/.git/
+--- Updating module 'packages/ffnord' ---
+Reinitialized existing Git repository in /home/build/firmware2018/firmware/gluon/packages/ffnord/.git/
+--- Patching module 'openwrt' ---
+Applying: procd: add support for alternative rc.d directories
+Applying: base-files: disable reset button handling
+Applying: hostapd: prevent channel switch for 5GHz
+Applying: libjson-c: Add support for custom format strings for doubles
+Applying: dropbear: add a failsafe mode that will always allow password-less root login
+Applying: generic: vxlan: backport support for VXLAN over link-local IPv6 to 4.9
+Applying: kernel: ebtables: add support for ICMP/IGMP type matches
+Applying: ipq40xx: add support for the ZyXEL NBG6617
+Applying: build: add mkrasimage
+Applying: ipq40xx: fix NBG6617 LED mapping
+Applying: ath10k-ct: reduce memory consumption
+Applying: tools: mktplinkfw2: add split-uboot layout
+Applying: ramips: add support for Archer C50 v4
+Applying: mac80211: ath10k: support for multicast and management rate control
+Applying: ath10k-ct: support for multicast and management rate control
+Applying: ramips: add support for Netgear R6120
+Applying: tools: add zip utility
+Applying: firmware-utils: add sercomm/netgear tool
+Applying: ath10k-ct: fix incorrect multicast/broadcast rate setting
+Applying: mac80211: ath10k: fix incorrect multicast/broadcast rate setting
+Applying: ramips: fix R6120 factory image
+Reset branch 'patched'
+--- Patching module 'packages/packages' ---
+Reset branch 'patched'
+--- Patching module 'packages/routing' ---
+Applying: alfred: adjust intervals
+Reset branch 'patched'
+--- Patching module 'packages/luci' ---
+Reset branch 'patched'
+--- Patching module 'packages/gluon' ---
+Reset branch 'patched'
+--- Patching module 'packages/eulenfunk' ---
+Reset branch 'patched'
+--- Patching module 'packages/ffffm' ---
+Reset branch 'patched'
+--- Patching module 'packages/ffki' ---
+Reset branch 'patched'
+--- Patching module 'packages/ffrl' ---
+Reset branch 'patched'
+--- Patching module 'packages/ffnord' ---
+Reset branch 'patched'
+Updating feed 'gluon_base' from '../../package' ...
+Create index file './feeds/gluon_base.index' 
+[MCollecting package info: feeds/gluon_base/gluon-alfred[MCollecting package info: feeds/gluon_base/gluon-authorized-keys[MCollecting package info: feeds/gluon_base/gluon-autoupdater[MCollecting package info: feeds/gluon_base/gluon-client-bridge[MCollecting package info: feeds/gluon_base/gluon-config-mode-autoupdater[MCollecting package info: feeds/gluon_base/gluon-config-mode-contact-info[MCollecting package info: feeds/gluon_base/gluon-config-mode-core[MCollecting package info: feeds/gluon_base/gluon-config-mode-domain-select[MCollecting package info: feeds/gluon_base/gluon-config-mode-geo-location[MCollecting package info: feeds/gluon_base/gluon-config-mode-geo-location-osm[MCollecting package info: feeds/gluon_base/gluon-config-mode-hostname[MCollecting package info: feeds/gluon_base/gluon-config-mode-mesh-vpn[MCollecting package info: feeds/gluon_base/gluon-config-mode-theme[MCollecting package info: feeds/gluon_base/gluon-core[MCollecting package info: feeds/gluon_base/gluon-ebtables[MCollecting package info: feeds/gluon_base/gluon-ebtables-filter-multicast[MCollecting package info: feeds/gluon_base/gluon-ebtables-filter-ra-dhcp[MCollecting package info: feeds/gluon_base/gluon-ebtables-limit-arp[MCollecting package info: feeds/gluon_base/gluon-ebtables-source-filter[MCollecting package info: feeds/gluon_base/gluon-iptables-clamp-mss-to-pmtu[MCollecting package info: feeds/gluon_base/gluon-l3roamd[MCollecting package info: feeds/gluon_base/gluon-lock-password[MCollecting package info: feeds/gluon_base/gluon-mesh-babel[MCollecting package info: feeds/gluon_base/gluon-mesh-batman-adv[MCollecting package info: feeds/gluon_base/gluon-mesh-vpn-core[MCollecting package info: feeds/gluon_base/gluon-mesh-vpn-fastd[MCollecting package info: feeds/gluon_base/gluon-mesh-vpn-tunneldigger[MCollecting package info: feeds/gluon_base/gluon-neighbour-info[MCollecting package info: feeds/gluon_base/gluon-node-info[MCollecting package info: feeds/gluon_base/gluon-radv-filterd[MCollecting package info: feeds/gluon_base/gluon-radvd[MCollecting package info: feeds/gluon_base/gluon-respondd[MCollecting package info: feeds/gluon_base/gluon-scheduled-domain-switch[MCollecting package info: feeds/gluon_base/gluon-setup-mode[MCollecting package info: feeds/gluon_base/gluon-site[MCollecting package info: feeds/gluon_base/gluon-status-page[MCollecting package info: feeds/gluon_base/gluon-status-page-mesh-batman-adv[MCollecting package info: feeds/gluon_base/gluon-wan-dnsmasq[MCollecting package info: feeds/gluon_base/gluon-web[MCollecting package info: feeds/gluon_base/gluon-web-admin[MCollecting package info: feeds/gluon_base/gluon-web-autoupdater[MCollecting package info: feeds/gluon_base/gluon-web-logging[MCollecting package info: feeds/gluon_base/gluon-web-mesh-vpn-fastd[MCollecting package info: feeds/gluon_base/gluon-web-model[MCollecting package info: feeds/gluon_base/gluon-web-network[MCollecting package info: feeds/gluon_base/gluon-web-node-role[MCollecting package info: feeds/gluon_base/gluon-web-osm[MCollecting package info: feeds/gluon_base/gluon-web-private-wifi[MCollecting package info: feeds/gluon_base/gluon-web-wifi-config[MCollecting package info: feeds/gluon_base/libbatadv[MCollecting package info: feeds/gluon_base/libgluonutil[MCollecting package info: merging...[MCollecting package info: done
+[MCollecting target info: merging...[MCollecting target info: done
+Updating feed 'packages' from '../../packages/packages' ...
+Create index file './feeds/packages.index' 
+[MCollecting package info: feeds/packages/admin/debootstrap[MCollecting package info: feeds/packages/admin/htop[MCollecting package info: feeds/packages/admin/ipmitool[MCollecting package info: feeds/packages/admin/monit[MCollecting package info: feeds/packages/admin/muninlite[MCollecting package info: feeds/packages/admin/netdata[MCollecting package info: feeds/packages/admin/openwisp-config[MCollecting package info: feeds/packages/admin/sudo[MCollecting package info: feeds/packages/admin/syslog-ng[MCollecting package info: feeds/packages/admin/zabbix[MCollecting package info: feeds/packages/devel/autoconf[MCollecting package info: feeds/packages/devel/automake[MCollecting package info: feeds/packages/devel/diffutils[MCollecting package info: feeds/packages/devel/gcc[MCollecting package info: feeds/packages/devel/libtool-bin[MCollecting package info: feeds/packages/devel/lpc21isp[MCollecting package info: feeds/packages/devel/lttng-modules[MCollecting package info: feeds/packages/devel/lttng-tools[MCollecting package info: feeds/packages/devel/m4[MCollecting package info: feeds/packages/devel/make[MCollecting package info: feeds/packages/devel/patch[MCollecting package info: feeds/packages/devel/pkg-config[MCollecting package info: feeds/packages/fonts/dejavu-fonts-ttf[MCollecting package info: feeds/packages/ipv6/tayga[MCollecting package info: feeds/packages/kernel/exfat-nofuse[MCollecting package info: feeds/packages/kernel/mtd-rw[MCollecting package info: feeds/packages/lang/dkjson[MCollecting package info: feeds/packages/lang/erlang[MCollecting package info: feeds/packages/lang/golang/golang[MCollecting package info: feeds/packages/lang/jamvm[MCollecting package info: feeds/packages/lang/json4lua[MCollecting package info: feeds/packages/lang/ldbus[MCollecting package info: feeds/packages/lang/lpeg[MCollecting package info: feeds/packages/lang/lua-bencode[MCollecting package info: feeds/packages/lang/lua-cjson[MCollecting package info: feeds/packages/lang/lua-copas[MCollecting package info: feeds/packages/lang/lua-coxpcall[MCollecting package info: feeds/packages/lang/lua-lsqlite3[MCollecting package info: feeds/packages/lang/lua-lzlib[MCollecting package info: feeds/packages/lang/lua-md5[MCollecting package info: feeds/packages/lang/lua-mobdebug[MCollecting package info: feeds/packages/lang/lua-mosquitto[MCollecting package info: feeds/packages/lang/lua-openssl[MCollecting package info: feeds/packages/lang/lua-penlight[MCollecting package info: feeds/packages/lang/lua-rings[MCollecting package info: feeds/packages/lang/lua-rs232[MCollecting package info: feeds/packages/lang/lua-sha2[MCollecting package info: feeds/packages/lang/lua-wsapi[MCollecting package info: feeds/packages/lang/lua-xavante[MCollecting package info: feeds/packages/lang/luabitop[MCollecting package info: feeds/packages/lang/luaexpat[MCollecting package info: feeds/packages/lang/luafilesystem[MCollecting package info: feeds/packages/lang/luai2c[MCollecting package info: feeds/packages/lang/luajit[MCollecting package info: feeds/packages/lang/lualanes[MCollecting package info: feeds/packages/lang/luaposix[MCollecting package info: feeds/packages/lang/luarocks[MCollecting package info: feeds/packages/lang/luasec[MCollecting package info: feeds/packages/lang/luasoap[MCollecting package info: feeds/packages/lang/luasocket[MCollecting package info: feeds/packages/lang/luasql[MCollecting package info: feeds/packages/lang/luv[MCollecting package info: feeds/packages/lang/lzmq[MCollecting package info: feeds/packages/lang/node[MCollecting package info: feeds/packages/lang/node-arduino-firmata[MCollecting package info: feeds/packages/lang/node-cylon[MCollecting package info: feeds/packages/lang/node-hid[MCollecting package info: feeds/packages/lang/node-mozilla-iot-gateway[MCollecting package info: feeds/packages/lang/node-serialport[MCollecting package info: feeds/packages/lang/perl[MCollecting package info: feeds/packages/lang/perl-authen-sasl[MCollecting package info: feeds/packages/lang/perl-authen-sasl-xs[MCollecting package info: feeds/packages/lang/perl-cgi[MCollecting package info: feeds/packages/lang/perl-compress-bzip2[MCollecting package info: feeds/packages/lang/perl-dbi[MCollecting package info: feeds/packages/lang/perl-device-serialport[MCollecting package info: feeds/packages/lang/perl-device-usb[MCollecting package info: feeds/packages/lang/perl-encode-locale[MCollecting package info: feeds/packages/lang/perl-file-listing[MCollecting package info: feeds/packages/lang/perl-file-sharedir-install[MCollecting package info: feeds/packages/lang/perl-html-form[MCollecting package info: feeds/packages/lang/perl-html-parser[MCollecting package info: feeds/packages/lang/perl-html-tagset[MCollecting package info: feeds/packages/lang/perl-html-tree[MCollecting package info: feeds/packages/lang/perl-http-cookies[MCollecting package info: feeds/packages/lang/perl-http-daemon[MCollecting package info: feeds/packages/lang/perl-http-date[MCollecting package info: feeds/packages/lang/perl-http-message[MCollecting package info: feeds/packages/lang/perl-http-negotiate[MCollecting package info: feeds/packages/lang/perl-http-server-simple[MCollecting package info: feeds/packages/lang/perl-inline[MCollecting package info: feeds/packages/lang/perl-inline-c[MCollecting package info: feeds/packages/lang/perl-io-html[MCollecting package info: feeds/packages/lang/perl-lockfile-simple[MCollecting package info: feeds/packages/lang/perl-lwp-mediatypes[MCollecting package info: feeds/packages/lang/perl-net-http[MCollecting package info: feeds/packages/lang/perl-net-telnet[MCollecting package info: feeds/packages/lang/perl-parse-recdescent[MCollecting package info: feeds/packages/lang/perl-sub-uplevel[MCollecting package info: feeds/packages/lang/perl-test-harness[MCollecting package info: feeds/packages/lang/perl-test-warn[MCollecting package info: feeds/packages/lang/perl-text-csv_xs[MCollecting package info: feeds/packages/lang/perl-uri[MCollecting package info: feeds/packages/lang/perl-www[MCollecting package info: feeds/packages/lang/perl-www-curl[MCollecting package info: feeds/packages/lang/perl-www-mechanize[MCollecting package info: feeds/packages/lang/perl-www-robotrules[MCollecting package info: feeds/packages/lang/perl-xml-parser[MCollecting package info: feeds/packages/lang/php7[MCollecting package info: feeds/packages/lang/php7-pecl-dio[MCollecting package info: feeds/packages/lang/php7-pecl-http[MCollecting package info: feeds/packages/lang/php7-pecl-libevent[MCollecting package info: feeds/packages/lang/php7-pecl-propro[MCollecting package info: feeds/packages/lang/php7-pecl-raphf[MCollecting package info: feeds/packages/lang/python/Flask[MCollecting package info: feeds/packages/lang/python/Jinja2[MCollecting package info: feeds/packages/lang/python/MarkupSafe[MCollecting package info: feeds/packages/lang/python/Werkzeug[MCollecting package info: feeds/packages/lang/python/chardet[MCollecting package info: feeds/packages/lang/python/click[MCollecting package info: feeds/packages/lang/python/django[MCollecting package info: feeds/packages/lang/python/django-appconf[MCollecting package info: feeds/packages/lang/python/django-compressor[MCollecting package info: feeds/packages/lang/python/django-constance[MCollecting package info: feeds/packages/lang/python/django-jsonfield[MCollecting package info: feeds/packages/lang/python/django-picklefield[MCollecting package info: feeds/packages/lang/python/django-postoffice[MCollecting package info: feeds/packages/lang/python/django-restframework[MCollecting package info: feeds/packages/lang/python/django-statici18n[MCollecting package info: feeds/packages/lang/python/et_xmlfile[MCollecting package info: feeds/packages/lang/python/flup[MCollecting package info: feeds/packages/lang/python/gunicorn[MCollecting package info: feeds/packages/lang/python/itsdangerous[MCollecting package info: feeds/packages/lang/python/jdcal[MCollecting package info: feeds/packages/lang/python/micropython[MCollecting package info: feeds/packages/lang/python/micropython-lib[MCollecting package info: feeds/packages/lang/python/openpyxl[MCollecting package info: feeds/packages/lang/python/pillow[MCollecting package info: feeds/packages/lang/python/pyodbc[MCollecting package info: feeds/packages/lang/python/python[MCollecting package info: feeds/packages/lang/python/python-asn1crypto[MCollecting package info: feeds/packages/lang/python/python-attrs[MCollecting package info: feeds/packages/lang/python/python-automat[MCollecting package info: feeds/packages/lang/python/python-cffi[MCollecting package info: feeds/packages/lang/python/python-constantly[MCollecting package info: feeds/packages/lang/python/python-crcmod[MCollecting package info: feeds/packages/lang/python/python-crypto[MCollecting package info: feeds/packages/lang/python/python-cryptography[MCollecting package info: feeds/packages/lang/python/python-curl[MCollecting package info: feeds/packages/lang/python/python-dateutil[MCollecting package info: feeds/packages/lang/python/python-dns[MCollecting package info: feeds/packages/lang/python/python-dpkt[MCollecting package info: feeds/packages/lang/python/python-egenix-mx-base[MCollecting package info: feeds/packages/lang/python/python-enum34[MCollecting package info: feeds/packages/lang/python/python-evdev[MCollecting package info: feeds/packages/lang/python/python-gmpy2[MCollecting package info: feeds/packages/lang/python/python-gnupg[MCollecting package info: feeds/packages/lang/python/python-hyperlink[MCollecting package info: feeds/packages/lang/python/python-idna[MCollecting package info: feeds/packages/lang/python/python-incremental[MCollecting package info: feeds/packages/lang/python/python-ipaddress[MCollecting package info: feeds/packages/lang/python/python-ldap[MCollecting package info: feeds/packages/lang/python/python-lxml[MCollecting package info: feeds/packages/lang/python/python-mysql[MCollecting package info: feeds/packages/lang/python/python-packages[MCollecting package info: feeds/packages/lang/python/python-parsley[MCollecting package info: feeds/packages/lang/python/python-pcapy[MCollecting package info: feeds/packages/lang/python/python-pip-conf[MCollecting package info: feeds/packages/lang/python/python-ply[MCollecting package info: feeds/packages/lang/python/python-psycopg2[MCollecting package info: feeds/packages/lang/python/python-pyasn1[MCollecting package info: feeds/packages/lang/python/python-pyasn1-modules[MCollecting package info: feeds/packages/lang/python/python-pycparser[MCollecting package info: feeds/packages/lang/python/python-pyopenssl[MCollecting package info: feeds/packages/lang/python/python-pyptlib[MCollecting package info: feeds/packages/lang/python/python-pyserial[MCollecting package info: feeds/packages/lang/python/python-service-identity[MCollecting package info: feeds/packages/lang/python/python-six[MCollecting package info: feeds/packages/lang/python/python-txsocksx[MCollecting package info: feeds/packages/lang/python/python-urllib3[MCollecting package info: feeds/packages/lang/python/python-yaml[MCollecting package info: feeds/packages/lang/python/python-zope-interface[MCollecting package info: feeds/packages/lang/python/python3[MCollecting package info: feeds/packages/lang/python/python3-bottle[MCollecting package info: feeds/packages/lang/python/pytz[MCollecting package info: feeds/packages/lang/python/rcssmin[MCollecting package info: feeds/packages/lang/python/simplejson[MCollecting package info: feeds/packages/lang/python/twisted[MCollecting package info: feeds/packages/lang/ruby[MCollecting package info: feeds/packages/lang/tcl[MCollecting package info: feeds/packages/lang/uuid[MCollecting package info: feeds/packages/lang/vala[MCollecting package info: feeds/packages/libs/alsa-lib[MCollecting package info: feeds/packages/libs/apr[MCollecting package info: feeds/packages/libs/apr-util[MCollecting package info: feeds/packages/libs/avahi[MCollecting package info: feeds/packages/libs/avro[MCollecting package info: feeds/packages/libs/boost[MCollecting package info: feeds/packages/libs/c-ares[MCollecting package info: feeds/packages/libs/check[MCollecting package info: feeds/packages/libs/classpath[MCollecting package info: feeds/packages/libs/confuse[MCollecting package info: feeds/packages/libs/cyrus-sasl[MCollecting package info: feeds/packages/libs/db47[MCollecting package info: feeds/packages/libs/dmx_usb_module[MCollecting package info: feeds/packages/libs/dtc[MCollecting package info: feeds/packages/libs/dtndht[MCollecting package info: feeds/packages/libs/elektra[MCollecting package info: feeds/packages/libs/eventlog[MCollecting package info: feeds/packages/libs/expat[MCollecting package info: feeds/packages/libs/faad2[MCollecting package info: feeds/packages/libs/fcgi[MCollecting package info: feeds/packages/libs/fftw3[MCollecting package info: feeds/packages/libs/file[MCollecting package info: feeds/packages/libs/flac[MCollecting package info: feeds/packages/libs/freetype[MCollecting package info: feeds/packages/libs/gdbm[MCollecting package info: feeds/packages/libs/getdns[MCollecting package info: feeds/packages/libs/giflib[MCollecting package info: feeds/packages/libs/glib2[MCollecting package info: feeds/packages/libs/glpk[MCollecting package info: feeds/packages/libs/gnutls[MCollecting package info: feeds/packages/libs/gperf[MCollecting package info: feeds/packages/libs/hidapi[MCollecting package info: feeds/packages/libs/hiredis[MCollecting package info: feeds/packages/libs/ibrcommon[MCollecting package info: feeds/packages/libs/ibrdtn[MCollecting package info: feeds/packages/libs/icu[MCollecting package info: feeds/packages/libs/intltool[MCollecting package info: feeds/packages/libs/jansson[MCollecting package info: feeds/packages/libs/ldns[MCollecting package info: feeds/packages/libs/libaio[MCollecting package info: feeds/packages/libs/libantlr3c[MCollecting package info: feeds/packages/libs/libao[MCollecting package info: feeds/packages/libs/libarchive[MCollecting package info: feeds/packages/libs/libartnet[MCollecting package info: feeds/packages/libs/libaudiofile[MCollecting package info: feeds/packages/libs/libavl[MCollecting package info: feeds/packages/libs/libcanfestival[MCollecting package info: feeds/packages/libs/libcap[MCollecting package info: feeds/packages/libs/libcoap[MCollecting package info: feeds/packages/libs/libdaemon[MCollecting package info: feeds/packages/libs/libdaq[MCollecting package info: feeds/packages/libs/libdbi[MCollecting package info: feeds/packages/libs/libdbi-drivers[MCollecting package info: feeds/packages/libs/libdmapsharing[MCollecting package info: feeds/packages/libs/libdnet[MCollecting package info: feeds/packages/libs/libdouble-conversion[MCollecting package info: feeds/packages/libs/libdrm[MCollecting package info: feeds/packages/libs/libedit[MCollecting package info: feeds/packages/libs/libesmtp[MCollecting package info: feeds/packages/libs/libestr[MCollecting package info: feeds/packages/libs/libev[MCollecting package info: feeds/packages/libs/libevdev[MCollecting package info: feeds/packages/libs/libevhtp[MCollecting package info: feeds/packages/libs/libexif[MCollecting package info: feeds/packages/libs/libextractor[MCollecting package info: feeds/packages/libs/libfastjson[MCollecting package info: feeds/packages/libs/libffi[MCollecting package info: feeds/packages/libs/libfmt[MCollecting package info: feeds/packages/libs/libftdi[MCollecting package info: feeds/packages/libs/libftdi1[MCollecting package info: feeds/packages/libs/libgcrypt[MCollecting package info: feeds/packages/libs/libgd[MCollecting package info: feeds/packages/libs/libgee[MCollecting package info: feeds/packages/libs/libglog[MCollecting package info: feeds/packages/libs/libgpg-error[MCollecting package info: feeds/packages/libs/libgphoto2[MCollecting package info: feeds/packages/libs/libgpiod[MCollecting package info: feeds/packages/libs/libhttp-parser[MCollecting package info: feeds/packages/libs/libical[MCollecting package info: feeds/packages/libs/libid3tag[MCollecting package info: feeds/packages/libs/libidn[MCollecting package info: feeds/packages/libs/libidn2[MCollecting package info: feeds/packages/libs/libiio[MCollecting package info: feeds/packages/libs/libimobiledevice[MCollecting package info: feeds/packages/libs/libinput[MCollecting package info: feeds/packages/libs/libjpeg[MCollecting package info: feeds/packages/libs/liblo[MCollecting package info: feeds/packages/libs/liblz4[MCollecting package info: feeds/packages/libs/libmad[MCollecting package info: feeds/packages/libs/libmcrypt[MCollecting package info: feeds/packages/libs/libmicrohttpd[MCollecting package info: feeds/packages/libs/libmms[MCollecting package info: feeds/packages/libs/libmodbus[MCollecting package info: feeds/packages/libs/libmpdclient[MCollecting package info: feeds/packages/libs/libmpeg2[MCollecting package info: feeds/packages/libs/libmraa[MCollecting package info: feeds/packages/libs/libnatpmp[MCollecting package info: feeds/packages/libs/libndpi[MCollecting package info: feeds/packages/libs/libnet-1.2.x[MCollecting package info: feeds/packages/libs/libnetconf2[MCollecting package info: feeds/packages/libs/libnetfilter-acct[MCollecting package info: feeds/packages/libs/libnopoll[MCollecting package info: feeds/packages/libs/libogg[MCollecting package info: feeds/packages/libs/liboil[MCollecting package info: feeds/packages/libs/liboping[MCollecting package info: feeds/packages/libs/libowfat[MCollecting package info: feeds/packages/libs/libp11[MCollecting package info: feeds/packages/libs/libpam[MCollecting package info: feeds/packages/libs/libplist[MCollecting package info: feeds/packages/libs/libpng[MCollecting package info: feeds/packages/libs/libradcli[MCollecting package info: feeds/packages/libs/libredblack[MCollecting package info: feeds/packages/libs/libsamplerate[MCollecting package info: feeds/packages/libs/libsearpc[MCollecting package info: feeds/packages/libs/libseccomp[MCollecting package info: feeds/packages/libs/libshout[MCollecting package info: feeds/packages/libs/libsigc++[MCollecting package info: feeds/packages/libs/libsndfile[MCollecting package info: feeds/packages/libs/libsoc[MCollecting package info: feeds/packages/libs/libsodium[MCollecting package info: feeds/packages/libs/libsoup[MCollecting package info: feeds/packages/libs/libsoxr[MCollecting package info: feeds/packages/libs/libssh[MCollecting package info: feeds/packages/libs/libssh2[MCollecting package info: feeds/packages/libs/libstrophe[MCollecting package info: feeds/packages/libs/libtalloc[MCollecting package info: feeds/packages/libs/libtasn1[MCollecting package info: feeds/packages/libs/libtheora[MCollecting package info: feeds/packages/libs/libtins[MCollecting package info: feeds/packages/libs/libtirpc[MCollecting package info: feeds/packages/libs/libtorrent[MCollecting package info: feeds/packages/libs/libudev-fbsd[MCollecting package info: feeds/packages/libs/libuecc[MCollecting package info: feeds/packages/libs/libugpio[MCollecting package info: feeds/packages/libs/libuhttpd[MCollecting package info: feeds/packages/libs/libunistring[MCollecting package info: feeds/packages/libs/libupm[MCollecting package info: feeds/packages/libs/libupnp[MCollecting package info: feeds/packages/libs/libupnpp[MCollecting package info: feeds/packages/libs/liburcu[MCollecting package info: feeds/packages/libs/libusbmuxd[MCollecting package info: feeds/packages/libs/libuv[MCollecting package info: feeds/packages/libs/libuvc[MCollecting package info: feeds/packages/libs/libuwsc[MCollecting package info: feeds/packages/libs/libv4l[MCollecting package info: feeds/packages/libs/libvorbis[MCollecting package info: feeds/packages/libs/libvorbisidec[MCollecting package info: feeds/packages/libs/libvpx[MCollecting package info: feeds/packages/libs/libwebsockets[MCollecting package info: feeds/packages/libs/libx264[MCollecting package info: feeds/packages/libs/libxerces-c[MCollecting package info: feeds/packages/libs/libxml2[MCollecting package info: feeds/packages/libs/libxslt[MCollecting package info: feeds/packages/libs/libyaml-cpp[MCollecting package info: feeds/packages/libs/libyang[MCollecting package info: feeds/packages/libs/libzdb[MCollecting package info: feeds/packages/libs/loudmouth[MCollecting package info: feeds/packages/libs/lttng-ust[MCollecting package info: feeds/packages/libs/mtdev[MCollecting package info: feeds/packages/libs/musl-fts[MCollecting package info: feeds/packages/libs/mxml[MCollecting package info: feeds/packages/libs/nacl[MCollecting package info: feeds/packages/libs/neon[MCollecting package info: feeds/packages/libs/opencv[MCollecting package info: feeds/packages/libs/openldap[MCollecting package info: feeds/packages/libs/opus[MCollecting package info: feeds/packages/libs/p11-kit[MCollecting package info: feeds/packages/libs/pcre[MCollecting package info: feeds/packages/libs/pcre2[MCollecting package info: feeds/packages/libs/pixman[MCollecting package info: feeds/packages/libs/poco[MCollecting package info: feeds/packages/libs/postgresql[MCollecting package info: feeds/packages/libs/protobuf[MCollecting package info: feeds/packages/libs/protobuf-c[MCollecting package info: feeds/packages/libs/psqlodbc[MCollecting package info: feeds/packages/libs/pthsem[MCollecting package info: feeds/packages/libs/qrencode[MCollecting package info: feeds/packages/libs/quasselc[MCollecting package info: feeds/packages/libs/rxtx[MCollecting package info: feeds/packages/libs/sbc[MCollecting package info: feeds/packages/libs/speex[MCollecting package info: feeds/packages/libs/speexdsp[MCollecting package info: feeds/packages/libs/sqlite3[MCollecting package info: feeds/packages/libs/tcp_wrappers[MCollecting package info: feeds/packages/libs/tdb[MCollecting package info: feeds/packages/libs/tiff[MCollecting package info: feeds/packages/libs/tinycdb[MCollecting package info: feeds/packages/libs/udns[MCollecting package info: feeds/packages/libs/unixodbc[MCollecting package info: feeds/packages/libs/uw-imap[MCollecting package info: feeds/packages/libs/vips[MCollecting package info: feeds/packages/libs/xmlrpc-c[MCollecting package info: feeds/packages/libs/xr_usb_serial_common[MCollecting package info: feeds/packages/libs/yajl[MCollecting package info: feeds/packages/libs/yaml[MCollecting package info: feeds/packages/libs/zmq[MCollecting package info: feeds/packages/mail/alpine[MCollecting package info: feeds/packages/mail/bogofilter[MCollecting package info: feeds/packages/mail/clamsmtp[MCollecting package info: feeds/packages/mail/dovecot[MCollecting package info: feeds/packages/mail/emailrelay[MCollecting package info: feeds/packages/mail/fdm[MCollecting package info: feeds/packages/mail/greyfix[MCollecting package info: feeds/packages/mail/mailman[MCollecting package info: feeds/packages/mail/mailsend[MCollecting package info: feeds/packages/mail/msmtp[MCollecting package info: feeds/packages/mail/msmtp-scripts[MCollecting package info: feeds/packages/mail/mutt[MCollecting package info: feeds/packages/mail/nail[MCollecting package info: feeds/packages/mail/opendkim[MCollecting package info: feeds/packages/mail/pigeonhole[MCollecting package info: feeds/packages/mail/postfix[MCollecting package info: feeds/packages/mail/sendmail[MCollecting package info: feeds/packages/mail/ssmtp[MCollecting package info: feeds/packages/multimedia/crtmpserver[MCollecting package info: feeds/packages/multimedia/ffmpeg[MCollecting package info: feeds/packages/multimedia/fswebcam[MCollecting package info: feeds/packages/multimedia/gphoto2[MCollecting package info: feeds/packages/multimedia/grilo[MCollecting package info: feeds/packages/multimedia/grilo-plugins[MCollecting package info: feeds/packages/multimedia/gst1-libav[MCollecting package info: feeds/packages/multimedia/gst1-plugins-bad[MCollecting package info: feeds/packages/multimedia/gst1-plugins-base[MCollecting package info: feeds/packages/multimedia/gst1-plugins-good[MCollecting package info: feeds/packages/multimedia/gst1-plugins-ugly[MCollecting package info: feeds/packages/multimedia/gstreamer1[MCollecting package info: feeds/packages/multimedia/icecast[MCollecting package info: feeds/packages/multimedia/ices[MCollecting package info: feeds/packages/multimedia/lcdgrilo[MCollecting package info: feeds/packages/multimedia/minidlna[MCollecting package info: feeds/packages/multimedia/mjpg-streamer[MCollecting package info: feeds/packages/multimedia/motion[MCollecting package info: feeds/packages/multimedia/oggfwd[MCollecting package info: feeds/packages/multimedia/tvheadend[MCollecting package info: feeds/packages/multimedia/v4l2rtspserver[MCollecting package info: feeds/packages/multimedia/xupnpd[MCollecting package info: feeds/packages/multimedia/youtube-dl[MCollecting package info: feeds/packages/net/acme[MCollecting package info: feeds/packages/net/adblock[MCollecting package info: feeds/packages/net/addrwatch[MCollecting package info: feeds/packages/net/aggregate[MCollecting package info: feeds/packages/net/aircrack-ng[MCollecting package info: feeds/packages/net/announce[MCollecting package info: feeds/packages/net/apache[MCollecting package info: feeds/packages/net/apcupsd[MCollecting package info: feeds/packages/net/apinger[MCollecting package info: feeds/packages/net/aria2[MCollecting package info: feeds/packages/net/ariang[MCollecting package info: feeds/packages/net/arp-scan[MCollecting package info: feeds/packages/net/atftp[MCollecting package info: feeds/packages/net/autossh[MCollecting package info: feeds/packages/net/bcp38[MCollecting package info: feeds/packages/net/beanstalkd[MCollecting package info: feeds/packages/net/bind[MCollecting package info: feeds/packages/net/bitlbee[MCollecting package info: feeds/packages/net/bmon[MCollecting package info: feeds/packages/net/bridge-utils[MCollecting package info: feeds/packages/net/bwm-ng[MCollecting package info: feeds/packages/net/cgi-io[MCollecting package info: feeds/packages/net/chaosvpn[MCollecting package info: feeds/packages/net/chrony[MCollecting package info: feeds/packages/net/cifs-utils[MCollecting package info: feeds/packages/net/clamav[MCollecting package info: feeds/packages/net/conserver[MCollecting package info: feeds/packages/net/coova-chilli[MCollecting package info: feeds/packages/net/cshark[MCollecting package info: feeds/packages/net/daemonlogger[MCollecting package info: feeds/packages/net/danish[MCollecting package info: feeds/packages/net/darkstat[MCollecting package info: feeds/packages/net/davfs2[MCollecting package info: feeds/packages/net/ddns-scripts[MCollecting package info: feeds/packages/net/dhcp-forwarder[MCollecting package info: feeds/packages/net/dhcpcd[MCollecting package info: feeds/packages/net/dmapd[MCollecting package info: feeds/packages/net/dnscrypt-proxy[MCollecting package info: feeds/packages/net/dynapoint[MCollecting package info: feeds/packages/net/e2guardian[MCollecting package info: feeds/packages/net/esniper[MCollecting package info: feeds/packages/net/etherwake[MCollecting package info: feeds/packages/net/fakeidentd[MCollecting package info: feeds/packages/net/fastd[MCollecting package info: feeds/packages/net/foolsm[MCollecting package info: feeds/packages/net/fossil[MCollecting package info: feeds/packages/net/fping[MCollecting package info: feeds/packages/net/freeradius3[MCollecting package info: feeds/packages/net/fwknop[MCollecting package info: feeds/packages/net/git[MCollecting package info: feeds/packages/net/gitolite[MCollecting package info: feeds/packages/net/gnunet[MCollecting package info: feeds/packages/net/gnurl[MCollecting package info: feeds/packages/net/haproxy[MCollecting package info: feeds/packages/net/horst[MCollecting package info: feeds/packages/net/htpdate[MCollecting package info: feeds/packages/net/httping[MCollecting package info: feeds/packages/net/https-dns-proxy[MCollecting package info: feeds/packages/net/i2pd[MCollecting package info: feeds/packages/net/ibrdtn-tools[MCollecting package info: feeds/packages/net/ibrdtnd[MCollecting package info: feeds/packages/net/ifstat[MCollecting package info: feeds/packages/net/inadyn[MCollecting package info: feeds/packages/net/iodine[MCollecting package info: feeds/packages/net/iotivity[MCollecting package info: feeds/packages/net/ipsec-tools[MCollecting package info: feeds/packages/net/iptraf-ng[MCollecting package info: feeds/packages/net/irssi[MCollecting package info: feeds/packages/net/isc-dhcp[MCollecting package info: feeds/packages/net/jool[MCollecting package info: feeds/packages/net/kadnode[MCollecting package info: feeds/packages/net/keepalived[MCollecting package info: feeds/packages/net/kismet[MCollecting package info: feeds/packages/net/knot[MCollecting package info: feeds/packages/net/knxd[MCollecting package info: feeds/packages/net/kplex[MCollecting package info: feeds/packages/net/krb5[MCollecting package info: feeds/packages/net/lcdringer[MCollecting package info: feeds/packages/net/lftp[MCollecting package info: feeds/packages/net/lighttpd[MCollecting package info: feeds/packages/net/linknx[MCollecting package info: feeds/packages/net/linuxptp[MCollecting package info: feeds/packages/net/lispmob[MCollecting package info: feeds/packages/net/lksctp-tools[MCollecting package info: feeds/packages/net/mac-telnet[MCollecting package info: feeds/packages/net/mdnsresponder[MCollecting package info: feeds/packages/net/memcached[MCollecting package info: feeds/packages/net/mii-tool[MCollecting package info: feeds/packages/net/mikrotik-btest[MCollecting package info: feeds/packages/net/mini_snmpd[MCollecting package info: feeds/packages/net/miniupnpc[MCollecting package info: feeds/packages/net/miniupnpd[MCollecting package info: feeds/packages/net/mosquitto[MCollecting package info: feeds/packages/net/mtr[MCollecting package info: feeds/packages/net/mwan3[MCollecting package info: feeds/packages/net/nbd[MCollecting package info: feeds/packages/net/ncp[MCollecting package info: feeds/packages/net/net-snmp[MCollecting package info: feeds/packages/net/netatalk[MCollecting package info: feeds/packages/net/netcat[MCollecting package info: feeds/packages/net/netdiscover[MCollecting package info: feeds/packages/net/netopeer2[MCollecting package info: feeds/packages/net/netperf[MCollecting package info: feeds/packages/net/nfs-kernel-server[MCollecting package info: feeds/packages/net/nginx[MCollecting package info: feeds/packages/net/ngircd[MCollecting package info: feeds/packages/net/nlbwmon[MCollecting package info: feeds/packages/net/nmap[MCollecting package info: feeds/packages/net/noddos[MCollecting package info: feeds/packages/net/nsd[MCollecting package info: feeds/packages/net/ntpclient[MCollecting package info: feeds/packages/net/ntpd[MCollecting package info: feeds/packages/net/ntripcaster[MCollecting package info: feeds/packages/net/ntripclient[MCollecting package info: feeds/packages/net/ntripserver[MCollecting package info: feeds/packages/net/nut[MCollecting package info: feeds/packages/net/obfsproxy[MCollecting package info: feeds/packages/net/ocserv[MCollecting package info: feeds/packages/net/ola[MCollecting package info: feeds/packages/net/openconnect[MCollecting package info: feeds/packages/net/opennhrp[MCollecting package info: feeds/packages/net/openssh[MCollecting package info: feeds/packages/net/opentracker[MCollecting package info: feeds/packages/net/openvswitch[MCollecting package info: feeds/packages/net/p910nd[MCollecting package info: feeds/packages/net/pagekitec[MCollecting package info: feeds/packages/net/pen[MCollecting package info: feeds/packages/net/pingcheck[MCollecting package info: feeds/packages/net/pixiewps[MCollecting package info: feeds/packages/net/polipo[MCollecting package info: feeds/packages/net/port-mirroring[MCollecting package info: feeds/packages/net/portmap[MCollecting package info: feeds/packages/net/pppossh[MCollecting package info: feeds/packages/net/pptpd[MCollecting package info: feeds/packages/net/privoxy[MCollecting package info: feeds/packages/net/prosody[MCollecting package info: feeds/packages/net/quassel-irssi[MCollecting package info: feeds/packages/net/radicale[MCollecting package info: feeds/packages/net/radsecproxy[MCollecting package info: feeds/packages/net/reaver[MCollecting package info: feeds/packages/net/redsocks[MCollecting package info: feeds/packages/net/remserial[MCollecting package info: feeds/packages/net/rp-pppoe[MCollecting package info: feeds/packages/net/rsync[MCollecting package info: feeds/packages/net/rsyslog[MCollecting package info: feeds/packages/net/rtorrent[MCollecting package info: feeds/packages/net/scapy[MCollecting package info: feeds/packages/net/seafile-ccnet[MCollecting package info: feeds/packages/net/seafile-seahub[MCollecting package info: feeds/packages/net/seafile-server[MCollecting package info: feeds/packages/net/ser2net[MCollecting package info: feeds/packages/net/shadowsocks-client[MCollecting package info: feeds/packages/net/shadowsocks-libev[MCollecting package info: feeds/packages/net/shorewall[MCollecting package info: feeds/packages/net/shorewall-core[MCollecting package info: feeds/packages/net/shorewall-lite[MCollecting package info: feeds/packages/net/shorewall6[MCollecting package info: feeds/packages/net/shorewall6-lite[MCollecting package info: feeds/packages/net/siit[MCollecting package info: feeds/packages/net/simple-adblock[MCollecting package info: feeds/packages/net/smartsnmpd[MCollecting package info: feeds/packages/net/snort[MCollecting package info: feeds/packages/net/socat[MCollecting package info: feeds/packages/net/softethervpn[MCollecting package info: feeds/packages/net/softflowd[MCollecting package info: feeds/packages/net/spawn-fcgi[MCollecting package info: feeds/packages/net/sqm-scripts[MCollecting package info: feeds/packages/net/sqm-scripts-extra[MCollecting package info: feeds/packages/net/squid[MCollecting package info: feeds/packages/net/sshfs[MCollecting package info: feeds/packages/net/sshtunnel[MCollecting package info: feeds/packages/net/sslh[MCollecting package info: feeds/packages/net/sstp-client[MCollecting package info: feeds/packages/net/strongswan[MCollecting package info: feeds/packages/net/stubby[MCollecting package info: feeds/packages/net/stunnel[MCollecting package info: feeds/packages/net/subversion[MCollecting package info: feeds/packages/net/sysrepo[MCollecting package info: feeds/packages/net/tcpproxy[MCollecting package info: feeds/packages/net/tcpreplay[MCollecting package info: feeds/packages/net/tgt[MCollecting package info: feeds/packages/net/tinc[MCollecting package info: feeds/packages/net/tinyproxy[MCollecting package info: feeds/packages/net/tor[MCollecting package info: feeds/packages/net/transmission[MCollecting package info: feeds/packages/net/travelmate[MCollecting package info: feeds/packages/net/u2pnpd[MCollecting package info: feeds/packages/net/uanytun[MCollecting package info: feeds/packages/net/udpxy[MCollecting package info: feeds/packages/net/ulogd[MCollecting package info: feeds/packages/net/umurmur[MCollecting package info: feeds/packages/net/unbound[MCollecting package info: feeds/packages/net/usbip[MCollecting package info: feeds/packages/net/vallumd[MCollecting package info: feeds/packages/net/vncrepeater[MCollecting package info: feeds/packages/net/vnstat[MCollecting package info: feeds/packages/net/vpnbypass[MCollecting package info: feeds/packages/net/vpnc[MCollecting package info: feeds/packages/net/vpnc-scripts[MCollecting package info: feeds/packages/net/vsftpd[MCollecting package info: feeds/packages/net/wakeonlan[MCollecting package info: feeds/packages/net/wavemon[MCollecting package info: feeds/packages/net/webui-aria2[MCollecting package info: feeds/packages/net/wget[MCollecting package info: feeds/packages/net/wifidog[MCollecting package info: feeds/packages/net/wifidog-ng[MCollecting package info: feeds/packages/net/wifischedule[MCollecting package info: feeds/packages/net/xinetd[MCollecting package info: feeds/packages/net/xl2tpd[MCollecting package info: feeds/packages/net/xtables-addons[MCollecting package info: feeds/packages/net/yaaw[MCollecting package info: feeds/packages/net/zerotier[MCollecting package info: feeds/packages/net/znc[MCollecting package info: feeds/packages/sound/alsa-utils[MCollecting package info: feeds/packages/sound/espeak[MCollecting package info: feeds/packages/sound/fdk-aac[MCollecting package info: feeds/packages/sound/forked-daapd[MCollecting package info: feeds/packages/sound/lame[MCollecting package info: feeds/packages/sound/madplay[MCollecting package info: feeds/packages/sound/mocp[MCollecting package info: feeds/packages/sound/mpc[MCollecting package info: feeds/packages/sound/mpd[MCollecting package info: feeds/packages/sound/mpg123[MCollecting package info: feeds/packages/sound/opus-tools[MCollecting package info: feeds/packages/sound/pianod[MCollecting package info: feeds/packages/sound/portaudio[MCollecting package info: feeds/packages/sound/pulseaudio[MCollecting package info: feeds/packages/sound/shairplay[MCollecting package info: feeds/packages/sound/shairport-sync[MCollecting package info: feeds/packages/sound/shine[MCollecting package info: feeds/packages/sound/sox[MCollecting package info: feeds/packages/sound/squeezelite[MCollecting package info: feeds/packages/sound/svox[MCollecting package info: feeds/packages/sound/upmpdcli[MCollecting package info: feeds/packages/utils/acl[MCollecting package info: feeds/packages/utils/acpica-unix[MCollecting package info: feeds/packages/utils/acpid[MCollecting package info: feeds/packages/utils/ap51-flash[MCollecting package info: feeds/packages/utils/at[MCollecting package info: feeds/packages/utils/attendedsysupgrade-common[MCollecting package info: feeds/packages/utils/attr[MCollecting package info: feeds/packages/utils/auc[MCollecting package info: feeds/packages/utils/avrdude[MCollecting package info: feeds/packages/utils/bandwidthd[MCollecting package info: feeds/packages/utils/banhosts[MCollecting package info: feeds/packages/utils/bash[MCollecting package info: feeds/packages/utils/bc[MCollecting package info: feeds/packages/utils/beep[MCollecting package info: feeds/packages/utils/bluelog[MCollecting package info: feeds/packages/utils/bluez[MCollecting package info: feeds/packages/utils/bmx7-dnsupdate[MCollecting package info: feeds/packages/utils/bonnie++[MCollecting package info: feeds/packages/utils/btrfs-progs[MCollecting package info: feeds/packages/utils/canutils[MCollecting package info: feeds/packages/utils/ccid[MCollecting package info: feeds/packages/utils/ccrypt[MCollecting package info: feeds/packages/utils/cmdpad[MCollecting package info: feeds/packages/utils/collectd[MCollecting package info: feeds/packages/utils/coreutils[MCollecting package info: feeds/packages/utils/crconf[MCollecting package info: feeds/packages/utils/crelay[MCollecting package info: feeds/packages/utils/cryptodev-linux[MCollecting package info: feeds/packages/utils/cryptsetup[MCollecting package info: feeds/packages/utils/dbus[MCollecting package info: feeds/packages/utils/dfu-programmer[MCollecting package info: feeds/packages/utils/dfu-util[MCollecting package info: feeds/packages/utils/digitemp[MCollecting package info: feeds/packages/utils/dmidecode[MCollecting package info: feeds/packages/utils/domoticz[MCollecting package info: feeds/packages/utils/dosfstools[MCollecting package info: feeds/packages/utils/dump1090[MCollecting package info: feeds/packages/utils/dvtm[MCollecting package info: feeds/packages/utils/ecdsautils[MCollecting package info: feeds/packages/utils/evtest[MCollecting package info: feeds/packages/utils/findutils[MCollecting package info: feeds/packages/utils/flashrom[MCollecting package info: feeds/packages/utils/flent-tools[MCollecting package info: feeds/packages/utils/fontconfig[MCollecting package info: feeds/packages/utils/gammu[MCollecting package info: feeds/packages/utils/gawk[MCollecting package info: feeds/packages/utils/gkermit[MCollecting package info: feeds/packages/utils/gnupg[MCollecting package info: feeds/packages/utils/gpsd[MCollecting package info: feeds/packages/utils/gptfdisk[MCollecting package info: feeds/packages/utils/grep[MCollecting package info: feeds/packages/utils/gzip[MCollecting package info: feeds/packages/utils/hamlib[MCollecting package info: feeds/packages/utils/haserl[MCollecting package info: feeds/packages/utils/haveged[MCollecting package info: feeds/packages/utils/hd-idle[MCollecting package info: feeds/packages/utils/hdparm[MCollecting package info: feeds/packages/utils/hfsprogs[MCollecting package info: feeds/packages/utils/hub-ctrl[MCollecting package info: feeds/packages/utils/i2c-tools[MCollecting package info: feeds/packages/utils/inotify-tools[MCollecting package info: feeds/packages/utils/io[MCollecting package info: feeds/packages/utils/irqbalance[MCollecting package info: feeds/packages/utils/joe[MCollecting package info: feeds/packages/utils/jq[MCollecting package info: feeds/packages/utils/klish[MCollecting package info: feeds/packages/utils/kmod[MCollecting package info: feeds/packages/utils/lcd4linux[MCollecting package info: feeds/packages/utils/lcdproc[MCollecting package info: feeds/packages/utils/less[MCollecting package info: feeds/packages/utils/lm-sensors[MCollecting package info: feeds/packages/utils/logrotate[MCollecting package info: feeds/packages/utils/lrzsz[MCollecting package info: feeds/packages/utils/lsof[MCollecting package info: feeds/packages/utils/lvm2[MCollecting package info: feeds/packages/utils/lxc[MCollecting package info: feeds/packages/utils/macchanger[MCollecting package info: feeds/packages/utils/mariadb[MCollecting package info: feeds/packages/utils/mbtools[MCollecting package info: feeds/packages/utils/mc[MCollecting package info: feeds/packages/utils/minicom[MCollecting package info: feeds/packages/utils/mksh[MCollecting package info: feeds/packages/utils/mktorrent[MCollecting package info: feeds/packages/utils/mmc-utils[MCollecting package info: feeds/packages/utils/moreutils[MCollecting package info: feeds/packages/utils/mpack[MCollecting package info: feeds/packages/utils/mt-st[MCollecting package info: feeds/packages/utils/nano[MCollecting package info: feeds/packages/utils/ncdu[MCollecting package info: feeds/packages/utils/netwhere[MCollecting package info: feeds/packages/utils/ntfs-3g[MCollecting package info: feeds/packages/utils/oath-toolkit[MCollecting package info: feeds/packages/utils/open-plc-utils[MCollecting package info: feeds/packages/utils/open2300[MCollecting package info: feeds/packages/utils/openobex[MCollecting package info: feeds/packages/utils/openocd[MCollecting package info: feeds/packages/utils/opensc[MCollecting package info: feeds/packages/utils/openzwave[MCollecting package info: feeds/packages/utils/owfs[MCollecting package info: feeds/packages/utils/pciutils[MCollecting package info: feeds/packages/utils/pcmciautils[MCollecting package info: feeds/packages/utils/pcsc-lite[MCollecting package info: feeds/packages/utils/pcsc-tools[MCollecting package info: feeds/packages/utils/picocom[MCollecting package info: feeds/packages/utils/pps-tools[MCollecting package info: feeds/packages/utils/procps-ng[MCollecting package info: feeds/packages/utils/progress[MCollecting package info: feeds/packages/utils/prometheus-node-exporter-lua[MCollecting package info: feeds/packages/utils/pv[MCollecting package info: feeds/packages/utils/qemu[MCollecting package info: feeds/packages/utils/relayctl[MCollecting package info: feeds/packages/utils/rng-tools[MCollecting package info: feeds/packages/utils/rpcd-mod-lxc[MCollecting package info: feeds/packages/utils/rrdtool1[MCollecting package info: feeds/packages/utils/rtklib[MCollecting package info: feeds/packages/utils/rtl-ais[MCollecting package info: feeds/packages/utils/rtl-sdr[MCollecting package info: feeds/packages/utils/rtl_433[MCollecting package info: feeds/packages/utils/rtty[MCollecting package info: feeds/packages/utils/sane-backends[MCollecting package info: feeds/packages/utils/screen[MCollecting package info: feeds/packages/utils/serialconsole[MCollecting package info: feeds/packages/utils/setserial[MCollecting package info: feeds/packages/utils/shadow[MCollecting package info: feeds/packages/utils/sispmctl[MCollecting package info: feeds/packages/utils/slide-switch[MCollecting package info: feeds/packages/utils/smartmontools[MCollecting package info: feeds/packages/utils/smstools3[MCollecting package info: feeds/packages/utils/sockread[MCollecting package info: feeds/packages/utils/spi-tools[MCollecting package info: feeds/packages/utils/squashfs-tools[MCollecting package info: feeds/packages/utils/stm32flash[MCollecting package info: feeds/packages/utils/stoken[MCollecting package info: feeds/packages/utils/stress[MCollecting package info: feeds/packages/utils/sumo[MCollecting package info: feeds/packages/utils/swig[MCollecting package info: feeds/packages/utils/sysstat[MCollecting package info: feeds/packages/utils/tar[MCollecting package info: feeds/packages/utils/taskwarrior[MCollecting package info: feeds/packages/utils/tcsh[MCollecting package info: feeds/packages/utils/tio[MCollecting package info: feeds/packages/utils/tmux[MCollecting package info: feeds/packages/utils/tracertools[MCollecting package info: feeds/packages/utils/tree[MCollecting package info: feeds/packages/utils/triggerhappy[MCollecting package info: feeds/packages/utils/ttyd[MCollecting package info: feeds/packages/utils/uledd[MCollecting package info: feeds/packages/utils/unrar[MCollecting package info: feeds/packages/utils/unzip[MCollecting package info: feeds/packages/utils/usbmuxd[MCollecting package info: feeds/packages/utils/uvcdynctrl[MCollecting package info: feeds/packages/utils/vim[MCollecting package info: feeds/packages/utils/watchcat[MCollecting package info: feeds/packages/utils/wifitoggle[MCollecting package info: feeds/packages/utils/xz[MCollecting package info: feeds/packages/utils/yara[MCollecting package info: feeds/packages/utils/yunbridge[MCollecting package info: feeds/packages/utils/zile[MCollecting package info: feeds/packages/utils/zip[MCollecting package info: feeds/packages/utils/zoneinfo[MCollecting package info: feeds/packages/utils/zsh[MCollecting package info: merging...[MCollecting package info: done
+[MCollecting target info: merging...[MCollecting target info: done
+Updating feed 'routing' from '../../packages/routing' ...
+Create index file './feeds/routing.index' 
+[MCollecting package info: feeds/routing/ahcpd[MCollecting package info: feeds/routing/alfred[MCollecting package info: feeds/routing/babel-pinger[MCollecting package info: feeds/routing/babeld[MCollecting package info: feeds/routing/batctl[MCollecting package info: feeds/routing/batman-adv[MCollecting package info: feeds/routing/batmand[MCollecting package info: feeds/routing/bird[MCollecting package info: feeds/routing/bird-openwrt/bird4-openwrt[MCollecting package info: feeds/routing/bird-openwrt/bird6-openwrt[MCollecting package info: feeds/routing/bmx6[MCollecting package info: feeds/routing/bmx7[MCollecting package info: feeds/routing/cjdns[MCollecting package info: feeds/routing/hnetd[MCollecting package info: feeds/routing/luci-app-bmx6[MCollecting package info: feeds/routing/luci-app-bmx7[MCollecting package info: feeds/routing/luci-app-cjdns[MCollecting package info: feeds/routing/mcproxy[MCollecting package info: feeds/routing/minimalist-pcproxy[MCollecting package info: feeds/routing/mrd6[MCollecting package info: feeds/routing/nat46[MCollecting package info: feeds/routing/ndppd[MCollecting package info: feeds/routing/nodogsplash[MCollecting package info: feeds/routing/ohybridproxy[MCollecting package info: feeds/routing/olsrd[MCollecting package info: feeds/routing/oonf-dlep-proxy[MCollecting package info: feeds/routing/oonf-dlep-radio[MCollecting package info: feeds/routing/oonf-init-scripts[MCollecting package info: feeds/routing/oonf-olsrd2[MCollecting package info: feeds/routing/pimbd[MCollecting package info: feeds/routing/prince[MCollecting package info: feeds/routing/quagga[MCollecting package info: feeds/routing/smcroute[MCollecting package info: feeds/routing/vis[MCollecting package info: merging...[MCollecting package info: done
+[MCollecting target info: merging...[MCollecting target info: done
+Updating feed 'luci' from '../../packages/luci' ...
+Create index file './feeds/luci.index' 
+[MCollecting package info: feeds/luci/applications/luci-app-adblock[MCollecting package info: feeds/luci/applications/luci-app-advanced-reboot[MCollecting package info: feeds/luci/applications/luci-app-ahcp[MCollecting package info: feeds/luci/applications/luci-app-aria2[MCollecting package info: feeds/luci/applications/luci-app-asterisk[MCollecting package info: feeds/luci/applications/luci-app-attendedsysupgrade[MCollecting package info: feeds/luci/applications/luci-app-bcp38[MCollecting package info: feeds/luci/applications/luci-app-clamav[MCollecting package info: feeds/luci/applications/luci-app-commands[MCollecting package info: feeds/luci/applications/luci-app-coovachilli[MCollecting package info: feeds/luci/applications/luci-app-cshark[MCollecting package info: feeds/luci/applications/luci-app-ddns[MCollecting package info: feeds/luci/applications/luci-app-diag-core[MCollecting package info: feeds/luci/applications/luci-app-dnscrypt-proxy[MCollecting package info: feeds/luci/applications/luci-app-dump1090[MCollecting package info: feeds/luci/applications/luci-app-dynapoint[MCollecting package info: feeds/luci/applications/luci-app-e2guardian[MCollecting package info: feeds/luci/applications/luci-app-firewall[MCollecting package info: feeds/luci/applications/luci-app-freifunk-diagnostics[MCollecting package info: feeds/luci/applications/luci-app-freifunk-policyrouting[MCollecting package info: feeds/luci/applications/luci-app-freifunk-widgets[MCollecting package info: feeds/luci/applications/luci-app-fwknopd[MCollecting package info: feeds/luci/applications/luci-app-hd-idle[MCollecting package info: feeds/luci/applications/luci-app-ltqtapi[MCollecting package info: feeds/luci/applications/luci-app-lxc[MCollecting package info: feeds/luci/applications/luci-app-meshwizard[MCollecting package info: feeds/luci/applications/luci-app-minidlna[MCollecting package info: feeds/luci/applications/luci-app-mjpg-streamer[MCollecting package info: feeds/luci/applications/luci-app-mwan3[MCollecting package info: feeds/luci/applications/luci-app-nlbwmon[MCollecting package info: feeds/luci/applications/luci-app-noddos[MCollecting package info: feeds/luci/applications/luci-app-ntpc[MCollecting package info: feeds/luci/applications/luci-app-ocserv[MCollecting package info: feeds/luci/applications/luci-app-olsr[MCollecting package info: feeds/luci/applications/luci-app-olsr-services[MCollecting package info: feeds/luci/applications/luci-app-olsr-viz[MCollecting package info: feeds/luci/applications/luci-app-openvpn[MCollecting package info: feeds/luci/applications/luci-app-p910nd[MCollecting package info: feeds/luci/applications/luci-app-pagekitec[MCollecting package info: feeds/luci/applications/luci-app-polipo[MCollecting package info: feeds/luci/applications/luci-app-privoxy[MCollecting package info: feeds/luci/applications/luci-app-qos[MCollecting package info: feeds/luci/applications/luci-app-radicale[MCollecting package info: feeds/luci/applications/luci-app-rp-pppoe-server[MCollecting package info: feeds/luci/applications/luci-app-samba[MCollecting package info: feeds/luci/applications/luci-app-shadowsocks-libev[MCollecting package info: feeds/luci/applications/luci-app-shairplay[MCollecting package info: feeds/luci/applications/luci-app-siitwizard[MCollecting package info: feeds/luci/applications/luci-app-simple-adblock[MCollecting package info: feeds/luci/applications/luci-app-splash[MCollecting package info: feeds/luci/applications/luci-app-squid[MCollecting package info: feeds/luci/applications/luci-app-statistics[MCollecting package info: feeds/luci/applications/luci-app-tinyproxy[MCollecting package info: feeds/luci/applications/luci-app-transmission[MCollecting package info: feeds/luci/applications/luci-app-travelmate[MCollecting package info: feeds/luci/applications/luci-app-udpxy[MCollecting package info: feeds/luci/applications/luci-app-uhttpd[MCollecting package info: feeds/luci/applications/luci-app-unbound[MCollecting package info: feeds/luci/applications/luci-app-upnp[MCollecting package info: feeds/luci/applications/luci-app-vnstat[MCollecting package info: feeds/luci/applications/luci-app-vpnbypass[MCollecting package info: feeds/luci/applications/luci-app-watchcat[MCollecting package info: feeds/luci/applications/luci-app-wifischedule[MCollecting package info: feeds/luci/applications/luci-app-wireguard[MCollecting package info: feeds/luci/applications/luci-app-wol[MCollecting package info: feeds/luci/collections/luci[MCollecting package info: feeds/luci/collections/luci-light[MCollecting package info: feeds/luci/collections/luci-ssl[MCollecting package info: feeds/luci/collections/luci-ssl-openssl[MCollecting package info: feeds/luci/contrib/package/community-profiles[MCollecting package info: feeds/luci/contrib/package/freifunk-common[MCollecting package info: feeds/luci/contrib/package/freifunk-firewall[MCollecting package info: feeds/luci/contrib/package/freifunk-gwcheck[MCollecting package info: feeds/luci/contrib/package/freifunk-mapupdate[MCollecting package info: feeds/luci/contrib/package/freifunk-policyrouting[MCollecting package info: feeds/luci/contrib/package/freifunk-watchdog[MCollecting package info: feeds/luci/contrib/package/lucihttp[MCollecting package info: feeds/luci/contrib/package/meshwizard[MCollecting package info: feeds/luci/libs/luci-lib-httpclient[MCollecting package info: feeds/luci/libs/luci-lib-httpprotoutils[MCollecting package info: feeds/luci/libs/luci-lib-ip[MCollecting package info: feeds/luci/libs/luci-lib-json[MCollecting package info: feeds/luci/libs/luci-lib-jsonc[MCollecting package info: feeds/luci/libs/luci-lib-luaneightbl[MCollecting package info: feeds/luci/libs/luci-lib-nixio[MCollecting package info: feeds/luci/libs/luci-lib-px5g[MCollecting package info: feeds/luci/libs/luci-lib-rpcc[MCollecting package info: feeds/luci/libs/rpcd-mod-rrdns[MCollecting package info: feeds/luci/modules/luci-base[MCollecting package info: feeds/luci/modules/luci-mod-admin-full[MCollecting package info: feeds/luci/modules/luci-mod-admin-mini[MCollecting package info: feeds/luci/modules/luci-mod-failsafe[MCollecting package info: feeds/luci/modules/luci-mod-freifunk[MCollecting package info: feeds/luci/modules/luci-mod-freifunk-community[MCollecting package info: feeds/luci/modules/luci-mod-rpc[MCollecting package info: feeds/luci/protocols/luci-proto-3g[MCollecting package info: feeds/luci/protocols/luci-proto-ipip[MCollecting package info: feeds/luci/protocols/luci-proto-ipv6[MCollecting package info: feeds/luci/protocols/luci-proto-ncm[MCollecting package info: feeds/luci/protocols/luci-proto-openconnect[MCollecting package info: feeds/luci/protocols/luci-proto-ppp[MCollecting package info: feeds/luci/protocols/luci-proto-qmi[MCollecting package info: feeds/luci/protocols/luci-proto-relay[MCollecting package info: feeds/luci/protocols/luci-proto-vpnc[MCollecting package info: feeds/luci/protocols/luci-proto-wireguard[MCollecting package info: feeds/luci/themes/luci-theme-bootstrap[MCollecting package info: feeds/luci/themes/luci-theme-freifunk-generic[MCollecting package info: feeds/luci/themes/luci-theme-material[MCollecting package info: feeds/luci/themes/luci-theme-openwrt[MCollecting package info: merging...[MCollecting package info: done
+[MCollecting target info: merging...[MCollecting target info: done
+Updating feed 'gluon' from '../../packages/gluon' ...
+Create index file './feeds/gluon.index' 
+[MCollecting package info: feeds/gluon/admin/autoupdater[MCollecting package info: feeds/gluon/admin/pretty-hostname[MCollecting package info: feeds/gluon/libs/libpacketmark[MCollecting package info: feeds/gluon/libs/libplatforminfo[MCollecting package info: feeds/gluon/libs/lua-geolocate[MCollecting package info: feeds/gluon/libs/lua-hash[MCollecting package info: feeds/gluon/libs/lua-jsonc[MCollecting package info: feeds/gluon/libs/lua-platform-info[MCollecting package info: feeds/gluon/libs/lua-simple-uci[MCollecting package info: feeds/gluon/net/batman-adv-legacy[MCollecting package info: feeds/gluon/net/ebtables-tiny[MCollecting package info: feeds/gluon/net/l3roamd[MCollecting package info: feeds/gluon/net/mmfd[MCollecting package info: feeds/gluon/net/respondd[MCollecting package info: feeds/gluon/net/respondd-module-airtime[MCollecting package info: feeds/gluon/net/simple-tc[MCollecting package info: feeds/gluon/net/sse-multiplex[MCollecting package info: feeds/gluon/net/tunneldigger[MCollecting package info: feeds/gluon/net/uradvd[MCollecting package info: feeds/gluon/utils/libbabelhelper[MCollecting package info: feeds/gluon/utils/micrond[MCollecting package info: feeds/gluon/utils/uc[MCollecting package info: merging...[MCollecting package info: done
+[MCollecting target info: merging...[MCollecting target info: done
+Updating feed 'eulenfunk' from '../../packages/eulenfunk' ...
+Create index file './feeds/eulenfunk.index' 
+[MCollecting package info: feeds/eulenfunk/gluon-aptimeclock[MCollecting package info: feeds/eulenfunk/gluon-banner[MCollecting package info: feeds/eulenfunk/gluon-hotfix[MCollecting package info: feeds/eulenfunk/gluon-linkcheck[MCollecting package info: feeds/eulenfunk/gluon-quickfix[MCollecting package info: feeds/eulenfunk/gluon-txpowerfix[MCollecting package info: feeds/eulenfunk/gluon-vpnlimittimeclock[MCollecting package info: feeds/eulenfunk/gluon-weeklyreboot[MCollecting package info: feeds/eulenfunk/gluon-wificheck[MCollecting package info: merging...[MCollecting package info: done
+[MCollecting target info: merging...[MCollecting target info: done
+Updating feed 'ffffm' from '../../packages/ffffm' ...
+Create index file './feeds/ffffm.index' 
+[MCollecting package info: feeds/ffffm/babeldev[MCollecting package info: feeds/ffffm/dnrd[MCollecting package info: feeds/ffffm/ffffm-additional-wifi-json-info[MCollecting package info: feeds/ffffm/ffffm-ath9k-broken-wifi-workaround[MCollecting package info: feeds/ffffm/ffffm-autoupdater-use-site-conf-branch[MCollecting package info: feeds/ffffm/ffffm-banner[MCollecting package info: feeds/ffffm/ffffm-banner_legacy[MCollecting package info: feeds/ffffm/ffffm-button-bind[MCollecting package info: feeds/ffffm/ffffm-ebtables-net-rules[MCollecting package info: feeds/ffffm/ffffm-fastd-auto-mtu[MCollecting package info: feeds/ffffm/ffffm-keep-radio-channel[MCollecting package info: feeds/ffffm/ffffm-luci-set-mtu[MERROR: please fix feeds/ffffm/ffffm-luci-set-mtu/Makefile - see logs/feeds/ffffm/ffffm-luci-set-mtu/dump.txt for details
+[MCollecting package info: feeds/ffffm/ffffm-luci-switchconfig[MCollecting package info: feeds/ffffm/ffffm-restart-respondd[MCollecting package info: feeds/ffffm/kadnode[MCollecting package info: feeds/ffffm/nodealert[MCollecting package info: merging...[MCollecting package info: done
+[MCollecting target info: merging...[MCollecting target info: done
+Updating feed 'ffki' from '../../packages/ffki' ...
+Create index file './feeds/ffki.index' 
+[MCollecting package info: feeds/ffki/gluon-au-change[MCollecting package info: feeds/ffki/gluon-config-mode-contact-info-anonymous-hint[MCollecting package info: feeds/ffki/gluon-config-mode-ppa[MCollecting package info: feeds/ffki/gluon-config-mode-usb-media[MCollecting package info: feeds/ffki/gluon-usb-media[MCollecting package info: merging...[MCollecting package info: done
+[MCollecting target info: merging...[MCollecting target info: done
+Updating feed 'ffrl' from '../../packages/ffrl' ...
+Create index file './feeds/ffrl.index' 
+[MCollecting package info: feeds/ffrl/gluon-tunneldigger-watchdog[MCollecting package info: merging...[MCollecting package info: done
+[MCollecting target info: merging...[MCollecting target info: done
+Updating feed 'ffnord' from '../../packages/ffnord' ...
+Create index file './feeds/ffnord.index' 
+[MCollecting package info: feeds/ffnord/gluon-ssid-changer[MCollecting package info: merging...[MCollecting package info: done
+[MCollecting target info: merging...[MCollecting target info: done
+Updating feed 'telephony' from '' ...
+Create index file './feeds/telephony.index' 
+[MCollecting package info: merging...[MCollecting package info: done
+[MCollecting target info: merging...[MCollecting target info: done
+WARNING: Makefile 'package/utils/busybox/Makefile' has a dependency on 'libpam', which does not exist
+WARNING: Makefile 'package/utils/busybox/Makefile' has a build dependency on 'libpam', which does not exist
+WARNING: Makefile 'package/network/utils/curl/Makefile' has a dependency on 'libgnutls', which does not exist
+WARNING: Makefile 'package/network/utils/curl/Makefile' has a dependency on 'libopenldap', which does not exist
+WARNING: Makefile 'package/network/utils/curl/Makefile' has a dependency on 'libidn2', which does not exist
+WARNING: Makefile 'package/network/utils/curl/Makefile' has a dependency on 'libssh2', which does not exist
+WARNING: Makefile 'package/boot/kexec-tools/Makefile' has a dependency on 'liblzma', which does not exist
+WARNING: Makefile 'package/network/services/lldpd/Makefile' has a dependency on 'libnetsnmp', which does not exist
+Installing package 'gluon-alfred' from gluon_base
+Installing all packages from feed gluon_base.
+Installing package 'luci-base' from luci
+Installing package 'luci-lib-nixio' from luci
+Installing package 'luci-lib-ip' from luci
+Installing package 'luci-lib-jsonc' from luci
+Installing package 'lucihttp' from luci
+Installing package 'gluon-core' from gluon_base
+Installing package 'gluon-site' from gluon_base
+Installing package 'lua-cjson' from packages
+Installing package 'libgluonutil' from gluon_base
+Installing package 'lua-platform-info' from gluon
+Installing package 'libplatforminfo' from gluon
+Installing package 'lua-simple-uci' from gluon
+Installing package 'lua-hash' from gluon
+Installing package 'lua-jsonc' from gluon
+Installing package 'luabitop' from packages
+Installing package 'luaposix' from packages
+Installing package 'pretty-hostname' from gluon
+Installing package 'gluon-respondd' from gluon_base
+Installing package 'respondd' from gluon
+Installing package 'gluon-neighbour-info' from gluon_base
+Installing package 'gluon-mesh-batman-adv' from gluon_base
+Installing package 'gluon-client-bridge' from gluon_base
+Installing package 'gluon-ebtables' from gluon_base
+Installing package 'ebtables-tiny' from gluon
+Installing package 'libbatadv' from gluon_base
+Installing package 'batman-adv-legacy' from gluon
+Installing package 'batman-adv' from routing
+Installing package 'batctl' from routing
+Installing package 'micrond' from gluon
+Installing package 'alfred' from routing
+Installing package 'gpsd' from packages
+Installing package 'gluon-authorized-keys' from gluon_base
+Installing package 'gluon-autoupdater' from gluon_base
+Installing package 'autoupdater' from gluon
+Installing package 'ecdsautils' from packages
+Installing package 'libuecc' from packages
+Installing package 'gluon-config-mode-autoupdater' from gluon_base
+Installing package 'gluon-config-mode-core' from gluon_base
+Installing package 'gluon-setup-mode' from gluon_base
+Installing package 'gluon-lock-password' from gluon_base
+Installing package 'gluon-web-model' from gluon_base
+Installing package 'gluon-web' from gluon_base
+Installing package 'gluon-config-mode-theme' from gluon_base
+Installing package 'gluon-config-mode-contact-info' from gluon_base
+Installing package 'gluon-node-info' from gluon_base
+Installing package 'gluon-config-mode-domain-select' from gluon_base
+Installing package 'gluon-config-mode-geo-location' from gluon_base
+Installing package 'gluon-config-mode-geo-location-osm' from gluon_base
+Installing package 'gluon-web-osm' from gluon_base
+Installing package 'gluon-config-mode-hostname' from gluon_base
+Installing package 'gluon-config-mode-mesh-vpn' from gluon_base
+Installing package 'gluon-mesh-vpn-core' from gluon_base
+Installing package 'gluon-wan-dnsmasq' from gluon_base
+Installing package 'libpacketmark' from gluon
+Installing package 'simple-tc' from gluon
+Installing package 'gluon-ebtables-filter-multicast' from gluon_base
+Installing package 'gluon-ebtables-filter-ra-dhcp' from gluon_base
+Installing package 'gluon-ebtables-limit-arp' from gluon_base
+Installing package 'gluon-ebtables-source-filter' from gluon_base
+Installing package 'gluon-iptables-clamp-mss-to-pmtu' from gluon_base
+Installing package 'gluon-l3roamd' from gluon_base
+Installing package 'l3roamd' from gluon
+Installing package 'gluon-mesh-babel' from gluon_base
+Installing package 'libbabelhelper' from gluon
+Installing package 'babeld' from routing
+Installing package 'mmfd' from gluon
+Installing package 'gluon-mesh-vpn-fastd' from gluon_base
+Installing package 'fastd' from packages
+Installing package 'nacl' from packages
+Installing package 'libcap' from packages
+Installing package 'gluon-mesh-vpn-tunneldigger' from gluon_base
+Installing package 'tunneldigger' from gluon
+Installing package 'gluon-radv-filterd' from gluon_base
+Installing package 'gluon-radvd' from gluon_base
+Installing package 'uradvd' from gluon
+Installing package 'gluon-scheduled-domain-switch' from gluon_base
+Installing package 'gluon-status-page' from gluon_base
+Installing package 'sse-multiplex' from gluon
+Installing package 'gluon-status-page-mesh-batman-adv' from gluon_base
+Installing package 'gluon-web-admin' from gluon_base
+Installing package 'gluon-web-autoupdater' from gluon_base
+Installing package 'gluon-web-logging' from gluon_base
+Installing package 'gluon-web-mesh-vpn-fastd' from gluon_base
+Installing package 'gluon-web-network' from gluon_base
+Installing package 'gluon-web-node-role' from gluon_base
+Installing package 'gluon-web-private-wifi' from gluon_base
+Installing package 'gluon-web-wifi-config' from gluon_base
+Installing package 'acl' from packages
+Installing all packages from feed packages.
+Installing package 'attr' from packages
+Installing package 'acme' from packages
+Installing package 'netcat' from packages
+Installing package 'luci-app-uhttpd' from luci
+Installing package 'acpica-unix' from packages
+Installing package 'acpid' from packages
+Installing package 'adblock' from packages
+Installing package 'addrwatch' from packages
+Installing package 'aggregate' from packages
+Installing package 'aircrack-ng' from packages
+Installing package 'procps-ng' from packages
+Installing package 'pciutils' from packages
+Installing package 'kmod' from packages
+Installing package 'alpine' from packages
+Installing package 'libpam' from packages
+Installing package 'alsa-lib' from packages
+Installing package 'alsa-utils' from packages
+Installing package 'announce' from packages
+Installing package 'ap51-flash' from packages
+Installing package 'apache' from packages
+Installing package 'apr' from packages
+Installing package 'apr-util' from packages
+Installing package 'expat' from packages
+Installing package 'sqlite3' from packages
+Installing package 'pcre' from packages
+Installing package 'unixodbc' from packages
+Installing package 'postgresql' from packages
+Installing package 'apcupsd' from packages
+Installing package 'libgd' from packages
+Installing package 'libjpeg' from packages
+Installing package 'libpng' from packages
+Installing package 'tiff' from packages
+Installing package 'freetype' from packages
+Installing package 'apinger' from packages
+Installing package 'aria2' from packages
+Installing package 'gnutls' from packages
+Installing package 'libtasn1' from packages
+Installing package 'p11-kit' from packages
+Installing package 'cryptodev-linux' from packages
+Installing package 'libgcrypt' from packages
+Installing package 'libgpg-error' from packages
+Installing package 'libxml2' from packages
+Installing package 'libssh2' from packages
+Installing package 'c-ares' from packages
+Installing package 'ariang' from packages
+Installing package 'arp-scan' from packages
+Installing package 'at' from packages
+Installing package 'atftp' from packages
+Installing package 'attendedsysupgrade-common' from packages
+Installing package 'auc' from packages
+Installing package 'autoconf' from packages
+Installing package 'm4' from packages
+Installing package 'perl' from packages
+Installing package 'db47' from packages
+Installing package 'gdbm' from packages
+Installing package 'automake' from packages
+Installing package 'autossh' from packages
+Installing package 'avahi' from packages
+Installing package 'intltool' from packages
+Installing package 'dbus' from packages
+Installing package 'libdaemon' from packages
+Installing package 'avrdude' from packages
+Installing package 'libftdi1' from packages
+Installing package 'confuse' from packages
+Installing package 'avro' from packages
+Installing package 'jansson' from packages
+Installing package 'xz' from packages
+Installing package 'bash' from packages
+Installing package 'bandwidthd' from packages
+Installing package 'php7' from packages
+Installing package 'zoneinfo' from packages
+Installing package 'uw-imap' from packages
+Installing package 'icu' from packages
+Installing package 'openldap' from packages
+Installing package 'cyrus-sasl' from packages
+Installing package 'net-snmp' from packages
+Installing package 'banhosts' from packages
+Installing package 'bc' from packages
+Installing package 'bcp38' from packages
+Installing package 'beanstalkd' from packages
+Installing package 'beep' from packages
+Installing package 'bind' from packages
+Installing package 'bitlbee' from packages
+Installing package 'glib2' from packages
+Installing package 'libffi' from packages
+Installing package 'bluelog' from packages
+Installing package 'bluez' from packages
+Installing package 'python' from packages
+Installing package 'python-pip-conf' from packages
+Installing package 'libical' from packages
+Installing package 'bmon' from packages
+Installing package 'bmx7-dnsupdate' from packages
+Installing package 'bmx7' from routing
+Installing package 'inotify-tools' from packages
+Installing package 'bogofilter' from packages
+Installing package 'bonnie++' from packages
+Installing package 'boost' from packages
+Installing package 'python3' from packages
+Installing package 'bridge-utils' from packages
+Installing package 'btrfs-progs' from packages
+Installing package 'bwm-ng' from packages
+Installing package 'canutils' from packages
+Installing package 'ccid' from packages
+Installing package 'pcsc-lite' from packages
+Installing package 'ccrypt' from packages
+Installing package 'cgi-io' from packages
+Installing package 'chaosvpn' from packages
+Installing package 'tinc' from packages
+Installing package 'chardet' from packages
+Installing package 'check' from packages
+Installing package 'chrony' from packages
+Installing package 'pps-tools' from packages
+Installing package 'cifs-utils' from packages
+Installing package 'clamav' from packages
+Installing package 'pcre2' from packages
+Installing package 'musl-fts' from packages
+Installing package 'clamsmtp' from packages
+Installing package 'classpath' from packages
+Installing package 'file' from packages
+Installing package 'click' from packages
+Installing package 'cmdpad' from packages
+Installing package 'collectd' from packages
+Installing package 'mariadb' from packages
+Installing package 'libaio' from packages
+Installing package 'libmodbus' from packages
+Installing package 'mosquitto' from packages
+Installing package 'libwebsockets' from packages
+Installing package 'libuv' from packages
+Installing package 'nut' from packages
+Installing package 'tcp_wrappers' from packages
+Installing package 'owfs' from packages
+Installing package 'liboping' from packages
+Installing package 'rrdtool1' from packages
+Installing package 'lm-sensors' from packages
+Installing package 'conserver' from packages
+Installing package 'coova-chilli' from packages
+Installing package 'coreutils' from packages
+Installing package 'crconf' from packages
+Installing package 'crelay' from packages
+Installing package 'hidapi' from packages
+Installing package 'crtmpserver' from packages
+Installing package 'cryptsetup' from packages
+Installing package 'lvm2' from packages
+Installing package 'cshark' from packages
+Installing package 'daemonlogger' from packages
+Installing package 'libdnet' from packages
+Installing package 'danish' from packages
+Installing package 'python-dns' from packages
+Installing package 'python-pcapy' from packages
+Installing package 'python-dpkt' from packages
+Installing package 'darkstat' from packages
+Installing package 'davfs2' from packages
+Installing package 'neon' from packages
+Installing package 'ddns-scripts' from packages
+Installing package 'debootstrap' from packages
+Installing package 'dejavu-fonts-ttf' from packages
+Installing package 'dfu-programmer' from packages
+Installing package 'dfu-util' from packages
+Installing package 'dhcp-forwarder' from packages
+Installing package 'dhcpcd' from packages
+Installing package 'diffutils' from packages
+Installing package 'digitemp' from packages
+Installing package 'django' from packages
+Installing package 'django-appconf' from packages
+Installing package 'django-compressor' from packages
+Installing package 'django-constance' from packages
+Installing package 'django-jsonfield' from packages
+Installing package 'django-picklefield' from packages
+Installing package 'django-postoffice' from packages
+Installing package 'django-restframework' from packages
+Installing package 'django-statici18n' from packages
+Installing package 'dkjson' from packages
+Installing package 'dmapd' from packages
+Installing package 'libdmapsharing' from packages
+Installing package 'libsoup' from packages
+Installing package 'mdnsresponder' from packages
+Installing package 'gstreamer1' from packages
+Installing package 'gst1-plugins-base' from packages
+Installing package 'libogg' from packages
+Installing package 'opus' from packages
+Installing package 'libtheora' from packages
+Installing package 'libvorbis' from packages
+Installing package 'liboil' from packages
+Installing package 'vips' from packages
+Installing package 'libexif' from packages
+Installing package 'giflib' from packages
+Installing package 'dmidecode' from packages
+Installing package 'dmx_usb_module' from packages
+Installing package 'dnscrypt-proxy' from packages
+Installing package 'libsodium' from packages
+Installing package 'ldns' from packages
+Installing package 'domoticz' from packages
+Installing package 'openzwave' from packages
+Installing package 'dosfstools' from packages
+Installing package 'dovecot' from packages
+Installing package 'dtc' from packages
+Installing package 'dtndht' from packages
+Installing package 'dump1090' from packages
+Installing package 'rtl-sdr' from packages
+Installing package 'dvtm' from packages
+Installing package 'dynapoint' from packages
+Installing package 'e2guardian' from packages
+Installing package 'elektra' from packages
+Installing package 'swig' from packages
+Installing package 'libxerces-c' from packages
+Installing package 'libyaml-cpp' from packages
+Installing package 'yajl' from packages
+Installing package 'emailrelay' from packages
+Installing package 'erlang' from packages
+Installing package 'esniper' from packages
+Installing package 'espeak' from packages
+Installing package 'portaudio' from packages
+Installing package 'et_xmlfile' from packages
+Installing package 'etherwake' from packages
+Installing package 'eventlog' from packages
+Installing package 'evtest' from packages
+Installing package 'exfat-nofuse' from packages
+Installing package 'faad2' from packages
+Installing package 'fakeidentd' from packages
+Installing package 'fcgi' from packages
+Installing package 'fdk-aac' from packages
+Installing package 'fdm' from packages
+Installing package 'tdb' from packages
+Installing package 'ffmpeg' from packages
+Installing package 'shine' from packages
+Installing package 'lame' from packages
+Installing package 'libx264' from packages
+Installing package 'fftw3' from packages
+Installing package 'findutils' from packages
+Installing package 'flac' from packages
+Installing package 'flashrom' from packages
+Installing package 'Flask' from packages
+Installing package 'itsdangerous' from packages
+Installing package 'Jinja2' from packages
+Installing package 'MarkupSafe' from packages
+Installing package 'Werkzeug' from packages
+Installing package 'flent-tools' from packages
+Installing package 'flup' from packages
+Installing package 'fontconfig' from packages
+Installing package 'foolsm' from packages
+Installing package 'ssmtp' from packages
+Installing package 'forked-daapd' from packages
+Installing package 'gperf' from packages
+Installing package 'libunistring' from packages
+Installing package 'libantlr3c' from packages
+Installing package 'mxml' from packages
+Installing package 'libplist' from packages
+Installing package 'protobuf-c' from packages
+Installing package 'fossil' from packages
+Installing package 'fping' from packages
+Installing package 'freeradius3' from packages
+Installing package 'libtalloc' from packages
+Installing package 'fswebcam' from packages
+Installing package 'fwknop' from packages
+Installing package 'gnupg' from packages
+Installing package 'gammu' from packages
+Installing package 'gawk' from packages
+Installing package 'gcc' from packages
+Installing package 'getdns' from packages
+Installing package 'unbound' from packages
+Installing package 'libidn2' from packages
+Installing package 'git' from packages
+Installing package 'perl-cgi' from packages
+Installing package 'perl-html-parser' from packages
+Installing package 'perl-html-tagset' from packages
+Installing package 'gitolite' from packages
+Installing package 'openssh' from packages
+Installing package 'gkermit' from packages
+Installing package 'glpk' from packages
+Installing package 'gnunet' from packages
+Installing package 'libidn' from packages
+Installing package 'pulseaudio' from packages
+Installing package 'libsndfile' from packages
+Installing package 'sbc' from packages
+Installing package 'libextractor' from packages
+Installing package 'libarchive' from packages
+Installing package 'libmpeg2' from packages
+Installing package 'gnurl' from packages
+Installing package 'libmicrohttpd' from packages
+Installing package 'golang' from packages
+Installing package 'gphoto2' from packages
+Installing package 'libgphoto2' from packages
+Installing package 'gptfdisk' from packages
+Installing package 'grep' from packages
+Installing package 'greyfix' from packages
+Installing package 'grilo' from packages
+Installing package 'grilo-plugins' from packages
+Installing package 'gst1-libav' from packages
+Installing package 'gst1-plugins-bad' from packages
+Installing package 'gst1-plugins-good' from packages
+Installing package 'libv4l' from packages
+Installing package 'libvpx' from packages
+Installing package 'gst1-plugins-ugly' from packages
+Installing package 'libid3tag' from packages
+Installing package 'mpg123' from packages
+Installing package 'gunicorn' from packages
+Installing package 'gzip' from packages
+Installing package 'hamlib' from packages
+Installing package 'haproxy' from packages
+Installing package 'haserl' from packages
+Installing package 'haveged' from packages
+Installing package 'hd-idle' from packages
+Installing package 'hdparm' from packages
+Installing package 'hfsprogs' from packages
+Installing package 'hiredis' from packages
+Installing package 'horst' from packages
+Installing package 'htop' from packages
+Installing package 'htpdate' from packages
+Installing package 'httping' from packages
+Installing package 'https-dns-proxy' from packages
+Installing package 'libev' from packages
+Installing package 'hub-ctrl' from packages
+Installing package 'i2c-tools' from packages
+Installing package 'i2pd' from packages
+Installing package 'ibrcommon' from packages
+Installing package 'ibrdtn' from packages
+Installing package 'ibrdtn-tools' from packages
+Installing package 'ibrdtnd' from packages
+Installing package 'icecast' from packages
+Installing package 'libxslt' from packages
+Installing package 'libvorbisidec' from packages
+Installing package 'ices' from packages
+Installing package 'libshout' from packages
+Installing package 'ifstat' from packages
+Installing package 'inadyn' from packages
+Installing package 'io' from packages
+Installing package 'iodine' from packages
+Installing package 'iotivity' from packages
+Installing package 'ipmitool' from packages
+Installing package 'ipsec-tools' from packages
+Installing package 'iptraf-ng' from packages
+Installing package 'irqbalance' from packages
+Installing package 'irssi' from packages
+Installing package 'isc-dhcp' from packages
+Installing package 'jamvm' from packages
+Installing package 'jdcal' from packages
+Installing package 'joe' from packages
+Installing package 'jool' from packages
+Installing package 'jq' from packages
+Installing package 'json4lua' from packages
+Installing package 'luasocket' from packages
+Installing package 'kadnode' from packages
+Installing package 'miniupnpc' from packages
+Installing package 'libnatpmp' from packages
+Installing package 'keepalived' from packages
+Installing package 'kismet' from packages
+Installing package 'klish' from packages
+Installing package 'knot' from packages
+Installing package 'libedit' from packages
+Installing package 'liburcu' from packages
+Installing package 'knxd' from packages
+Installing package 'libfmt' from packages
+Installing package 'kplex' from packages
+Installing package 'krb5' from packages
+Installing package 'lcd4linux' from packages
+Installing package 'libmpdclient' from packages
+Installing package 'lcdgrilo' from packages
+Installing package 'vala' from packages
+Installing package 'libgee' from packages
+Installing package 'lcdproc' from packages
+Installing package 'libugpio' from packages
+Installing package 'lcdringer' from packages
+Installing package 'loudmouth' from packages
+Installing package 'ldbus' from packages
+Installing package 'luarocks' from packages
+Installing package 'unzip' from packages
+Installing package 'luasec' from packages
+Installing package 'less' from packages
+Installing package 'lftp' from packages
+Installing package 'libao' from packages
+Installing package 'libartnet' from packages
+Installing package 'libaudiofile' from packages
+Installing package 'libavl' from packages
+Installing package 'libcanfestival' from packages
+Installing package 'libcoap' from packages
+Installing package 'libdaq' from packages
+Installing package 'libdbi' from packages
+Installing package 'libdbi-drivers' from packages
+Installing package 'libdouble-conversion' from packages
+Installing package 'libdrm' from packages
+Installing package 'libesmtp' from packages
+Installing package 'libestr' from packages
+Installing package 'libevdev' from packages
+Installing package 'libevhtp' from packages
+Installing package 'libfastjson' from packages
+Installing package 'libftdi' from packages
+Installing package 'libglog' from packages
+Installing package 'libgpiod' from packages
+Installing package 'libhttp-parser' from packages
+Installing package 'libiio' from packages
+Installing package 'libimobiledevice' from packages
+Installing package 'libusbmuxd' from packages
+Installing package 'libinput' from packages
+Installing package 'mtdev' from packages
+Installing package 'libudev-fbsd' from packages
+Installing package 'liblo' from packages
+Installing package 'liblz4' from packages
+Installing package 'libmad' from packages
+Installing package 'libmcrypt' from packages
+Installing package 'libmms' from packages
+Installing package 'libmraa' from packages
+Installing package 'node' from packages
+Installing package 'libndpi' from packages
+Installing package 'libnet-1.2.x' from packages
+Installing package 'libnetconf2' from packages
+Installing package 'libyang' from packages
+Installing package 'libssh' from packages
+Installing package 'libnetfilter-acct' from packages
+Installing package 'libnopoll' from packages
+Installing package 'libowfat' from packages
+Installing package 'libp11' from packages
+Installing package 'libradcli' from packages
+Installing package 'libredblack' from packages
+Installing package 'libsamplerate' from packages
+Installing package 'libsearpc' from packages
+Installing package 'libseccomp' from packages
+Installing package 'libsigc++' from packages
+Installing package 'libsoc' from packages
+Installing package 'libsoxr' from packages
+Installing package 'libstrophe' from packages
+Installing package 'libtins' from packages
+Installing package 'libtirpc' from packages
+Installing package 'libtool-bin' from packages
+Installing package 'libtorrent' from packages
+Installing package 'libuhttpd' from packages
+Installing package 'libupm' from packages
+Installing package 'libupnp' from packages
+Installing package 'libupnpp' from packages
+Installing package 'libuvc' from packages
+Installing package 'libuwsc' from packages
+Installing package 'libzdb' from packages
+Installing package 'lighttpd' from packages
+Installing package 'linknx' from packages
+Installing package 'pthsem' from packages
+Installing package 'linuxptp' from packages
+Installing package 'lispmob' from packages
+Installing package 'lksctp-tools' from packages
+Installing package 'logrotate' from packages
+Installing package 'lpc21isp' from packages
+Installing package 'lpeg' from packages
+Installing package 'lrzsz' from packages
+Installing package 'lsof' from packages
+Installing package 'lttng-modules' from packages
+Installing package 'lttng-tools' from packages
+Installing package 'lttng-ust' from packages
+Installing package 'lua-bencode' from packages
+Installing package 'lua-copas' from packages
+Installing package 'lua-coxpcall' from packages
+Installing package 'lua-lsqlite3' from packages
+Installing package 'lua-lzlib' from packages
+Installing package 'lua-md5' from packages
+Installing package 'lua-mobdebug' from packages
+Installing package 'lua-mosquitto' from packages
+Installing package 'lua-openssl' from packages
+Installing package 'lua-penlight' from packages
+Installing package 'luafilesystem' from packages
+Installing package 'lua-rings' from packages
+Installing package 'lua-rs232' from packages
+Installing package 'lua-sha2' from packages
+Installing package 'lua-wsapi' from packages
+Installing package 'lua-xavante' from packages
+Installing package 'luaexpat' from packages
+Installing package 'luai2c' from packages
+Installing package 'luajit' from packages
+Installing package 'lualanes' from packages
+Installing package 'luasoap' from packages
+Installing package 'luasql' from packages
+Installing package 'luv' from packages
+Installing package 'lxc' from packages
+Installing package 'shadow' from packages
+Installing package 'lzmq' from packages
+Installing package 'zmq' from packages
+Installing package 'mac-telnet' from packages
+Installing package 'macchanger' from packages
+Installing package 'madplay' from packages
+Installing package 'mailman' from packages
+Installing package 'postfix' from packages
+Installing package 'tinycdb' from packages
+Installing package 'mailsend' from packages
+Installing package 'make' from packages
+Installing package 'mbtools' from packages
+Installing package 'mc' from packages
+Installing package 'memcached' from packages
+Installing package 'micropython' from packages
+Installing package 'micropython-lib' from packages
+Installing package 'mii-tool' from packages
+Installing package 'mikrotik-btest' from packages
+Installing package 'mini_snmpd' from packages
+Installing package 'minicom' from packages
+Installing package 'minidlna' from packages
+Installing package 'miniupnpd' from packages
+Installing package 'mjpg-streamer' from packages
+Installing package 'mksh' from packages
+Installing package 'mktorrent' from packages
+Installing package 'mmc-utils' from packages
+Installing package 'mocp' from packages
+Installing package 'monit' from packages
+Installing package 'moreutils' from packages
+Installing package 'motion' from packages
+Installing package 'mpack' from packages
+Installing package 'mpc' from packages
+Installing package 'mpd' from packages
+Installing package 'msmtp' from packages
+Installing package 'msmtp-scripts' from packages
+Installing package 'xinetd' from packages
+Installing package 'mt-st' from packages
+Installing package 'mtd-rw' from packages
+Installing package 'mtr' from packages
+Installing package 'muninlite' from packages
+Installing package 'mutt' from packages
+Installing package 'mwan3' from packages
+Installing package 'nail' from packages
+Installing package 'nano' from packages
+Installing package 'nbd' from packages
+Installing package 'ncdu' from packages
+Installing package 'ncp' from packages
+Installing package 'netatalk' from packages
+Installing package 'netdata' from packages
+Installing package 'netdiscover' from packages
+Installing package 'netopeer2' from packages
+Installing package 'sysrepo' from packages
+Installing package 'netperf' from packages
+Installing package 'netwhere' from packages
+Installing package 'nfs-kernel-server' from packages
+Installing package 'portmap' from packages
+Installing package 'nginx' from packages
+Installing package 'ngircd' from packages
+Installing package 'nlbwmon' from packages
+Installing package 'nmap' from packages
+Installing package 'noddos' from packages
+Installing package 'wget' from packages
+Installing package 'node-arduino-firmata' from packages
+Installing package 'node-serialport' from packages
+Installing package 'node-cylon' from packages
+Installing package 'node-hid' from packages
+Installing package 'node-mozilla-iot-gateway' from packages
+Installing package 'nsd' from packages
+Installing package 'ntfs-3g' from packages
+Installing package 'ntpclient' from packages
+Installing package 'ntpd' from packages
+Installing package 'ntripcaster' from packages
+Installing package 'ntripclient' from packages
+Installing package 'ntripserver' from packages
+Installing package 'oath-toolkit' from packages
+Installing package 'obfsproxy' from packages
+Installing package 'python-crypto' from packages
+Installing package 'python-pyptlib' from packages
+Installing package 'python-yaml' from packages
+Installing package 'yaml' from packages
+Installing package 'twisted' from packages
+Installing package 'python-automat' from packages
+Installing package 'python-attrs' from packages
+Installing package 'python-six' from packages
+Installing package 'python-constantly' from packages
+Installing package 'python-incremental' from packages
+Installing package 'python-hyperlink' from packages
+Installing package 'python-idna' from packages
+Installing package 'python-zope-interface' from packages
+Installing package 'ocserv' from packages
+Installing package 'oggfwd' from packages
+Installing package 'ola' from packages
+Installing package 'protobuf' from packages
+Installing package 'open-plc-utils' from packages
+Installing package 'open2300' from packages
+Installing package 'openconnect' from packages
+Installing package 'vpnc-scripts' from packages
+Installing package 'stoken' from packages
+Installing package 'opencv' from packages
+Installing package 'opendkim' from packages
+Installing package 'sendmail' from packages
+Installing package 'opennhrp' from packages
+Installing package 'openobex' from packages
+Installing package 'openocd' from packages
+Installing package 'openpyxl' from packages
+Installing package 'opensc' from packages
+Installing package 'opentracker' from packages
+Installing package 'openvswitch' from packages
+Installing package 'openwisp-config' from packages
+Installing package 'opus-tools' from packages
+Installing package 'p910nd' from packages
+Installing package 'pagekitec' from packages
+Installing package 'patch' from packages
+Installing package 'pcmciautils' from packages
+Installing package 'pcsc-tools' from packages
+Installing package 'pen' from packages
+Installing package 'perl-authen-sasl' from packages
+Installing package 'perl-authen-sasl-xs' from packages
+Installing package 'perl-compress-bzip2' from packages
+Installing package 'perl-dbi' from packages
+Installing package 'perl-device-serialport' from packages
+Installing package 'perl-device-usb' from packages
+Installing package 'perl-inline-c' from packages
+Installing package 'perl-inline' from packages
+Installing package 'perl-parse-recdescent' from packages
+Installing package 'perl-file-sharedir-install' from packages
+Installing package 'perl-encode-locale' from packages
+Installing package 'perl-file-listing' from packages
+Installing package 'perl-http-date' from packages
+Installing package 'perl-html-form' from packages
+Installing package 'perl-http-message' from packages
+Installing package 'perl-io-html' from packages
+Installing package 'perl-lwp-mediatypes' from packages
+Installing package 'perl-uri' from packages
+Installing package 'perl-html-tree' from packages
+Installing package 'perl-http-cookies' from packages
+Installing package 'perl-http-daemon' from packages
+Installing package 'perl-http-negotiate' from packages
+Installing package 'perl-http-server-simple' from packages
+Installing package 'perl-lockfile-simple' from packages
+Installing package 'perl-net-http' from packages
+Installing package 'perl-net-telnet' from packages
+Installing package 'perl-sub-uplevel' from packages
+Installing package 'perl-test-harness' from packages
+Installing package 'perl-test-warn' from packages
+Installing package 'perl-text-csv_xs' from packages
+Installing package 'perl-www' from packages
+Installing package 'perl-www-robotrules' from packages
+Installing package 'perl-www-curl' from packages
+Installing package 'perl-www-mechanize' from packages
+Installing package 'perl-xml-parser' from packages
+Installing package 'php7-pecl-dio' from packages
+Installing package 'php7-pecl-http' from packages
+Installing package 'php7-pecl-propro' from packages
+Installing package 'php7-pecl-raphf' from packages
+Installing package 'php7-pecl-libevent' from packages
+Installing package 'pianod' from packages
+Installing package 'picocom' from packages
+Installing package 'pigeonhole' from packages
+Installing package 'pillow' from packages
+Installing package 'pingcheck' from packages
+Installing package 'pixiewps' from packages
+Installing package 'pixman' from packages
+Installing package 'pkg-config' from packages
+Installing package 'poco' from packages
+Installing package 'polipo' from packages
+Installing package 'port-mirroring' from packages
+Installing package 'pppossh' from packages
+Installing package 'pptpd' from packages
+Installing package 'privoxy' from packages
+Installing package 'progress' from packages
+Installing package 'prometheus-node-exporter-lua' from packages
+Installing package 'bmx6' from routing
+Installing package 'prosody' from packages
+Installing package 'psqlodbc' from packages
+Installing package 'pv' from packages
+Installing package 'pyodbc' from packages
+Installing package 'python-asn1crypto' from packages
+Installing package 'python-cffi' from packages
+Installing package 'python-pycparser' from packages
+Installing package 'python-ply' from packages
+Installing package 'python-crcmod' from packages
+Installing package 'python-cryptography' from packages
+Installing package 'python-enum34' from packages
+Installing package 'python-ipaddress' from packages
+Installing package 'python-curl' from packages
+Installing package 'python-dateutil' from packages
+Installing package 'python-egenix-mx-base' from packages
+Installing package 'python-evdev' from packages
+Installing package 'python-gmpy2' from packages
+Installing package 'python-gnupg' from packages
+Installing package 'python-ldap' from packages
+Installing package 'python-lxml' from packages
+Installing package 'python-mysql' from packages
+Installing package 'python-packages' from packages
+Installing package 'python-parsley' from packages
+Installing package 'python-psycopg2' from packages
+Installing package 'python-pyasn1' from packages
+Installing package 'python-pyasn1-modules' from packages
+Installing package 'python-pyopenssl' from packages
+Installing package 'python-pyserial' from packages
+Installing package 'python-service-identity' from packages
+Installing package 'python-txsocksx' from packages
+Installing package 'python-urllib3' from packages
+Installing package 'python3-bottle' from packages
+Installing package 'pytz' from packages
+Installing package 'qemu' from packages
+Installing package 'qrencode' from packages
+Installing package 'quassel-irssi' from packages
+Installing package 'quasselc' from packages
+Installing package 'radicale' from packages
+Installing package 'radsecproxy' from packages
+Installing package 'rcssmin' from packages
+Installing package 'reaver' from packages
+Installing package 'redsocks' from packages
+Installing package 'relayctl' from packages
+Installing package 'remserial' from packages
+Installing package 'rng-tools' from packages
+Installing package 'rp-pppoe' from packages
+Installing package 'rpcd-mod-lxc' from packages
+Installing package 'rsync' from packages
+Installing package 'rsyslog' from packages
+Installing package 'rtklib' from packages
+Installing package 'rtl-ais' from packages
+Installing package 'rtl_433' from packages
+Installing package 'rtorrent' from packages
+Installing package 'xmlrpc-c' from packages
+Installing package 'rtty' from packages
+Installing package 'ruby' from packages
+Installing package 'rxtx' from packages
+Installing package 'sane-backends' from packages
+Installing package 'scapy' from packages
+Installing package 'screen' from packages
+Installing package 'seafile-ccnet' from packages
+Installing package 'seafile-seahub' from packages
+Installing package 'simplejson' from packages
+Installing package 'seafile-server' from packages
+Installing package 'ser2net' from packages
+Installing package 'serialconsole' from packages
+Installing package 'setserial' from packages
+Installing package 'shadowsocks-client' from packages
+Installing package 'shadowsocks-libev' from packages
+Installing package 'shairplay' from packages
+Installing package 'shairport-sync' from packages
+Installing package 'shorewall' from packages
+Installing package 'shorewall-core' from packages
+Installing package 'shorewall-lite' from packages
+Installing package 'shorewall6' from packages
+Installing package 'shorewall6-lite' from packages
+Installing package 'siit' from packages
+Installing package 'simple-adblock' from packages
+Installing package 'sispmctl' from packages
+Installing package 'slide-switch' from packages
+Installing package 'smartmontools' from packages
+Installing package 'smartsnmpd' from packages
+Installing package 'smstools3' from packages
+Installing package 'snort' from packages
+Installing package 'socat' from packages
+Installing package 'sockread' from packages
+Installing package 'softethervpn' from packages
+Installing package 'softflowd' from packages
+Installing package 'sox' from packages
+Installing package 'spawn-fcgi' from packages
+Installing package 'speex' from packages
+Installing package 'speexdsp' from packages
+Installing package 'spi-tools' from packages
+Installing package 'sqm-scripts' from packages
+Installing package 'sqm-scripts-extra' from packages
+Installing package 'squashfs-tools' from packages
+Installing package 'squeezelite' from packages
+Installing package 'squid' from packages
+Installing package 'sshfs' from packages
+Installing package 'sshtunnel' from packages
+Installing package 'sslh' from packages
+Installing package 'sstp-client' from packages
+Installing package 'stm32flash' from packages
+Installing package 'stress' from packages
+Installing package 'strongswan' from packages
+Installing package 'stubby' from packages
+Installing package 'stunnel' from packages
+Installing package 'subversion' from packages
+Installing package 'sudo' from packages
+Installing package 'sumo' from packages
+Installing package 'svox' from packages
+Installing package 'syslog-ng' from packages
+Installing package 'sysstat' from packages
+Installing package 'tar' from packages
+Installing package 'taskwarrior' from packages
+Installing package 'tayga' from packages
+Installing package 'tcl' from packages
+Installing package 'tcpproxy' from packages
+Installing package 'tcpreplay' from packages
+Installing package 'tcsh' from packages
+Installing package 'tgt' from packages
+Installing package 'tinyproxy' from packages
+Installing package 'tio' from packages
+Installing package 'tmux' from packages
+Installing package 'tor' from packages
+Installing package 'tracertools' from packages
+Installing package 'transmission' from packages
+Installing package 'travelmate' from packages
+Installing package 'tree' from packages
+Installing package 'triggerhappy' from packages
+Installing package 'ttyd' from packages
+Installing package 'tvheadend' from packages
+Installing package 'u2pnpd' from packages
+Installing package 'uanytun' from packages
+Installing package 'udns' from packages
+Installing package 'udpxy' from packages
+Installing package 'uledd' from packages
+Installing package 'ulogd' from packages
+Installing package 'umurmur' from packages
+Installing package 'unrar' from packages
+Installing package 'upmpdcli' from packages
+Installing package 'usbip' from packages
+Installing package 'usbmuxd' from packages
+Installing package 'uuid' from packages
+Installing package 'uvcdynctrl' from packages
+Installing package 'v4l2rtspserver' from packages
+Installing package 'vallumd' from packages
+Installing package 'vim' from packages
+Installing package 'vncrepeater' from packages
+Installing package 'vnstat' from packages
+Installing package 'vpnbypass' from packages
+Installing package 'vpnc' from packages
+Installing package 'vsftpd' from packages
+Installing package 'wakeonlan' from packages
+Installing package 'watchcat' from packages
+Installing package 'wavemon' from packages
+Installing package 'webui-aria2' from packages
+Installing package 'wifidog' from packages
+Installing package 'wifidog-ng' from packages
+Installing package 'wifischedule' from packages
+Installing package 'wifitoggle' from packages
+Installing package 'xl2tpd' from packages
+Installing package 'xr_usb_serial_common' from packages
+Installing package 'xtables-addons' from packages
+Installing package 'xupnpd' from packages
+Installing package 'yaaw' from packages
+Installing package 'yara' from packages
+Installing package 'youtube-dl' from packages
+Installing package 'zip' from packages
+Installing package 'yunbridge' from packages
+Installing package 'zabbix' from packages
+Installing package 'zerotier' from packages
+Installing package 'zile' from packages
+Installing package 'znc' from packages
+Installing package 'zsh' from packages
+Installing package 'ahcpd' from routing
+Installing all packages from feed routing.
+Installing package 'babel-pinger' from routing
+Installing package 'batmand' from routing
+Installing package 'bird' from routing
+Installing package 'bird4-openwrt' from routing
+Installing package 'bird6-openwrt' from routing
+Installing package 'cjdns' from routing
+Installing package 'hnetd' from routing
+Installing package 'ohybridproxy' from routing
+Installing package 'minimalist-pcproxy' from routing
+Installing package 'luci-app-bmx6' from routing
+Installing package 'luci-lib-json' from luci
+Installing package 'luci-lib-httpclient' from luci
+Installing package 'luci-lib-httpprotoutils' from luci
+Installing package 'luci-app-bmx7' from routing
+Installing package 'luci-mod-admin-full' from luci
+Installing package 'luci-app-cjdns' from routing
+Installing package 'mcproxy' from routing
+Installing package 'mrd6' from routing
+Installing package 'nat46' from routing
+Installing package 'ndppd' from routing
+Installing package 'nodogsplash' from routing
+Installing package 'olsrd' from routing
+Installing package 'oonf-dlep-proxy' from routing
+Installing package 'oonf-init-scripts' from routing
+Installing package 'oonf-dlep-radio' from routing
+Installing package 'oonf-olsrd2' from routing
+Installing package 'pimbd' from routing
+Installing package 'prince' from routing
+Installing package 'quagga' from routing
+Installing package 'smcroute' from routing
+Installing package 'vis' from routing
+Installing package 'community-profiles' from luci
+Installing all packages from feed luci.
+Installing package 'freifunk-common' from luci
+Installing package 'freifunk-firewall' from luci
+Installing package 'freifunk-gwcheck' from luci
+Installing package 'freifunk-mapupdate' from luci
+Installing package 'freifunk-policyrouting' from luci
+Installing package 'freifunk-watchdog' from luci
+Installing package 'luci' from luci
+Installing package 'luci-theme-bootstrap' from luci
+Installing package 'luci-app-firewall' from luci
+Installing package 'luci-proto-ppp' from luci
+Installing package 'luci-proto-ipv6' from luci
+Installing package 'rpcd-mod-rrdns' from luci
+Installing package 'luci-app-adblock' from luci
+Installing package 'luci-app-advanced-reboot' from luci
+Installing package 'luci-app-ahcp' from luci
+Installing package 'luci-app-aria2' from luci
+Installing package 'luci-app-asterisk' from luci
+Installing package 'luci-app-attendedsysupgrade' from luci
+Installing package 'luci-app-bcp38' from luci
+Installing package 'luci-app-clamav' from luci
+Installing package 'luci-app-commands' from luci
+Installing package 'luci-app-coovachilli' from luci
+Installing package 'luci-app-cshark' from luci
+Installing package 'luci-app-ddns' from luci
+Installing package 'luci-app-diag-core' from luci
+Installing package 'luci-app-dnscrypt-proxy' from luci
+Installing package 'luci-app-dump1090' from luci
+Installing package 'luci-app-dynapoint' from luci
+Installing package 'luci-app-e2guardian' from luci
+Installing package 'luci-app-freifunk-diagnostics' from luci
+Installing package 'luci-app-freifunk-policyrouting' from luci
+Installing package 'luci-app-freifunk-widgets' from luci
+Installing package 'luci-mod-freifunk' from luci
+Installing package 'luci-app-fwknopd' from luci
+Installing package 'luci-app-hd-idle' from luci
+Installing package 'luci-app-ltqtapi' from luci
+Installing package 'luci-app-lxc' from luci
+Installing package 'luci-app-meshwizard' from luci
+Installing package 'meshwizard' from luci
+Installing package 'luci-app-minidlna' from luci
+Installing package 'luci-app-mjpg-streamer' from luci
+Installing package 'luci-app-mwan3' from luci
+Installing package 'luci-app-nlbwmon' from luci
+Installing package 'luci-app-noddos' from luci
+Installing package 'luci-app-ntpc' from luci
+Installing package 'luci-app-ocserv' from luci
+Installing package 'luci-app-olsr' from luci
+Installing package 'luci-lib-luaneightbl' from luci
+Installing package 'luci-app-olsr-services' from luci
+Installing package 'luci-app-olsr-viz' from luci
+Installing package 'luci-app-openvpn' from luci
+Installing package 'luci-app-p910nd' from luci
+Installing package 'luci-app-pagekitec' from luci
+Installing package 'luci-app-polipo' from luci
+Installing package 'luci-app-privoxy' from luci
+Installing package 'luci-app-qos' from luci
+Installing package 'luci-app-radicale' from luci
+Installing package 'luci-app-rp-pppoe-server' from luci
+Installing package 'luci-app-samba' from luci
+Installing package 'luci-app-shadowsocks-libev' from luci
+Installing package 'luci-app-shairplay' from luci
+Installing package 'luci-app-siitwizard' from luci
+Installing package 'luci-app-simple-adblock' from luci
+Installing package 'luci-app-splash' from luci
+Installing package 'luci-app-squid' from luci
+Installing package 'luci-app-statistics' from luci
+Installing package 'luci-app-tinyproxy' from luci
+Installing package 'luci-app-transmission' from luci
+Installing package 'luci-app-travelmate' from luci
+Installing package 'luci-app-udpxy' from luci
+Installing package 'luci-app-unbound' from luci
+Installing package 'luci-app-upnp' from luci
+Installing package 'luci-app-vnstat' from luci
+Installing package 'luci-app-vpnbypass' from luci
+Installing package 'luci-app-watchcat' from luci
+Installing package 'luci-app-wifischedule' from luci
+Installing package 'luci-app-wireguard' from luci
+Installing package 'luci-proto-wireguard' from luci
+Installing package 'luci-app-wol' from luci
+Installing package 'luci-lib-px5g' from luci
+Installing package 'luci-lib-rpcc' from luci
+Installing package 'luci-light' from luci
+Installing package 'luci-mod-admin-mini' from luci
+Installing package 'luci-theme-openwrt' from luci
+Installing package 'luci-mod-failsafe' from luci
+Installing package 'luci-mod-freifunk-community' from luci
+Installing package 'luci-mod-rpc' from luci
+Installing package 'luci-proto-3g' from luci
+Installing package 'luci-proto-ipip' from luci
+Installing package 'luci-proto-ncm' from luci
+Installing package 'luci-proto-openconnect' from luci
+Installing package 'luci-proto-qmi' from luci
+Installing package 'luci-proto-relay' from luci
+Installing package 'luci-proto-vpnc' from luci
+Installing package 'luci-ssl' from luci
+Installing package 'luci-ssl-openssl' from luci
+Installing package 'luci-theme-freifunk-generic' from luci
+Installing package 'luci-theme-material' from luci
+Installing package 'lua-geolocate' from gluon
+Installing all packages from feed gluon.
+Installing package 'respondd-module-airtime' from gluon
+Installing package 'uc' from gluon
+Installing package 'gluon-aptimeclock' from eulenfunk
+Installing all packages from feed eulenfunk.
+Installing package 'gluon-banner' from eulenfunk
+Installing package 'gluon-hotfix' from eulenfunk
+Installing package 'gluon-linkcheck' from eulenfunk
+Installing package 'gluon-quickfix' from eulenfunk
+Installing package 'gluon-txpowerfix' from eulenfunk
+Installing package 'gluon-vpnlimittimeclock' from eulenfunk
+Installing package 'gluon-weeklyreboot' from eulenfunk
+Installing package 'gluon-wificheck' from eulenfunk
+Installing package 'babeldev' from ffffm
+Installing all packages from feed ffffm.
+Installing package 'dnrd' from ffffm
+Installing package 'ffffm-additional-wifi-json-info' from ffffm
+Installing package 'ffffm-ath9k-broken-wifi-workaround' from ffffm
+Installing package 'ffffm-autoupdater-use-site-conf-branch' from ffffm
+Installing package 'ffffm-banner' from ffffm
+Installing package 'ffffm-banner_legacy' from ffffm
+Installing package 'ffffm-button-bind' from ffffm
+Installing package 'ffffm-ebtables-net-rules' from ffffm
+Installing package 'ffffm-fastd-auto-mtu' from ffffm
+Installing package 'ffffm-keep-radio-channel' from ffffm
+Installing package 'ffffm-luci-set-mtu' from ffffm
+Installing package 'ffffm-luci-switchconfig' from ffffm
+WARNING: No feed for package 'gluon-luci-admin' found
+Installing package 'ffffm-restart-respondd' from ffffm
+Installing package 'nodealert' from ffffm
+Installing package 'gluon-au-change' from ffki
+Installing all packages from feed ffki.
+Installing package 'gluon-config-mode-contact-info-anonymous-hint' from ffki
+Installing package 'gluon-config-mode-ppa' from ffki
+Installing package 'gluon-config-mode-usb-media' from ffki
+Installing package 'gluon-usb-media' from ffki
+Installing package 'gluon-tunneldigger-watchdog' from ffrl
+Installing all packages from feed ffrl.
+Installing package 'gluon-ssid-changer' from ffnord
+Installing all packages from feed ffnord.
+Installing all packages from feed telephony.
+Building the firmware for site code: dus, target: ar71xx-generic ...
+make GLUON_TARGET=ar71xx-generic V=s BROKEN=1  GLUON_SITEDIR=/home/build/firmware2018/firmware/assembled/dus/dus GLUON_IMAGEDIR=/home/build/firmware2018/firmware/images/dus/dus GLUON_MODULEDIR=/home/build/firmware2018/firmware/modules GLUON_SITE_VERSION=201905 GLUON_BRANCH=experimental -j 9  --output-sync=recurse
+make[1]: Entering directory '/home/build/firmware2018/firmware/gluon/openwrt'
+make[2]: Entering directory '/home/build/firmware2018/firmware/gluon/openwrt'
+make[2]: Leaving directory '/home/build/firmware2018/firmware/gluon/openwrt'
+
+WARNING: Makefile 'package/feeds/ffffm/ffffm-luci-switchconfig/Makefile' has a dependency on 'gluon-luci-admin', which does not exist
+touch .config
+[ -L .config ] && export KCONFIG_OVERWRITECONFIG=1; \
+	scripts/config/conf --defconfig=.config Config.in
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/home/build/firmware2018/firmware/gluon/openwrt'
+Configuration failed:
+ * unable to enable package 'gluon-respondd-airtime'
+Makefile:126: die Regel für Ziel „config“ scheiterte
+make: *** [config] Fehler 1
+
+Finished running command: ./build.sh sites.dusall
+The command failed with exit code 1.
+Elapsed time: 2 minutes, 3 seconds (123 seconds)

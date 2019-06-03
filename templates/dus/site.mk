@@ -6,7 +6,6 @@ GLUON_FEATURES := \
 	web-advanced \
 	mesh-batman-adv-15 \
 	respondd \
-	respondd-module-airtime \
 	autoupdater \
 	ebtables \
 	ebtables-limit-arp \
@@ -20,6 +19,7 @@ GLUON_FEATURES := \
 
 # eulenfunk:
 GLUON_SITE_PACKAGES := \
+        respondd-module-airtime \
 	gluon-weeklyreboot \
 	gluon-hotfix \
 	gluon-quickfix \
