@@ -6,7 +6,8 @@ GLUON_FEATURES := \
 	web-advanced \
 	mesh-batman-adv-15 \
 	respondd \
-	autoupdater \
+        respondd-module-airtime \
+ 	autoupdater \
 	ebtables \
 	ebtables-limit-arp \
 	radv-filterd \
