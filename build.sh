@@ -161,6 +161,8 @@ build_images_for_site ()
 
   # Setting GLUON_BRANCH enables the firmware autoupdater.
   append_quoted_arg  ARGS  GLUON_BRANCH  "$RELBRANCH"
+  # Build for devices Gluon devs do not like
+  append_quoted_arg  ARGS  GLUON_DEPRECATED  "full"
 
 
   local MAKE_CMD
@@ -219,9 +221,6 @@ build_images_for_site ()
 
     # For the Gluon build system, BROKEN=1 means "use the experimental/unstable branch".
     MAKE_CMD+=" BROKEN=1"
-
-    # Build for devices Gluon devs do not like
-    MAKE_CMD+=" GLUON_DEPRECATED=full"
 
     MAKE_CMD+=" $ARGS"
 
