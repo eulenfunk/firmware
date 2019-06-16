@@ -14,7 +14,6 @@ GLUON_FEATURES := \
 	ebtables-filter-ra-dhcp \
 	ebtables-source-filter \
         mesh-vpn-tunneldigger \
-        tunneldigger-watchdog \
 	radvd \
 	status-page\
 
