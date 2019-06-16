@@ -220,6 +220,9 @@ build_images_for_site ()
     # For the Gluon build system, BROKEN=1 means "use the experimental/unstable branch".
     MAKE_CMD+=" BROKEN=1"
 
+    # Build for devices Gluon devs do not like
+    MAKE_CMD+=" GLUON_DEPRECATED=full"
+
     MAKE_CMD+=" $ARGS"
 
     MAKE_CMD+=" -j $MAKE_J_VAL  --output-sync=recurse"
