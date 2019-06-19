@@ -10,3 +10,4 @@ modules-*
 prepared
 .DS_Store
 *.log
+*.lock
