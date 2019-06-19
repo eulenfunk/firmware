@@ -11,3 +11,4 @@ prepared
 .DS_Store
 *.log
 *.lock
+long-server-task.log.lock long-server-task.sh
