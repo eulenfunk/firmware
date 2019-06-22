@@ -353,7 +353,7 @@ parse_sites_file ()
 
     # We could allow comments in the file. Here we would remove them.
 
-    if [ -z "$LINE" ]; then
+    if [ -z "$LINE" ] || [ "$(echo $LINE|cut -c1)" == "#" ] ; then
       continue
     fi
 
