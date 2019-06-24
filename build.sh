@@ -151,19 +151,18 @@ build_images_for_site ()
   local -i target_index
   local TARGET
 
-
   local ARGS=""
 
   append_quoted_arg  ARGS  GLUON_SITEDIR   "$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE"
   append_quoted_arg  ARGS  GLUON_IMAGEDIR  "$SANDBOX_DIR/images/$TEMPLATE_NAME/$SITE_CODE"
   append_quoted_arg  ARGS  GLUON_MODULEDIR "$SANDBOX_DIR/modules"
-  append_quoted_arg  ARGS  GLUON_SITE_VERSION "201905"
+  append_quoted_arg  ARGS  GLUON_SITE_VERSION $(date +%Y%m%d)
 
   # Setting GLUON_BRANCH enables the firmware autoupdater.
   append_quoted_arg  ARGS  GLUON_BRANCH  "$RELBRANCH"
 
-
   local MAKE_CMD
+  local SIGN_CMD
 
   local PREPARED_FILENAME="$SANDBOX_DIR/.prepared"
   local PREPARED_CONTENTS
@@ -235,6 +234,12 @@ build_images_for_site ()
 
   printf -v MAKE_CMD "make manifest %s"  "$ARGS"
   echo "$MAKE_CMD"
+  eval "$MAKE_CMD"
+  
+  printf -v "./sign" $SIGN_CMD
+  SIGN_CMD+=" $(cat ./buildkey/untrustworthy-buildbot-signkey.priv)"
+  SIGN_CMD+=" $RELBRANCH"
+  echo "$SIGN_CMD"
   eval "$MAKE_CMD"
 
   local SITE_IMAGE_DIR="$SANDBOX_DIR/images/$TEMPLATE_NAME/$SITE_CODE/site"
