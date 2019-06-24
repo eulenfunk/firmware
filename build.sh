@@ -161,6 +161,11 @@ build_images_for_site ()
   # Setting GLUON_BRANCH enables the firmware autoupdater.
   append_quoted_arg  ARGS  GLUON_BRANCH  "$RELBRANCH"
 
+  # Parameters for setting buildbot signatures
+  local SIGN_ARGS=""
+  SIGN_ARGS+=" $(cat $SANDBOX_DIR/buildkey/untrustworthy-buildbot-signkey.priv)"
+  SIGN_ARGS+=" $SANDBOX_DIR/images/$TEMPLATE_NAME/$SITE_CODE/sysupgrade/$RELBRANCH.manifest"
+
   local MAKE_CMD
   local SIGN_CMD
 
@@ -236,11 +241,9 @@ build_images_for_site ()
   echo "$MAKE_CMD"
   eval "$MAKE_CMD"
   
-  printf -v "./sign" $SIGN_CMD
-  SIGN_CMD+=" $(cat ./buildkey/untrustworthy-buildbot-signkey.priv)"
-  SIGN_CMD+=" $RELBRANCH"
+  printf -v SIGN_CMD "$SANDBOX_DIR/esign $SIGN_ARGS" 
   echo "$SIGN_CMD"
-  eval "$MAKE_CMD"
+  eval "$SIGN_CMD"
 
   local SITE_IMAGE_DIR="$SANDBOX_DIR/images/$TEMPLATE_NAME/$SITE_CODE/site"
 
@@ -258,6 +261,7 @@ build_all_images ()
   local -a TARGETS=("$@")
 
   if (( ${#TARGETS[@]} == 0 )); then
+#    TARGETS+=( ramips-rt305x ) # excluded, bugs build fails 
     TARGETS+=( ar71xx-generic )
     TARGETS+=( ar71xx-tiny )
     TARGETS+=( ar71xx-nand )
@@ -272,7 +276,6 @@ build_all_images ()
     TARGETS+=( ipq40xx )
     TARGETS+=( ramips-mt7620 )
     TARGETS+=( ramips-mt76x8 )
-    #TARGETS+=( ramips-rt305x ) # excluded, bugs build fails 
     TARGETS+=( ar71xx-mikrotik )
     TARGETS+=( brcm2708-bcm2710 )
     TARGETS+=( ipq806x )
