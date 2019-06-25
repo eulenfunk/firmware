@@ -64,6 +64,8 @@ GLUON_SITE_PACKAGES += \
 	iwinfo \
 	socat
 
+DEFAULT_GLUON_RELEASE := SBRANCH
+
 ifeq ($(GLUON_TARGET),ar71xx-tiny)
 GLUON_SITE_PACKAGES += zram-swap
 endif
@@ -71,8 +73,6 @@ endif
 ifeq ($(GLUON_TARGET),ar71xx-generic)
 GLUON_SITE_PACKAGES += zram-swap
 endif
-
-DEFAULT_GLUON_RELEASE := SBRANCH
 
 # Allow overriding the release number from the command line
 GLUON_RELEASE ?= $(DEFAULT_GLUON_RELEASE)

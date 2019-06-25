@@ -75,7 +75,7 @@ endif
 
 DEFAULT_GLUON_RELEASE := SBRANCH
 
-# Allow overriding the release number from the command line
+# overriding the release number from the command line
 GLUON_RELEASE ?= $(DEFAULT_GLUON_RELEASE)
 
 GLUON_PRIORITY ?= 0
