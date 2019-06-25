@@ -261,7 +261,7 @@ build_all_images ()
   local -a TARGETS=("$@")
 
   if (( ${#TARGETS[@]} == 0 )); then
-#    TARGETS+=( ramips-rt305x ) # excluded, bugs build fails 
+    TARGETS+=( ramips-rt305x ) # excluded, bugs build fails 
     TARGETS+=( ar71xx-generic )
     TARGETS+=( ar71xx-tiny )
     TARGETS+=( ar71xx-nand )
