@@ -14,7 +14,6 @@ GLUON_FEATURES := \
 	ebtables-filter-ra-dhcp \
 	ebtables-source-filter \
         mesh-vpn-tunneldigger \
-        tunneldigger-watchdog \
 	radvd \
 	status-page\
 
@@ -64,6 +63,14 @@ GLUON_SITE_PACKAGES += \
 	iptables \
 	iwinfo \
 	socat
+
+ifeq ($(GLUON_TARGET),ar71xx-tiny)
+GLUON_SITE_PACKAGES += zram-swap
+endif
+
+ifeq ($(GLUON_TARGET),ar71xx-generic)
+GLUON_SITE_PACKAGES += zram-swap
+endif
 
 DEFAULT_GLUON_RELEASE := SBRANCH
 
