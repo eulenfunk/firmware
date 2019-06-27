@@ -151,21 +151,23 @@ build_images_for_site ()
   local -i target_index
   local TARGET
 
-
   local ARGS=""
 
   append_quoted_arg  ARGS  GLUON_SITEDIR   "$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE"
   append_quoted_arg  ARGS  GLUON_IMAGEDIR  "$SANDBOX_DIR/images/$TEMPLATE_NAME/$SITE_CODE"
   append_quoted_arg  ARGS  GLUON_MODULEDIR "$SANDBOX_DIR/modules"
-  append_quoted_arg  ARGS  GLUON_SITE_VERSION "201905"
+  append_quoted_arg  ARGS  GLUON_SITE_VERSION $(date +%Y%m%d)
 
   # Setting GLUON_BRANCH enables the firmware autoupdater.
   append_quoted_arg  ARGS  GLUON_BRANCH  "$RELBRANCH"
-  # Build for devices Gluon devs do not like
-  append_quoted_arg  ARGS  GLUON_DEPRECATED  "full"
 
+  # Parameters for setting buildbot signatures
+  local SIGN_ARGS=""
+  SIGN_ARGS+=" $(cat $SANDBOX_DIR/buildkey/untrustworthy-buildbot-signkey.priv)"
+  SIGN_ARGS+=" $SANDBOX_DIR/images/$TEMPLATE_NAME/$SITE_CODE/sysupgrade/$RELBRANCH.manifest"
 
   local MAKE_CMD
+  local SIGN_CMD
 
   local PREPARED_FILENAME="$SANDBOX_DIR/.prepared"
   local PREPARED_CONTENTS
@@ -238,6 +240,10 @@ build_images_for_site ()
   printf -v MAKE_CMD "make manifest %s"  "$ARGS"
   echo "$MAKE_CMD"
   eval "$MAKE_CMD"
+  
+  printf -v SIGN_CMD "$SANDBOX_DIR/esign $SIGN_ARGS" 
+  echo "$SIGN_CMD"
+  eval "$SIGN_CMD"
 
   local SITE_IMAGE_DIR="$SANDBOX_DIR/images/$TEMPLATE_NAME/$SITE_CODE/site"
 
@@ -255,25 +261,25 @@ build_all_images ()
   local -a TARGETS=("$@")
 
   if (( ${#TARGETS[@]} == 0 )); then
+    TARGETS+=( ramips-rt305x ) # excluded, bugs build fails 
     TARGETS+=( ar71xx-generic )
     TARGETS+=( ar71xx-tiny )
-#    TARGETS+=( ar71xx-nand )
-#    TARGETS+=( brcm2708-bcm2708 )
-#    TARGETS+=( brcm2708-bcm2709 )
-#    TARGETS+=( mpc85xx-generic )
-#    TARGETS+=( ramips-mt7621 )
-#    TARGETS+=( sunxi-cortexa7 )
-#    TARGETS+=( x86-generic )
-#    TARGETS+=( x86-geode )
+    TARGETS+=( ar71xx-nand )
+    TARGETS+=( brcm2708-bcm2708 )
+    TARGETS+=( brcm2708-bcm2709 )
+    TARGETS+=( mpc85xx-generic )
+    TARGETS+=( ramips-mt7621 )
+    TARGETS+=( sunxi-cortexa7 )
+    TARGETS+=( x86-generic )
+    TARGETS+=( x86-geode )
     TARGETS+=( x86-64 )
-#    TARGETS+=( ipq40xx )
-#    TARGETS+=( ramips-mt7620 )
-#    TARGETS+=( ramips-mt76x8 )
-    #TARGETS+=( ramips-rt305x ) # excluded, bugs build fails 
-#    TARGETS+=( ar71xx-mikrotik )
-#    TARGETS+=( brcm2708-bcm2710 )
-#    TARGETS+=( ipq806x )
-#    TARGETS+=( mvebu-cortexa9 )
+    TARGETS+=( ipq40xx )
+    TARGETS+=( ramips-mt7620 )
+    TARGETS+=( ramips-mt76x8 )
+    TARGETS+=( ar71xx-mikrotik )
+    TARGETS+=( brcm2708-bcm2710 )
+    TARGETS+=( ipq806x )
+    TARGETS+=( mvebu-cortexa9 )
   fi
 
   pushd "$GLUON_DIR" >/dev/null
@@ -355,7 +361,7 @@ parse_sites_file ()
 
     # We could allow comments in the file. Here we would remove them.
 
-    if [ -z "$LINE" ]; then
+    if [ -z "$LINE" ] || [ "$(echo $LINE|cut -c1)" == "#" ] ; then
       continue
     fi
 

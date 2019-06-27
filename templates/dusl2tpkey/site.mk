@@ -29,7 +29,6 @@ GLUON_SITE_PACKAGES := \
 	gluon-config-mode-geo-location-osm \
 	gluon-authorized-keys \
 
-	
 
 # PROBLEM:
 # ev. macht dieses paket:
