@@ -157,6 +157,8 @@ build_images_for_site ()
   append_quoted_arg  ARGS  GLUON_IMAGEDIR  "$SANDBOX_DIR/images/$TEMPLATE_NAME/$SITE_CODE"
   append_quoted_arg  ARGS  GLUON_MODULEDIR "$SANDBOX_DIR/modules"
   append_quoted_arg  ARGS  GLUON_SITE_VERSION $(date +%Y%m%d)
+ # For the Gluon build system, BROKEN=1 means "use the experimental/unstable branch".
+  append_quoted_arg  ARGS  BROKEN "1"
 
   # Setting GLUON_BRANCH enables the firmware autoupdater.
   append_quoted_arg  ARGS  GLUON_BRANCH  "$RELBRANCH"
@@ -220,9 +222,6 @@ build_images_for_site ()
 
     # For the Gluon build system, V=s means generate a full build log (show build commands, compiler warnings etc.).
     MAKE_CMD+=" V=s"
-
-    # For the Gluon build system, BROKEN=1 means "use the experimental/unstable branch".
-    MAKE_CMD+=" BROKEN=1"
 
     MAKE_CMD+=" $ARGS"
 
