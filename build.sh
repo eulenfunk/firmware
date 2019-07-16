@@ -88,7 +88,10 @@ get_site_log_filename ()
 
 SBRANCH="$(date +%Y%m%d%H%M)"
 # ffdus-hack: firmware-id ohne minute, dafür mit branch-namen
-if [ "$(head -1  $1|cut -d" " -f3)" == "dus" ] ; then
+if [ "$(head -1  $1|cut -d" " -f3)" == "dus" ] || \
+   [ "$(head -1  $1|cut -d" " -f3)" == "sisi" ] || \
+   [ "$(head -1  $1|cut -d" " -f3)" == "sihb" ] || \
+   [ "$(head -1  $1|cut -d" " -f3)" == "sifb" ] ; then
   SBRANCH="$(date +%Y%m%d%H)-$(head -1  $1|cut -c1-3)"  
  fi
 
