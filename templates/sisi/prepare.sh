@@ -5,4 +5,3 @@
 #cp ../patches/sysupgrade ./openwrt/package/base-files/files/sbin/sysupgrade
 #chmod +x ./openwrt/package/base-files/files/sbin/sysupgrade
 
-
