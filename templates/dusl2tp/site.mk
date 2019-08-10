@@ -16,7 +16,7 @@ GLUON_FEATURES := \
         mesh-vpn-tunneldigger \
         tunneldigger-watchdog \
 	radvd \
-	status-page\
+	status-page 
 
 # eulenfunk:
 GLUON_SITE_PACKAGES := \
@@ -29,7 +29,7 @@ GLUON_SITE_PACKAGES := \
 	gluon-linkcheck \
 	gluon-config-mode-geo-location-osm \
 	gluon-authorized-keys \
-	eulenfunk-migrate-updatebranch \	
+	eulenfunk-migrate-updatebranch 
 
 # ffffm 
 # ev. kann man ffffm-additional-wifi-json-info teilweise durch standard gluon respondd-module-airtime ersetzen
@@ -39,7 +39,7 @@ GLUON_SITE_PACKAGES += \
 
 # ffki:
 GLUON_SITE_PACKAGES += \
-	gluon-config-mode-ppa \
+	gluon-config-mode-ppa 
 
 # ffnord:
 GLUON_SITE_PACKAGES += \
