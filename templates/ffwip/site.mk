@@ -30,8 +30,6 @@ GLUON_SITE_PACKAGES := \
 	gluon-config-mode-geo-location-osm \
 	gluon-authorized-keys \
 
-	
-
 # PROBLEM:
 # ev. macht dieses paket:
 # - ffho-ath9k-blackout-workaround
@@ -63,7 +61,8 @@ GLUON_SITE_PACKAGES += \
 	haveged \
 	iptables \
 	iwinfo \
-	socat
+	socat \
+        kmod-sched
 
 ifeq ($(GLUON_TARGET),ar71xx-tiny)
 GLUON_SITE_PACKAGES += zram-swap
