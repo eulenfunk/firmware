@@ -62,7 +62,8 @@ GLUON_SITE_PACKAGES += \
 	haveged \
 	iptables \
 	iwinfo \
-	socat
+	socat \
+	kmod-sched
 
 DEFAULT_GLUON_RELEASE := SBRANCH
 
