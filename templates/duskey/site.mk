@@ -14,7 +14,6 @@ GLUON_FEATURES := \
 	ebtables-filter-ra-dhcp \
 	ebtables-source-filter \
 	mesh-vpn-fastd \
-	radvd \
 	status-page\
 
 # eulenfunk:
@@ -62,7 +61,8 @@ GLUON_SITE_PACKAGES += \
 	haveged \
 	iptables \
 	iwinfo \
-	socat
+	socat \
+        kmod-sched
 
 ifeq ($(GLUON_TARGET),ar71xx-tiny)
 GLUON_SITE_PACKAGES += zram-swap
@@ -82,3 +82,5 @@ GLUON_LANGS ?= de en
 GLUON_REGION ?= eu
 GLUON_ATH10K_MESH ?= 11s
 GLUON_WLAN_MESH ?= 11s
+GLUON_DEPRECATED ?= full
+

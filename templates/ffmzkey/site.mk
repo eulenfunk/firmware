@@ -19,6 +19,7 @@ GLUON_FEATURES := \
 
 # eulenfunk:
 GLUON_SITE_PACKAGES := \
+        respondd-module-airtime \
 	gluon-weeklyreboot \
 	gluon-hotfix \
 	gluon-quickfix \
@@ -26,7 +27,8 @@ GLUON_SITE_PACKAGES := \
 	gluon-banner \
 	gluon-linkcheck \
 	gluon-config-mode-geo-location-osm \
-	
+	gluon-authorized-keys \
+
 
 # PROBLEM:
 # ev. macht dieses paket:
@@ -46,7 +48,9 @@ GLUON_SITE_PACKAGES += \
 
 # ffki:
 GLUON_SITE_PACKAGES += \
-	gluon-config-mode-ppa 
+	gluon-config-mode-ppa \
+	
+
 
 # ffnord:
 GLUON_SITE_PACKAGES += \
@@ -61,10 +65,19 @@ GLUON_SITE_PACKAGES += \
 
 DEFAULT_GLUON_RELEASE := SBRANCH
 
+ifeq ($(GLUON_TARGET),ar71xx-tiny)
+GLUON_SITE_PACKAGES += zram-swap
+endif
+
+ifeq ($(GLUON_TARGET),ar71xx-generic)
+GLUON_SITE_PACKAGES += zram-swap
+endif
+
 # Allow overriding the release number from the command line
 GLUON_RELEASE ?= $(DEFAULT_GLUON_RELEASE)
 
 GLUON_PRIORITY ?= 0
-GLUON_LANGS ?= de 
+GLUON_LANGS ?= de en 
 GLUON_REGION ?= eu
-GLUON_ATH10K_MESH ?= 11s
+GLUON_ATH10K_MESH ?= ibss
+GLUON_WLAN_MESH ?= ibss

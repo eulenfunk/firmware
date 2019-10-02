@@ -88,7 +88,15 @@ get_site_log_filename ()
 
 SBRANCH="$(date +%Y%m%d%H%M)"
 # ffdus-hack: firmware-id ohne minute, dafür mit branch-namen
-if [ "$(head -1  $1|cut -d" " -f3)" == "dus" ] ; then
+if [ "$(head -1  $1|cut -d" " -f3)" == "dus" ] || \
+   [ "$(head -1  $1|cut -d" " -f3)" == "ffgmb" ] || \
+   [ "$(head -1  $1|cut -d" " -f3)" == "ffmrh" ] || \
+   [ "$(head -1  $1|cut -d" " -f3)" == "ffwip" ] || \
+   [ "$(head -1  $1|cut -d" " -f3)" == "ffbar" ] || \
+   [ "$(head -1  $1|cut -d" " -f3)" == "ffmz" ] || \
+   [ "$(head -1  $1|cut -d" " -f3)" == "sisi" ] || \
+   [ "$(head -1  $1|cut -d" " -f3)" == "sihb" ] || \
+   [ "$(head -1  $1|cut -d" " -f3)" == "sifb" ] ; then
   SBRANCH="$(date +%Y%m%d%H)-$(head -1  $1|cut -c1-3)"  
  fi
 
@@ -157,6 +165,12 @@ build_images_for_site ()
   append_quoted_arg  ARGS  GLUON_IMAGEDIR  "$SANDBOX_DIR/images/$TEMPLATE_NAME/$SITE_CODE"
   append_quoted_arg  ARGS  GLUON_MODULEDIR "$SANDBOX_DIR/modules"
   append_quoted_arg  ARGS  GLUON_SITE_VERSION $(date +%Y%m%d)
+ # For the Gluon build system, BROKEN=1 means "use the experimental/unstable branch".
+  append_quoted_arg  ARGS  BROKEN "1"
+
+ # verbose logs
+#  append_quoted_arg  ARGS  v "s"
+#  append_quoted_arg  ARGS BUILD_LOG "1"
 
   # Setting GLUON_BRANCH enables the firmware autoupdater.
   append_quoted_arg  ARGS  GLUON_BRANCH  "$RELBRANCH"
@@ -202,14 +216,15 @@ build_images_for_site ()
 
     done
 
-    # echo "Site prepare.sh ..."
-    # "$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE/prepare.sh"
+    echo "Site prepare.sh ..."
+    "$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE/prepare.sh"
 
   fi
 
   local MAKE_J_VAL
   MAKE_J_VAL="$(( $(getconf _NPROCESSORS_ONLN) + 1 ))"
-
+# only 1 cpu core to use
+#  MAKE_J_VAL=1
   for (( target_index=0; target_index < ${#TARGETS[@]}; target_index += 1 )); do
 
     TARGET="${TARGETS[target_index]}"
@@ -220,9 +235,6 @@ build_images_for_site ()
 
     # For the Gluon build system, V=s means generate a full build log (show build commands, compiler warnings etc.).
     MAKE_CMD+=" V=s"
-
-    # For the Gluon build system, BROKEN=1 means "use the experimental/unstable branch".
-    MAKE_CMD+=" BROKEN=1"
 
     MAKE_CMD+=" $ARGS"
 
