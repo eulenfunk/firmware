@@ -28,7 +28,8 @@ GLUON_SITE_PACKAGES := \
 	gluon-linkcheck \
 	gluon-config-mode-geo-location-osm \
 	gluon-authorized-keys \
-
+        eulenfunk-migrate-updatebranch \
+        eulenfunk-ath9k-blackout-workaround \
 	
 
 # PROBLEM:
@@ -63,7 +64,10 @@ GLUON_SITE_PACKAGES += \
 	iptables \
 	iwinfo \
 	socat \
-        kmod-sched
+        kmod-sched \
+        libc \
+        libpthread \
+        librt
 
 ifeq ($(GLUON_TARGET),ar71xx-tiny)
 GLUON_SITE_PACKAGES += zram-swap

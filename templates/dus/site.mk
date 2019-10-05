@@ -28,8 +28,8 @@ GLUON_SITE_PACKAGES := \
 	gluon-linkcheck \
 	gluon-config-mode-geo-location-osm \
 	gluon-authorized-keys \
-
-	
+        eulenfunk-migrate-updatebranch \
+        eulenfunk-ath9k-blackout-workaround \	
 
 # PROBLEM:
 # ev. macht dieses paket:
@@ -63,7 +63,10 @@ GLUON_SITE_PACKAGES += \
 	iptables \
 	iwinfo \
 	socat \
-	kmod-sched
+	kmod-sched \
+        libc \
+        libpthread \
+        librt
 
 DEFAULT_GLUON_RELEASE := SBRANCH
 

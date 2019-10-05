@@ -29,8 +29,8 @@ GLUON_SITE_PACKAGES := \
 	gluon-linkcheck \
 	gluon-config-mode-geo-location-osm \
 	gluon-authorized-keys \
-	eulenfunk-migrate-updatebranch 
-
+        eulenfunk-migrate-updatebranch \
+        eulenfunk-ath9k-blackout-workaround \
 # ffffm 
 # ev. kann man ffffm-additional-wifi-json-info teilweise durch standard gluon respondd-module-airtime ersetzen
 GLUON_SITE_PACKAGES += \
@@ -51,7 +51,10 @@ GLUON_SITE_PACKAGES += \
 	iptables \
 	iwinfo \
 	socat \
-        kmod-sched
+        kmod-sched \
+        libc \
+	libpthread \
+	librt
 
 ifeq ($(GLUON_TARGET),ar71xx-tiny)
 GLUON_SITE_PACKAGES += zram-swap

@@ -1,46 +1,21 @@
-GLUON_FEEDS='packages routing luci gluon ffrl ffwtbg ssidchanger eulenfunk ffki ffm'
+GLUON_SITE_FEEDS="eulenfunk ffffm ffki ffnord"
 
-OPENWRT_REPO=https://git.openwrt.org/openwrt/openwrt.git
-OPENWRT_BRANCH=openwrt-18.06
-OPENWRT_COMMIT=89808e211cd5ef5989bd0becb8cd45f9340610ff
-
-PACKAGES_PACKAGES_REPO=https://github.com/openwrt/packages.git
-PACKAGES_PACKAGES_BRANCH=openwrt-18.06
-PACKAGES_PACKAGES_COMMIT=1eeea30fda0f573e57cd00bd3560f7af63fa6d10
-
-PACKAGES_ROUTING_REPO=https://github.com/openwrt-routing/packages.git
-PACKAGES_ROUTING_BRANCH=openwrt-18.06
-PACKAGES_ROUTING_COMMIT=7589804a56baac804421b492c93004c28a627abb
-
-PACKAGES_LUCI_REPO=https://github.com/openwrt/luci.git
-PACKAGES_LUCI_BRANCH=openwrt-18.06
-PACKAGES_LUCI_COMMIT=b99e77d5c36a9d51559bae3bb61a138695d60b95
-
-PACKAGES_GLUON_REPO=https://github.com/freifunk-gluon/packages.git
-PACKAGES_GLUON_COMMIT=7c31643f5cb0c1ac77cd437569eab07dcd268e5e
-
-PACKAGES_FFRL_REPO=https://github.com/ffrl/ffrl-packages.git
-PACKAGES_FFRL_COMMIT=464fa9c1f3190a7e6d82dba1adac1d5e9f8d1835      
-PACKAGES_FFRL_BRANCH=Branch_v2017.x
-
-PACKAGES_FFWTBG_REPO=https://github.com/ffwtbg/ffwtbg-packages.git
-PACKAGES_FFWTBG_COMMIT=a02208ca1610f63c8a060f5685677c80b51376df   
-PACKAGES_FFWTBG_BRANCH=master
-
-PACKAGES_SSIDCHANGER_REPO=https://github.com/freifunk-nord/gluon-ssid-changer.git
-PACKAGES_SSIDCHANGER_COMMIT=7b5b7cab11d186696b4d2319f74145b0aaeb0c3c
-PACKAGES_SSIDCHANGER_BRANCH=2018.1.x
-
-PACKAGES_EULENFUNK_REPO=https://github.com/eulenfunk/packages.git
-PACKAGES_EULENFUNK_COMMIT=fda75ec0e1da1ec7ee1ba41f63626c39bbdcaf5c
+PACKAGES_EULENFUNK_REPO=https://github.com/eulenfunk/packages/
 PACKAGES_EULENFUNK_BRANCH=v2018.1.x
+PACKAGES_EULENFUNK_COMMIT=fda75ec0e1da1ec7ee1ba41f63626c39bbdcaf5c
 
-PACKAGES_FFKI_REPO=https://github.com/freifunk-kiel/ffki-packages.git
-PACKAGES_FFKI_COMMIT=96d5786aa3bc5676274f08b92a884faccee38dd7    
+PACKAGES_FFFFM_REPO=https://github.com/freifunk-ffm/packages.git
+PACKAGES_FFFFM_BRANCH=master
+PACKAGES_FFFFM_COMMIT=ecda453af908f54dca27129660a08a69627b884f
+
+PACKAGES_FFKI_REPO=git://github.com/freifunk-kiel/ffki-packages.git
+PACKAGES_FFKI_COMMIT=96d5786aa3bc5676274f08b92a884faccee38dd7
 PACKAGES_FFKI_BRANCH=2018.1.x
 
-PACKAGES_FFM_REPO=https://github.com/freifunk-ffm/packages.git
-PACKAGES_FFM_COMMIT=b0cd16ee80fa8c093b1c6a5b442f7e81b9d85e42     
-PACKAGES_FFM_BRANCH=master
+PACKAGES_FFNORD_REPO=https://github.com/Freifunk-Nord/gluon-ssid-changer
+PACKAGES_FFNORD_COMMIT=7b5b7cab11d186696b4d2319f74145b0aaeb0c3c
+PACKAGES_FFNORD_BRANCH=2018.1.x
 
-
+#PACKAGES_FFRL_REPO=https://github.com/ffrl/ffrl-packages
+#PACKAGES_FFRL_COMMIT=464fa9c1f3190a7e6d82dba1adac1d5e9f8d1835
+#PACKAGES_FFRL_BRANCH=Branch_v2017.x
