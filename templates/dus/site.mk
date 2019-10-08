@@ -29,17 +29,8 @@ GLUON_SITE_PACKAGES := \
 	gluon-config-mode-geo-location-osm \
 	gluon-authorized-keys \
         eulenfunk-migrate-updatebranch \
-        eulenfunk-ath9k-blackout-workaround
+        eulenfunk-ath9kblackout
 
-# PROBLEM:
-# ev. macht dieses paket:
-# - ffho-ath9k-blackout-workaround
-# das selbe wie diese beiden zusammen:
-# - gluon-hotfix 
-# - gluon-quickfix
-# ffho not working, see https://github.com/FreifunkHochstift/ffho-packages/pull/8
-#GLUON_SITE_PACKAGES += \
-#	ffho-ath9k-blackout-workaround
 
 # ffffm 
 # ev. kann man ffffm-additional-wifi-json-info teilweise durch standard gluon respondd-module-airtime ersetzen

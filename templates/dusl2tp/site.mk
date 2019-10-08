@@ -30,7 +30,8 @@ GLUON_SITE_PACKAGES := \
 	gluon-config-mode-geo-location-osm \
 	gluon-authorized-keys \
         eulenfunk-migrate-updatebranch \
-        eulenfunk-ath9k-blackout-workaround 
+        eulenfunk-ath9kblackout
+
 # ffffm 
 # ev. kann man ffffm-additional-wifi-json-info teilweise durch standard gluon respondd-module-airtime ersetzen
 GLUON_SITE_PACKAGES += \
