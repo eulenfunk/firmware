@@ -22,7 +22,7 @@ GLUON_FEATURES := \
 GLUON_SITE_PACKAGES := \
         respondd-module-airtime \
  	gluon-weeklyreboot \
-	eulefunk-hotfix \
+	eulenfunk-hotfix \
 	gluon-txpowerfix \
 	gluon-banner \
 	gluon-linkcheck \
