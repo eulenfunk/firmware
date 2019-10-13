@@ -19,16 +19,15 @@ GLUON_FEATURES := \
 # eulenfunk:
 GLUON_SITE_PACKAGES := \
         respondd-module-airtime \
-	gluon-weeklyreboot \
-	gluon-hotfix \
-	gluon-quickfix \
-	gluon-txpowerfix \
-	gluon-banner \
-	gluon-linkcheck \
-	gluon-config-mode-geo-location-osm \
-	gluon-authorized-keys \
-
-	
+        gluon-weeklyreboot \
+        eulenfunk-hotfix \
+        gluon-txpowerfix \
+        gluon-banner \
+        gluon-linkcheck \
+        gluon-config-mode-geo-location-osm \
+        gluon-authorized-keys \
+        eulenfunk-migrate-updatebranch \
+        eulenfunk-ath9kblackout
 
 # PROBLEM:
 # ev. macht dieses paket:
@@ -49,8 +48,6 @@ GLUON_SITE_PACKAGES += \
 # ffki:
 GLUON_SITE_PACKAGES += \
 	gluon-config-mode-ppa \
-	
-
 
 # ffnord:
 GLUON_SITE_PACKAGES += \
@@ -62,7 +59,10 @@ GLUON_SITE_PACKAGES += \
 	iptables \
 	iwinfo \
 	socat \
-	kmod-sched
+        kmod-sched \
+        libc \
+        libpthread \
+        librt
 
 DEFAULT_GLUON_RELEASE := SBRANCH
 

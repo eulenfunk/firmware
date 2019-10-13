@@ -14,23 +14,21 @@ GLUON_FEATURES := \
 	ebtables-filter-ra-dhcp \
 	ebtables-source-filter \
         mesh-vpn-tunneldigger \
-        tunneldigger-watchdog \
-	radvd \
-	status-page 
+	status-page\
 
 # eulenfunk:
 GLUON_SITE_PACKAGES := \
         respondd-module-airtime \
- 	gluon-weeklyreboot \
-	gluon-hotfix \
-	gluon-quickfix \
-	gluon-txpowerfix \
-	gluon-banner \
-	gluon-linkcheck \
-	gluon-config-mode-geo-location-osm \
-	gluon-authorized-keys \
-	eulenfunk-migrate-updatebranch 
-
+        gluon-weeklyreboot \
+        eulenfunk-hotfix \
+        gluon-txpowerfix \
+        gluon-banner \
+        gluon-linkcheck \
+        gluon-config-mode-geo-location-osm \
+        gluon-authorized-keys \
+        eulenfunk-migrate-updatebranch \
+        eulenfunk-ath9kblackout
+	
 # ffffm 
 # ev. kann man ffffm-additional-wifi-json-info teilweise durch standard gluon respondd-module-airtime ersetzen
 GLUON_SITE_PACKAGES += \
@@ -39,7 +37,7 @@ GLUON_SITE_PACKAGES += \
 
 # ffki:
 GLUON_SITE_PACKAGES += \
-	gluon-config-mode-ppa 
+	gluon-config-mode-ppa \
 
 # ffnord:
 GLUON_SITE_PACKAGES += \
@@ -51,7 +49,10 @@ GLUON_SITE_PACKAGES += \
 	iptables \
 	iwinfo \
 	socat \
-        kmod-sched
+        kmod-sched \
+        libc \
+        libpthread \
+        librt
 
 ifeq ($(GLUON_TARGET),ar71xx-tiny)
 GLUON_SITE_PACKAGES += zram-swap
@@ -63,7 +64,7 @@ endif
 
 DEFAULT_GLUON_RELEASE := SBRANCH
 
-# overriding the release number from the command line
+# Allow overriding the release number from the command line
 GLUON_RELEASE ?= $(DEFAULT_GLUON_RELEASE)
 
 GLUON_PRIORITY ?= 0
@@ -71,3 +72,4 @@ GLUON_LANGS ?= de en
 GLUON_REGION ?= eu
 GLUON_ATH10K_MESH ?= 11s
 GLUON_WLAN_MESH ?= 11s
+GLUON_DEPRECATED ?= full
