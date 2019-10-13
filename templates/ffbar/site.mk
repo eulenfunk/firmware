@@ -16,29 +16,20 @@ GLUON_FEATURES := \
         mesh-vpn-tunneldigger \
         tunneldigger-watchdog \
 	radvd \
-	status-page\
+	status-page 
 
 # eulenfunk:
 GLUON_SITE_PACKAGES := \
         respondd-module-airtime \
  	gluon-weeklyreboot \
-	gluon-hotfix \
-	gluon-quickfix \
+	eulenfunk-hotfix \
 	gluon-txpowerfix \
 	gluon-banner \
 	gluon-linkcheck \
 	gluon-config-mode-geo-location-osm \
 	gluon-authorized-keys \
-
-# PROBLEM:
-# ev. macht dieses paket:
-# - ffho-ath9k-blackout-workaround
-# das selbe wie diese beiden zusammen:
-# - gluon-hotfix 
-# - gluon-quickfix
-# ffho not working, see https://github.com/FreifunkHochstift/ffho-packages/pull/8
-#GLUON_SITE_PACKAGES += \
-#	ffho-ath9k-blackout-workaround
+        eulenfunk-migrate-updatebranch \
+        eulenfunk-ath9kblackout
 
 # ffffm 
 # ev. kann man ffffm-additional-wifi-json-info teilweise durch standard gluon respondd-module-airtime ersetzen
@@ -48,7 +39,7 @@ GLUON_SITE_PACKAGES += \
 
 # ffki:
 GLUON_SITE_PACKAGES += \
-	gluon-config-mode-ppa \
+	gluon-config-mode-ppa 
 
 # ffnord:
 GLUON_SITE_PACKAGES += \
@@ -60,7 +51,10 @@ GLUON_SITE_PACKAGES += \
 	iptables \
 	iwinfo \
 	socat \
-        kmod-sched
+        kmod-sched \
+        libc \
+	libpthread \
+	librt
 
 ifeq ($(GLUON_TARGET),ar71xx-tiny)
 GLUON_SITE_PACKAGES += zram-swap

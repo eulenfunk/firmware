@@ -30,7 +30,6 @@ GLUON_SITE_PACKAGES := \
         eulenfunk-migrate-updatebranch \
         eulenfunk-ath9kblackout
 
-
 # ffffm 
 # ev. kann man ffffm-additional-wifi-json-info teilweise durch standard gluon respondd-module-airtime ersetzen
 GLUON_SITE_PACKAGES += \
@@ -41,8 +40,6 @@ GLUON_SITE_PACKAGES += \
 GLUON_SITE_PACKAGES += \
 	gluon-config-mode-ppa \
 	
-
-
 # ffnord:
 GLUON_SITE_PACKAGES += \
 	gluon-ssid-changer 
