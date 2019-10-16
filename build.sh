@@ -274,8 +274,8 @@ build_all_images ()
 
   if (( ${#TARGETS[@]} == 0 )); then
 #    TARGETS+=( ramips-rt305x ) # excluded, bugs build fails 
-#    TARGETS+=( ar71xx-generic )
-#    TARGETS+=( ar71xx-tiny )
+    TARGETS+=( ar71xx-generic )
+    TARGETS+=( ar71xx-tiny )
 #    TARGETS+=( ar71xx-nand )
 #    TARGETS+=( brcm2708-bcm2708 )
 #    TARGETS+=( brcm2708-bcm2709 )
