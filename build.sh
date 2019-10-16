@@ -88,15 +88,20 @@ get_site_log_filename ()
 
 SBRANCH="$(date +%Y%m%d%H%M)"
 # ffdus-hack: firmware-id ohne minute, dafür mit branch-namen
-if [ "$(head -1  $1|cut -d" " -f3)" == "dus" ] || \
-   [ "$(head -1  $1|cut -d" " -f3)" == "ffgmb" ] || \
-   [ "$(head -1  $1|cut -d" " -f3)" == "ffmrh" ] || \
-   [ "$(head -1  $1|cut -d" " -f3)" == "ffwip" ] || \
-   [ "$(head -1  $1|cut -d" " -f3)" == "ffbar" ] || \
-   [ "$(head -1  $1|cut -d" " -f3)" == "ffmz" ] || \
-   [ "$(head -1  $1|cut -d" " -f3)" == "sisi" ] || \
-   [ "$(head -1  $1|cut -d" " -f3)" == "sihb" ] || \
-   [ "$(head -1  $1|cut -d" " -f3)" == "sifb" ] ; then
+sitename=$(head -1  $1|cut -d" " -f3)
+if [ "$sitename" == "dus" ] || \
+   [ "$sitename" == "duskey" ] || \
+   [ "$sitename" == "dusl2tp" ] || \
+   [ "$sitename" == "dusl2tpkey" ] || \
+   [ "$sitename" == "ffgmb" ] || \
+   [ "$sitename" == "ffmrh" ] || \
+   [ "$sitename" == "ffwip" ] || \
+   [ "$sitename" == "ffbar" ] || \
+   [ "$sitename" == "ffmz" ] || \
+   [ "$sitename" == "ffmzkey" ] || \
+   [ "$sitename" == "sisi" ] || \
+   [ "$sitename" == "sihb" ] || \
+   [ "$sitename" == "sifb" ] ; then
   SBRANCH="$(date +%Y%m%d%H)-$(head -1  $1|cut -c1-3)"  
  fi
 
@@ -274,24 +279,24 @@ build_all_images ()
 
   if (( ${#TARGETS[@]} == 0 )); then
 #    TARGETS+=( ramips-rt305x ) # excluded, bugs build fails 
-#    TARGETS+=( ar71xx-generic )
-#    TARGETS+=( ar71xx-tiny )
-#    TARGETS+=( ar71xx-nand )
-#    TARGETS+=( brcm2708-bcm2708 )
-#    TARGETS+=( brcm2708-bcm2709 )
-#    TARGETS+=( mpc85xx-generic )
-#    TARGETS+=( ramips-mt7621 )
-#    TARGETS+=( sunxi-cortexa7 )
-#    TARGETS+=( x86-generic )
-#    TARGETS+=( x86-geode )
+    TARGETS+=( ar71xx-generic )
+    TARGETS+=( ar71xx-tiny )
+    TARGETS+=( ar71xx-nand )
+    TARGETS+=( brcm2708-bcm2708 )
+    TARGETS+=( brcm2708-bcm2709 )
+    TARGETS+=( mpc85xx-generic )
+    TARGETS+=( ramips-mt7621 )
+    TARGETS+=( sunxi-cortexa7 )
+    TARGETS+=( x86-generic )
+    TARGETS+=( x86-geode )
     TARGETS+=( x86-64 )
-#    TARGETS+=( ipq40xx )
-#    TARGETS+=( ramips-mt7620 )
-#    TARGETS+=( ramips-mt76x8 )
-#    TARGETS+=( ar71xx-mikrotik )
-#    TARGETS+=( brcm2708-bcm2710 )
-#    TARGETS+=( ipq806x )
-#    TARGETS+=( mvebu-cortexa9 )
+    TARGETS+=( ipq40xx )
+    TARGETS+=( ramips-mt7620 )
+    TARGETS+=( ramips-mt76x8 )
+    TARGETS+=( ar71xx-mikrotik )
+    TARGETS+=( brcm2708-bcm2710 )
+    TARGETS+=( ipq806x )
+    TARGETS+=( mvebu-cortexa9 )
   fi
 
   pushd "$GLUON_DIR" >/dev/null
