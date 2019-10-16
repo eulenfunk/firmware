@@ -5,3 +5,5 @@
 #cp ../patches/sysupgrade ./openwrt/package/base-files/files/sbin/sysupgrade
 #chmod +x ./openwrt/package/base-files/files/sbin/sysupgrade
 
+cd ../gluon ; ../patches/fix-respondd-rsk.sh  # change respondd listener address to gluon 2016.x value
+
