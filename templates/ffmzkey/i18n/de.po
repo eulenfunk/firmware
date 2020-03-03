@@ -47,8 +47,7 @@ msgstr ""
 "mehr erreichbar! Das soll so sein!)</p>"
 "<p>Viel Spaß mit deinem Knoten und der Erkundung von Freifunk!</p>"
 "<p></p><p>P.S. Wenn alles richtig funktioniert, dann sollte der Router unter "
-"dem Namen <em><%= pcdata(hostname) %></em> auf <a
-href=\"https://map-meinerzhagen.freifunk-mk.de/\" target=\"_blank\">der Karte</a> auftauchen.</p>"
+"dem Namen <em><%= pcdata(hostname) %></em> auf <a href=\"https://map-meinerzhagen.freifunk-mk.de/\" target=\"_blank\">der Karte</a> auftauchen.</p>"
 
 msgid "gluon-config-mode:altitude-label"
 msgstr "Höhe (3m pro Stock)"
