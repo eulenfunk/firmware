@@ -14,32 +14,20 @@ GLUON_FEATURES := \
 	ebtables-filter-ra-dhcp \
 	ebtables-source-filter \
 	mesh-vpn-fastd \
-	radvd \
 	status-page\
 
 # eulenfunk:
 GLUON_SITE_PACKAGES := \
         respondd-module-airtime \
-	gluon-weeklyreboot \
-	gluon-hotfix \
-	gluon-quickfix \
-	gluon-txpowerfix \
-	gluon-banner \
-	gluon-linkcheck \
-	gluon-config-mode-geo-location-osm \
-	gluon-authorized-keys \
-
-	
-
-# PROBLEM:
-# ev. macht dieses paket:
-# - ffho-ath9k-blackout-workaround
-# das selbe wie diese beiden zusammen:
-# - gluon-hotfix 
-# - gluon-quickfix
-# ffho not working, see https://github.com/FreifunkHochstift/ffho-packages/pull/8
-#GLUON_SITE_PACKAGES += \
-#	ffho-ath9k-blackout-workaround
+        gluon-weeklyreboot \
+        eulenfunk-hotfix \
+        gluon-txpowerfix \
+        gluon-banner \
+        gluon-linkcheck \
+        gluon-config-mode-geo-location-osm \
+        gluon-authorized-keys \
+        eulenfunk-migrate-updatebranch \
+        eulenfunk-ath9kblackout
 
 # ffffm 
 # ev. kann man ffffm-additional-wifi-json-info teilweise durch standard gluon respondd-module-airtime ersetzen
@@ -50,8 +38,6 @@ GLUON_SITE_PACKAGES += \
 # ffki:
 GLUON_SITE_PACKAGES += \
 	gluon-config-mode-ppa \
-	
-
 
 # ffnord:
 GLUON_SITE_PACKAGES += \
@@ -62,7 +48,11 @@ GLUON_SITE_PACKAGES += \
 	haveged \
 	iptables \
 	iwinfo \
-	socat
+	socat \
+        kmod-sched \
+        libc \
+        libpthread \
+        librt
 
 DEFAULT_GLUON_RELEASE := SBRANCH
 
@@ -80,5 +70,6 @@ GLUON_RELEASE ?= $(DEFAULT_GLUON_RELEASE)
 GLUON_PRIORITY ?= 0
 GLUON_LANGS ?= de en 
 GLUON_REGION ?= eu
-GLUON_ATH10K_MESH ?= ibss
-GLUON_WLAN_MESH ?= ibss
+GLUON_ATH10K_MESH ?= 11s
+GLUON_WLAN_MESH ?= 11s
+GLUON_DEPRECATED ?= full
