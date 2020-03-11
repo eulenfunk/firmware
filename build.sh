@@ -168,7 +168,8 @@ build_images_for_site ()
 
   append_quoted_arg  ARGS  GLUON_SITEDIR   "$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE"
   append_quoted_arg  ARGS  GLUON_IMAGEDIR  "$SANDBOX_DIR/images/$TEMPLATE_NAME/$SITE_CODE"
-  append_quoted_arg  ARGS  GLUON_MODULEDIR "$SANDBOX_DIR/modules"
+  append_quoted_arg  ARGS  GLUON_MODULEDIR "$SANDBOX_DIR/gluon/output/modules"
+  append_quoted_arg  ARGS  GLUON_PACKAGEDIR "$SANDBOX_DIR/gluon/output/packages"
   append_quoted_arg  ARGS  GLUON_SITE_VERSION $(date +%Y%m%d)
  # For the Gluon build system, BROKEN=1 means "use the experimental/unstable branch".
   append_quoted_arg  ARGS  BROKEN "1"
@@ -278,7 +279,8 @@ build_all_images ()
   local -a TARGETS=("$@")
 
   if (( ${#TARGETS[@]} == 0 )); then
-#    TARGETS+=( ramips-rt305x ) # excluded, bugs build fails 
+    TARGETS+=( ramips-rt305x )  #fails if inital run is done with j=1
+    TARGETS+=( mvebu-cortexa9 ) #fails on 2019.1.1 if ramips-rt305x is not built in the same run
     TARGETS+=( ar71xx-generic )
     TARGETS+=( ar71xx-tiny )
     TARGETS+=( ar71xx-nand )
@@ -296,7 +298,6 @@ build_all_images ()
     TARGETS+=( ar71xx-mikrotik )
     TARGETS+=( brcm2708-bcm2710 )
     TARGETS+=( ipq806x )
-    TARGETS+=( mvebu-cortexa9 )
   fi
 
   pushd "$GLUON_DIR" >/dev/null
@@ -341,24 +342,40 @@ build_all_images ()
 
   popd >/dev/null
 
+  # rename output to images with timestamp
+  mv "./images" "./images-$DATE_SUFFIX"
+
   # I do not think that we build any modules yet.
-  if [ -d "modules" ]; then
-    ARE_THERE_MODULES=true
+#  echo check for modules
+#  if [ -d "./gluon/output/modules" ]; then
+#    ARE_THERE_MODULES=true
+#  else
+#    ARE_THERE_MODULES=false
+#  fi
+#  if $ARE_THERE_MODULES; then
+#    echo moving modules-dir $SANDBOX_DIR/gluon/output/modules
+#    mv "$SANDBOX_DIR/gluon/output/modules" "$SANDBOX_DIR/images-$DATE_SUFFIX/."
+#   fi
+  
+  echo check for packages wich are actual modules
+  if [ -d "./gluon/output/packages" ]; then
+    ARE_THERE_PACKAGES=true
   else
-    ARE_THERE_MODULES=false
+    ARE_THERE_PACKAGES=false
   fi
-
-  mv "images"  "images-$DATE_SUFFIX"
-
-  if $ARE_THERE_MODULES; then
-    mv "modules" "modules-$DATE_SUFFIX"
-  fi
+  if $ARE_THERE_PACKAGES; then
+    echo moving packages-dir $SANDBOX_DIR/gluon/output/packages
+    mv "$SANDBOX_DIR/gluon/output/packages" "$SANDBOX_DIR/images-$DATE_SUFFIX/."
+   fi
 
   echo "Finished building images:"
   echo "- Images  dir: images-$DATE_SUFFIX"
   if $ARE_THERE_MODULES; then
-    echo "- Modules dir: modules-$DATE_SUFFIX"
-  fi
+    echo "- Modules dir: modules-$DATE_SUFFIX/modules"
+   fi
+  if $ARE_THERE_PACKAGES; then
+    echo "- Packages dir: modules-$DATE_SUFFIX/packages"
+   fi
 }
 
 
