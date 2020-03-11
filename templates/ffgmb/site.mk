@@ -13,8 +13,8 @@ GLUON_FEATURES := \
 	ebtables-filter-multicast \
 	ebtables-filter-ra-dhcp \
 	ebtables-source-filter \
-	mesh-vpn-fastd \
-	status-page\
+        mesh-vpn-tunneldigger \
+ 	status-page\
 
 # eulenfunk:
 GLUON_SITE_PACKAGES := \
