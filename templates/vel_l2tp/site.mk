@@ -25,7 +25,6 @@ GLUON_SITE_PACKAGES := \
         gluon-banner \
         gluon-linkcheck \
         gluon-config-mode-geo-location-osm \
-        gluon-authorized-keys \
         eulenfunk-migrate-updatebranch \
         eulenfunk-ath9kblackout
 
