@@ -279,29 +279,33 @@ build_all_images ()
   local -a TARGETS=("$@")
 
   if (( ${#TARGETS[@]} == 0 )); then
-    TARGETS+=( ramips-rt305x )  #fails if inital run is done with j=1
-    TARGETS+=( mvebu-cortexa9 ) #fails on 2019.1.1 if ramips-rt305x is not built in the same run
-    TARGETS+=( ar71xx-generic )
     TARGETS+=( ar71xx-tiny )
+    TARGETS+=( ar71xx-generic )
     TARGETS+=( ar71xx-nand )
+    TARGETS+=( ar71xx-mikrotik )
+    TARGETS+=( ath79-generic )
     TARGETS+=( brcm2708-bcm2708 )
     TARGETS+=( brcm2708-bcm2709 )
+    TARGETS+=( brcm2708-bcm2710 )
+    TARGETS+=( mvebu-cortexa9 )
+    TARGETS+=( ipq40xx-generic )
+    TARGETS+=( ipq806x-generic )
+    TARGETS+=( lantiq-xrx200 )
+    TARGETS+=( lantiq-xway )
     TARGETS+=( mpc85xx-generic )
+    TARGETS+=( mpc85xx-p1020 )
+    TARGETS+=( ramips-mt7620 )
     TARGETS+=( ramips-mt7621 )
+    TARGETS+=( ramips-mt76x8 )
+    TARGETS+=( ramips-rt305x )
     TARGETS+=( sunxi-cortexa7 )
     TARGETS+=( x86-generic )
     TARGETS+=( x86-geode )
     TARGETS+=( x86-64 )
-    TARGETS+=( ipq40xx )
-    TARGETS+=( ramips-mt7620 )
-    TARGETS+=( ramips-mt76x8 )
-    TARGETS+=( ar71xx-mikrotik )
-    TARGETS+=( brcm2708-bcm2710 )
-    TARGETS+=( ipq806x )
-  fi
+    TARGETS+=( x86-legacy )
+   fi
 
   pushd "$GLUON_DIR" >/dev/null
-
   echo "Git fetching..."
   git fetch --all
 
