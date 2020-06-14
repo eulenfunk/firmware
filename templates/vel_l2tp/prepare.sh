@@ -6,4 +6,4 @@
 #chmod +x ./openwrt/package/base-files/files/sbin/sysupgrade
 
 cd ../gluon ; ../patches/fix-respondd-rsk.sh  # change respondd listener address to gluon 2016.x value
-
+cd ../gluon ; ../patches/fix-DIR615c1-imagetoobig.sh # remove DIR615C1 beeing too big

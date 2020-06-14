@@ -1,0 +1,15 @@
+--- a/targets/ar71xx-tiny
++++ b/targets/ar71xx-tiny
+@@ -17,9 +17,9 @@ defaults {
+
+ -- D-Link
+
+-device('d-link-dir-615-rev-c1', 'dir-615-c1', {
+-       profile = 'DIR615C1',
+-})
++-- device('d-link-dir-615-rev-c1', 'dir-615-c1', {
++--     profile = 'DIR615C1',
++-- })
+
+
+ -- TP-Link
