@@ -6,7 +6,7 @@ GLUON_FEATURES := \
 	web-advanced \
 	mesh-batman-adv-15 \
 	respondd \
-	autoupdater \
+ 	autoupdater \
 	ebtables \
 	ebtables-limit-arp \
 	radv-filterd \
@@ -14,7 +14,7 @@ GLUON_FEATURES := \
 	ebtables-filter-ra-dhcp \
 	ebtables-source-filter \
         mesh-vpn-tunneldigger \
- 	status-page\
+	status-page\
 
 # eulenfunk:
 GLUON_SITE_PACKAGES := \
@@ -25,7 +25,6 @@ GLUON_SITE_PACKAGES := \
         gluon-banner \
         gluon-linkcheck \
         gluon-config-mode-geo-location-osm \
-        gluon-authorized-keys \
         eulenfunk-migrate-updatebranch \
         eulenfunk-ath9kblackout
 
@@ -54,8 +53,6 @@ GLUON_SITE_PACKAGES += \
         libpthread \
         librt
 
-DEFAULT_GLUON_RELEASE := SBRANCH
-
 ifeq ($(GLUON_TARGET),ar71xx-tiny)
 GLUON_SITE_PACKAGES += zram-swap
 endif
@@ -63,6 +60,8 @@ endif
 ifeq ($(GLUON_TARGET),ar71xx-generic)
 GLUON_SITE_PACKAGES += zram-swap
 endif
+
+DEFAULT_GLUON_RELEASE := SBRANCH
 
 # Allow overriding the release number from the command line
 GLUON_RELEASE ?= $(DEFAULT_GLUON_RELEASE)
