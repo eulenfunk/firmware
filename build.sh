@@ -302,7 +302,7 @@ build_all_images ()
     TARGETS+=( x86-generic )
     TARGETS+=( x86-geode )
     TARGETS+=( x86-64 )
-    TARGETS+=( x86-legacy )
+#    TARGETS+=( x86-legacy )
    fi
 
   pushd "$GLUON_DIR" >/dev/null
