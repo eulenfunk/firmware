@@ -22,6 +22,7 @@ GLUON_SITE_PACKAGES := \
         gluon-weeklyreboot \
         eulenfunk-hotfix \
         gluon-txpowerfix \
+	eulenfunk-ch13to9 \
         gluon-banner \
         gluon-linkcheck \
         gluon-config-mode-geo-location-osm \
