@@ -86,25 +86,8 @@ get_site_log_filename ()
 }
 
 
-SBRANCH="$(date +%Y%m%d%H%M)"
-# ffdus-hack: firmware-id ohne minute, dafür mit branch-namen
-sitename=$(head -1  $1|cut -d" " -f3)
-if [ "$sitename" == "dus" ] || \
-   [ "$sitename" == "duskey" ] || \
-   [ "$sitename" == "dusl2tp" ] || \
-   [ "$sitename" == "dusl2tpkey" ] || \
-   [ "$sitename" == "ffgmb" ] || \
-   [ "$sitename" == "ffmrh" ] || \
-   [ "$sitename" == "ffwip" ] || \
-   [ "$sitename" == "ffbar" ] || \
-   [ "$sitename" == "ffmz" ] || \
-   [ "$sitename" == "ffmzkey" ] || \
-   [ "$sitename" == "sisi" ] || \
-   [ "$sitename" == "sihb" ] || \
-   [ "$sitename" == "sifb" ] ; then
-  SBRANCH="$(date +%Y%m%d%H)-$(head -1  $1|cut -c1-3)"  
- fi
-
+#SBRANCH="$(date +%Y%m%d%H%M)"
+SBRANCH="$(date +%y%m%d%H)$(head -1 $1|cut -c1-3)"  
 generate_site_config ()
 {
   local RELBRANCH="$1"
