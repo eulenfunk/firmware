@@ -11,3 +11,4 @@ prepared
 .DS_Store
 *.log
 .log
+*.lock
