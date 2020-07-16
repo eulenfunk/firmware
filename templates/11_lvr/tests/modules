@@ -1,8 +1,8 @@
-GLUON_SITE_FEEDS="eulenfunk ffffm ffki ffnord"
+GLUON_SITE_FEEDS="eulenfunk ffffm ffki"
 
 PACKAGES_EULENFUNK_REPO=https://github.com/eulenfunk/packages/
 PACKAGES_EULENFUNK_BRANCH=v2020.1.x
-PACKAGES_EULENFUNK_COMMIT=c944e2bb4d093ada24bb5e79f342d0b5c82302e5
+PACKAGES_EULENFUNK_COMMIT=0de86fae15daca84d4897023e0a04410c1ba0ec4
 
 PACKAGES_FFFFM_REPO=https://github.com/freifunk-ffm/packages.git
 PACKAGES_FFFFM_BRANCH=master
@@ -12,7 +12,4 @@ PACKAGES_FFKI_REPO=git://github.com/freifunk-kiel/ffki-packages.git
 PACKAGES_FFKI_COMMIT=a3d524aa862b2cab6fc2be1d9c174e7422ac4331
 PACKAGES_FFKI_BRANCH=2018.1.x
 
-PACKAGES_FFNORD_REPO=https://github.com/eulenfunk/gluon-ssid-changer
-PACKAGES_FFNORD_COMMIT=1893c695906d43dfe77156ff2a2eece60f417213
-PACKAGES_FFNORD_BRANCH=2020.1.x
 
