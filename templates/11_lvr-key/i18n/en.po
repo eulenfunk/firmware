@@ -12,9 +12,9 @@ msgstr ""
 
 msgid "gluon-config-mode:welcome"
 msgstr ""
-"<p>Welcome to the setup wizard for your new LVR-Unterkunfts- Freifunk node. "
+"<p>Welcome to the setup wizard for your new LVR-HPH-Freifunk node. "
 "Please fill in the form according to your preferences and submit. </p>"<
-"<p>Please do use this firmware only, when you run your node in the city of LVR-Unterkunft "
+"<p>Please do use this firmware only, when you run your node onsite LVR HPH premises. "
 "If you’d like to double check your location please visit "
 "<a href=\"https://freifunk.net/wie-mache-ich-mit/community-finden/\" target=\"_blank\">Community finden</a> "
 "and look up your local community to apply the correct firmware. "
