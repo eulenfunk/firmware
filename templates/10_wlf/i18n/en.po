@@ -43,7 +43,7 @@ msgstr ""
 "and this is intentional.</p>"
 "<p>Have fun running your node and enjoy to further discover Freifunk!</p>"
 "<p></p><p>P. S.: If your node is up and running correctly your router will appear "
-"under the name of <em><%= pcdata(hostname) %></em> on our map <a href=\"https://karte.neanderfunk.de/#!v:g\" target=\"_blank\">https://karte.neanderfunk.de</a>.</p>"
+"under the name of <em><%= pcdata(hostname) %></em> in about 20 minutes on our map <a href=\"https://karte.neanderfunk.de/#!v:g\" target=\"_blank\">https://karte.neanderfunk.de</a>.</p>"
 
 msgid "gluon-config-mode:altitude-label"
 msgstr "Height (3m per floor)"
