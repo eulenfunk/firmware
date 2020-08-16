@@ -22,7 +22,6 @@ GLUON_SITE_PACKAGES := \
         gluon-weeklyreboot \
         eulenfunk-hotfix \
         gluon-txpowerfix \
-	eulenfunk-ch13to9 \
         gluon-banner \
         gluon-linkcheck \
         gluon-config-mode-geo-location-osm \
@@ -62,6 +61,50 @@ endif
 ifeq ($(GLUON_TARGET),ar71xx-generic)
 GLUON_SITE_PACKAGES += zram-swap
 endif
+
+USB_BASIC := \
+	kmod-usb-core \
+	kmod-usb2 \
+	kmod-usb-hid
+
+USB_NIC := \
+	kmod-usb-net \
+	kmod-usb-net-asix \
+	kmod-usb-net-rtl8150 \
+	kmod-usb-net-rtl8152 \
+	kmod-usb-net-dm9601-ether
+
+USB_WIFI := \
+	kmod-rtl8192cu
+
+ifeq ($(GLUON_TARGET),x86-generic)
+	GLUON_SITE_PACKAGES += \
+		$(USB_BASIC) \
+		kmod-usb-ohci-pci \
+		$(USB_NIC)
+endif
+
+ifeq ($(GLUON_TARGET),x86-64)
+	GLUON_SITE_PACKAGES += \
+		$(USB_BASIC) \
+		$(USB_NIC) \
+		kmod-igb #APU2
+endif
+
+ifeq ($(GLUON_TARGET),brcm2708-bcm2708)
+	GLUON_SITE_PACKAGES += \
+		$(USB_BASIC) \
+		$(USB_NIC) \
+		$(USB_WIFI)
+endif
+
+ifeq ($(GLUON_TARGET),brcm2708-bcm2709)
+	GLUON_SITE_PACKAGES += \
+		$(USB_BASIC) \
+		$(USB_NIC) \
+		$(USB_WIFI)
+endif
+
 
 DEFAULT_GLUON_RELEASE := SBRANCH
 
