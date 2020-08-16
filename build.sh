@@ -88,6 +88,7 @@ get_site_log_filename ()
 
 #SBRANCH="$(date +%Y%m%d%H%M)"
 SBRANCH="$(date +%y%m%d%H)$(head -1 $1|cut -c1-3)"  
+#SBRANCH="20073117sta"
 generate_site_config ()
 {
   local RELBRANCH="$1"
@@ -211,7 +212,7 @@ build_images_for_site ()
   fi
 
   local MAKE_J_VAL
-  MAKE_J_VAL="$(( $(getconf _NPROCESSORS_ONLN) + 1 ))"
+  MAKE_J_VAL="$(( $(getconf _NPROCESSORS_ONLN) * 2 ))"
 # only 1 cpu core to use
 #  MAKE_J_VAL=1
   for (( target_index=0; target_index < ${#TARGETS[@]}; target_index += 1 )); do
