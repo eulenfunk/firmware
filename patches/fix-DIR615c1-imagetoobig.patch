@@ -1,6 +1,6 @@
 --- a/targets/ar71xx-tiny
 +++ b/targets/ar71xx-tiny
-@@ -17,9 +17,9 @@ defaults {
+@@ -18,9 +18,9 @@ defaults {
 
  -- D-Link
 
