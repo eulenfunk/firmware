@@ -45,7 +45,6 @@ GLUON_SITE_PACKAGES += \
 
 # openwrt:
 GLUON_SITE_PACKAGES += \
-	haveged \
 	iptables \
 	iwinfo \
 	socat \

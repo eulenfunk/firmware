@@ -45,7 +45,6 @@ GLUON_SITE_PACKAGES += \
 
 # openwrt:
 GLUON_SITE_PACKAGES += \
-	haveged \
 	iptables \
 	iwinfo \
 	socat \
@@ -117,3 +116,4 @@ GLUON_REGION ?= eu
 GLUON_ATH10K_MESH ?= 11s
 GLUON_WLAN_MESH ?= 11s
 GLUON_DEPRECATED ?= full
+GLUON_MULTIDOMAIN=0
