@@ -546,6 +546,721 @@ index 00000000..8f35f478
 +--- 
 +-2.23.0
 +-
+diff --git a/scripts/check_site.lua b/scripts/check_site.lua
+index 4e78437a..dd33bf52 100644
+--- a/scripts/check_site.lua
++++ b/scripts/check_site.lua
+@@ -289,6 +289,19 @@ function M.need_number(path, required)
+ 	return need_type(path, 'number', required, 'be a number')
+ end
+ 
++function M.need_number_range(path, min, max, required)
++	local val = need_type(path, 'number', required)
++	if not val then
++		return nil
++	end
++
++	if val < min or val > max then
++		var_error(path, val, "be in range [" .. min .. ", " .. max .. "]")
++	end
++
++	return val
++end
++
+ function M.need_boolean(path, required)
+ 	return need_type(path, 'boolean', required, 'be a boolean')
+ end
+diff --git a/scripts/copy_output.lua b/scripts/copy_output.lua
+index e0d4c564..9f14fba5 100755
+--- a/scripts/copy_output.lua
++++ b/scripts/copy_output.lua
+@@ -1,12 +1,13 @@
+ local lib = dofile('scripts/target_lib.lua')
+ local env = lib.env
+ 
++local target = env.GLUON_TARGET
++
++assert(target)
+ assert(env.GLUON_IMAGEDIR)
+ assert(env.GLUON_PACKAGEDIR)
+ 
+ 
+-local target = arg[1]
+-
+ local openwrt_target
+ local subtarget = env.SUBTARGET
+ if subtarget ~= '' then
+@@ -26,33 +27,60 @@ end
+ mkdir(env.GLUON_IMAGEDIR..'/factory')
+ mkdir(env.GLUON_IMAGEDIR..'/sysupgrade')
+ mkdir(env.GLUON_IMAGEDIR..'/other')
++mkdir(env.GLUON_DEBUGDIR)
+ 
+ 
+ lib.include(target)
+ 
+ 
++local function image_source(image)
++	return string.format(
++		'openwrt/bin/targets/%s/openwrt-%s-%s%s%s',
++		bindir, openwrt_target, image.name, image.in_suffix, image.extension)
++end
++
+ local function clean(image, name)
+ 	local dir, file = image:dest_name(name, '\0', '\0')
+ 	lib.exec {'rm', '-f', dir..'/'..file}
+ end
+ 
+-for _, image in ipairs(lib.images) do
+-	clean(image, image.image)
++for _, images in pairs(lib.images) do
++	for _, image in ipairs(images) do
++		clean(image, image.image)
+ 
+-	local destdir, destname = image:dest_name(image.image)
+-	local source = string.format('openwrt/bin/targets/%s/openwrt-%s-%s%s%s',
+-		bindir, openwrt_target, image.name, image.in_suffix, image.extension)
++		local destdir, destname = image:dest_name(image.image)
++		local source = image_source(image)
++
++		lib.exec {'cp', source, destdir..'/'..destname}
+ 
+-	lib.exec {'cp', source, destdir..'/'..destname}
++		for _, alias in ipairs(image.aliases) do
++			clean(image, alias)
+ 
+-	for _, alias in ipairs(image.aliases) do
+-		clean(image, alias)
++			local _, aliasname = image:dest_name(alias)
++			lib.exec {'ln', '-s', destname, destdir..'/'..aliasname}
++		end
++	end
+ 
+-		local _, aliasname = image:dest_name(alias)
+-		lib.exec {'ln', '-s', destname, destdir..'/'..aliasname}
++	for _, image in ipairs(images) do
++		local source = image_source(image)
++		lib.exec {'rm', '-f', source}
+ 	end
+ end
+ 
++-- copy kernel image with debug symbols
++local kernel_debug_glob = string.format('%s/gluon-\0-%s-kernel-debug.tar.zst',
++        env.GLUON_DEBUGDIR,
++        target)
++lib.exec {'rm', '-f', kernel_debug_glob}
++local kernel_debug_source = string.format('openwrt/bin/targets/%s/kernel-debug.tar.zst',
++        bindir)
++local kernel_debug_dest = string.format('%s/gluon-%s-%s-%s-kernel-debug.tar.zst',
++        env.GLUON_DEBUGDIR,
++        lib.site_code,
++        env.GLUON_RELEASE,
++        target)
++lib.exec {'cp', kernel_debug_source, kernel_debug_dest}
++
+ 
+ -- Copy opkg repo
+ if lib.opkg and (env.GLUON_DEVICES or '') == '' then
+diff --git a/scripts/default_feeds.sh b/scripts/default_feeds.sh
+index c1871730..0806539a 100644
+--- a/scripts/default_feeds.sh
++++ b/scripts/default_feeds.sh
+@@ -1 +1,2 @@
+-DEFAULT_FEEDS="$(awk '{print $2}' openwrt/feeds.conf.default)"
++# list feeds which don't start with #
++DEFAULT_FEEDS="$(awk '!/^#/ {print $2}' openwrt/feeds.conf.default)"
+diff --git a/scripts/feeds.sh b/scripts/feeds.sh
+index 7d7d059a..d4b7d6d1 100755
+--- a/scripts/feeds.sh
++++ b/scripts/feeds.sh
+@@ -11,7 +11,7 @@ rm -rf openwrt/feeds
+ rm -rf openwrt/package/feeds
+ 
+ (
+-	echo 'src-link gluon_base ../../package'
++	echo "$GLUON_BASE_FEEDS"
+ 	for feed in $FEEDS; do
+ 		echo "src-link $feed ../../packages/$feed"
+ 	done
+diff --git a/scripts/generate_manifest.lua b/scripts/generate_manifest.lua
+index 73125044..e289412e 100755
+--- a/scripts/generate_manifest.lua
++++ b/scripts/generate_manifest.lua
+@@ -48,8 +48,10 @@ local function generate(image)
+ 	end
+ end
+ 
+-for _, image in ipairs(lib.images) do
+-	if image.subdir == 'sysupgrade' then
+-		generate(image)
++for _, images in pairs(lib.images) do
++	for _, image in ipairs(images) do
++		if image.subdir == 'sysupgrade' then
++			generate(image)
++		end
+ 	end
+ end
+diff --git a/scripts/target_config.lua b/scripts/target_config.lua
+index 452d4f19..28ea4153 100755
+--- a/scripts/target_config.lua
++++ b/scripts/target_config.lua
+@@ -1,24 +1,5 @@
+-local funcs = {}
++local lib = dofile('scripts/target_config_lib.lua')
+ 
+-function funcs.config_message(config, _, ...)
+-	config(...)
+-end
+-
+-function funcs.config_package(config, pkg, value)
+-	config('CONFIG_PACKAGE_%s=%s', pkg, value)
+-end
+-
+-local lib = dofile('scripts/target_config_lib.lua')(funcs)
+-
+-
+-local output = {}
+-
+-for config in pairs(lib.configs) do
+-	table.insert(output, config)
+-end
+-
+--- The sort will make =y entries override =m ones
+-table.sort(output)
+-for _, line in ipairs(output) do
+-	io.stdout:write(line, '\n')
++for _, config in pairs(lib.configs) do
++	io.stdout:write(config:format(), '\n')
+ end
+diff --git a/scripts/target_config_check.lua b/scripts/target_config_check.lua
+index 160c32a3..373a650e 100755
+--- a/scripts/target_config_check.lua
++++ b/scripts/target_config_check.lua
+@@ -1,66 +1,47 @@
+-local ret = 0
++local errors = false
+ 
+-
+-local function fail(...)
+-	if ret == 0 then
+-		ret = 1
++local function fail(msg)
++	if not errors then
++		errors = true
+ 		io.stderr:write('Configuration failed:', '\n')
+ 	end
+ 
+-	io.stderr:write(' * ', string.format(...), '\n')
++	io.stderr:write(' * ', msg, '\n')
+ end
+ 
+-local function match_config(f)
+-	for line in io.lines('openwrt/.config') do
+-		if f(line) then
+-			return true
+-		end
++local function match_config(expected, actual)
++	if expected == actual then
++		return true
+ 	end
+ 
+-	return false
+-end
+-
+-local function check_config(pattern)
+-	return match_config(function(line) return line == pattern end)
+-end
+-
+-local function check_config_prefix(pattern)
+-	return match_config(function(line) return string.sub(line, 1, -2) == pattern end)
+-end
+-
+-
+-local funcs = {}
+-
+-function funcs.config_message(_, message, ...)
+-	local pattern = string.format(...)
+-
+-	if not check_config(pattern) then
+-		fail('%s', message)
++	if expected:gsub('=m$', '=y') == actual then
++		return true
+ 	end
++
++	return false
+ end
+ 
+-function funcs.config_package(_, pkg, value)
+-	local pattern = string.format('CONFIG_PACKAGE_%s=%s', pkg, value)
+-	local res
+-	if value == 'y' then
+-		res = check_config(pattern)
+-	else
+-		res = check_config_prefix(string.sub(pattern, 1, -2))
++local function check_config(config)
++	for line in io.lines('openwrt/.config') do
++		if match_config(config, line) then
++			return true
++		end
+ 	end
+ 
+-	if not res then
+-		fail("unable to enable package '%s'", pkg)
+-	end
++	return false
+ end
+ 
+-local lib = dofile('scripts/target_config_lib.lua')(funcs)
+ 
+-for config, v in pairs(lib.configs) do
+-	if v == 2 then
+-		if not check_config(config) then
+-			fail("unable to set '%s'", config)
++local lib = dofile('scripts/target_config_lib.lua')
++
++for _, config in pairs(lib.configs) do
++	if config.required then
++		if not check_config(config:format()) then
++			fail(config.required)
+ 		end
+ 	end
+ end
+ 
+-os.exit(ret)
++if errors then
++	os.exit(1)
++end
+diff --git a/scripts/target_config_lib.lua b/scripts/target_config_lib.lua
+index 71443db7..346a18a7 100644
+--- a/scripts/target_config_lib.lua
++++ b/scripts/target_config_lib.lua
+@@ -1,82 +1,195 @@
+-return function(funcs)
+-	local lib = dofile('scripts/target_lib.lua')
+-	local env = lib.env
++local lib = dofile('scripts/target_lib.lua')
++local env = lib.env
+ 
+-	assert(env.BOARD)
+-	assert(env.SUBTARGET)
++local target = env.GLUON_TARGET
+ 
+-	local target = arg[1]
+-	local extra_packages = arg[2]
++assert(target)
++assert(env.BOARD)
++assert(env.SUBTARGET)
+ 
+-	local openwrt_config_target
+-	if env.SUBTARGET ~= '' then
+-		openwrt_config_target = env.BOARD .. '_' .. env.SUBTARGET
++local openwrt_config_target
++if env.SUBTARGET ~= '' then
++	openwrt_config_target = env.BOARD .. '_' .. env.SUBTARGET
++else
++	openwrt_config_target = env.BOARD
++end
++
++
++-- Split a string into words
++local function split(s)
++	local ret = {}
++	for w in string.gmatch(s, '%S+') do
++		table.insert(ret, w)
++	end
++	return ret
++end
++
++-- Strip leading '-' character
++local function strip_neg(s)
++	if string.sub(s, 1, 1) == '-' then
++		return string.sub(s, 2)
+ 	else
+-		openwrt_config_target = env.BOARD
++		return s
++	end
++end
++
++-- Add an element to a list, removing duplicate entries and handling negative
++-- elements prefixed with a '-'
++local function append_to_list(list, item, keep_neg)
++	local match = strip_neg(item)
++	local ret = {}
++	for _, el in ipairs(list) do
++		if strip_neg(el) ~= match then
++			table.insert(ret, el)
++		end
+ 	end
++	if keep_neg ~= false or string.sub(item, 1, 1) ~= '-' then
++		table.insert(ret, item)
++	end
++	return ret
++end
++
++local function compact_list(list, keep_neg)
++	local ret = {}
++	for _, el in ipairs(list) do
++		ret  = append_to_list(ret, el, keep_neg)
++	end
++	return ret
++end
+ 
+ 
+-	local function site_packages(image)
+-		return lib.exec_capture_raw(string.format([[
+-	MAKEFLAGS= make print _GLUON_IMAGE_=%s --no-print-directory -s -f - <<'END_MAKE'
++local function site_vars(var)
++	return lib.exec_capture_raw(string.format(
++[[
++MAKEFLAGS= make print _GLUON_SITE_VARS_=%s --no-print-directory -s -f - <<'END_MAKE'
+ include $(GLUON_SITEDIR)/site.mk
+ 
+ print:
+-	echo -n '$(GLUON_$(_GLUON_IMAGE_)_SITE_PACKAGES)'
++	echo -n '$(_GLUON_SITE_VARS_)'
+ END_MAKE
+-		]], lib.escape(image)))
+-	end
++]],
++	lib.escape(var)))
++end
+ 
+-	lib.include('generic')
+-	for pkg in string.gmatch(extra_packages, '%S+') do
+-		lib.packages {pkg}
++local function site_packages(image)
++	return split(site_vars(string.format('$(GLUON_%s_SITE_PACKAGES)', image)))
++end
++
++-- TODO: Rewrite features.sh in Lua
++local function feature_packages(features)
++	-- Ugly hack: Lua doesn't give us the return code of a popened
++	-- command, so we match on a special __ERROR__ marker
++	local pkgs = lib.exec_capture({'scripts/features.sh', features}, '|| echo __ERROR__')
++	assert(string.find(pkgs, '__ERROR__') == nil, 'Error while evaluating features')
++	return pkgs
++end
++
++-- This involves running lots of processes to evaluate site.mk, so we
++-- add a simple cache
++local class_cache = {}
++local function class_packages(class)
++	if class_cache[class] then
++		return class_cache[class]
+ 	end
+-	lib.include(target)
+ 
+-	lib.check_devices()
++	local features = site_vars(string.format('$(GLUON_FEATURES) $(GLUON_FEATURES_%s)', class))
++	features = table.concat(compact_list(split(features), false), ' ')
+ 
++	local pkgs = feature_packages(features)
++	pkgs = pkgs .. ' ' .. site_vars(string.format('$(GLUON_SITE_PACKAGES) $(GLUON_SITE_PACKAGES_%s)', class))
+ 
+-	if not lib.opkg then
+-		lib.config '# CONFIG_SIGNED_PACKAGES is not set'
+-		lib.config 'CONFIG_CLEAN_IPKG=y'
+-		lib.packages {'-opkg'}
+-	end
++	pkgs = compact_list(split(pkgs))
+ 
++	class_cache[class] = pkgs
++	return pkgs
++end
++
++local enabled_packages = {}
++-- Arguments: package name and config value (true: y, nil: m, false: unset)
++-- Ensures precedence of y > m > unset
++local function config_package(pkg, v)
++	if v == false then
++		if not enabled_packages[pkg] then
++			lib.try_config('PACKAGE_' .. pkg, false)
++		end
++		return
++	end
+ 
+-	local default_pkgs = ''
+-	for _, pkg in ipairs(lib.target_packages) do
+-		default_pkgs = default_pkgs .. ' ' .. pkg
++	if v == true or not enabled_packages[pkg] then
++		lib.config('PACKAGE_' .. pkg, v, string.format("unable to enable package '%s'", pkg))
++		enabled_packages[pkg] = true
++	end
++end
+ 
++local function handle_target_pkgs(pkgs)
++	for _, pkg in ipairs(pkgs) do
+ 		if string.sub(pkg, 1, 1) == '-' then
+-			lib.try_config('# CONFIG_PACKAGE_%s is not set', string.sub(pkg, 2))
++			config_package(string.sub(pkg, 2), false)
+ 		else
+-			funcs.config_package(lib.config, pkg, 'y')
++			config_package(pkg, true)
+ 		end
+ 	end
++end
++
++lib.include('generic')
++lib.include(target)
++
++lib.check_devices()
++
++if not lib.opkg then
++	lib.config('SIGNED_PACKAGES', false)
++	lib.config('CLEAN_IPKG', true)
++	lib.config('ALL_NONSHARED', false)
++	lib.packages {'-opkg'}
++end
++
++if #lib.devices > 0 then
++	handle_target_pkgs(lib.target_packages)
+ 
+ 	for _, dev in ipairs(lib.devices) do
+ 		local profile = dev.options.profile or dev.name
+-		local device_pkgs = default_pkgs
+ 
+-		local function handle_pkg(pkg)
+-			if string.sub(pkg, 1, 1) ~= '-' then
+-				funcs.config_package(lib.config, pkg, 'm')
++		local device_pkgs = {}
++		local function handle_pkgs(pkgs)
++			for _, pkg in ipairs(pkgs) do
++				if string.sub(pkg, 1, 1) ~= '-' then
++					config_package(pkg, nil)
++				end
++				device_pkgs = append_to_list(device_pkgs, pkg)
+ 			end
+-			device_pkgs = device_pkgs .. ' ' .. pkg
+ 		end
+ 
+-		for _, pkg in ipairs(dev.options.packages or {}) do
+-			handle_pkg(pkg)
+-		end
+-		for pkg in string.gmatch(site_packages(dev.image), '%S+') do
+-			handle_pkg(pkg)
++		handle_pkgs(lib.target_packages)
++		handle_pkgs(class_packages(dev.options.class))
++		handle_pkgs(dev.options.packages or {})
++		handle_pkgs(site_packages(dev.image))
++
++		local profile_config = string.format('%s_DEVICE_%s', openwrt_config_target, profile)
++		lib.config(
++			'TARGET_DEVICE_' .. profile_config, true,
++			string.format("unable to enable device '%s'", profile)
++		)
++		lib.config(
++			'TARGET_DEVICE_PACKAGES_' .. profile_config,
++			table.concat(device_pkgs, ' ')
++		)
++	end
++else
++	-- x86 fallback: no devices
++	local target_pkgs = {}
++	local function handle_pkgs(pkgs)
++		for _, pkg in ipairs(pkgs) do
++			target_pkgs = append_to_list(target_pkgs, pkg)
+ 		end
+-
+-		funcs.config_message(lib.config, string.format("unable to enable device '%s'", profile),
+-			'CONFIG_TARGET_DEVICE_%s_DEVICE_%s=y', openwrt_config_target, profile)
+-		lib.config('CONFIG_TARGET_DEVICE_PACKAGES_%s_DEVICE_%s="%s"',
+-			openwrt_config_target, profile, device_pkgs)
+ 	end
+ 
+-	return lib
++	-- Just hardcode the class for device-less targets to 'standard'
++	-- - this is x86 only at the moment, and it will have devices
++	-- in OpenWrt 19.07 + 1 as well
++	handle_pkgs(lib.target_packages)
++	handle_pkgs(class_packages('standard'))
++
++	handle_target_pkgs(target_pkgs)
+ end
++
++return lib
+diff --git a/scripts/target_lib.lua b/scripts/target_lib.lua
+index d5133b1e..bb974659 100644
+--- a/scripts/target_lib.lua
++++ b/scripts/target_lib.lua
+@@ -15,11 +15,6 @@ local env = setmetatable({}, {
+ })
+ F.env = env
+ 
+-local envtrue = setmetatable({}, {
+-	__index = function(_, k) return (tonumber(os.getenv(k)) or 0) > 0 end
+-})
+-F.envtrue = envtrue
+-
+ assert(env.GLUON_SITEDIR)
+ assert(env.GLUON_TARGETSDIR)
+ assert(env.GLUON_RELEASE)
+@@ -44,6 +39,7 @@ local default_options = {
+ 	aliases = {},
+ 	manifest_aliases = {},
+ 	packages = {},
++	class = 'standard',
+ 	deprecated = false,
+ 	broken = false,
+ }
+@@ -55,8 +51,12 @@ for dev in string.gmatch(env.GLUON_DEVICES or '', '%S+') do
+ 	unknown_devices[dev] = true
+ end
+ 
++function F.istrue(v)
++	return (tonumber(v) or 0) > 0
++end
++
+ local function want_device(dev, options)
+-	if options.broken and not envtrue.BROKEN then
++	if options.broken and not F.istrue(env.BROKEN) then
+ 		return false
+ 	end
+ 	if options.deprecated and env.GLUON_DEPRECATED == '0' then
+@@ -98,7 +98,10 @@ function F.escape(s)
+ end
+ 
+ local function escape_command(command, raw)
+-	local ret = 'exec'
++	local ret = ''
++	if not raw then
++		ret = 'exec'
++	end
+ 	for _, arg in ipairs(command) do
+ 		ret = ret .. ' ' .. F.escape(arg)
+ 	end
+@@ -142,17 +145,56 @@ local image_mt = {
+ }
+ 
+ local function add_image(image)
+-	table.insert(M.images, setmetatable(image, image_mt))
++	local device = image.image
++	M.images[device] = M.images[device] or {}
++	table.insert(M.images[device], setmetatable(image, image_mt))
+ end
+ 
+-function F.try_config(...)
+-	M.configs[string.format(...)] = 1
++
++local function format_config(k, v)
++	local format
++	if type(v) == 'string' then
++		format = '%s=%q'
++	elseif v == true then
++		format = '%s=y'
++	elseif v == nil then
++		format = '%s=m'
++	elseif v == false then
++		format = '# %s is not set'
++	else
++		format = '%s=%d'
++	end
++	return string.format(format, 'CONFIG_' .. k, v)
+ end
+ 
+-function F.config(...)
+-	M.configs[string.format(...)] = 2
++local config_mt = {
++	__index = {
++		format = function(config)
++			return format_config(config.key, config.value)
++		end,
++	}
++}
++
++local function do_config(k, v, required)
++	M.configs[k] = setmetatable({
++		key = k,
++		value = v,
++		required = required,
++	}, config_mt)
+ end
+ 
++function F.try_config(k, v)
++	do_config(k, v)
++end
++
++function F.config(k, v, message)
++	if not message then
++		message = string.format("unable to set '%s'", format_config(k, v))
++	end
++	do_config(k, v, message)
++end
++
++
+ function F.packages(pkgs)
+ 	for _, pkg in ipairs(pkgs) do
+ 		table.insert(M.target_packages, pkg)
+@@ -160,6 +202,14 @@ function F.packages(pkgs)
+ end
+ M.packages = F.packages
+ 
++local function as_table(v)
++	if type(v) == 'table' then
++		return v
++	else
++		return {v}
++	end
++end
++
+ function F.device(image, name, options)
+ 	options = merge(default_options, options)
+ 
+@@ -191,16 +241,17 @@ function F.device(image, name, options)
+ 	end
+ 
+ 	if options.factory then
+-		add_image {
+-			image = image,
+-			name = name,
+-			subdir = 'factory',
+-			in_suffix = options.factory,
+-			out_suffix = '',
+-			extension = options.factory_ext,
+-			aliases = options.aliases,
+-			manifest_aliases = options.manifest_aliases,
+-		}
++		for _, ext in ipairs(as_table(options.factory_ext)) do
++			add_image {
++				image = image,
++				name = name,
++				subdir = 'factory',
++				in_suffix = options.factory,
++				out_suffix = '',
++				extension = ext,
++				aliases = options.aliases,
++			}
++		end
+ 	end
+ 	for _, extra_image in ipairs(options.extra_images) do
+ 		add_image {
+@@ -211,7 +262,6 @@ function F.device(image, name, options)
+ 			out_suffix = extra_image[2],
+ 			extension = extra_image[3],
+ 			aliases = options.aliases,
+-			manifest_aliases = options.manifest_aliases,
+ 		}
+ 	end
+ end
+@@ -235,7 +285,6 @@ function F.factory_image(image, name, ext, options)
+ 		out_suffix = '',
+ 		extension = ext,
+ 		aliases = options.aliases,
+-		manifest_aliases = options.manifest_aliases,
+ 	}
+ end
+ 
+diff --git a/scripts/update-patches.sh b/scripts/update-patches.sh
+index 94f103fa..939c1640 100755
+--- a/scripts/update-patches.sh
++++ b/scripts/update-patches.sh
+@@ -21,6 +21,6 @@ for module in $GLUON_MODULES; do
+ 	for commit in $(git rev-list --reverse --no-merges base..patched); do
+ 		(( ++n ))
+ 		mkdir -p "${GLUON_PATCHESDIR}/$module"
+-		git -c core.abbrev=40 show --pretty=format:'From: %an <%ae>%nDate: %aD%nSubject: %B' --no-renames --binary "$commit" > "${GLUON_PATCHESDIR}/$module/$(printf '%04u' $n)-$(git show -s --pretty=format:%f "$commit").patch"
++		git -c core.abbrev=40 show --pretty=format:'From: %an <%ae>%nDate: %aD%nSubject: %B' --no-renames --binary "$commit" > "${GLUON_PATCHESDIR}/$module/$(printf '%04u' "$n")-$(git show -s --pretty=format:%f "$commit").patch"
+ 	done
+ done
 diff --git a/targets/ar71xx-generic b/targets/ar71xx-generic
 index d0920d73..363ad019 100644
 --- a/targets/ar71xx-generic
@@ -775,121 +1490,91 @@ index 7caf6578..c30d24a2 100644
  })
  
 +device('tp-link-cpe220-v3', 'tplink_cpe220-v3')
-diff --git a/targets/generic b/targets/generic
-index 968798ac..89aba6f2 100644
---- a/targets/generic
-+++ b/targets/generic
-@@ -1,21 +1,21 @@
- assert(env.GLUON_LANGS)
- 
- 
--config('CONFIG_GLUON_SITEDIR="%s"', env.GLUON_SITEDIR)
--config('CONFIG_GLUON_RELEASE="%s"', env.GLUON_RELEASE)
--try_config('CONFIG_GLUON_BRANCH="%s"', env.GLUON_BRANCH or '')
+diff --git a/targets/generic.2020.2 b/targets/generic.2020.2
+new file mode 100644
+index 00000000..89aba6f2
+--- /dev/null
++++ b/targets/generic.2020.2
+@@ -0,0 +1,79 @@
++assert(env.GLUON_LANGS)
++
++
 +config('GLUON_SITEDIR', env.GLUON_SITEDIR)
 +config('GLUON_RELEASE', env.GLUON_RELEASE)
 +try_config('GLUON_BRANCH', env.GLUON_BRANCH or '')
- 
- for lang in string.gmatch(env.GLUON_LANGS, '%S+') do
--	try_config('CONFIG_GLUON_WEB_LANG_%s=y', lang)
++
++for lang in string.gmatch(env.GLUON_LANGS, '%S+') do
 +	try_config('GLUON_WEB_LANG_' .. lang, true)
- end
- 
--config('CONFIG_TARGET_%s=y', env.BOARD)
++end
++
 +config('TARGET_' .. env.BOARD, true)
- if env.SUBTARGET ~= '' then
--	config('CONFIG_TARGET_%s_%s=y', env.BOARD, env.SUBTARGET)
++if env.SUBTARGET ~= '' then
 +	config(string.format('TARGET_%s_%s', env.BOARD, env.SUBTARGET), true)
- end
- 
- -- Disable non-default feeds in distfeeds.conf
--config('# CONFIG_FEED_gluon_base is not set')
++end
++
++-- Disable non-default feeds in distfeeds.conf
 +config('FEED_gluon_base', false)
- 
- local default_feeds = {}
- for feed in string.gmatch(exec_capture_raw('. scripts/default_feeds.sh && echo "$DEFAULT_FEEDS"'), '%S+') do
-@@ -24,56 +24,54 @@ end
- 
- for feed in string.gmatch(exec_capture_raw('. scripts/modules.sh && echo -n "$FEEDS"'), '%S+') do
- 	if not default_feeds[feed] then
--		config('# CONFIG_FEED_%s is not set', feed)
++
++local default_feeds = {}
++for feed in string.gmatch(exec_capture_raw('. scripts/default_feeds.sh && echo "$DEFAULT_FEEDS"'), '%S+') do
++	default_feeds[feed] = true
++end
++
++for feed in string.gmatch(exec_capture_raw('. scripts/modules.sh && echo -n "$FEEDS"'), '%S+') do
++	if not default_feeds[feed] then
 +		config('FEED_' .. feed, false)
- 	end
- end
- 
- 
--config '# CONFIG_TARGET_ROOTFS_INITRAMFS is not set'
++	end
++end
++
++
 +config('TARGET_ROOTFS_INITRAMFS', false)
- 
--config 'CONFIG_DEVEL=y'
--config 'CONFIG_ALL_NONSHARED=y'
++
 +config('DEVEL', true)
 +config('ALL_NONSHARED', true)
- 
--config '# CONFIG_PACKAGE_usbip is not set' -- fails to build
--config '# CONFIG_PACKAGE_kmod-jool is not set' -- fails to build
++
 +config('PACKAGE_usbip', false) -- fails to build
 +config('PACKAGE_kmod-jool', false) -- fails to build
- 
--config 'CONFIG_BUSYBOX_CUSTOM=y'
--config '# CONFIG_BUSYBOX_CONFIG_FEATURE_PREFER_IPV4_ADDRESS is not set'
++
 +config('BUSYBOX_CUSTOM', true)
 +config('BUSYBOX_CONFIG_FEATURE_PREFER_IPV4_ADDRESS', false)
- 
--config 'CONFIG_PACKAGE_ATH_DEBUG=y'
++
 +try_config('PACKAGE_ATH_DEBUG', true)
- 
--try_config 'CONFIG_TARGET_SQUASHFS_BLOCK_SIZE=256'
++
 +try_config('TARGET_SQUASHFS_BLOCK_SIZE', 256)
- 
--config '# CONFIG_KERNEL_IP_MROUTE is not set'
--config '# CONFIG_KERNEL_IPV6_MROUTE is not set'
++
 +config('KERNEL_IP_MROUTE', false)
 +config('KERNEL_IPV6_MROUTE', false)
- 
--try_config 'CONFIG_TARGET_MULTI_PROFILE=y'
--try_config 'CONFIG_TARGET_PER_DEVICE_ROOTFS=y'
++
 +config('COLLECT_KERNEL_DEBUG', true)
- 
--if envtrue.GLUON_MULTIDOMAIN then
--	config 'CONFIG_GLUON_MULTIDOMAIN=y'
--end
++
 +try_config('TARGET_MULTI_PROFILE', true)
 +try_config('TARGET_PER_DEVICE_ROOTFS', true)
- 
--if envtrue.GLUON_AUTOREMOVE then
--	config 'CONFIG_AUTOREMOVE=y'
--end
++
 +config('GLUON_MULTIDOMAIN', istrue(env.GLUON_MULTIDOMAIN))
 +
 +config('AUTOREMOVE', istrue(env.GLUON_AUTOREMOVE))
- 
--if envtrue.GLUON_DEBUG then
--	config 'CONFIG_DEBUG=y'
--	config 'CONFIG_NO_STRIP=y'
--	config '# CONFIG_USE_STRIP is not set'
--	config '# CONFIG_USE_SSTRIP is not set'
++
 +if istrue(env.GLUON_DEBUG) then
 +	config('DEBUG', true)
 +	config('NO_STRIP', true)
 +	config('USE_STRIP', false)
 +	config('USE_SSTRIP', false)
- 
--	try_config 'CONFIG_TARGET_ROOTFS_PARTSIZE=500'
++
 +	try_config('TARGET_ROOTFS_PARTSIZE', 500)
- end
- 
++end
++
 +config('GLUON_MINIFY', istrue(env.GLUON_MINIFY))
- 
- packages {
- 	'-kmod-ipt-offload',
- 	'-odhcpd-ipv6only',
- 	'-ppp',
- 	'-ppp-mod-pppoe',
--	'-urngd',
- 	'-wpad-mini',
- 	'-wpad-basic',
- 	'gluon-core',
++
++packages {
++	'-kmod-ipt-offload',
++	'-odhcpd-ipv6only',
++	'-ppp',
++	'-ppp-mod-pppoe',
++	'-wpad-mini',
++	'-wpad-basic',
++	'gluon-core',
++	'ip6tables',
++}
 diff --git a/targets/ipq40xx-generic b/targets/ipq40xx-generic
 index 8df11ea2..0dca0426 100644
 --- a/targets/ipq40xx-generic
