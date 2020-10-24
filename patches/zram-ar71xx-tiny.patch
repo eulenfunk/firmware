@@ -8,5 +8,3 @@ index a0a8d510..60151499 100644
         class = 'tiny',
 +        packages = { 'zram-swap' },
  }
-
-
