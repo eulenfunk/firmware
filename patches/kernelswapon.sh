@@ -6,5 +6,9 @@ if ! patch -R -p1 -s -f --ignore-whitespace --dry-run <$patchfile; then
 fi
 grep 'KERNEL_SWAP'  scripts/target_config_lib.lua 
 
-
+cd openwrt 
+patchfile="../../patches/kernelswapon-openwrt.patch"
+if ! patch -R -p1 -s -f --ignore-whitespace --dry-run <$patchfile; then
+  patch -p1 --ignore-whitespace <$patchfile
+fi
 
