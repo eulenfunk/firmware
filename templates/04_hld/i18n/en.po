@@ -59,7 +59,7 @@ msgid "gluon-config-mode:contact-help"
 msgstr ""
 "Please do provide an active and valid email address in order to get in touch with you. "
 "This is a prerequisite to participate in the Freifunk network according the PPA. "
-"Please note that this email address will also be <em>publicly<em> visible in conjunction with the coordinates of your Freifunk node. "
+"Please note that this email address will also be <em>publicly</em> visible in conjunction with the coordinates of your Freifunk node. "
 "Thus, the information can be downloaded and processed by everyone. "
 "he data will be stored on this node and can be deleted at your sole discretion and at any time. "
 
