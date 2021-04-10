@@ -1,0 +1,15 @@
+GLUON_SITE_FEEDS="eulenfunk ffffm ffki"
+
+PACKAGES_EULENFUNK_REPO=https://github.com/eulenfunk/packages/
+PACKAGES_EULENFUNK_BRANCH=v2020.1.x
+PACKAGES_EULENFUNK_COMMIT=e91a102c1c32ed7d082eb8949bd35af4c823f0b5
+
+PACKAGES_FFFFM_REPO=https://github.com/freifunk-ffm/packages.git
+PACKAGES_FFFFM_BRANCH=master
+PACKAGES_FFFFM_COMMIT=ce6b624e4ac44484df94f478034e37e6d2c025d6
+
+PACKAGES_FFKI_REPO=git://github.com/freifunk-kiel/ffki-packages.git
+PACKAGES_FFKI_COMMIT=a3d524aa862b2cab6fc2be1d9c174e7422ac4331
+PACKAGES_FFKI_BRANCH=2018.1.x
+
+
