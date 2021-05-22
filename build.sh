@@ -287,6 +287,7 @@ build_all_images ()
     TARGETS+=( x86-geode )
     TARGETS+=( x86-64 )
     TARGETS+=( x86-legacy )
+#    TARGETS+=( rockchip-armv8 )
    fi
 
   pushd "$GLUON_DIR" >/dev/null
