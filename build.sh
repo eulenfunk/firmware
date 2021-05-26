@@ -158,7 +158,7 @@ build_images_for_site ()
  # For the Gluon build system, BROKEN=1 means "use the experimental/unstable branch".
   append_quoted_arg  ARGS  BROKEN "1"
 
- # verbose logs
+#  verbose logs
 #  append_quoted_arg  ARGS  v "s"
 #  append_quoted_arg  ARGS BUILD_LOG "1"
 
@@ -185,19 +185,11 @@ build_images_for_site ()
 
   if [[ "$PREPARED_CONTENTS" != "$TEMPLATE_NAME" ]]; then
 
-    ## git reset --hard $2
     rm -rf .git/rebase-apply
     git reset --hard origin/$GLUONBRANCH
-    echo "Gluon make update..."
-
-    printf -v MAKE_CMD "make update %s"  "$ARGS"
-    echo "$MAKE_CMD"
-    eval "$MAKE_CMD"
 
     for (( target_index=0; target_index < ${#TARGETS[@]}; target_index += 1 )); do
-
       TARGET="${TARGETS[target_index]}"
-
       if false; then
         echo "Cleaning the firmware for site code: $SITE_CODE, target: $TARGET ..."
         printf -v MAKE_CMD  "make clean GLUON_TARGET=%q  %s"  "$TARGET"  "$ARGS"
@@ -205,10 +197,15 @@ build_images_for_site ()
         eval "$MAKE_CMD"
       fi
 
-    done
-
     echo "Site prepare.sh ..."
     "$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE/prepare.sh"
+
+    echo "Gluon make update..."
+    printf -v MAKE_CMD "make update %s"  "$ARGS"
+    echo "$MAKE_CMD"
+    eval "$MAKE_CMD"
+
+    done
 
   fi
 
@@ -217,27 +214,18 @@ build_images_for_site ()
 # only 1 cpu core to use
 #  MAKE_J_VAL=1
   for (( target_index=0; target_index < ${#TARGETS[@]}; target_index += 1 )); do
-
     TARGET="${TARGETS[target_index]}"
-
     echo "Building the firmware for site code: $SITE_CODE, target: $TARGET ..."
-
     printf -v MAKE_CMD "make GLUON_TARGET=%q"  "$TARGET"
-
     # For the Gluon build system, V=s means generate a full build log (show build commands, compiler warnings etc.).
     MAKE_CMD+=" V=s"
-
     MAKE_CMD+=" $ARGS"
-
     MAKE_CMD+=" -j $MAKE_J_VAL  --output-sync=recurse"
-
     echo "$MAKE_CMD"
     eval "$MAKE_CMD"
-
   done
 
   echo "$TEMPLATE_NAME" > "$PREPARED_FILENAME"
-
   echo "Making manifest..."
 
   printf -v MAKE_CMD "make manifest %s"  "$ARGS"
@@ -258,37 +246,35 @@ build_images_for_site ()
   cp -- "$SANDBOX_DIR/build.sh" "$SITE_IMAGE_DIR/"
 }
 
-
 build_all_images ()
 {
   local -a TARGETS=("$@")
-
   if (( ${#TARGETS[@]} == 0 )); then
     TARGETS+=( ar71xx-tiny )
     TARGETS+=( ar71xx-generic )
-#    TARGETS+=( ar71xx-nand )
-#    TARGETS+=( ar71xx-mikrotik )
-#    TARGETS+=( ath79-generic )
-#    TARGETS+=( brcm2708-bcm2708 )
-#    TARGETS+=( brcm2708-bcm2709 )
-#    TARGETS+=( brcm2708-bcm2710 )
-#    TARGETS+=( mvebu-cortexa9 )
-#    TARGETS+=( ipq40xx-generic )
-#    TARGETS+=( ipq806x-generic )
-#    TARGETS+=( lantiq-xrx200 )
-#    TARGETS+=( lantiq-xway )
-#    TARGETS+=( mpc85xx-generic )
-#    TARGETS+=( mpc85xx-p1020 )
-#    TARGETS+=( ramips-mt7620 )
-#    TARGETS+=( ramips-mt7621 )
-#    TARGETS+=( ramips-mt76x8 )
-#    TARGETS+=( ramips-rt305x )
-#    TARGETS+=( sunxi-cortexa7 )
-#    TARGETS+=( x86-generic )
-#    TARGETS+=( x86-geode )
-#    TARGETS+=( x86-64 )
-#    TARGETS+=( x86-legacy )
-#    TARGETS+=( rockchip-armv8 )
+    TARGETS+=( ar71xx-nand )
+    TARGETS+=( ar71xx-mikrotik )
+    TARGETS+=( ath79-generic )
+    TARGETS+=( brcm2708-bcm2708 )
+    TARGETS+=( brcm2708-bcm2709 )
+    TARGETS+=( brcm2708-bcm2710 )
+    TARGETS+=( mvebu-cortexa9 )
+    TARGETS+=( ipq40xx-generic )
+    TARGETS+=( ipq806x-generic )
+    TARGETS+=( lantiq-xrx200 )
+    TARGETS+=( lantiq-xway )
+    TARGETS+=( mpc85xx-generic )
+    TARGETS+=( mpc85xx-p1020 )
+    TARGETS+=( ramips-mt7620 )
+    TARGETS+=( ramips-mt7621 )
+    TARGETS+=( ramips-mt76x8 )
+    TARGETS+=( ramips-rt305x )
+    TARGETS+=( sunxi-cortexa7 )
+    TARGETS+=( x86-generic )
+    TARGETS+=( x86-geode )
+    TARGETS+=( x86-64 )
+    TARGETS+=( x86-legacy )
+    TARGETS+=( rockchip-armv8 )
    fi
 
   pushd "$GLUON_DIR" >/dev/null
@@ -371,7 +357,7 @@ build_all_images ()
 
 
 declare -a ALL_SITE_RELBRANCHES=()
-declare -a ALL_SITE_GLUON_BRANCHES=()  # TODO: Not used at the moment.
+declare -a ALL_SITE_GLUON_BRANCHES=()  
 declare -a ALL_SITE_TEMPLATE_NAMES=()
 declare -a ALL_SITE_CODES=()
 
