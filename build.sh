@@ -144,7 +144,7 @@ build_images_for_site ()
   local RELBRANCH="$1"
   local TEMPLATE_NAME="$2"
   local SITE_CODE="$3"
-
+  local GLUONBRANCH="$4"
   local -i target_index
   local TARGET
 
@@ -185,8 +185,9 @@ build_images_for_site ()
 
   if [[ "$PREPARED_CONTENTS" != "$TEMPLATE_NAME" ]]; then
 
-    # git reset --hard $2
-
+    ## git reset --hard $2
+    rm -rf .git/rebase-apply
+    git reset --hard origin/$GLUONBRANCH
     echo "Gluon make update..."
 
     printf -v MAKE_CMD "make update %s"  "$ARGS"
@@ -265,28 +266,28 @@ build_all_images ()
   if (( ${#TARGETS[@]} == 0 )); then
     TARGETS+=( ar71xx-tiny )
     TARGETS+=( ar71xx-generic )
-    TARGETS+=( ar71xx-nand )
-    TARGETS+=( ar71xx-mikrotik )
-    TARGETS+=( ath79-generic )
-    TARGETS+=( brcm2708-bcm2708 )
-    TARGETS+=( brcm2708-bcm2709 )
-    TARGETS+=( brcm2708-bcm2710 )
-    TARGETS+=( mvebu-cortexa9 )
-    TARGETS+=( ipq40xx-generic )
-    TARGETS+=( ipq806x-generic )
-    TARGETS+=( lantiq-xrx200 )
-    TARGETS+=( lantiq-xway )
-    TARGETS+=( mpc85xx-generic )
-    TARGETS+=( mpc85xx-p1020 )
-    TARGETS+=( ramips-mt7620 )
-    TARGETS+=( ramips-mt7621 )
-    TARGETS+=( ramips-mt76x8 )
-    TARGETS+=( ramips-rt305x )
-    TARGETS+=( sunxi-cortexa7 )
-    TARGETS+=( x86-generic )
-    TARGETS+=( x86-geode )
-    TARGETS+=( x86-64 )
-    TARGETS+=( x86-legacy )
+#    TARGETS+=( ar71xx-nand )
+#    TARGETS+=( ar71xx-mikrotik )
+#    TARGETS+=( ath79-generic )
+#    TARGETS+=( brcm2708-bcm2708 )
+#    TARGETS+=( brcm2708-bcm2709 )
+#    TARGETS+=( brcm2708-bcm2710 )
+#    TARGETS+=( mvebu-cortexa9 )
+#    TARGETS+=( ipq40xx-generic )
+#    TARGETS+=( ipq806x-generic )
+#    TARGETS+=( lantiq-xrx200 )
+#    TARGETS+=( lantiq-xway )
+#    TARGETS+=( mpc85xx-generic )
+#    TARGETS+=( mpc85xx-p1020 )
+#    TARGETS+=( ramips-mt7620 )
+#    TARGETS+=( ramips-mt7621 )
+#    TARGETS+=( ramips-mt76x8 )
+#    TARGETS+=( ramips-rt305x )
+#    TARGETS+=( sunxi-cortexa7 )
+#    TARGETS+=( x86-generic )
+#    TARGETS+=( x86-geode )
+#    TARGETS+=( x86-64 )
+#    TARGETS+=( x86-legacy )
 #    TARGETS+=( rockchip-armv8 )
    fi
 
@@ -309,7 +310,8 @@ build_all_images ()
     {
       build_images_for_site "${ALL_SITE_RELBRANCHES[$index]}" \
                             "${ALL_SITE_TEMPLATE_NAMES[$index]}" \
-                            "${ALL_SITE_CODES[$index]}"
+                            "${ALL_SITE_CODES[$index]}" \
+                            "${ALL_SITE_GLUON_BRANCHES[$index]}"
     } 2>&1 | tee --append -- "$LOG_FILENAME"
 
     # The whole build takes a long time. By recording the build time for each site,
@@ -369,7 +371,7 @@ build_all_images ()
 
 
 declare -a ALL_SITE_RELBRANCHES=()
-declare -a ALL_SITE_GIT_BRANCHES=()  # TODO: Not used at the moment.
+declare -a ALL_SITE_GLUON_BRANCHES=()  # TODO: Not used at the moment.
 declare -a ALL_SITE_TEMPLATE_NAMES=()
 declare -a ALL_SITE_CODES=()
 
@@ -395,7 +397,7 @@ parse_sites_file ()
     fi
 
     ALL_SITE_RELBRANCHES+=( "${COMPONENTS[0]}" )
-    ALL_SITE_GIT_BRANCHES+=( "${COMPONENTS[1]}" )
+    ALL_SITE_GLUON_BRANCHES+=( "${COMPONENTS[1]}" )
     ALL_SITE_TEMPLATE_NAMES+=( "${COMPONENTS[2]}" )
     ALL_SITE_CODES+=( "${COMPONENTS[3]}" )
 
