@@ -285,10 +285,8 @@ build_all_images ()
   for (( index=0; index < ${#ALL_SITE_RELBRANCHES[@]}; index += 1 )); do
 
     get_site_log_filename  "${ALL_SITE_TEMPLATE_NAMES[$index]}"  "${ALL_SITE_CODES[$index]}"
-
     echo "Building the firmware for site code ${ALL_SITE_CODES[$index]} ..."
     echo "The site build log file is: $LOG_FILENAME"
-
     local UPTIME
     read_uptime_as_integer
     local SITE_UPTIME_BEGIN="$UPTIME"
