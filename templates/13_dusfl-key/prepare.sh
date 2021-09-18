@@ -5,14 +5,12 @@
 #cp ../patches/sysupgrade ./openwrt/package/base-files/files/sbin/sysupgrade
 #chmod +x ./openwrt/package/base-files/files/sbin/sysupgrade
 
-pushd ../gluon ; git am ../patches/0001-*; popd ; # apply 0001-enumerated patches automaticylly
-pushd ../gluon ; ../patches/fix-respondd-rsk.sh; popd  # change respondd listener address to gluon 2016.x value
-pushd ../gluon ; ../patches/fix-DIR615c1-imagetoobig.sh; popd # remove DIR615C1 beeing too big
-pushd ../gluon ; ../patches/add-TPlinkArcherA7V5.sh; popd # adding TP-Link Archer A7-V5
-pushd ../gluon ; ../patches/add-NanoPi-R2S.sh; popd # adding  FriendlyARM NanoPi R2S
-pushd ../gluon ; ../patches/kernelswapon.sh; popd # enable swap for all
-pushd ../gluon ; ../patches/ignore-preservechannels-for-outdoormode.sh ; popd # correct handling of outdoor-devices (enable auto-channel)
-#pushd ../gluon ; ../patches/gluon-modules-down.sh ; popd # downdate kernel/packages of gluon/openwrt (OOM-mitigation attempt von 4/32 ath9k)
+#pushd ../gluon ; git am ../patches/0001-*; popd ; # apply 0001-enumerated patches automaticylly
+#pushd ../gluon ; ../patches/fix-respondd-rsk.sh; popd  # change respondd listener address to gluon 2016.x value
+#pushd ../gluon ; ../patches/fix-DIR615c1-imagetoobig.sh; popd # remove DIR615C1 beeing too big
+#pushd ../gluon ; ../patches/add-TPlinkArcherA7V5.sh; popd # adding TP-Link Archer A7-V5
+#pushd ../gluon ; ../patches/kernelswapon.sh; popd # enable swap for all
+#pushd ../gluon ; ../patches/ignore-preservechannels-for-outdoormode.sh ; popd # correct handling of outdoor-devices (enable auto-channel)
 
 exit 0;
 
