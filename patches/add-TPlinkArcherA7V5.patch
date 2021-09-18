@@ -1,10 +1,13 @@
 --- a/targets/ath79-generic
 +++ b/targets/ath79-generic
-@@ -64,3 +64,7 @@ device('tp-link-archer-c6-v2', 'tplink_archer-c6-v2', {
-        packages = ATH10K_PACKAGES_QCA9888,
- })
+@@ -73,6 +73,10 @@ device('ocedo-raccoon', 'ocedo_raccoon', {
+
+ -- TP-Link
 
 +device('tp-link-archer-a7-v5', 'tplink_archer-a7-v5', {
 +       packages = ATH10K_PACKAGES_QCA9888,
 +})
 +
+ device('tp-link-archer-c6-v2', 'tplink_archer-c6-v2', {
+        packages = ATH10K_PACKAGES_QCA9888,
+ })

@@ -1,0 +1,230 @@
+diff --git a/modules b/modules
+index 0b535a55..65bbb132 100644
+--- a/modules
++++ b/modules
+@@ -2,15 +2,15 @@ GLUON_FEEDS='packages routing gluon'
+ 
+ OPENWRT_REPO=https://github.com/openwrt/openwrt.git
+ OPENWRT_BRANCH=openwrt-19.07
+-OPENWRT_COMMIT=29b4104d69bf91db17764dd885e9e111a373f08c
++OPENWRT_COMMIT=9cafcbe0bdd601d07ed55bee0136f5d8393c37a8
+ 
+ PACKAGES_PACKAGES_REPO=https://github.com/openwrt/packages.git
+ PACKAGES_PACKAGES_BRANCH=openwrt-19.07
+-PACKAGES_PACKAGES_COMMIT=a2673dc53c4689798c1d70d7342cb3efadb0af74
++PACKAGES_PACKAGES_COMMIT=af5ada4574121bfb2f84f9e1d8edc29ebc3965a7
+ 
+ PACKAGES_ROUTING_REPO=https://github.com/openwrt-routing/packages.git
+ PACKAGES_ROUTING_BRANCH=openwrt-19.07
+-PACKAGES_ROUTING_COMMIT=b77498bd56d5e45ab4577a1f4ad6ffc55b4a86b7
++PACKAGES_ROUTING_COMMIT=9b42e24a54f03ebb6f58224b49036e8f739b175f
+ 
+ PACKAGES_GLUON_REPO=https://github.com/freifunk-gluon/packages.git
+ PACKAGES_GLUON_COMMIT=12e41d0ff07ec54bbd67a31ab50d12ca04f2238c
+diff --git a/patches/openwrt/0009-ath79-enable-GL-AR750S-NOR-variant-from-master.patch b/patches/openwrt/0009-ath79-enable-GL-AR750S-NOR-variant-from-master.patch
+index 1b9848d7..594266d3 100644
+--- a/patches/openwrt/0009-ath79-enable-GL-AR750S-NOR-variant-from-master.patch
++++ b/patches/openwrt/0009-ath79-enable-GL-AR750S-NOR-variant-from-master.patch
+@@ -3,10 +3,10 @@ Date: Tue, 31 Mar 2020 21:50:28 +0200
+ Subject: ath79: enable GL-AR750S NOR variant from master
+ 
+ diff --git a/target/linux/ath79/base-files/etc/board.d/02_network b/target/linux/ath79/base-files/etc/board.d/02_network
+-index 5dda551caae0429880ee9d5965bfb6797d218e6d..b8fac8816c9a2b2a87a5d1335b41127666afe2e4 100755
++index 9b9bc8a7fc15300247bceeb431ab3ae8d3ac47e6..da45b40086c0cb0011c1db6b89ae75b981fcc9b7 100755
+ --- a/target/linux/ath79/base-files/etc/board.d/02_network
+ +++ b/target/linux/ath79/base-files/etc/board.d/02_network
+-@@ -155,7 +155,7 @@ ath79_setup_interfaces()
++@@ -151,7 +151,7 @@ ath79_setup_interfaces()
+  	etactica,eg200)
+  		ucidef_set_interface_lan "eth0" "dhcp"
+  		;;
+@@ -29,7 +29,7 @@ index d93e6dcd71ab19c53905daa41e95cc4fc614f114..c917f38211d0b246f064dba4b7feefec
+  		ath10kcal_patch_mac $(macaddr_add $(mtd_get_mac_binary art 0) +1)
+  		;;
+ diff --git a/target/linux/ath79/dts/qca9563_glinet_gl-ar750s.dts b/target/linux/ath79/dts/qca9563_glinet_gl-ar750s.dts
+-index 03922bcd1fe9a453d5916537609317b94eea18c6..ff64e16d1ce7a94d16529e5954e1d50513a5e2cb 100644
++index 0145a24fbae2cdbe6fb6445607795af6b792352d..ebecb8cc776091ec019638589cb88159345d367f 100644
+ --- a/target/linux/ath79/dts/qca9563_glinet_gl-ar750s.dts
+ +++ b/target/linux/ath79/dts/qca9563_glinet_gl-ar750s.dts
+ @@ -7,8 +7,8 @@
+@@ -41,8 +41,8 @@ index 03922bcd1fe9a453d5916537609317b94eea18c6..ff64e16d1ce7a94d16529e5954e1d505
+ +	compatible = "glinet,gl-ar750s-nor", "qca,qca9563";
+ +	model = "GL.iNet GL-AR750S (NOR)";
+  
+- 	aliases {
+- 		led-boot = &power;
++ 	chosen {
++ 		bootargs = "console=ttyS0,115200n8";
+ diff --git a/target/linux/ath79/image/generic.mk b/target/linux/ath79/image/generic.mk
+ index 55053be34f11f0df982c85f94c9180fdba9ff221..892ef10f870e347c8a1509cecd35bce4b5e98bee 100644
+ --- a/target/linux/ath79/image/generic.mk
+diff --git a/patches/packages/packages/0001-fastd-update-to-v19.patch b/patches/packages/packages/0001-fastd-update-to-v19.patch
+deleted file mode 100644
+index 8f35f478..00000000
+--- a/patches/packages/packages/0001-fastd-update-to-v19.patch
++++ /dev/null
+@@ -1,164 +0,0 @@
+-From: Matthias Schiffer <mschiffer@universe-factory.net>
+-Date: Fri, 22 May 2020 21:09:21 +0200
+-Subject: fastd: update to v19
+-
+-Signed-off-by: Matthias Schiffer <mschiffer@universe-factory.net>
+-
+-diff --git a/net/fastd/Config.in b/net/fastd/Config.in
+-index 3350eb3099a26c870d70373c0712a8b59881ee5c..e6440075e561093c86543943cb982d010a4ef0e0 100644
+---- a/net/fastd/Config.in
+-+++ b/net/fastd/Config.in
+-@@ -36,16 +36,6 @@ config FASTD_ENABLE_METHOD_NULL
+-       depends on PACKAGE_fastd
+-       default y
+-
+--config FASTD_ENABLE_METHOD_XSALSA20_POLY1305
+--      bool "Enable xsalsa20-poly1305 method"
+--      depends on PACKAGE_fastd
+--      default n
+--
+--
+--config FASTD_ENABLE_CIPHER_AES128_CTR
+--      bool "Enable the AES128-CTR cipher"
+--      depends on PACKAGE_fastd
+--      default n
+-
+- config FASTD_ENABLE_CIPHER_NULL
+-       bool "Enable the null cipher"
+-diff --git a/net/fastd/Makefile b/net/fastd/Makefile
+-index f4890b56931a75849229d25fe78720e19d493383..7483e7b003041fb59991d72d0ccfcc8a28bb17a3 100644
+---- a/net/fastd/Makefile
+-+++ b/net/fastd/Makefile
+-@@ -8,13 +8,13 @@
+- include $(TOPDIR)/rules.mk
+-
+- PKG_NAME:=fastd
+--PKG_VERSION:=18
+--PKG_RELEASE:=5
+-+PKG_VERSION:=19
+-+PKG_RELEASE:=2
+-
+- PKG_MAINTAINER:=Matthias Schiffer <mschiffer@universe-factory.net>
+- PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
+- PKG_SOURCE_URL:=https://github.com/NeoRaider/fastd/releases/download/v$(PKG_VERSION)
+--PKG_HASH:=714ff09d7bd75f79783f744f6f8c5af2fe456c8cf876feaa704c205a73e043c9
+-+PKG_HASH:=6054608e2103b634c9d19ecd1ae058d4ec694747047130719db180578729783a
+-
+- PKG_LICENSE:=BSD-2-Clause
+- PKG_LICENSE_FILES:=COPYRIGHT
+-@@ -27,8 +27,6 @@ PKG_CONFIG_DEPENDS:=\
+-       CONFIG_FASTD_ENABLE_METHOD_GENERIC_POLY1305 \
+-       CONFIG_FASTD_ENABLE_METHOD_GENERIC_UMAC \
+-       CONFIG_FASTD_ENABLE_METHOD_NULL \
+--      CONFIG_FASTD_ENABLE_METHOD_XSALSA20_POLY1305 \
+--      CONFIG_FASTD_ENABLE_CIPHER_AES128_CTR \
+-       CONFIG_FASTD_ENABLE_CIPHER_NULL \
+-       CONFIG_FASTD_ENABLE_CIPHER_SALSA20 \
+-       CONFIG_FASTD_ENABLE_CIPHER_SALSA2012 \
+-@@ -44,6 +42,7 @@ PKG_CONFIG_DEPENDS:=\
+-
+-
+- PKG_BUILD_DEPENDS:=nacl
+-+PKG_BUILD_PARALLEL:=1
+-
+- include $(INCLUDE_DIR)/package.mk
+- include $(INCLUDE_DIR)/cmake.mk
+-@@ -73,7 +72,6 @@ CMAKE_OPTIONS += \
+-       -DWITH_METHOD_GENERIC_POLY1305:BOOL=FALSE \
+-       -DWITH_METHOD_GENERIC_UMAC:BOOL=FALSE \
+-       -DWITH_METHOD_NULL:BOOL=FALSE \
+--      -DWITH_METHOD_XSALSA20_POLY1305:BOOL=FALSE \
+-       -DWITH_CIPHER_AES128_CTR:BOOL=FALSE \
+-       -DWITH_CIPHER_NULL:BOOL=FALSE \
+-       -DWITH_CIPHER_SALSA20:BOOL=FALSE \
+-@@ -120,14 +118,6 @@ ifeq ($(CONFIG_FASTD_ENABLE_METHOD_NULL),y)
+- CMAKE_OPTIONS += -DWITH_METHOD_NULL:BOOL=TRUE
+- endif
+-
+--ifeq ($(CONFIG_FASTD_ENABLE_METHOD_XSALSA20_POLY1305),y)
+--CMAKE_OPTIONS += -DWITH_METHOD_XSALSA20_POLY1305:BOOL=TRUE
+--endif
+--
+--
+--ifeq ($(CONFIG_FASTD_ENABLE_CIPHER_AES128_CTR),y)
+--CMAKE_OPTIONS += -DWITH_CIPHER_AES128_CTR:BOOL=TRUE
+--endif
+-
+- ifeq ($(CONFIG_FASTD_ENABLE_CIPHER_NULL),y)
+- CMAKE_OPTIONS += -DWITH_CIPHER_NULL:BOOL=TRUE
+-diff --git a/net/fastd/patches/0001-resolve-fix-segmentation-fault-with-musl-1.1.20.patch b/net/fastd/patches/0001-resolve-fix-segmentation-fault-with-musl-1.1.20.patch
+-deleted file mode 100644
+-index 52c19174083c29e5da02cabb2ddc02474cf11b37..0000000000000000000000000000000000000000
+---- a/net/fastd/patches/0001-resolve-fix-segmentation-fault-with-musl-1.1.20.patch
+-+++ /dev/null
+-@@ -1,35 +0,0 @@
+--From 9710132c04cd378bd36f16a2a3d98d9c4c5fdbac Mon Sep 17 00:00:00 2001
+--From: David Bauer <mail@david-bauer.net>
+--Date: Thu, 25 Jul 2019 18:51:25 +0200
+--Subject: [PATCH] resolve: fix segmentation fault with musl >1.1.20
+--
+--When compiled with musl >1.1.20, fastd will crash in case it can't
+--resolve a peers hostname. This is due to a changed implementation of
+--freeaddrinfo in musl 1.1.21 onwards.
+--
+--This segfault is fixed by not calling freeaddrinfo in case the supplied
+--pointer is null.
+--
+--Signed-off-by: David Bauer <mail@david-bauer.net>
+-----
+-- src/resolve.c | 4 +++-
+-- 1 file changed, 3 insertions(+), 1 deletion(-)
+--
+--diff --git a/src/resolve.c b/src/resolve.c
+--index 9bdfa1c..bfd2a59 100644
+----- a/src/resolve.c
+--+++ b/src/resolve.c
+--@@ -104,7 +104,9 @@ static void * resolve_peer(void *varg) {
+--
+--      fastd_async_enqueue(ASYNC_TYPE_RESOLVE_RETURN, ret, sizeof(fastd_async_resolve_return_t) + n_addr*sizeof(fastd_peer_address_t));
+--
+---     freeaddrinfo(res);
+--+     if (res)
+--+             freeaddrinfo(res);
+--+
+--      free(arg->hostname);
+--      free(arg);
+--
+----
+--2.20.1
+--
+-diff --git a/net/fastd/patches/0002-doc-examples-openwrt-fix-init-script-wasn-t-working-.patch b/net/fastd/patches/0002-doc-examples-openwrt-fix-init-script-wasn-t-working-.patch
+-deleted file mode 100644
+-index b576a987369e93f3cd14fbc83f3c4bffe5cc97d1..0000000000000000000000000000000000000000
+---- a/net/fastd/patches/0002-doc-examples-openwrt-fix-init-script-wasn-t-working-.patch
+-+++ /dev/null
+-@@ -1,29 +0,0 @@
+--From c29b4b0e3cc5bf68129fd0f94f424950b7888deb Mon Sep 17 00:00:00 2001
+--Message-Id: <c29b4b0e3cc5bf68129fd0f94f424950b7888deb.1567630068.git.mschiffer@universe-factory.net>
+--From: Wilfried Klaebe <wklaebe@users.noreply.github.com>
+--Date: Sat, 31 Aug 2019 21:44:13 +0200
+--Subject: [PATCH] doc: examples/openwrt: fix init script, wasn't working with
+-- two VPNs
+--
+--If two VPNs were configured via uci, the init script complained about
+--the peer group of its peers not matching its net.
+-----
+-- doc/examples/openwrt/fastd.init | 2 +-
+-- 1 file changed, 1 insertion(+), 1 deletion(-)
+--
+--diff --git a/doc/examples/openwrt/fastd.init b/doc/examples/openwrt/fastd.init
+--index 15737b403ec2..4ba69ece9887 100644
+----- a/doc/examples/openwrt/fastd.init
+--+++ b/doc/examples/openwrt/fastd.init
+--@@ -233,7 +233,7 @@ generate_peer_group_config() {
+--      config_get group_parent "$group" parent
+--      [ "$parent" = "$group_parent" ] || return 0
+--
+---     if [ "$net" != "$peer_net" ]; then
+--+     if [ "$net" != "$group_net" ]; then
+--              [ -z "$parent" ] || error "warning: the parent of peer group '$group' doesn't match its net, the peer group will be ignored"
+--              return 0
+--      fi
+----
+--2.23.0
+--

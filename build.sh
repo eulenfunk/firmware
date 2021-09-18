@@ -88,7 +88,7 @@ get_site_log_filename ()
 
 #SBRANCH="$(date +%Y%m%d%H%M)"
 SBRANCH="$(date +%y%m%d%H)$(head -1 $1|cut -c1-3)"  
-#SBRANCH="20073117sta"
+#SBRANCH="21040718sta"
 generate_site_config ()
 {
   local RELBRANCH="$1"
@@ -144,7 +144,7 @@ build_images_for_site ()
   local RELBRANCH="$1"
   local TEMPLATE_NAME="$2"
   local SITE_CODE="$3"
-
+  local GLUONBRANCH="$4"
   local -i target_index
   local TARGET
 
@@ -158,12 +158,12 @@ build_images_for_site ()
  # For the Gluon build system, BROKEN=1 means "use the experimental/unstable branch".
   append_quoted_arg  ARGS  BROKEN "1"
 
- # verbose logs
+#  verbose logs
 #  append_quoted_arg  ARGS  v "s"
 #  append_quoted_arg  ARGS BUILD_LOG "1"
 
   # Setting GLUON_BRANCH enables the firmware autoupdater.
-  append_quoted_arg  ARGS  GLUON_BRANCH  "$RELBRANCH"
+  append_quoted_arg  ARGS GLUON AUTOUPDATER_ENABLED=1 GLUON_AUTOUPDATER_BRANCH  "$RELBRANCH"
 
   # Parameters for setting buildbot signatures
   local SIGN_ARGS=""
@@ -185,18 +185,11 @@ build_images_for_site ()
 
   if [[ "$PREPARED_CONTENTS" != "$TEMPLATE_NAME" ]]; then
 
-    # git reset --hard $2
-
-    echo "Gluon make update..."
-
-    printf -v MAKE_CMD "make update %s"  "$ARGS"
-    echo "$MAKE_CMD"
-    eval "$MAKE_CMD"
+    rm -rf .git/rebase-apply
+    git reset --hard origin/$GLUONBRANCH
 
     for (( target_index=0; target_index < ${#TARGETS[@]}; target_index += 1 )); do
-
       TARGET="${TARGETS[target_index]}"
-
       if false; then
         echo "Cleaning the firmware for site code: $SITE_CODE, target: $TARGET ..."
         printf -v MAKE_CMD  "make clean GLUON_TARGET=%q  %s"  "$TARGET"  "$ARGS"
@@ -204,10 +197,15 @@ build_images_for_site ()
         eval "$MAKE_CMD"
       fi
 
-    done
-
     echo "Site prepare.sh ..."
     "$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE/prepare.sh"
+
+    echo "Gluon make update..."
+    printf -v MAKE_CMD "make update %s"  "$ARGS"
+    echo "$MAKE_CMD"
+    eval "$MAKE_CMD"
+
+    done
 
   fi
 
@@ -216,27 +214,18 @@ build_images_for_site ()
 # only 1 cpu core to use
 #  MAKE_J_VAL=1
   for (( target_index=0; target_index < ${#TARGETS[@]}; target_index += 1 )); do
-
     TARGET="${TARGETS[target_index]}"
-
     echo "Building the firmware for site code: $SITE_CODE, target: $TARGET ..."
-
     printf -v MAKE_CMD "make GLUON_TARGET=%q"  "$TARGET"
-
     # For the Gluon build system, V=s means generate a full build log (show build commands, compiler warnings etc.).
     MAKE_CMD+=" V=s"
-
     MAKE_CMD+=" $ARGS"
-
     MAKE_CMD+=" -j $MAKE_J_VAL  --output-sync=recurse"
-
     echo "$MAKE_CMD"
     eval "$MAKE_CMD"
-
   done
 
   echo "$TEMPLATE_NAME" > "$PREPARED_FILENAME"
-
   echo "Making manifest..."
 
   printf -v MAKE_CMD "make manifest %s"  "$ARGS"
@@ -257,11 +246,9 @@ build_images_for_site ()
   cp -- "$SANDBOX_DIR/build.sh" "$SITE_IMAGE_DIR/"
 }
 
-
 build_all_images ()
 {
   local -a TARGETS=("$@")
-
   if (( ${#TARGETS[@]} == 0 )); then
     TARGETS+=( ar71xx-tiny )
     TARGETS+=( ar71xx-generic )
@@ -286,7 +273,8 @@ build_all_images ()
     TARGETS+=( x86-generic )
     TARGETS+=( x86-geode )
     TARGETS+=( x86-64 )
-##    TARGETS+=( x86-legacy )
+    TARGETS+=( x86-legacy )
+#    TARGETS+=( rockchip-armv8 )
    fi
 
   pushd "$GLUON_DIR" >/dev/null
@@ -297,10 +285,8 @@ build_all_images ()
   for (( index=0; index < ${#ALL_SITE_RELBRANCHES[@]}; index += 1 )); do
 
     get_site_log_filename  "${ALL_SITE_TEMPLATE_NAMES[$index]}"  "${ALL_SITE_CODES[$index]}"
-
     echo "Building the firmware for site code ${ALL_SITE_CODES[$index]} ..."
     echo "The site build log file is: $LOG_FILENAME"
-
     local UPTIME
     read_uptime_as_integer
     local SITE_UPTIME_BEGIN="$UPTIME"
@@ -308,7 +294,8 @@ build_all_images ()
     {
       build_images_for_site "${ALL_SITE_RELBRANCHES[$index]}" \
                             "${ALL_SITE_TEMPLATE_NAMES[$index]}" \
-                            "${ALL_SITE_CODES[$index]}"
+                            "${ALL_SITE_CODES[$index]}" \
+                            "${ALL_SITE_GLUON_BRANCHES[$index]}"
     } 2>&1 | tee --append -- "$LOG_FILENAME"
 
     # The whole build takes a long time. By recording the build time for each site,
@@ -368,7 +355,7 @@ build_all_images ()
 
 
 declare -a ALL_SITE_RELBRANCHES=()
-declare -a ALL_SITE_GIT_BRANCHES=()  # TODO: Not used at the moment.
+declare -a ALL_SITE_GLUON_BRANCHES=()  
 declare -a ALL_SITE_TEMPLATE_NAMES=()
 declare -a ALL_SITE_CODES=()
 
@@ -394,7 +381,7 @@ parse_sites_file ()
     fi
 
     ALL_SITE_RELBRANCHES+=( "${COMPONENTS[0]}" )
-    ALL_SITE_GIT_BRANCHES+=( "${COMPONENTS[1]}" )
+    ALL_SITE_GLUON_BRANCHES+=( "${COMPONENTS[1]}" )
     ALL_SITE_TEMPLATE_NAMES+=( "${COMPONENTS[2]}" )
     ALL_SITE_CODES+=( "${COMPONENTS[3]}" )
 

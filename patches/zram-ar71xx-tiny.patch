@@ -1,0 +1,10 @@
+diff --git a/targets/ar71xx-tiny b/targets/ar71xx-tiny
+index a0a8d510..60151499 100644
+--- a/targets/ar71xx-tiny
++++ b/targets/ar71xx-tiny
+@@ -13,6 +13,7 @@ packages {
+ defaults {
+        deprecated = true, -- 4/32
+        class = 'tiny',
++        packages = { 'zram-swap' },
+ }

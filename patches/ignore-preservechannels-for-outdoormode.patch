@@ -1,21 +1,50 @@
+diff --git a/package/gluon-config-mode-outdoor/luasrc/lib/gluon/config-mode/wizard/0250-outdoor.lua b/package/gluon-config-mode-outdoor/luasrc/lib/gluon/config-mode/wizard/0250-outdoor.lua
+index 6a653df8..bff2faf0 100644
+--- a/package/gluon-config-mode-outdoor/luasrc/lib/gluon/config-mode/wizard/0250-outdoor.lua
++++ b/package/gluon-config-mode-outdoor/luasrc/lib/gluon/config-mode/wizard/0250-outdoor.lua
+@@ -7,11 +7,6 @@ return function(form, uci)
+ 		return
+ 	end
+ 
+-	if wireless.preserve_channels(uci) then
+-		-- Don't show if channel should be preserved
+-		return
+-	end
+-
+ 	local pkg_i18n = i18n 'gluon-config-mode-outdoor'
+ 
+ 	local section = form:section(Section, nil, pkg_i18n.translate(
+diff --git a/package/gluon-core/luasrc/lib/gluon/upgrade/200-wireless b/package/gluon-core/luasrc/lib/gluon/upgrade/200-wireless
+index 1374e55c..b19f2358 100755
 --- a/package/gluon-core/luasrc/lib/gluon/upgrade/200-wireless
 +++ b/package/gluon-core/luasrc/lib/gluon/upgrade/200-wireless
-@@ -53,14 +53,13 @@ end
-
+@@ -54,12 +54,12 @@ end
+ 
  local function get_channel(radio, config)
-        local channel
--       if uci:get_first('gluon-core', 'wireless', 'preserve_channels') then
--               -- preserved channel always wins
--               channel = radio.channel
--       elseif  (radio.hwmode == '11a' or radio.hwmode == '11na') and is_outdoor() then
-+       if (radio.hwmode == '11a' or radio.hwmode == '11na') and is_outdoor() and not uci:get_first('gluon-core', 'wireless', 'force_channel_outdoor') then
-                -- actual channel will be picked and probed from chanlist
-                channel = 'auto'
-+       elseif  uci:get_first('gluon-core', 'wireless', 'preserve_channels') then
-+               -- preserved channel always wins only indoors
-+               channel = radio.channel
-        end
--
-        return channel or config.channel()
- end
-
+ 	local channel
+-	if wireless.preserve_channels(uci) then
+-		-- preserved channel always wins
+-		channel = radio.channel
+-	elseif  (radio.hwmode == '11a' or radio.hwmode == '11na') and is_outdoor() then
++	if (radio.hwmode == '11a' or radio.hwmode == '11na') and is_outdoor() and not uci:get_first('gluon-core', 'wireless', 'force_channel_outdoor') then
+ 		-- actual channel will be picked and probed from chanlist
+ 		channel = 'auto'
++	elseif  uci:get_first('gluon-core', 'wireless', 'preserve_channels') then
++		-- preserved channel always wins only indoors
++		channel = radio.channel
+ 	end
+ 
+ 	return channel or config.channel()
+diff --git a/package/gluon-web-wifi-config/luasrc/lib/gluon/config-mode/model/admin/wifi-config.lua b/package/gluon-web-wifi-config/luasrc/lib/gluon/config-mode/model/admin/wifi-config.lua
+index 49580413..efc6d0f0 100644
+--- a/package/gluon-web-wifi-config/luasrc/lib/gluon/config-mode/model/admin/wifi-config.lua
++++ b/package/gluon-web-wifi-config/luasrc/lib/gluon/config-mode/model/admin/wifi-config.lua
+@@ -142,7 +142,7 @@ uci:foreach('wireless', 'wifi-device', function(config)
+ end)
+ 
+ 
+-if has_5ghz_radio() and not wireless.preserve_channels(uci) then
++if has_5ghz_radio() then
+ 	local r = f:section(Section, translate("Outdoor Installation"), translate(
+ 		"Configuring the node for outdoor use tunes the 5 GHz radio to a frequency "
+ 		.. "and transmission power that conforms with the local regulatory requirements. "
