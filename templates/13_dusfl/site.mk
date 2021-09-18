@@ -45,22 +45,22 @@ GLUON_SITE_PACKAGES += \
 
 # openwrt:
 GLUON_SITE_PACKAGES += \
-	haveged \
 	iptables \
 	iwinfo \
 	socat \
         kmod-sched \
         libc \
         libpthread \
-        librt
+        librt \
+	zram-swap
 
-ifeq ($(GLUON_TARGET),ar71xx-tiny)
-GLUON_SITE_PACKAGES += zram-swap
-endif
-
-ifeq ($(GLUON_TARGET),ar71xx-generic)
-GLUON_SITE_PACKAGES += zram-swap
-endif
+#ifeq ($(GLUON_TARGET),ar71xx-tiny)
+#GLUON_SITE_PACKAGES += zram-swap
+#endif
+#
+#ifeq ($(GLUON_TARGET),ar71xx-generic)
+#GLUON_SITE_PACKAGES += zram-swap
+#endif
 
 USB_BASIC := \
 	kmod-usb-core \
