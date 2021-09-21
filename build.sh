@@ -163,7 +163,8 @@ build_images_for_site ()
 #  append_quoted_arg  ARGS BUILD_LOG "1"
 
   # Setting GLUON_BRANCH enables the firmware autoupdater.
-  append_quoted_arg  ARGS GLUON AUTOUPDATER_ENABLED=1 GLUON_AUTOUPDATER_BRANCH  "$RELBRANCH"
+  append_quoted_arg  ARGS GLUON AUTOUPDATER_ENABLED=1 
+  append_quoted_arg  ARGS GLUON_AUTOUPDATER_BRANCH "$RELBRANCH"
 
   # Parameters for setting buildbot signatures
   local SIGN_ARGS=""
@@ -186,7 +187,7 @@ build_images_for_site ()
   if [[ "$PREPARED_CONTENTS" != "$TEMPLATE_NAME" ]]; then
 
     rm -rf .git/rebase-apply
-    git reset --hard origin/$GLUONBRANCH
+#    git reset --hard origin/$GLUONBRANCH
 
     for (( target_index=0; target_index < ${#TARGETS[@]}; target_index += 1 )); do
       TARGET="${TARGETS[target_index]}"

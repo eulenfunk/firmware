@@ -1,0 +1,71 @@
+diff --git a/target/linux/ramips/base-files/etc/board.d/02_network b/target/linux/ramips/base-files/etc/board.d/02_network
+index 8ca1831afe..24b895c92b 100755
+--- a/target/linux/ramips/base-files/etc/board.d/02_network
++++ b/target/linux/ramips/base-files/etc/board.d/02_network
+@@ -310,7 +310,8 @@ ramips_setup_interfaces()
+ 		ucidef_add_switch "switch0" \
+ 			"4:lan" "6t@eth0"
+ 		;;
+-	cudy,wr1000)
++	cudy,wr1000|\
++	xiaomi,mi-router-4a-gigabit)
+ 		ucidef_add_switch "switch0" \
+ 			"2:lan:2" "3:lan:1" "4:wan" "6@eth0"
+ 		;;
+@@ -687,6 +688,10 @@ ramips_setup_macs()
+ 	xiaomi,mir3p)
+ 		lan_mac=$(mtd_get_mac_binary Factory 0xe006)
+ 		;;
++	xiaomi,mi-router-4a-gigabit)
++		wan_mac=$(mtd_get_mac_binary factory 0xe006)
++		label_mac=$wan_mac
++		;;
+ 	zyxel,keenetic-start)
+ 		wan_mac=$(mtd_get_mac_binary factory 40)
+ 		;;
+diff --git a/target/linux/ramips/image/mt7621.mk b/target/linux/ramips/image/mt7621.mk
+index 28ae0d451f..084c03b2a9 100644
+--- a/target/linux/ramips/image/mt7621.mk
++++ b/target/linux/ramips/image/mt7621.mk
+@@ -60,6 +60,14 @@ define Build/wr1201-factory-header
+ 	mv $@.new $@
+ endef
+ 
++define Build/mi-router-4a-gigabit-factory-header
++	mkimage -A $(LINUX_KARCH) \
++		-O linux -T kernel \
++		-C lzma -a $(KERNEL_LOADADDR) -e $(if $(KERNEL_ENTRY),$(KERNEL_ENTRY),$(KERNEL_LOADADDR)) \
++		-n 'R4A' -d $@ $@.new
++	mv $@.new $@
++endef
++
+ define Build/netis-tail
+ 	echo -n $(1) >> $@
+ 	echo -n $(UIMAGE_NAME)-yun | $(STAGING_DIR_HOST)/bin/mkhash md5 | \
+@@ -298,6 +306,18 @@ define Device/xiaomi_mir3g
+ endef
+ TARGET_DEVICES += xiaomi_mir3g
+ 
++define Device/xiaomi_mi-router-4a-gigabit
++  DTS := XIAOMI-MIR4A-GIGABIT
++  MTK_SOC := mt7621
++  IMAGE_SIZE := 14848k
++  DEVICE_VENDOR := Xiaomi
++  DEVICE_TITLE := Xiaomi Mi Router 4A Gigabit Edition
++  DEVICE_VARIANT := Gigabit Edition
++  DEVICE_MODEL := Mi Router 4A
++  DEVICE_PACKAGES := kmod-mt7603-compat kmod-mt76x2-compat wpad-basic uboot-envtools
++endef
++TARGET_DEVICES += xiaomi_mi-router-4a-gigabit
++
+ define Device/mt7621
+   DTS := MT7621
+   BLOCKSIZE := 64k
+@@ -384,6 +404,7 @@ define Device/netgear_r6350
+   IMAGE/kernel.bin := append-kernel
+   IMAGE/rootfs.bin := append-ubi | check-size $$$$(IMAGE_SIZE)
+   DEVICE_TITLE := Netgear R6350
++  DEVICE_MODEL := netgear_r6350
+   DEVICE_PACKAGES := \
+ 	kmod-mt7603 kmod-mt7615e kmod-usb3 kmod-usb-ledtrig-usbport wpad-basic
+ endef
