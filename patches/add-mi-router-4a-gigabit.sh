@@ -14,3 +14,4 @@ if ! patch -R -p1 -s -f --ignore-whitespace --dry-run <$patchfile &>/dev/null; t
 fi
 grep  'mi-router-4a-gigabit' target/linux/ramips/image/mt7621.mk
 
+cp ../../patches/XIAOMI-MIR4A-GIGABIT.dts target/linux/ramips/dts/XIAOMI-MIR4A-GIGABIT.dts

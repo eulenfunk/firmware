@@ -251,8 +251,8 @@ build_all_images ()
 {
   local -a TARGETS=("$@")
   if (( ${#TARGETS[@]} == 0 )); then
-#    TARGETS+=( ar71xx-tiny )
-#    TARGETS+=( ar71xx-generic )
+    TARGETS+=( ar71xx-tiny )
+    TARGETS+=( ar71xx-generic )
 #    TARGETS+=( ar71xx-nand )
 #    TARGETS+=( ar71xx-mikrotik )
 #    TARGETS+=( ath79-generic )
