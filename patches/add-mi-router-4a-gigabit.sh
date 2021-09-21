@@ -8,7 +8,7 @@ fi
 grep 'mi-router-4a-gigabit' targets/ramips-mt7621
 
 cd openwrt 
-patchfile="../patches/add-mi-router-4a-gigabit-openwrt.patch"
+patchfile="../../patches/add-mi-router-4a-gigabit-openwrt.patch"
 if ! patch -R -p1 -s -f --ignore-whitespace --dry-run <$patchfile &>/dev/null; then
   patch -p1 --ignore-whitespace <$patchfile
 fi
