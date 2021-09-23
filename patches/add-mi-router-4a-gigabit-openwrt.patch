@@ -50,6 +50,8 @@ index 28ae0d451f..084c03b2a9 100644
 +  DTS := XIAOMI-MIR4A-GIGABIT
 +  MTK_SOC := mt7621
 +  IMAGE_SIZE := 14848k
++  # this is technically incorrect, and MUST be addressed by a later gluon-update-script in 2022.x for this device!
++  DEVICE_COMPAT_VERSION := 1.1
 +  DEVICE_VENDOR := Xiaomi
 +  DEVICE_TITLE := Xiaomi Mi Router 4A Gigabit Edition
 +  DEVICE_VARIANT := Gigabit Edition
