@@ -1,3 +1,17 @@
+diff --git a/package/gluon-core/luasrc/lib/gluon/upgrade/010-primary-mac b/package/gluon-core/luasrc/lib/gluon/upgrade/010-primary-mac
+index dae573db..e4fcbf67 100755
+--- a/package/gluon-core/luasrc/lib/gluon/upgrade/010-primary-mac
++++ b/package/gluon-core/luasrc/lib/gluon/upgrade/010-primary-mac
+@@ -156,6 +156,9 @@ local primary_addrs = {
+ 		{'ramips', 'mt7620', {
+ 			'miwifi-mini',
+ 		}},
++		{'ramips', 'mt7621', {
++			'xiaomi,mi-router-4a-gigabit',
++		}},
+ 	}},
+ 	{phy(1), {
+ 		{'ar71xx', 'generic', {
 diff --git a/targets/ramips-mt7621 b/targets/ramips-mt7621
 index 978eb619..2d159ed2 100644
 --- a/targets/ramips-mt7621
