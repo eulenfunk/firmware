@@ -165,6 +165,7 @@ build_images_for_site ()
   # Setting GLUON_BRANCH enables the firmware autoupdater.
   append_quoted_arg  ARGS GLUON AUTOUPDATER_ENABLED=1 
   append_quoted_arg  ARGS GLUON_AUTOUPDATER_BRANCH "$RELBRANCH"
+  append_quoted_arg  ARGS GLUON_BRANCH "$RELBRANCH"
 
   # Parameters for setting buildbot signatures
   local SIGN_ARGS=""
@@ -252,7 +253,7 @@ build_all_images ()
   local -a TARGETS=("$@")
   if (( ${#TARGETS[@]} == 0 )); then
     TARGETS+=( ar71xx-tiny )
-    TARGETS+=( ar71xx-generic )
+#    TARGETS+=( ar71xx-generic )
 #    TARGETS+=( ar71xx-nand )
 #    TARGETS+=( ar71xx-mikrotik )
 #    TARGETS+=( ath79-generic )
@@ -275,7 +276,7 @@ build_all_images ()
 #    TARGETS+=( x86-geode )
 #    TARGETS+=( x86-64 )
 #    TARGETS+=( x86-legacy )
-#    TARGETS+=( rockchip-armv8 )
+##    TARGETS+=( rockchip-armv8 )
    fi
 
   pushd "$GLUON_DIR" >/dev/null
