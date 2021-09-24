@@ -2,7 +2,7 @@ GLUON_SITE_FEEDS="eulenfunk ffffm ffki"
 
 PACKAGES_EULENFUNK_REPO=https://github.com/eulenfunk/packages/
 PACKAGES_EULENFUNK_BRANCH=v2020.1.x
-PACKAGES_EULENFUNK_COMMIT=2ac2bdc84f47ac1a102c3a30fdd071994777b5cd
+PACKAGES_EULENFUNK_COMMIT=b2df51295a805aca717e6dc14fe55ea385be45a2
 
 PACKAGES_FFFFM_REPO=https://github.com/freifunk-ffm/packages.git
 PACKAGES_FFFFM_BRANCH=master
