@@ -12,7 +12,7 @@ msgstr ""
 
 msgid "gluon-config-mode:welcome"
 msgstr ""
-"<p>Willkommen zum Einrichtungsassistenten für deinen neuen monheimer "
+"<p>Willkommen zum Einrichtungsassistenten für deinen neuen Monheimer "
 "Freifunk-Knoten. Fülle das folgende Formular deinen Vorstellungen "
 "entsprechend aus und sende es ab. </p>"
 "<p>Bitte nutze diese Firmware nur, wenn Du den Freifunkknoten auf monheimer Stadtgebiet"

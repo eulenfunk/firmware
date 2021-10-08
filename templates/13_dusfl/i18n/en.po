@@ -12,7 +12,7 @@ msgstr ""
 
 msgid "gluon-config-mode:welcome"
 msgstr ""
-"<p>Welcome to the setup wizard for your new düsseldorf-flingerner Freifunk node. "
+"<p>Welcome to the setup wizard for your new Düsseldorf Flingern Freifunk node. "
 "Please fill in the form according to your preferences and submit. </p>"<
 "<p>Please do use this firmware only, when you run your node in the city of düsseldorf-flingern "
 "If you’d like to double check your location please visit "
