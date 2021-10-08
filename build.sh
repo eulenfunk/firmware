@@ -88,7 +88,7 @@ get_site_log_filename ()
 
 #SBRANCH="$(date +%Y%m%d%H%M)"
 SBRANCH="$(date +%y%m%d%H)$(head -1 $1|cut -c1-3)"  
-#SBRANCH="21040718sta"
+#SBRANCH="21092601exp"
 generate_site_config ()
 {
   local RELBRANCH="$1"
@@ -128,7 +128,6 @@ generate_all_site_configs ()
   echo "Finished generating sites."
 }
 
-
 append_quoted_arg ()
 {
   local APPEND_TO_VAR_NAME="$1"
@@ -137,7 +136,6 @@ append_quoted_arg ()
 
   printf -v "$APPEND_TO_VAR_NAME"  "%s $APPEND_ARG_NAME=%q"  "${!APPEND_TO_VAR_NAME}"  "$APPEND_PATH"
 }
-
 
 build_images_for_site ()
 {
@@ -206,9 +204,7 @@ build_images_for_site ()
     printf -v MAKE_CMD "make update %s"  "$ARGS"
     echo "$MAKE_CMD"
     eval "$MAKE_CMD"
-
     done
-
   fi
 
   local MAKE_J_VAL
