@@ -186,7 +186,7 @@ build_images_for_site ()
   if [[ "$PREPARED_CONTENTS" != "$TEMPLATE_NAME" ]]; then
 
     rm -rf .git/rebase-apply
-#    git reset --hard origin/$GLUONBRANCH
+    git reset --hard origin/$GLUONBRANCH
 
     for (( target_index=0; target_index < ${#TARGETS[@]}; target_index += 1 )); do
       TARGET="${TARGETS[target_index]}"
@@ -196,7 +196,7 @@ build_images_for_site ()
         echo "$MAKE_CMD"
         eval "$MAKE_CMD"
       fi
-
+    done 
     echo "Site prepare.sh ..."
     "$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE/prepare.sh"
 
@@ -204,7 +204,6 @@ build_images_for_site ()
     printf -v MAKE_CMD "make update %s"  "$ARGS"
     echo "$MAKE_CMD"
     eval "$MAKE_CMD"
-    done
   fi
 
   local MAKE_J_VAL
