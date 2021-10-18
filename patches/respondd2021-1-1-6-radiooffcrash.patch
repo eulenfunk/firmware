@@ -1,0 +1,127 @@
+diff --git a/net/respondd-module-airtime/src/airtime.c b/net/respondd-module-airtime/src/airtime.c
+index 7e27ee0..9af51ad 100644
+--- a/net/respondd-module-airtime/src/airtime.c
++++ b/net/respondd-module-airtime/src/airtime.c
+@@ -57,7 +57,7 @@
+  * @__NL80211_SURVEY_INFO_AFTER_LAST: internal use
+  */
+ 
+-static const char const* msg_names[NL80211_SURVEY_INFO_MAX + 1] = {
++static const char *const msg_names[NL80211_SURVEY_INFO_MAX + 1] = {
+ 	[NL80211_SURVEY_INFO_FREQUENCY] = "frequency",
+ 	[NL80211_SURVEY_INFO_CHANNEL_TIME] = "active",
+ 	[NL80211_SURVEY_INFO_CHANNEL_TIME_BUSY] = "busy",
+@@ -67,20 +67,26 @@ static const char const* msg_names[NL80211_SURVEY_INFO_MAX + 1] = {
+ };
+ 
+ static int survey_airtime_handler(struct nl_msg *msg, void *arg) {
+-	struct json_object *parent_json = (struct json_object *) arg;
++	struct json_object **result = arg;
++	struct json_object *freq_json = NULL;
+ 
+ 	struct genlmsghdr *gnlh = nlmsg_data(nlmsg_hdr(msg));
+ 	struct nlattr *survey_info = nla_find(genlmsg_attrdata(gnlh, 0), genlmsg_attrlen(gnlh, 0), NL80211_ATTR_SURVEY_INFO);
+ 
++	if (*result) {
++		fprintf(stderr, "respondd-module-airtime: callback called again after NL_STOP\n");
++		return NL_STOP;
++	}
++
+ 	if (!survey_info) {
+ 		fprintf(stderr, "respondd-module-airtime: survey data missing in netlink message\n");
+-		goto abort;
++		return NL_STOP;
+ 	}
+ 
+-	struct json_object *freq_json = json_object_new_object();
++	freq_json = json_object_new_object();
+ 	if (!freq_json) {
+ 		fprintf(stderr, "respondd-module-airtime: failed allocating JSON object\n");
+-		goto abort;
++		return NL_STOP;
+ 	}
+ 
+ 	// This variable counts the number of required attributes that are
+@@ -129,15 +135,19 @@ static int survey_airtime_handler(struct nl_msg *msg, void *arg) {
+ 			json_object_object_add(freq_json, msg_names[type], data_json);
+ 	}
+ 
+-	if (req_fields == 3)
+-		json_object_array_add(parent_json, freq_json);
+-	else
++	/* The kernel didn't report all required fields: continue with next
++	 * record, this entry was off-channel */
++	if (req_fields != 3) {
+ 		json_object_put(freq_json);
++		return NL_OK;
++	}
+ 
+-abort:
+-	return NL_SKIP;
++	*result = freq_json;
++	return NL_STOP;
+ }
+ 
+-bool get_airtime(struct json_object *result, int ifx) {
+-	return nl_send_dump(survey_airtime_handler, result, NL80211_CMD_GET_SURVEY, ifx);
++struct json_object * get_airtime(int ifx) {
++	struct json_object *result = NULL;
++	nl_send_dump(survey_airtime_handler, &result, NL80211_CMD_GET_SURVEY, ifx);
++	return result;
+ }
+diff --git a/net/respondd-module-airtime/src/airtime.h b/net/respondd-module-airtime/src/airtime.h
+index 7adc91e..7db21ec 100644
+--- a/net/respondd-module-airtime/src/airtime.h
++++ b/net/respondd-module-airtime/src/airtime.h
+@@ -4,4 +4,5 @@
+ #include <stdint.h>
+ #include <json-c/json.h>
+ 
+-__attribute__((visibility("hidden"))) bool get_airtime(struct json_object *result, int ifx);
++__attribute__((visibility("hidden")))
++struct json_object * get_airtime(int ifx);
+diff --git a/net/respondd-module-airtime/src/netlink.c b/net/respondd-module-airtime/src/netlink.c
+index 2030193..4d12833 100644
+--- a/net/respondd-module-airtime/src/netlink.c
++++ b/net/respondd-module-airtime/src/netlink.c
+@@ -37,7 +37,7 @@ bool nl_send_dump(nl_recvmsg_msg_cb_t cb, void *cb_arg, int cmd, uint32_t cmd_ar
+ 		ERR("nlmsg_alloc() failed\n");
+ 
+ 	if (!genlmsg_put(msg, 0, 0, ctrl, 0, NLM_F_DUMP, cmd, 0))
+-		ERR("genlmsg_put() failed while putting cmd %d\n", ret, cmd);
++		ERR("genlmsg_put() failed while putting cmd %d\n", cmd);
+ 
+ 	if (cmd_arg != 0)
+ 		NLA_PUT_U32(msg, NL80211_ATTR_IFINDEX, cmd_arg);
+diff --git a/net/respondd-module-airtime/src/respondd.c b/net/respondd-module-airtime/src/respondd.c
+index eaf8182..8f73d68 100644
+--- a/net/respondd-module-airtime/src/respondd.c
++++ b/net/respondd-module-airtime/src/respondd.c
+@@ -7,9 +7,7 @@
+ #include "ifaces.h"
+ 
+ static struct json_object *respondd_provider_statistics(void) {
+-	bool ok;
+-	int newest_element_index;
+-	struct json_object *last, *result, *wireless;
++	struct json_object *result, *wireless;
+ 	struct iface_list *ifaces;
+ 
+ 	result = json_object_new_object();
+@@ -24,13 +22,9 @@ static struct json_object *respondd_provider_statistics(void) {
+ 
+ 	ifaces = get_ifaces();
+ 	while (ifaces != NULL) {
+-		ok = get_airtime(wireless, ifaces->ifx);
+-		if (ok) {
+-			newest_element_index = json_object_array_length(wireless) - 1;
+-			last = json_object_array_get_idx(wireless, newest_element_index);
+-			if (last)
+-				json_object_object_add(last, "phy", json_object_new_int(ifaces->wiphy));
+-		}
++		struct json_object *entry = get_airtime(ifaces->ifx);
++		if (entry)
++			json_object_array_add(wireless, entry);
+ 		void *freeptr = ifaces;
+ 		ifaces = ifaces->next;
+ 		free(freeptr);
