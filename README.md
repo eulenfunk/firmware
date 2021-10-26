@@ -22,7 +22,7 @@ Diese enthalten dann Zeilen im Format wie `experimentall2tp v2018.2.x dusl2tp du
 ```
 git clone https://github.com/eulenfunk/firmware
 cd firmware
-git clone https://github.com/freifunk-gluon/gluon -b v2020.2.c
+git clone https://github.com/freifunk-gluon/gluon -b v2021.1.x
 ./build.sh sites.ffmet
 ```
 
