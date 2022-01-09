@@ -52,7 +52,7 @@
 	m25p80@0 {
 		compatible = "jedec,spi-nor";
 		reg = <0>;
-		spi-max-frequency = <50000000>; // Factory is 80mhz, but not all boards can run well!
+		spi-max-frequency = <50000000>; // Stable at 50mhz
 		m25p,fast-read;
 
 		partitions {
@@ -61,17 +61,9 @@
 			#size-cells = <1>;
 
 			partition@0 {
-				label = "flash";
-				reg = <0x0 0x1000000>;
-				compatible = "fixed-partitions";
-				#address-cells = <1>;
-				#size-cells = <1>;
-
-				partition@0 {
-					label = "u-boot";
-					reg = <0x0 0x30000>;
-					read-only;
-				};
+				label = "u-boot";
+				reg = <0x0 0x30000>;
+				read-only;
 			};
 
 			partition@30000 {
