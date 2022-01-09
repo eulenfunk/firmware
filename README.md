@@ -1,4 +1,4 @@
-# Eulenfunk Firmware Repository - Stand 09.01.2019
+# Eulenfunk Firmware Repository - Stand 09.01.2021
 
 Freifunk Firmware für Freifunk Düsseldorf-Flingern und Freifunk im Neanderland (Neanderfunk) 
 
@@ -22,7 +22,7 @@ Diese enthalten dann Zeilen im Format wie `experimentall2tp v2018.2.x dusl2tp du
 ```
 git clone https://github.com/eulenfunk/firmware
 cd firmware
-git clone https://github.com/freifunk-gluon/gluon -b v2018.2.1
+git clone https://github.com/freifunk-gluon/gluon -b v2021.1.x
 ./build.sh sites.ffmet
 ```
 
@@ -34,15 +34,15 @@ Das Buildscript wird mit der Sites-Datei als Parameter aufgerufen, zusätzlich k
 
 
 ## Branches
-broken, experimental und stable 
+experimental und stable 
 
-- **broken** exisitiert kein Release Kanal, **experimental** der Kanal `experimental` und **stable* ist Kanal `stable`
-- **nur Freifunk Düsseldorf-Flingern**: es gibt jeden Releasekanal in "l2tp" und "fastd" (bei fastd entfällt der namenszusatz im Releasekanal)
-- **nur Neanderfunk**: es gibt einen den Releasekanal (fastd).
+- **experimental** der Kanal `experimental` und **stable* ist Kanal `stable`
 
-- es gibt noch den zusätzlichen _Bau-Stand_ **key** (z.B. **stable/stablekey stablel2tp/stablel2tpkey**) in der "bypassconfigmode" und mehrere ssh-keys der Admins gesetzt sind. Diese Firmware wird auschließlich für Administratoren gebaut und ist ohne Rücksprache nicht zu verwenden!
+- es gibt noch den zusätzlichen _Bau-Stand_ **key** (z.B. **stable/stablekey**) in der "bypassconfigmode" und mehrere ssh-keys der Admins gesetzt sind. Diese Firmware wird auschließlich für Administratoren gebaut und ist ohne Rücksprache nicht zu verwenden!
 
-
+## Signaturen
+Der Buildbot unterschreibt die Firmware mit einem private-key, der öffentlich ist. Dieses ist nur eine Absicherung des Downoad-Transportweges, keine für Firmware-Integrität. 
+Auf den Releasechannels "experimental" ist die Minimum-Valid-Signatures auf 2 gesetzt (d.h. mindestens eine "reale" Maintainer-Signature), für "stable" steht sie auf 3, d.h. 2 trusted Signaturen notwendig.
 
 ## Development
 
