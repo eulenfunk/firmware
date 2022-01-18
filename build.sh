@@ -186,7 +186,7 @@ build_images_for_site ()
   if [[ "$PREPARED_CONTENTS" != "$TEMPLATE_NAME" ]]; then
 
     rm -rf .git/rebase-apply
-    git reset --hard origin/$GLUONBRANCH
+#    git reset --hard origin/$GLUONBRANCH
 
     for (( target_index=0; target_index < ${#TARGETS[@]}; target_index += 1 )); do
       TARGET="${TARGETS[target_index]}"
