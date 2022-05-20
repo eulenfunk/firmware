@@ -25,12 +25,12 @@
 		compatible = "gpio-leds";
 
 		led_status_blue: status_blue {
-			label = "mi-router-4a-gigabit:blue:status";
+			label = "mir4ag:blue:status";
 			gpios = <&gpio0 8 GPIO_ACTIVE_LOW>;
 		};
 
 		led_status_yellow: status_yellow {
-			label = "mi-router-4a-gigabit:yellow:status";
+			label = "mir4ag:yellow:status";
 			gpios = <&gpio0 10 GPIO_ACTIVE_LOW>;
 		};
 	};
@@ -52,7 +52,7 @@
 	m25p80@0 {
 		compatible = "jedec,spi-nor";
 		reg = <0>;
-		spi-max-frequency = <50000000>; // Stable at 50mhz
+		spi-max-frequency = <50000000>; // Factory is 80mhz, but not all boards can run well!
 		m25p,fast-read;
 
 		partitions {
@@ -61,9 +61,17 @@
 			#size-cells = <1>;
 
 			partition@0 {
-				label = "u-boot";
-				reg = <0x0 0x30000>;
-				read-only;
+				label = "flash";
+				reg = <0x0 0x1000000>;
+				compatible = "fixed-partitions";
+				#address-cells = <1>;
+				#size-cells = <1>;
+
+				partition@0 {
+					label = "u-boot";
+					reg = <0x0 0x30000>;
+					read-only;
+				};
 			};
 
 			partition@30000 {
