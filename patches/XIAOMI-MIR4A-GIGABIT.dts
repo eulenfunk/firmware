@@ -25,12 +25,12 @@
 		compatible = "gpio-leds";
 
 		led_status_blue: status_blue {
-			label = "mir4ag:blue:status";
+			label = "mi-router-4a-gigabit:blue:status";
 			gpios = <&gpio0 8 GPIO_ACTIVE_LOW>;
 		};
 
 		led_status_yellow: status_yellow {
-			label = "mir4ag:yellow:status";
+			label = "mi-router-4a-gigabit:yellow:status";
 			gpios = <&gpio0 10 GPIO_ACTIVE_LOW>;
 		};
 	};
