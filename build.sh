@@ -209,7 +209,7 @@ build_images_for_site ()
   local MAKE_J_VAL
   MAKE_J_VAL="$(( $(getconf _NPROCESSORS_ONLN) * 2 ))"
 # only 1 cpu core to use
-  MAKE_J_VAL=1
+#  MAKE_J_VAL=1
   for (( target_index=0; target_index < ${#TARGETS[@]}; target_index += 1 )); do
     TARGET="${TARGETS[target_index]}"
     echo "Building the firmware for site code: $SITE_CODE, target: $TARGET ..."
@@ -248,10 +248,10 @@ build_all_images ()
   local -a TARGETS=("$@")
   if (( ${#TARGETS[@]} == 0 )); then
     TARGETS+=( ar71xx-tiny )
-#    TARGETS+=( ar71xx-generic )
-#    TARGETS+=( ar71xx-nand )
-#    TARGETS+=( ar71xx-mikrotik )
-#    TARGETS+=( ath79-generic )
+    TARGETS+=( ar71xx-generic )
+    TARGETS+=( ar71xx-nand )
+    TARGETS+=( ar71xx-mikrotik )
+    TARGETS+=( ath79-generic )
 #    TARGETS+=( brcm2708-bcm2708 )
 #    TARGETS+=( brcm2708-bcm2709 )
 #    TARGETS+=( brcm2708-bcm2710 )
@@ -262,15 +262,15 @@ build_all_images ()
 #    TARGETS+=( lantiq-xway )
 #    TARGETS+=( mpc85xx-generic )
 #    TARGETS+=( mpc85xx-p1020 )
-#    TARGETS+=( ramips-mt7620 )
+    TARGETS+=( ramips-mt7620 )
     TARGETS+=( ramips-mt7621 )
-#    TARGETS+=( ramips-mt76x8 )
-#    TARGETS+=( ramips-rt305x )
+    TARGETS+=( ramips-mt76x8 )
+    TARGETS+=( ramips-rt305x )
 #    TARGETS+=( sunxi-cortexa7 )
-#    TARGETS+=( x86-generic )
-#    TARGETS+=( x86-geode )
-#    TARGETS+=( x86-64 )
-#    TARGETS+=( x86-legacy )
+    TARGETS+=( x86-generic )
+    TARGETS+=( x86-geode )
+    TARGETS+=( x86-64 )
+    TARGETS+=( x86-legacy )
 ##    TARGETS+=( rockchip-armv8 )
    fi
 
