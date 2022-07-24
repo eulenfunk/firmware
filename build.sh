@@ -88,7 +88,7 @@ get_site_log_filename ()
 
 #SBRANCH="$(date +%Y%m%d%H%M)"
 SBRANCH="$(date +%y%m%d%H)$(head -1 $1|cut -c1-3)"  
-SBRANCH="22051401sta"
+#SBRANCH="22051401sta"
 generate_site_config ()
 {
   local RELBRANCH="$1"
@@ -255,13 +255,13 @@ build_all_images ()
 #    TARGETS+=( brcm2708-bcm2708 )
 #    TARGETS+=( brcm2708-bcm2709 )
 #    TARGETS+=( brcm2708-bcm2710 )
-#    TARGETS+=( mvebu-cortexa9 )
-#    TARGETS+=( ipq40xx-generic )
-#    TARGETS+=( ipq806x-generic )
-#    TARGETS+=( lantiq-xrx200 )
-#    TARGETS+=( lantiq-xway )
-#    TARGETS+=( mpc85xx-generic )
-#    TARGETS+=( mpc85xx-p1020 )
+    TARGETS+=( mvebu-cortexa9 )
+    TARGETS+=( ipq40xx-generic )
+    TARGETS+=( ipq806x-generic )
+    TARGETS+=( lantiq-xrx200 )
+    TARGETS+=( lantiq-xway )
+    TARGETS+=( mpc85xx-generic )
+    TARGETS+=( mpc85xx-p1020 )
     TARGETS+=( ramips-mt7620 )
     TARGETS+=( ramips-mt7621 )
     TARGETS+=( ramips-mt76x8 )
