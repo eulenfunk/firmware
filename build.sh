@@ -85,10 +85,10 @@ get_site_log_filename ()
   LOG_FILENAME="$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE/build.log"
 }
 
-
+SITECODE_CURRENT="coldstart"
 #SBRANCH="$(date +%Y%m%d%H%M)"
 SBRANCH="$(date +%y%m%d%H)$(head -1 $1|cut -c1-3)"  
-#SBRANCH="22051401sta"
+SBRANCH="23041418sta"
 generate_site_config ()
 {
   local RELBRANCH="$1"
@@ -190,12 +190,13 @@ build_images_for_site ()
 
     for (( target_index=0; target_index < ${#TARGETS[@]}; target_index += 1 )); do
       TARGET="${TARGETS[target_index]}"
-      if false; then
-        echo "Cleaning the firmware for site code: $SITE_CODE, target: $TARGET ..."
-        printf -v MAKE_CMD  "make clean GLUON_TARGET=%q  %s"  "$TARGET"  "$ARGS"
-        echo "$MAKE_CMD"
-        eval "$MAKE_CMD"
-      fi
+#      if [ "$SITE_CODE" != "$SITECODE_CURRENT"  ]; then
+#        echo "Cleaning the firmware for site code: $SITE_CODE, target: $TARGET ..."
+#        printf -v MAKE_CMD  "make clean GLUON_TARGET=%q  %s"  "$TARGET"  "$ARGS"
+#        echo "$MAKE_CMD"
+#        eval "$MAKE_CMD"
+#      fi
+    SITECODE_CURRENT=$SITE_CODE
     done 
     echo "Site prepare.sh ..."
     "$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE/prepare.sh"
@@ -263,7 +264,7 @@ build_all_images ()
     TARGETS+=( mpc85xx-generic )
     TARGETS+=( mpc85xx-p1020 )
     TARGETS+=( ramips-mt7620 )
-    TARGETS+=( ramips-mt7621 )
+#    TARGETS+=( ramips-mt7621 )
     TARGETS+=( ramips-mt76x8 )
     TARGETS+=( ramips-rt305x )
     TARGETS+=( sunxi-cortexa7 )
