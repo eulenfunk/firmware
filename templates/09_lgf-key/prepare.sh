@@ -12,7 +12,7 @@ pushd ../gluon ; ../patches/fix-DIR615c1-imagetoobig.sh; popd # remove DIR615C1 
 pushd ../gluon ; ../patches/add-TPlinkArcherA7V5.sh; popd # adding TP-Link Archer A7-V5
 pushd ../gluon ; ../patches/kernelswapon.sh; popd # enable swap for all
 pushd ../gluon ; ../patches/ignore-preservechannels-for-outdoormode.sh ; popd # correct handling of outdoor-devices (enable auto-channel)
-#pushd ../gluon ; ../patches/add-mi-router-4a-gigabit.sh; popd # adding Xiaomi -mi-router-4a-gigabit edition
+pushd ../gluon ; ../patches/add-mi-router-4a-gigabit.sh; popd # adding Xiaomi -mi-router-4a-gigabit edition
 
 exit 0;
 
