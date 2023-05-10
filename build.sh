@@ -88,7 +88,7 @@ get_site_log_filename ()
 SITECODE_CURRENT="coldstart"
 #SBRANCH="$(date +%Y%m%d%H%M)"
 SBRANCH="$(date +%y%m%d%H)$(head -1 $1|cut -c1-3)"  
-SBRANCH="23041418sta"
+SBRANCH="23050612sta"
 generate_site_config ()
 {
   local RELBRANCH="$1"
@@ -248,30 +248,30 @@ build_all_images ()
 {
   local -a TARGETS=("$@")
   if (( ${#TARGETS[@]} == 0 )); then
-    TARGETS+=( ar71xx-tiny )
-    TARGETS+=( ar71xx-generic )
-    TARGETS+=( ar71xx-nand )
+#    TARGETS+=( ar71xx-tiny )
+#    TARGETS+=( ar71xx-generic )
+#    TARGETS+=( ar71xx-nand )
     TARGETS+=( ar71xx-mikrotik )
-    TARGETS+=( ath79-generic )
-    TARGETS+=( brcm2708-bcm2708 )
-    TARGETS+=( brcm2708-bcm2709 )
-    TARGETS+=( brcm2708-bcm2710 )
-    TARGETS+=( mvebu-cortexa9 )
-    TARGETS+=( ipq40xx-generic )
-    TARGETS+=( ipq806x-generic )
-    TARGETS+=( lantiq-xrx200 )
-    TARGETS+=( lantiq-xway )
-    TARGETS+=( mpc85xx-generic )
-    TARGETS+=( mpc85xx-p1020 )
-    TARGETS+=( ramips-mt7620 )
+#    TARGETS+=( ath79-generic )
+#    TARGETS+=( brcm2708-bcm2708 )
+#    TARGETS+=( brcm2708-bcm2709 )
+#    TARGETS+=( brcm2708-bcm2710 )
+#    TARGETS+=( mvebu-cortexa9 )
+#    TARGETS+=( ipq40xx-generic )
+#    TARGETS+=( ipq806x-generic )
+#    TARGETS+=( lantiq-xrx200 )
+#    TARGETS+=( lantiq-xway )
+#    TARGETS+=( mpc85xx-generic )
+#    TARGETS+=( mpc85xx-p1020 )
+#    TARGETS+=( ramips-mt7620 )
 ##    TARGETS+=( ramips-mt7621 )
-    TARGETS+=( ramips-mt76x8 )
-    TARGETS+=( ramips-rt305x )
-    TARGETS+=( sunxi-cortexa7 )
-    TARGETS+=( x86-generic )
-    TARGETS+=( x86-geode )
-    TARGETS+=( x86-64 )
-    TARGETS+=( x86-legacy )
+#    TARGETS+=( ramips-mt76x8 )
+#    TARGETS+=( ramips-rt305x )
+#    TARGETS+=( sunxi-cortexa7 )
+#    TARGETS+=( x86-generic )
+#    TARGETS+=( x86-geode )
+#    TARGETS+=( x86-64 )
+#    TARGETS+=( x86-legacy )
 ###    TARGETS+=( rockchip-armv8 )
    fi
 
@@ -316,7 +316,7 @@ build_all_images ()
   popd >/dev/null
 
   # rename output to images with timestamp
-  mv "./images" "./images-$DATE_SUFFIX"
+#  mv "./images" "./images-$DATE_SUFFIX"
 
   # I do not think that we build any modules yet.
 #  echo check for modules
