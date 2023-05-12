@@ -248,16 +248,16 @@ build_all_images ()
 {
   local -a TARGETS=("$@")
   if (( ${#TARGETS[@]} == 0 )); then
-    TARGETS+=( ar71xx-tiny )
-    TARGETS+=( ar71xx-generic )
+#    TARGETS+=( ar71xx-tiny )
+#    TARGETS+=( ar71xx-generic )
 #    TARGETS+=( ar71xx-nand )
 #    TARGETS+=( ar71xx-mikrotik )
-    TARGETS+=( ath79-generic )
+#    TARGETS+=( ath79-generic )
 #    TARGETS+=( brcm2708-bcm2708 )
 #    TARGETS+=( brcm2708-bcm2709 )
 #    TARGETS+=( brcm2708-bcm2710 )
 #    TARGETS+=( mvebu-cortexa9 )
-    TARGETS+=( ipq40xx-generic )
+#    TARGETS+=( ipq40xx-generic )
 #    TARGETS+=( ipq806x-generic )
 #    TARGETS+=( lantiq-xrx200 )
 #    TARGETS+=( lantiq-xway )
@@ -270,9 +270,9 @@ build_all_images ()
 #    TARGETS+=( sunxi-cortexa7 )
 #    TARGETS+=( x86-generic )
 #    TARGETS+=( x86-geode )
-    TARGETS+=( x86-64 )
+#    TARGETS+=( x86-64 )
 #    TARGETS+=( x86-legacy )
-###    TARGETS+=( rockchip-armv8 )
+##    TARGETS+=( rockchip-armv8 )
    fi
 
   pushd "$GLUON_DIR" >/dev/null
@@ -316,7 +316,7 @@ build_all_images ()
   popd >/dev/null
 
   # rename output to images with timestamp
-#  mv "./images" "./images-$DATE_SUFFIX"
+  mv "./images" "./images-$DATE_SUFFIX"
 
   # I do not think that we build any modules yet.
 #  echo check for modules
