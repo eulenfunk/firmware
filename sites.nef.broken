@@ -35,7 +35,8 @@
 #broken v2021.1.x 18_nefuk 18_nefuk
 #broken v2021.1.x 18_nefuk-key 18_nefuk-key
 #broken v2021.1.x 19_agi 19_agi
-broken v2021.1.x 19_agi-key 19_agi-key
+#RELBRANCH	GLUONBRANCH	TEMPLATE_NAME	SITE_CODE	DOMAIN_NR	SITE_SMALL	SITE_BIG 	FF_PREFIX 	META_PREFIX	MESHS_SID DOMAIN_NAME	SUPERNODE_DEFAULT	V4_PREFIX	V6_PREFIX		CH_24 	CH_5	MAP_LAT	  MAP_LON	MAP_ZOOM	DOMAIN_HASH 								FFWEBSITE_HOST 			FFWEBSITE_TLD 	DOMAIN_LONGNAME	 		KEY_FILE_SIGN		KEY_FILE_SSH
+broken 		v2021.1.x 	19_agi-key 	19agikey	19 		agi 		AGI 		ff		nef 		agi-mesh Agios 		5 			10.51.32 	2a03:2260:122:0513 	9 	44 	51.227356 6.948973 	8 		fddec24f2b32a5b0d0bdf328eddcd8fadd3d7edf626d8506d69fc5ee5d67568f	firmware			ffnef.de	Freifunk_Agios_(Neanderfunk)    ffnef.signkeys 		ffnef.sshkeys
 #broken v2021.1.x 20_grt 20_grt
 #broken v2021.1.x 20_grt-key 20_grt-key
 #broken v2021.1.x 30_sol 30_sol

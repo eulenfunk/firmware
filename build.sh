@@ -88,12 +88,34 @@ get_site_log_filename ()
 SITECODE_CURRENT="coldstart"
 #SBRANCH="$(date +%Y%m%d%H%M)"
 SBRANCH="$(date +%y%m%d%H)$(head -1 $1|cut -c1-3)"  
-SBRANCH="23050612sta"
+#SBRANCH="23050612sta"
 generate_site_config ()
 {
-  local RELBRANCH="$1"
-  local TEMPLATE_NAME="$2"
-  local SITE_CODE="$3"
+  local RELBRANCH="${1}"
+  local GLUONBRANCH="${2}"
+  local TEMPLATE_NAME="${3}"
+  local SITE_CODE="${4}"
+  local DOMAIN_NR="${5}"
+  local SITE_SMALL="${6}"
+  local SITE_BIG="${7}"
+  local FF_PREFIX="${8}"
+  local META_PREFIX="${9}"
+  local MESH_SSID="${10}"
+  local DOMAIN_NAME="${11}"
+  local SUPERNODE_DEFAULT="${12}"
+  local V4_PREFIX="${13}"
+  local V6_PREFIX="${14}"
+  local CH_24="${15}"
+  local CH_5="${16}"
+  local MAP_LAT="${17}"
+  local MAP_LON="${18}"
+  local MAP_ZOOM="${19}"
+  local DOMAIN_HASH="${20}"
+  local FFWEBSITE_HOST="${21}"
+  local FFWEBSITE_TLD="${22}"
+  local DOMAIN_LONGNAME="${23}"
+  local KEY_FILE_SIGN="${24}"
+  local KEY_FILE_SSH="${25}"
 
   echo "Generating site $SITE_CODE..."
 
@@ -102,9 +124,30 @@ generate_site_config ()
   mkdir -p "assembled/$TEMPLATE_NAME"
   cp -r "templates/$TEMPLATE_NAME" "$DIR"
 
-  replace_string_in_files "$DIR" SITECODE  "$SITE_CODE"
-  replace_string_in_files "$DIR" RELBRANCH "$RELBRANCH"
-  replace_string_in_files "$DIR" SBRANCH   "$SBRANCH"
+  replace_string_in_files "$DIR" RELBRANCH        "$RELBRANCH"
+  replace_string_in_files "$DIR" GLUONBRANCH  	  "$GLUONBRANCH"
+  replace_string_in_files "$DIR" SITECODE    	  "$SITE_CODE"
+  replace_string_in_files "$DIR" DOMAINNR    	  "$DOMAIN_NR"
+  replace_string_in_files "$DIR" SITESMALL  	  "$SITE_SMALL"
+  replace_string_in_files "$DIR" SITEBIG  	  "$SITE_BIG"
+  replace_string_in_files "$DIR" FFPREFIX 	  "$FF_PREFIX"
+  replace_string_in_files "$DIR" METAPREFIX 	  "$META_PREFIX"
+  replace_string_in_files "$DIR" MESHSSID 	  "$MESH_SSID"
+  replace_string_in_files "$DIR" DOMAINNAME       "$DOMAIN_NAME"
+  replace_string_in_files "$DIR" SUPERNODEDEFAULT "$SUPERNODE_DEFAULT"
+  replace_string_in_files "$DIR" V4PREFIX 	  "$V4_PREFIX"
+  replace_string_in_files "$DIR" V6PREFIX 	  "$V6_PREFIX"
+  replace_string_in_files "$DIR" WIFICH24 	  "$CH_24"
+  replace_string_in_files "$DIR" WIFICH5 	  "$CH_5"
+  replace_string_in_files "$DIR" MAPLAT 	  "$MAP_LAT"
+  replace_string_in_files "$DIR" MAPLON 	  "$MAP_LON"
+  replace_string_in_files "$DIR" MAPZOOM 	  "$MAP_ZOOM"
+  replace_string_in_files "$DIR" DOMAINHASH 	  "$DOMAIN_HASH"
+  replace_string_in_files "$DIR" FFWEBSITEHOST 	  "$FFWEBSITE_HOST"
+  replace_string_in_files "$DIR" FFWEBSITETLD	  "$FFWEBSITE_TLD"
+  replace_string_in_files "$DIR" DOMAINLONGNAME	  "$DOMAIN_LONGNAME"
+  replace_string_in_files "$DIR" KEYFILESIGN "$(cat buildkeys/$KEY_FILE_SIGN|sed ':a;N;$!ba;s/\n/\\n/g')" 
+  replace_string_in_files "$DIR" KEYFILESSH "$(cat buildkeys/$KEY_FILE_SSH|sed ':a;N;$!ba;s/\n/\\n/g')"
 
   # Create the log file, or truncate it if it already exists.
   get_site_log_filename  "$TEMPLATE_NAME"  "$SITE_CODE"
@@ -121,8 +164,31 @@ generate_all_site_configs ()
   local -i  index
   for (( index=0; index < ${#ALL_SITE_RELBRANCHES[@]}; index += 1 )); do
     generate_site_config "${ALL_SITE_RELBRANCHES[$index]}" \
+    			 "${ALL_SITE_GLUON_BRANCHES[$index]}" \
                          "${ALL_SITE_TEMPLATE_NAMES[$index]}" \
-                         "${ALL_SITE_CODES[$index]}"
+                         "${ALL_SITE_CODES[$index]}" \
+			 "${ALL_SITE_DOMAIN_NRS[$index]}" \
+			 "${ALL_SITE_SITE_SMALLS[$index]}" \
+			 "${ALL_SITE_SITE_BIGS[$index]}" \
+			 "${ALL_SITE_FF_PREFIXS[$index]}" \
+			 "${ALL_SITE_META_PREFIXS[$index]}" \
+			 "${ALL_SITE_MESH_SSIDS[$index]}" \
+			 "${ALL_SITE_DOMAIN_NAMES[$index]}" \
+			 "${ALL_SITE_SUPERNODE_DEFAULTS[$index]}" \
+			 "${ALL_SITE_V4_PREFIXS[$index]}" \
+			 "${ALL_SITE_V6_PREFIXS[$index]}" \
+			 "${ALL_SITE_CH_24S[$index]}" \
+			 "${ALL_SITE_CH_5S[$index]}" \
+			 "${ALL_SITE_MAP_LATS[$index]}" \
+			 "${ALL_SITE_MAP_LONS[$index]}" \
+			 "${ALL_SITE_MAP_ZOOMS[$index]}" \
+			 "${ALL_SITE_DOMAIN_HASHS[$index]}" \
+			 "${ALL_SITE_FFWEBSITE_HOSTS[$index]}" \
+			 "${ALL_SITE_FFWEBSITE_TLDS[$index]}" \
+			 "${ALL_SITE_DOMAIN_LONGNAMES[$index]}" \
+			 "${ALL_SITE_KEY_FILE_SIGNS[$index]}" \
+			 "${ALL_SITE_KEY_FILE_SSHS[$index]}" 
+                        
   done
 
   echo "Finished generating sites."
@@ -167,7 +233,7 @@ build_images_for_site ()
 
   # Parameters for setting buildbot signatures
   local SIGN_ARGS=""
-  SIGN_ARGS+=" $(cat $SANDBOX_DIR/buildkey/untrustworthy-buildbot-signkey.priv)"
+  SIGN_ARGS+=" $(cat $SANDBOX_DIR/buildkeys/untrustworthy-buildbot-signkey.priv)"
   SIGN_ARGS+=" $SANDBOX_DIR/images/$TEMPLATE_NAME/$SITE_CODE/sysupgrade/$RELBRANCH.manifest"
 
   local MAKE_CMD
@@ -343,9 +409,9 @@ build_all_images ()
 
   echo "Finished building images:"
   echo "- Images  dir: images-$DATE_SUFFIX"
-  if $ARE_THERE_MODULES; then
-    echo "- Modules dir: modules-$DATE_SUFFIX/modules"
-   fi
+#  if $ARE_THERE_MODULES; then
+#    echo "- Modules dir: modules-$DATE_SUFFIX/modules"
+#   fi
   if $ARE_THERE_PACKAGES; then
     echo "- Packages dir: modules-$DATE_SUFFIX/packages"
    fi
@@ -356,6 +422,27 @@ declare -a ALL_SITE_RELBRANCHES=()
 declare -a ALL_SITE_GLUON_BRANCHES=()  
 declare -a ALL_SITE_TEMPLATE_NAMES=()
 declare -a ALL_SITE_CODES=()
+declare -a ALL_SITE_DOMAIN_NRS=()
+declare -a ALL_SITE_SITE_SMALLS=()
+declare -a ALL_SITE_SITE_BIGS=()
+declare -a ALL_SITE_FF_PREFIXS=()
+declare -a ALL_SITE_META_PREFIXS=()
+declare -a ALL_SITE_MESH_SSIDS=()
+declare -a ALL_SITE_DOMAIN_NAMES=()
+declare -a ALL_SITE_SUPERNODE_DEFAULTS=()
+declare -a ALL_SITE_V4_PREFIXS=()
+declare -a ALL_SITE_V6_PREFIXS=()
+declare -a ALL_SITE_CH_24S=()
+declare -a ALL_SITE_CH_5S=()
+declare -a ALL_SITE_MAP_LATS=()
+declare -a ALL_SITE_MAP_LONS=()
+declare -a ALL_SITE_MAP_ZOOMS=()
+declare -a ALL_SITE_DOMAIN_HASHS=()
+declare -a ALL_SITE_FFWEBSITE_HOSTSS=()
+declare -a ALL_SITE_FFWEBSITE_TLDS=()
+declare -a ALL_SITE_DOMAIN_LONGNAMES=()
+declare -a ALL_SITE_KEY_FILE_SIGNS=()
+declare -a ALL_SITE_KEY_FILE_SSHS=()
 
 parse_sites_file ()
 {
@@ -374,7 +461,7 @@ parse_sites_file ()
 
     IFS=$' \t'  read -r -a COMPONENTS <<< "$LINE"
 
-    if (( ${#COMPONENTS[@]} != 4 )); then
+    if (( ${#COMPONENTS[@]} != 25 )); then
       abort "Syntax error parsing this line: $LINE"
     fi
 
@@ -382,6 +469,27 @@ parse_sites_file ()
     ALL_SITE_GLUON_BRANCHES+=( "${COMPONENTS[1]}" )
     ALL_SITE_TEMPLATE_NAMES+=( "${COMPONENTS[2]}" )
     ALL_SITE_CODES+=( "${COMPONENTS[3]}" )
+    ALL_SITE_DOMAIN_NRS+=( "${COMPONENTS[4]}" )
+    ALL_SITE_SITE_SMALLS+=( "${COMPONENTS[5]}" )
+    ALL_SITE_SITE_BIGS+=( "${COMPONENTS[6]}" )
+    ALL_SITE_FF_PREFIXS+=( "${COMPONENTS[7]}" )
+    ALL_SITE_META_PREFIXS+=( "${COMPONENTS[8]}" )
+    ALL_SITE_MESH_SSIDS+=( "${COMPONENTS[9]}" )
+    ALL_SITE_DOMAIN_NAMES+=( "${COMPONENTS[10]}" )
+    ALL_SITE_SUPERNODE_DEFAULTS+=( "${COMPONENTS[11]}" )
+    ALL_SITE_V4_PREFIXS+=( "${COMPONENTS[12]}" )
+    ALL_SITE_V6_PREFIXS+=( "${COMPONENTS[13]}" )
+    ALL_SITE_CH_24S+=( "${COMPONENTS[14]}" )
+    ALL_SITE_CH_5S+=( "${COMPONENTS[15]}" )
+    ALL_SITE_MAP_LATS+=( "${COMPONENTS[16]}" )
+    ALL_SITE_MAP_LONS+=( "${COMPONENTS[17]}" )
+    ALL_SITE_MAP_ZOOMS+=( "${COMPONENTS[18]}" )
+    ALL_SITE_DOMAIN_HASHS+=( "${COMPONENTS[19]}" )
+    ALL_SITE_FFWEBSITE_HOSTS+=( "${COMPONENTS[20]}" )
+    ALL_SITE_FFWEBSITE_TLDS+=( "${COMPONENTS[21]}" )
+    ALL_SITE_DOMAIN_LONGNAMES+=( "${COMPONENTS[22]}" )
+    ALL_SITE_KEY_FILE_SIGNS+=( "${COMPONENTS[23]}" )
+    ALL_SITE_KEY_FILE_SSHS+=( "${COMPONENTS[24]}" )
 
   done < "$FILENAME"
 
