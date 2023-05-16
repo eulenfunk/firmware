@@ -1,0 +1,8 @@
+
+image: debian
+
+# run tests using the binary built before
+test:
+  stage: test
+  script:
+    - echo Hallo Welt
