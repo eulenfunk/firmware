@@ -111,11 +111,17 @@ generate_site_config ()
   local MAP_LON="${18}"
   local MAP_ZOOM="${19}"
   local DOMAIN_HASH="${20}"
-  local FFWEBSITE_HOST="${21}"
-  local FFWEBSITE_TLD="${22}"
-  local DOMAIN_LONGNAME="${23}"
-  local KEY_FILE_SIGN="${24}"
-  local KEY_FILE_SSH="${25}"
+  local META_NAME="${21}"
+  local META_WEBSITE="${22}"
+  local MAP_WEBSITE="${23}"
+  local FFWEBSITE_HOST="${24}"
+  local FFWEBSITE_TLD="${25}"
+  local DOMAIN_REGION_DE="${26}"
+  local DOMAIN_REGION_EN="${27}"
+  local DOMAIN_LONGNAME="${28}"
+  local SETUP_SKIP="${29}"
+  local KEY_FILE_SIGN="${30}"
+  local KEY_FILE_SSH="${31}"
 
   echo "Generating site $SITE_CODE..."
 
@@ -143,9 +149,16 @@ generate_site_config ()
   replace_string_in_files "$DIR" MAPLON 	  "$MAP_LON"
   replace_string_in_files "$DIR" MAPZOOM 	  "$MAP_ZOOM"
   replace_string_in_files "$DIR" DOMAINHASH 	  "$DOMAIN_HASH"
+  replace_string_in_files "$DIR" METANAME	  "$(echo $METANAME|sed -e 's/_/\ /g')"
+  replace_string_in_files "$DIR" METAWEBSITE 	  "$META_WEBSITE"
+  replace_string_in_files "$DIR" MAPWEBSITE 	  "$MAP_WEBSITE"
   replace_string_in_files "$DIR" FFWEBSITEHOST 	  "$FFWEBSITE_HOST"
   replace_string_in_files "$DIR" FFWEBSITETLD	  "$FFWEBSITE_TLD"
-  replace_string_in_files "$DIR" DOMAINLONGNAME	  "$DOMAIN_LONGNAME"
+  replace_string_in_files "$DIR" DOMAINREGIONDE	  "$(echo $DOMAIN_REGION_DE|sed -e 's/_/\ /g')"
+  replace_string_in_files "$DIR" DOMAINREGIONEN	  "$(echo $DOMAIN_REGION_EN|sed -e 's/_/\ /g')"
+  replace_string_in_files "$DIR" DOMAINLONGNAME	  "$(echo $DOMAIN_LONGNAME|sed -e 's/_/\ /g')"
+echo SETUP_SKIP $SETUP_SKIP
+  replace_string_in_files "$DIR" SETUPSKIP	  "$SETUP_SKIP"
   replace_string_in_files "$DIR" KEYFILESIGN "$(cat buildkeys/$KEY_FILE_SIGN|sed ':a;N;$!ba;s/\n/\\n/g')" 
   replace_string_in_files "$DIR" KEYFILESSH "$(cat buildkeys/$KEY_FILE_SSH|sed ':a;N;$!ba;s/\n/\\n/g')"
 
@@ -183,11 +196,17 @@ generate_all_site_configs ()
 			 "${ALL_SITE_MAP_LONS[$index]}" \
 			 "${ALL_SITE_MAP_ZOOMS[$index]}" \
 			 "${ALL_SITE_DOMAIN_HASHS[$index]}" \
+			 "${ALL_SITE_META_NAMES[$index]}" \
+			 "${ALL_SITE_META_WEBSITES[$index]}" \
+			 "${ALL_SITE_MAP_WEBSITES[$index]}" \
 			 "${ALL_SITE_FFWEBSITE_HOSTS[$index]}" \
 			 "${ALL_SITE_FFWEBSITE_TLDS[$index]}" \
+			 "${ALL_SITE_DOMAIN_REGION_DES[$index]}" \
+			 "${ALL_SITE_DOMAIN_REGION_ENS[$index]}" \
 			 "${ALL_SITE_DOMAIN_LONGNAMES[$index]}" \
+			 "${ALL_SITE_SETUP_SKIPS[$index]}" \
 			 "${ALL_SITE_KEY_FILE_SIGNS[$index]}" \
-			 "${ALL_SITE_KEY_FILE_SSHS[$index]}" 
+			 "${ALL_SITE_KEY_FILE_SSHS[$index]}"  
                         
   done
 
@@ -438,9 +457,15 @@ declare -a ALL_SITE_MAP_LATS=()
 declare -a ALL_SITE_MAP_LONS=()
 declare -a ALL_SITE_MAP_ZOOMS=()
 declare -a ALL_SITE_DOMAIN_HASHS=()
+declare -a ALL_SITE_META_NAMES=()
+declare -a ALL_SITE_META_WEBSITES=()
+declare -a ALL_SITE_MAP_WEBSITES=()
 declare -a ALL_SITE_FFWEBSITE_HOSTSS=()
 declare -a ALL_SITE_FFWEBSITE_TLDS=()
+declare -a ALL_SITE_DOMAIN_REGION_DES=()
+declare -a ALL_SITE_DOMAIN_REGION_ENS=()
 declare -a ALL_SITE_DOMAIN_LONGNAMES=()
+declare -a ALL_SITE_SETUP_SKIPS=()
 declare -a ALL_SITE_KEY_FILE_SIGNS=()
 declare -a ALL_SITE_KEY_FILE_SSHS=()
 
@@ -459,9 +484,9 @@ parse_sites_file ()
       continue
     fi
 
-    IFS=$' \t'  read -r -a COMPONENTS <<< "$LINE"
+    IFS=$' \t'  read -r -a COMPONENTS <<< "$(echo $LINE|tr -s '\t')"
 
-    if (( ${#COMPONENTS[@]} != 25 )); then
+    if (( ${#COMPONENTS[@]} != 31 )); then
       abort "Syntax error parsing this line: $LINE"
     fi
 
@@ -485,11 +510,17 @@ parse_sites_file ()
     ALL_SITE_MAP_LONS+=( "${COMPONENTS[17]}" )
     ALL_SITE_MAP_ZOOMS+=( "${COMPONENTS[18]}" )
     ALL_SITE_DOMAIN_HASHS+=( "${COMPONENTS[19]}" )
-    ALL_SITE_FFWEBSITE_HOSTS+=( "${COMPONENTS[20]}" )
-    ALL_SITE_FFWEBSITE_TLDS+=( "${COMPONENTS[21]}" )
-    ALL_SITE_DOMAIN_LONGNAMES+=( "${COMPONENTS[22]}" )
-    ALL_SITE_KEY_FILE_SIGNS+=( "${COMPONENTS[23]}" )
-    ALL_SITE_KEY_FILE_SSHS+=( "${COMPONENTS[24]}" )
+    ALL_SITE_META_NAMES+=( "${COMPONENTS[20]}" )
+    ALL_SITE_META_WEBSITES+=( "${COMPONENTS[21]}" )
+    ALL_SITE_MAP_WEBSITES+=( "${COMPONENTS[22]}" )
+    ALL_SITE_FFWEBSITE_HOSTS+=( "${COMPONENTS[23]}" )
+    ALL_SITE_FFWEBSITE_TLDS+=( "${COMPONENTS[24]}" )
+    ALL_SITE_DOMAIN_REGION_DES+=( "${COMPONENTS[25]}" )
+    ALL_SITE_DOMAIN_REGION_ENS+=( "${COMPONENTS[26]}" )
+    ALL_SITE_DOMAIN_LONGNAMES+=( "${COMPONENTS[27]}" )
+    ALL_SITE_SETUP_SKIPS+=( "${COMPONENTS[28]}" )
+    ALL_SITE_KEY_FILE_SIGNS+=( "${COMPONENTS[29]}" )
+    ALL_SITE_KEY_FILE_SSHS+=( "${COMPONENTS[30]}" )
 
   done < "$FILENAME"
 
