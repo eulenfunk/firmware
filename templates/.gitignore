@@ -3,3 +3,4 @@
 .save
 .tmp
 .DS_Store
+templates/*/tests
