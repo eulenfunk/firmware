@@ -156,7 +156,7 @@ generate_site_config ()
   replace_string_in_files "$DIR" MAPWEBSITE 	  "$MAP_WEBSITE"
   replace_string_in_files "$DIR" FWWEBSITEHOST 	  "$FWWEBSITE_HOST"
   replace_string_in_files "$DIR" FWWEBSITETLD	  "$FWWEBSITE_TLD"
-  replace_string_in_files "$DIR" OPKGFQN          "$OPKG_FQDN"
+  replace_string_in_files "$DIR" OPKGFQDN         "$OPKG_FQDN"
   replace_string_in_files "$DIR" SUPERNODETLD	  "$SUPERNODE_TLD"
   replace_string_in_files "$DIR" DOMAINREGIONDE	  "$(echo $DOMAIN_REGION_DE|sed -e 's/_/\ /g')"
   replace_string_in_files "$DIR" DOMAINREGIONEN	  "$(echo $DOMAIN_REGION_EN|sed -e 's/_/\ /g')"
