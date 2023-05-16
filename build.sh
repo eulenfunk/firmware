@@ -105,8 +105,8 @@ generate_site_config ()
   local SUPERNODE_DEFAULT="${12}"
   local V4_PREFIX="${13}"
   local V6_PREFIX="${14}"
-  local CH_24="${15}"
-  local CH_5="${16}"
+  local WIFICH_24="${15}"
+  local WIFICH_5="${16}"
   local MAP_LAT="${17}"
   local MAP_LON="${18}"
   local MAP_ZOOM="${19}"
@@ -114,14 +114,16 @@ generate_site_config ()
   local META_NAME="${21}"
   local META_WEBSITE="${22}"
   local MAP_WEBSITE="${23}"
-  local FFWEBSITE_HOST="${24}"
-  local FFWEBSITE_TLD="${25}"
-  local DOMAIN_REGION_DE="${26}"
-  local DOMAIN_REGION_EN="${27}"
-  local DOMAIN_LONGNAME="${28}"
-  local SETUP_SKIP="${29}"
-  local KEY_FILE_SIGN="${30}"
-  local KEY_FILE_SSH="${31}"
+  local FWWEBSITE_HOST="${24}"
+  local FWWEBSITE_TLD="${25}"
+  local OPKG_FQDN="${26}"
+  local SUPERNODE_TLD="${27}"
+  local DOMAIN_REGION_DE="${28}"
+  local DOMAIN_REGION_EN="${29}"
+  local SETUP_SKIP="${30}"
+  local KEY_FILE_SIGN="${31}"
+  local KEY_FILE_SSH="${32}"
+  local DOMAIN_LONGNAME="${33}"
 
   echo "Generating site $SITE_CODE..."
 
@@ -143,24 +145,25 @@ generate_site_config ()
   replace_string_in_files "$DIR" SUPERNODEDEFAULT "$SUPERNODE_DEFAULT"
   replace_string_in_files "$DIR" V4PREFIX 	  "$V4_PREFIX"
   replace_string_in_files "$DIR" V6PREFIX 	  "$V6_PREFIX"
-  replace_string_in_files "$DIR" WIFICH24 	  "$CH_24"
-  replace_string_in_files "$DIR" WIFICH5 	  "$CH_5"
+  replace_string_in_files "$DIR" WIFICH24 	  "$WIFICH_24"
+  replace_string_in_files "$DIR" WIFICH5 	  "$WIFICH_5"
   replace_string_in_files "$DIR" MAPLAT 	  "$MAP_LAT"
   replace_string_in_files "$DIR" MAPLON 	  "$MAP_LON"
   replace_string_in_files "$DIR" MAPZOOM 	  "$MAP_ZOOM"
   replace_string_in_files "$DIR" DOMAINHASH 	  "$DOMAIN_HASH"
-  replace_string_in_files "$DIR" METANAME	  "$(echo $METANAME|sed -e 's/_/\ /g')"
+  replace_string_in_files "$DIR" METANAME	  "$(echo $META_NAME|sed -e 's/_/\ /g')"
   replace_string_in_files "$DIR" METAWEBSITE 	  "$META_WEBSITE"
   replace_string_in_files "$DIR" MAPWEBSITE 	  "$MAP_WEBSITE"
-  replace_string_in_files "$DIR" FFWEBSITEHOST 	  "$FFWEBSITE_HOST"
-  replace_string_in_files "$DIR" FFWEBSITETLD	  "$FFWEBSITE_TLD"
+  replace_string_in_files "$DIR" FWWEBSITEHOST 	  "$FWWEBSITE_HOST"
+  replace_string_in_files "$DIR" FWWEBSITETLD	  "$FWWEBSITE_TLD"
+  replace_string_in_files "$DIR" OPKGFQN          "$OPKG_FQDN"
+  replace_string_in_files "$DIR" SUPERNODETLD	  "$SUPERNODE_TLD"
   replace_string_in_files "$DIR" DOMAINREGIONDE	  "$(echo $DOMAIN_REGION_DE|sed -e 's/_/\ /g')"
   replace_string_in_files "$DIR" DOMAINREGIONEN	  "$(echo $DOMAIN_REGION_EN|sed -e 's/_/\ /g')"
-  replace_string_in_files "$DIR" DOMAINLONGNAME	  "$(echo $DOMAIN_LONGNAME|sed -e 's/_/\ /g')"
-echo SETUP_SKIP $SETUP_SKIP
   replace_string_in_files "$DIR" SETUPSKIP	  "$SETUP_SKIP"
-  replace_string_in_files "$DIR" KEYFILESIGN "$(cat buildkeys/$KEY_FILE_SIGN|sed ':a;N;$!ba;s/\n/\\n/g')" 
-  replace_string_in_files "$DIR" KEYFILESSH "$(cat buildkeys/$KEY_FILE_SSH|sed ':a;N;$!ba;s/\n/\\n/g')"
+  replace_string_in_files "$DIR" KEYFILESIGN 	  "$(cat buildkeys/$KEY_FILE_SIGN|sed ':a;N;$!ba;s/\n/\\n/g')" 
+  replace_string_in_files "$DIR" KEYFILESSH 	  "$(cat buildkeys/$KEY_FILE_SSH|sed ':a;N;$!ba;s/\n/\\n/g')"
+  replace_string_in_files "$DIR" DOMAINLONGNAME	  "$(echo $DOMAIN_LONGNAME|sed -e 's/_/\ /g')"
 
   # Create the log file, or truncate it if it already exists.
   get_site_log_filename  "$TEMPLATE_NAME"  "$SITE_CODE"
@@ -190,8 +193,8 @@ generate_all_site_configs ()
 			 "${ALL_SITE_SUPERNODE_DEFAULTS[$index]}" \
 			 "${ALL_SITE_V4_PREFIXS[$index]}" \
 			 "${ALL_SITE_V6_PREFIXS[$index]}" \
-			 "${ALL_SITE_CH_24S[$index]}" \
-			 "${ALL_SITE_CH_5S[$index]}" \
+			 "${ALL_SITE_WIFICH_24S[$index]}" \
+			 "${ALL_SITE_WIFICH_5S[$index]}" \
 			 "${ALL_SITE_MAP_LATS[$index]}" \
 			 "${ALL_SITE_MAP_LONS[$index]}" \
 			 "${ALL_SITE_MAP_ZOOMS[$index]}" \
@@ -199,14 +202,16 @@ generate_all_site_configs ()
 			 "${ALL_SITE_META_NAMES[$index]}" \
 			 "${ALL_SITE_META_WEBSITES[$index]}" \
 			 "${ALL_SITE_MAP_WEBSITES[$index]}" \
-			 "${ALL_SITE_FFWEBSITE_HOSTS[$index]}" \
-			 "${ALL_SITE_FFWEBSITE_TLDS[$index]}" \
+			 "${ALL_SITE_FWWEBSITE_HOSTS[$index]}" \
+			 "${ALL_SITE_FWWEBSITE_TLDS[$index]}" \
+			 "${ALL_SITE_OPKG_FQDNS[$index]}" \
+			 "${ALL_SITE_SUPERNODE_TLDS[$index]}" \
 			 "${ALL_SITE_DOMAIN_REGION_DES[$index]}" \
 			 "${ALL_SITE_DOMAIN_REGION_ENS[$index]}" \
-			 "${ALL_SITE_DOMAIN_LONGNAMES[$index]}" \
 			 "${ALL_SITE_SETUP_SKIPS[$index]}" \
 			 "${ALL_SITE_KEY_FILE_SIGNS[$index]}" \
-			 "${ALL_SITE_KEY_FILE_SSHS[$index]}"  
+			 "${ALL_SITE_KEY_FILE_SSHS[$index]}" \
+			 "${ALL_SITE_DOMAIN_LONGNAMES[$index]}" 
                         
   done
 
@@ -451,8 +456,8 @@ declare -a ALL_SITE_DOMAIN_NAMES=()
 declare -a ALL_SITE_SUPERNODE_DEFAULTS=()
 declare -a ALL_SITE_V4_PREFIXS=()
 declare -a ALL_SITE_V6_PREFIXS=()
-declare -a ALL_SITE_CH_24S=()
-declare -a ALL_SITE_CH_5S=()
+declare -a ALL_SITE_WIFICH_24S=()
+declare -a ALL_SITE_WIFICH_5S=()
 declare -a ALL_SITE_MAP_LATS=()
 declare -a ALL_SITE_MAP_LONS=()
 declare -a ALL_SITE_MAP_ZOOMS=()
@@ -460,14 +465,16 @@ declare -a ALL_SITE_DOMAIN_HASHS=()
 declare -a ALL_SITE_META_NAMES=()
 declare -a ALL_SITE_META_WEBSITES=()
 declare -a ALL_SITE_MAP_WEBSITES=()
-declare -a ALL_SITE_FFWEBSITE_HOSTSS=()
-declare -a ALL_SITE_FFWEBSITE_TLDS=()
+declare -a ALL_SITE_FWWEBSITE_HOSTSS=()
+declare -a ALL_SITE_FWWEBSITE_TLDS=()
+declare -a ALL_SITE_OPKG_FQDNS=()
+declare -a ALL_SITE_SUPERNODE_TLDS=()
 declare -a ALL_SITE_DOMAIN_REGION_DES=()
 declare -a ALL_SITE_DOMAIN_REGION_ENS=()
-declare -a ALL_SITE_DOMAIN_LONGNAMES=()
 declare -a ALL_SITE_SETUP_SKIPS=()
 declare -a ALL_SITE_KEY_FILE_SIGNS=()
 declare -a ALL_SITE_KEY_FILE_SSHS=()
+declare -a ALL_SITE_DOMAIN_LONGNAMES=()
 
 parse_sites_file ()
 {
@@ -486,7 +493,7 @@ parse_sites_file ()
 
     IFS=$' \t'  read -r -a COMPONENTS <<< "$(echo $LINE|tr -s '\t')"
 
-    if (( ${#COMPONENTS[@]} != 31 )); then
+    if (( ${#COMPONENTS[@]} != 33 )); then
       abort "Syntax error parsing this line: $LINE"
     fi
 
@@ -504,8 +511,8 @@ parse_sites_file ()
     ALL_SITE_SUPERNODE_DEFAULTS+=( "${COMPONENTS[11]}" )
     ALL_SITE_V4_PREFIXS+=( "${COMPONENTS[12]}" )
     ALL_SITE_V6_PREFIXS+=( "${COMPONENTS[13]}" )
-    ALL_SITE_CH_24S+=( "${COMPONENTS[14]}" )
-    ALL_SITE_CH_5S+=( "${COMPONENTS[15]}" )
+    ALL_SITE_WIFICH_24S+=( "${COMPONENTS[14]}" )
+    ALL_SITE_WIFICH_5S+=( "${COMPONENTS[15]}" )
     ALL_SITE_MAP_LATS+=( "${COMPONENTS[16]}" )
     ALL_SITE_MAP_LONS+=( "${COMPONENTS[17]}" )
     ALL_SITE_MAP_ZOOMS+=( "${COMPONENTS[18]}" )
@@ -513,14 +520,16 @@ parse_sites_file ()
     ALL_SITE_META_NAMES+=( "${COMPONENTS[20]}" )
     ALL_SITE_META_WEBSITES+=( "${COMPONENTS[21]}" )
     ALL_SITE_MAP_WEBSITES+=( "${COMPONENTS[22]}" )
-    ALL_SITE_FFWEBSITE_HOSTS+=( "${COMPONENTS[23]}" )
-    ALL_SITE_FFWEBSITE_TLDS+=( "${COMPONENTS[24]}" )
-    ALL_SITE_DOMAIN_REGION_DES+=( "${COMPONENTS[25]}" )
-    ALL_SITE_DOMAIN_REGION_ENS+=( "${COMPONENTS[26]}" )
-    ALL_SITE_DOMAIN_LONGNAMES+=( "${COMPONENTS[27]}" )
-    ALL_SITE_SETUP_SKIPS+=( "${COMPONENTS[28]}" )
-    ALL_SITE_KEY_FILE_SIGNS+=( "${COMPONENTS[29]}" )
-    ALL_SITE_KEY_FILE_SSHS+=( "${COMPONENTS[30]}" )
+    ALL_SITE_FWWEBSITE_HOSTS+=( "${COMPONENTS[23]}" )
+    ALL_SITE_FWWEBSITE_TLDS+=( "${COMPONENTS[24]}" )
+    ALL_SITE_OPKG_FQDNS+=( "${COMPONENTS[25]}" )
+    ALL_SITE_SUPERNODE_TLDS+=( "${COMPONENTS[26]}" )
+    ALL_SITE_DOMAIN_REGION_DES+=( "${COMPONENTS[27]}" )
+    ALL_SITE_DOMAIN_REGION_ENS+=( "${COMPONENTS[28]}" )
+    ALL_SITE_SETUP_SKIPS+=( "${COMPONENTS[29]}" )
+    ALL_SITE_KEY_FILE_SIGNS+=( "${COMPONENTS[30]}" )
+    ALL_SITE_KEY_FILE_SSHS+=( "${COMPONENTS[31]}" )
+    ALL_SITE_DOMAIN_LONGNAMES+=( "${COMPONENTS[32]}" )
 
   done < "$FILENAME"
 
