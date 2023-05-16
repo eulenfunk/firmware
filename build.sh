@@ -130,7 +130,7 @@ generate_site_config ()
   local DIR="assembled/$TEMPLATE_NAME/$SITE_CODE"
 
   mkdir -p "assembled/$TEMPLATE_NAME"
-  cp -r "templates/$TEMPLATE_NAME" "$DIR"
+  cp -r -L "templates/$TEMPLATE_NAME" "$DIR"
 
   replace_string_in_files "$DIR" RELBRANCH        "$RELBRANCH"
   replace_string_in_files "$DIR" GLUONBRANCH  	  "$GLUONBRANCH"
