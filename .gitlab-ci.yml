@@ -1,8 +1,13 @@
 
 image: debian
 
+
+
 # run tests using the binary built before
 test:
   stage: test
+  before_script:
+    - apt-get update -q -y
+    - apt-get install -y lua5.4
   script:
-    - echo Hallo Welt
+    - tests/check-site-conf.sh
