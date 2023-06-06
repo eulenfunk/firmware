@@ -276,7 +276,7 @@ build_images_for_site ()
 
   if [[ "$PREPARED_CONTENTS" != "$TEMPLATE_NAME" ]]; then
 
-    rm -rf .git/rebase-apply
+#    rm -rf .git/rebase-apply
 #    git reset --hard origin/$GLUONBRANCH
 
     for (( target_index=0; target_index < ${#TARGETS[@]}; target_index += 1 )); do
@@ -290,7 +290,7 @@ build_images_for_site ()
     SITECODE_CURRENT=$SITE_CODE
     done 
     echo "Site prepare.sh ..."
-    "$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE/prepare.sh"
+#    "$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE/prepare.sh"
 
     echo "Gluon make update..."
     printf -v MAKE_CMD "make update %s"  "$ARGS"
@@ -355,7 +355,7 @@ build_all_images ()
     TARGETS+=( mpc85xx-generic )
     TARGETS+=( mpc85xx-p1020 )
     TARGETS+=( ramips-mt7620 )
-#    TARGETS+=( ramips-mt7621 )
+    TARGETS+=( ramips-mt7621 )
     TARGETS+=( ramips-mt76x8 )
     TARGETS+=( ramips-rt305x )
     TARGETS+=( sunxi-cortexa7 )
@@ -363,7 +363,7 @@ build_all_images ()
     TARGETS+=( x86-geode )
     TARGETS+=( x86-64 )
     TARGETS+=( x86-legacy )
-##    TARGETS+=( rockchip-armv8 )
+###    TARGETS+=( rockchip-armv8 )
    fi
 
   pushd "$GLUON_DIR" >/dev/null
