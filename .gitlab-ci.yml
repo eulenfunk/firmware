@@ -1,6 +1,11 @@
 
 image: debian
 
+stages:
+  - .prenotify
+  - test
+  - .postnotify
+
 
 notify-github-pending:
   stage: .prenotify
