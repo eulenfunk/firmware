@@ -2,6 +2,12 @@
 image: debian
 
 
+notify-github-pending:
+  stage: .prenotify
+  when: always
+  script:
+    - .ci/notify_github.sh pending
+
 
 # run tests using the binary built before
 test:
@@ -11,3 +17,16 @@ test:
     - apt-get install -y lua5.4
   script:
     - tests/check-site-conf.sh
+
+
+notify-github-success:
+  stage: .postnotify
+  when: on_success
+  script:
+    - .ci/notify_github.sh success
+
+notify-github-failure:
+  stage: .postnotify
+  when: on_failure
+  script:
+    - .ci/notify_github.sh failure
