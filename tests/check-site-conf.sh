@@ -22,6 +22,7 @@ for file in templates/*; do
     if [ "$rc" == "1" ]; then
         _log_err "Konnte site.conf für ${file} nicht einlesen. Fehler:"
         _log_err $json
+        exit $rc
     else
         _log_ok "site.conf in Ordnung."
         #echo $json | jq
