@@ -88,7 +88,7 @@ get_site_log_filename ()
 SITECODE_CURRENT="coldstart"
 #SBRANCH="$(date +%Y%m%d%H%M)"
 SBRANCH="$(date +%y%m%d%H)$(head -1 $1|cut -c1-3)"  
-SBRANCH="23052317sta"
+SBRANCH="24030819sta"
 generate_site_config ()
 {
   local RELBRANCH="${1}"
