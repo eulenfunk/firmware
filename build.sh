@@ -142,7 +142,7 @@ generate_site_config ()
   replace_string_in_files "$DIR" FFPREFIX 	  "$FF_PREFIX"
   replace_string_in_files "$DIR" METAPREFIX 	  "$META_PREFIX"
   replace_string_in_files "$DIR" MESHSSID 	  "$MESH_SSID"
-  replace_string_in_files "$DIR" DOMAINNAME       "$DOMAIN_NAME"
+  replace_string_in_files "$DIR" DOMAINNAME       "$(echo $DOMAIN_NAME|sed -e 's/_/\ /g')"
   replace_string_in_files "$DIR" SUPERNODEDEFAULT "$SUPERNODE_DEFAULT"
   replace_string_in_files "$DIR" V4PREFIX 	  "$V4_PREFIX"
   replace_string_in_files "$DIR" V6PREFIX 	  "$V6_PREFIX"
