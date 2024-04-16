@@ -63,6 +63,21 @@ ifeq ($(GLUON_TARGET),ar71xx-generic)
 GLUON_SITE_PACKAGES += zram-swap
 endif
 
+
+ifeq ($(GLUON_TARGET),x86-generic)
+	GLUON_SITE_PACKAGES += \
+		$(USB_BASIC) \
+		kmod-usb-ohci-pci \
+		$(USB_NIC)
+endif
+
+ifeq ($(GLUON_TARGET),x86-64)
+	GLUON_SITE_PACKAGES += \
+		$(USB_BASIC) \
+		$(USB_NIC) \
+		qemu-ga #VMs
+endif
+
 DEFAULT_GLUON_RELEASE := SBRANCH
 
 # Allow overriding the release number from the command line

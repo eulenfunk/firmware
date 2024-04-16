@@ -85,10 +85,10 @@ get_site_log_filename ()
   LOG_FILENAME="$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE/build.log"
 }
 
-SITECODE_CURRENT="coldstart"
+SITECODE_BEFORE="coldstart"
 #SBRANCH="$(date +%Y%m%d%H%M)"
 SBRANCH="$(date +%y%m%d%H)$(head -1 $1|cut -c1-3)"  
-SBRANCH="24030819sta"
+#SBRANCH="24030819sta"
 generate_site_config ()
 {
   local RELBRANCH="${1}"
@@ -276,21 +276,22 @@ build_images_for_site ()
 
   if [[ "$PREPARED_CONTENTS" != "$TEMPLATE_NAME" ]]; then
 
-#    rm -rf .git/rebase-apply
-#    git reset --hard origin/$GLUONBRANCH
+    rm -rf .git/rebase-apply
+    git reset --hard origin/$GLUONBRANCH
 
     for (( target_index=0; target_index < ${#TARGETS[@]}; target_index += 1 )); do
       TARGET="${TARGETS[target_index]}"
-#      if [ "$SITE_CODE" != "$SITECODE_CURRENT"  ]; then
-#        echo "Cleaning the firmware for site code: $SITE_CODE, target: $TARGET ..."
-#        printf -v MAKE_CMD  "make clean GLUON_TARGET=%q  %s"  "$TARGET"  "$ARGS"
-#        echo "$MAKE_CMD"
-#        eval "$MAKE_CMD"
-#      fi
-    SITECODE_CURRENT=$SITE_CODE
+      if [ "$SITE_CODE" != "$SITECODE_BEFORE"  ]; then
+        echo "Cleaning the firmware for site code: $SITE_CODE, target: $TARGET ..."
+        printf -v MAKE_CMD  "make clean GLUON_TARGET=%q  %s"  "$TARGET"  "$ARGS"
+        echo "$MAKE_CMD"
+        eval "$MAKE_CMD"
+      fi
+    SITECODE_BEFORE=$SITE_CODE
     done 
     echo "Site prepare.sh ..."
-#    "$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE/prepare.sh"
+#    "$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE/prepare.sh $TARGET"
+    "$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE/prepare.sh"
 
     echo "Gluon make update..."
     printf -v MAKE_CMD "make update %s"  "$ARGS"
@@ -339,31 +340,32 @@ build_all_images ()
 {
   local -a TARGETS=("$@")
   if (( ${#TARGETS[@]} == 0 )); then
-    TARGETS+=( ar71xx-tiny )
+#    TARGETS+=( ar71xx-tiny )
     TARGETS+=( ar71xx-generic )
     TARGETS+=( ar71xx-nand )
     TARGETS+=( ar71xx-mikrotik )
-    TARGETS+=( ath79-generic )
-    TARGETS+=( brcm2708-bcm2708 )
-    TARGETS+=( brcm2708-bcm2709 )
-    TARGETS+=( brcm2708-bcm2710 )
-    TARGETS+=( mvebu-cortexa9 )
-    TARGETS+=( ipq40xx-generic )
-    TARGETS+=( ipq806x-generic )
-    TARGETS+=( lantiq-xrx200 )
-    TARGETS+=( lantiq-xway )
-    TARGETS+=( mpc85xx-generic )
-    TARGETS+=( mpc85xx-p1020 )
-    TARGETS+=( ramips-mt7620 )
-    TARGETS+=( ramips-mt7621 )
-    TARGETS+=( ramips-mt76x8 )
-    TARGETS+=( ramips-rt305x )
-    TARGETS+=( sunxi-cortexa7 )
-    TARGETS+=( x86-generic )
-    TARGETS+=( x86-geode )
-    TARGETS+=( x86-64 )
-    TARGETS+=( x86-legacy )
+
+#    TARGETS+=( ath79-generic )
+#    TARGETS+=( brcm2708-bcm2708 )
+#    TARGETS+=( brcm2708-bcm2709 )
+#    TARGETS+=( brcm2708-bcm2710 )
+#    TARGETS+=( mvebu-cortexa9 )
+#    TARGETS+=( ipq40xx-generic )
+#    TARGETS+=( ipq806x-generic )
+#    TARGETS+=( lantiq-xrx200 )
+#    TARGETS+=( lantiq-xway )
+#    TARGETS+=( mpc85xx-generic )
+#    TARGETS+=( mpc85xx-p1020 )
+#    TARGETS+=( ramips-mt7620 )
+#    TARGETS+=( ramips-mt76x8 )
+#    TARGETS+=( ramips-rt305x )
+#    TARGETS+=( sunxi-cortexa7 )
+#    TARGETS+=( x86-generic )
+#    TARGETS+=( x86-geode )
+#    TARGETS+=( x86-64 )
+#    TARGETS+=( x86-legacy )
 ###    TARGETS+=( rockchip-armv8 )
+#    TARGETS+=( ramips-mt7621 )
    fi
 
   pushd "$GLUON_DIR" >/dev/null
