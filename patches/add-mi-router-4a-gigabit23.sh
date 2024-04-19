@@ -1,5 +1,6 @@
 #!/bin/bash
 echo $PWD 
+exit 0;
 
 patchfile="../patches/add-mi-router-4a-gigabit-gluon.patch"
 if ! patch -R -p1 -s -f --ignore-whitespace --dry-run <$patchfile &>/dev/null; then

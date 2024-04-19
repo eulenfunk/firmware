@@ -87,8 +87,9 @@ get_site_log_filename ()
 
 SITECODE_BEFORE="coldstart"
 #SBRANCH="$(date +%Y%m%d%H%M)"
-SBRANCH="$(date +%y%m%d%H)$(head -1 $1|cut -c1-3)"  
+SBRANCH="$(date +%y%m%d%H)$(cat $1|grep -v ^#|head -1|cut -c1-3)"  
 #SBRANCH="24030819sta"
+#SBRANCH="24041622"
 generate_site_config ()
 {
   local RELBRANCH="${1}"
@@ -290,8 +291,8 @@ build_images_for_site ()
     SITECODE_BEFORE=$SITE_CODE
     done 
     echo "Site prepare.sh ..."
-#    "$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE/prepare.sh $TARGET"
-    "$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE/prepare.sh"
+    "$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE/prepare.sh" $TARGET
+#    "$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE/prepare.sh"
 
     echo "Gluon make update..."
     printf -v MAKE_CMD "make update %s"  "$ARGS"
@@ -341,10 +342,9 @@ build_all_images ()
   local -a TARGETS=("$@")
   if (( ${#TARGETS[@]} == 0 )); then
 #    TARGETS+=( ar71xx-tiny )
-    TARGETS+=( ar71xx-generic )
-    TARGETS+=( ar71xx-nand )
-    TARGETS+=( ar71xx-mikrotik )
-
+#    TARGETS+=( ar71xx-generic )
+#    TARGETS+=( ar71xx-nand )
+#    TARGETS+=( ar71xx-mikrotik )
 #    TARGETS+=( ath79-generic )
 #    TARGETS+=( brcm2708-bcm2708 )
 #    TARGETS+=( brcm2708-bcm2709 )
@@ -365,7 +365,7 @@ build_all_images ()
 #    TARGETS+=( x86-64 )
 #    TARGETS+=( x86-legacy )
 ###    TARGETS+=( rockchip-armv8 )
-#    TARGETS+=( ramips-mt7621 )
+    TARGETS+=( ramips-mt7621 )
    fi
 
   pushd "$GLUON_DIR" >/dev/null
