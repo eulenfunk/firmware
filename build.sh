@@ -90,6 +90,7 @@ SITECODE_BEFORE="coldstart"
 SBRANCH="$(date +%y%m%d%H)$(cat $1|grep -v ^#|head -1|cut -c1-3)"  
 SBRANCH="24042218sta"
 #SBRANCH="24041622"
+MAKECLEAN=false
 generate_site_config ()
 {
   local RELBRANCH="${1}"
@@ -282,12 +283,12 @@ build_images_for_site ()
 
     for (( target_index=0; target_index < ${#TARGETS[@]}; target_index += 1 )); do
       TARGET="${TARGETS[target_index]}"
-      if [ "$SITE_CODE" != "$SITECODE_BEFORE"  ]; then
+      if [ "$SITE_CODE" != "$SITECODE_BEFORE" ] && [ "$MAKECLEAN" = true ]; then
         echo "Cleaning the firmware for site code: $SITE_CODE, target: $TARGET ..."
         printf -v MAKE_CMD  "make clean GLUON_TARGET=%q  %s"  "$TARGET"  "$ARGS"
         echo "$MAKE_CMD"
         eval "$MAKE_CMD"
-      fi
+       fi
     SITECODE_BEFORE=$SITE_CODE
     done 
     echo "Site prepare.sh ..."
