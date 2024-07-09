@@ -1,9 +1,9 @@
 #!/bin/bash
 echo $PWD 
 
-if [ "$1" == "ramips-mt7621" ] && [ "$2" == "mi-router-4a-gigabit" ]
+if [ "$1" == "ramips-mt7621" ] && [ "$2" == "xiaomi-mi-router-4a-gigabit-edition" ]
  then
-
+  echo "Applying patches for ramips-mt7621/mi-router-4a-gigabit on gluon"
   patchfile="../patches/add-mi-router-4a-gigabit-gluon.patch"
   if ! patch -R -p1 -s -f --ignore-whitespace --dry-run <$patchfile &>/dev/null; then
     patch -p1 --ignore-whitespace <$patchfile
@@ -23,7 +23,7 @@ if [ "$1" == "ramips-mt7621" ] && [ "$2" == "mi-router-4a-gigabit" ]
  else
   grep 'mi-router-4a-gigabit' targets/ramips-mt7621
   if grep -q 'mi-router-4a-gigabit' "targets/ramips-mt7621"; then
-    echo unpatching ramips-mt7621-target from gluon
+    echo "unpatching ramips-mt7621, removing mi-router-4a-gigabit from gluon"
     rm -rf .git/rebase-apply
     git reset --hard
     fi

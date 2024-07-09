@@ -291,8 +291,16 @@ build_images_for_site ()
        fi
     SITECODE_BEFORE=$SITE_CODE
     done 
-    echo "Site prepare.sh ..."
-    "$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE/prepare.sh" $TARGET
+    # GLUON_DEVICES="avm-fritz-box-4020 tp-link-tl-wdr4300-v1"
+    if [ "$TARGETS" == "ramips-mt7621" ]; then
+      GLUONDEVICES+="xiaomi-mi-router-4a-gigabit-edition"
+     else 
+      # unset GLUONDEVICES
+      GLUONDEVICES =" "
+     fi
+
+    echo "Site prepare.sh  $TARGET $GLUONDEVICES"
+    "$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE/prepare.sh" $TARGET $GLUONDEVICES
 #    "$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE/prepare.sh"
 
     echo "Gluon make update..."
@@ -307,12 +315,18 @@ build_images_for_site ()
 #  MAKE_J_VAL=1
   for (( target_index=0; target_index < ${#TARGETS[@]}; target_index += 1 )); do
     TARGET="${TARGETS[target_index]}"
+
+    echo "GLUONDEVICEs $GLUONDEVICES"
     echo "Building the firmware for site code: $SITE_CODE, target: $TARGET ..."
     printf -v MAKE_CMD "make GLUON_TARGET=%q"  "$TARGET"
     # For the Gluon build system, V=s means generate a full build log (show build commands, compiler warnings etc.).
     MAKE_CMD+=" V=s"
     MAKE_CMD+=" $ARGS"
     MAKE_CMD+=" -j $MAKE_J_VAL  --output-sync=recurse"
+    if [ ! -z "$GLUONDEVICES" ] && [ "${#GLUONDEVICES}" -gt 1 ]; then
+      MAKE_CMD+=" GLUON_DEVICES=$GLUONDEVICES "
+      echo "for GLUONDEVICEs $GLUONDEVICES"
+     fi
     echo "$MAKE_CMD"
     eval "$MAKE_CMD"
   done
@@ -342,29 +356,29 @@ build_all_images ()
 {
   local -a TARGETS=("$@")
   if (( ${#TARGETS[@]} == 0 )); then
-    TARGETS+=( ar71xx-tiny )
-    TARGETS+=( ar71xx-generic )
-    TARGETS+=( ar71xx-nand )
-    TARGETS+=( ar71xx-mikrotik )
-    TARGETS+=( ath79-generic )
-    TARGETS+=( brcm2708-bcm2708 )
-    TARGETS+=( brcm2708-bcm2709 )
-    TARGETS+=( brcm2708-bcm2710 )
-    TARGETS+=( mvebu-cortexa9 )
-    TARGETS+=( ipq40xx-generic )
-    TARGETS+=( ipq806x-generic )
-    TARGETS+=( lantiq-xrx200 )
-    TARGETS+=( lantiq-xway )
-    TARGETS+=( mpc85xx-generic )
-    TARGETS+=( mpc85xx-p1020 )
-    TARGETS+=( ramips-mt7620 )
-    TARGETS+=( ramips-mt76x8 )
-    TARGETS+=( ramips-rt305x )
-    TARGETS+=( sunxi-cortexa7 )
-    TARGETS+=( x86-generic )
-    TARGETS+=( x86-geode )
-    TARGETS+=( x86-64 )
-    TARGETS+=( x86-legacy )
+#    TARGETS+=( ar71xx-tiny )
+#    TARGETS+=( ar71xx-generic )
+#    TARGETS+=( ar71xx-nand )
+#    TARGETS+=( ar71xx-mikrotik )
+#    TARGETS+=( ath79-generic )
+#    TARGETS+=( brcm2708-bcm2708 )
+#    TARGETS+=( brcm2708-bcm2709 )
+#    TARGETS+=( brcm2708-bcm2710 )
+#    TARGETS+=( mvebu-cortexa9 )
+#    TARGETS+=( ipq40xx-generic )
+#    TARGETS+=( ipq806x-generic )
+#    TARGETS+=( lantiq-xrx200 )
+#    TARGETS+=( lantiq-xway )
+#    TARGETS+=( mpc85xx-generic )
+#    TARGETS+=( mpc85xx-p1020 )
+#    TARGETS+=( ramips-mt7620 )
+#    TARGETS+=( ramips-mt76x8 )
+#    TARGETS+=( ramips-rt305x )
+#    TARGETS+=( sunxi-cortexa7 )
+#    TARGETS+=( x86-generic )
+#    TARGETS+=( x86-geode )
+#    TARGETS+=( x86-64 )
+#    TARGETS+=( x86-legacy )
     TARGETS+=( ramips-mt7621 )
 ###    TARGETS+=( rockchip-armv8 )
    fi
