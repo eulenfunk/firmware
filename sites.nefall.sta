@@ -77,5 +77,4 @@ stable	 	v2021.1.x 	47_bglrr-key 	47_bglrr	47		bglrr		BGSLRR		ff		bgl		bglrr-mes
 stable	 	v2021.1.x 	48_rdv	 	48_rdv		48		rdv		RDV		ff		bgl		rdv-mesh	Radevormwald			5			10.62.240	2a03:2260:100c:0630	9		44		51.20175	7.35676		14		bc981ed5c75b6671884fe8d6607180b737b946f90df568c2b44a051525ccb406	Freifunk_im_Neanderland				www.neanderfunk.de      karte.neanderfunk.de		firmware			ffnef.de	firmware.ffnef.de	ffnef.de	in_Stadtgebiet_von_Radevormwald	          	in_the_area_of_Radevormwald			false 		ffrdv.signkeys	ffrdv.nokeys	Freifunk_Radevormwald_-_Domain_48_(Neanderfunk)
 stable	 	v2021.1.x 	48_rdv-key 	48_rdv		48		rdv		RDV		ff		bgl		rdv-mesh	Radevormwald			5			10.62.240	2a03:2260:100c:0630	9		44		51.20175	7.35676		14		bc981ed5c75b6671884fe8d6607180b737b946f90df568c2b44a051525ccb406	Freifunk_im_Neanderland				www.neanderfunk.de      karte.neanderfunk.de		firmware			ffnef.de	firmware.ffnef.de	ffnef.de	in_Stadtgebiet_von_Radevormwald	          	in_the_area_of_Radevormwald			true 		ffrdv.signkeys	ffrdv.sshkeys	Freifunk_Radevormwald_-_Domain_48_(Neanderfunk)
 
-
 #####
