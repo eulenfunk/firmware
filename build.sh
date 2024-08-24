@@ -293,10 +293,10 @@ build_images_for_site ()
     done 
     # GLUON_DEVICES="avm-fritz-box-4020 tp-link-tl-wdr4300-v1"
     if [ "$TARGETS" == "ramips-mt7621" ]; then
-      GLUONDEVICES+="xiaomi-mi-router-4a-gigabit-edition"
+      GLUONDEVICES+=" xiaomi-mi-router-4a-gigabit-edition"
      else 
       # unset GLUONDEVICES
-      GLUONDEVICES =" "
+      GLUONDEVICES+=""
      fi
 
     echo "Site prepare.sh  $TARGET $GLUONDEVICES"
@@ -356,14 +356,14 @@ build_all_images ()
 {
   local -a TARGETS=("$@")
   if (( ${#TARGETS[@]} == 0 )); then
-#    TARGETS+=( ar71xx-tiny )
-#    TARGETS+=( ar71xx-generic )
-#    TARGETS+=( ar71xx-nand )
+    TARGETS+=( ar71xx-tiny )
+    TARGETS+=( ar71xx-generic )
+    TARGETS+=( ar71xx-nand )
 #    TARGETS+=( ar71xx-mikrotik )
-#    TARGETS+=( ath79-generic )
-#    TARGETS+=( brcm2708-bcm2708 )
-#    TARGETS+=( brcm2708-bcm2709 )
-#    TARGETS+=( brcm2708-bcm2710 )
+    TARGETS+=( ath79-generic )
+###   TARGETS+=( brcm2708-bcm2708 )
+###   TARGETS+=( brcm2708-bcm2709 )
+###   TARGETS+=( brcm2708-bcm2710 )
 #    TARGETS+=( mvebu-cortexa9 )
 #    TARGETS+=( ipq40xx-generic )
 #    TARGETS+=( ipq806x-generic )
@@ -377,9 +377,9 @@ build_all_images ()
 #    TARGETS+=( sunxi-cortexa7 )
 #    TARGETS+=( x86-generic )
 #    TARGETS+=( x86-geode )
-#    TARGETS+=( x86-64 )
+    TARGETS+=( x86-64 )
 #    TARGETS+=( x86-legacy )
-    TARGETS+=( ramips-mt7621 )
+##    TARGETS+=( ramips-mt7621 )
 ###    TARGETS+=( rockchip-armv8 )
    fi
 
