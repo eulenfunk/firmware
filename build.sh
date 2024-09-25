@@ -88,7 +88,7 @@ get_site_log_filename ()
 SITECODE_BEFORE="coldstart"
 #SBRANCH="$(date +%Y%m%d%H%M)"
 SBRANCH="$(date +%y%m%d%H)$(cat $1|grep -v ^#|head -1|cut -c1-3)"  
-SBRANCH="24042218sta"
+#SBRANCH="24042218sta"
 #SBRANCH="24041622"
 MAKECLEAN=false
 generate_site_config ()
@@ -242,7 +242,7 @@ build_images_for_site ()
   local ARGS=""
 
   append_quoted_arg  ARGS  GLUON_SITEDIR   "$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE"
-  append_quoted_arg  ARGS  GLUON_IMAGEDIR  "$SANDBOX_DIR/images/$TEMPLATE_NAME/$SITE_CODE"
+  append_quoted_arg  ARGS  GLUON_IMAGEDIR  "$SANDBOX_DIR/images/running/$TEMPLATE_NAME/$SITE_CODE"
   append_quoted_arg  ARGS  GLUON_MODULEDIR "$SANDBOX_DIR/gluon/output/modules"
   append_quoted_arg  ARGS  GLUON_PACKAGEDIR "$SANDBOX_DIR/gluon/output/packages"
   append_quoted_arg  ARGS  GLUON_SITE_VERSION $(date +%Y%m%d)
@@ -261,7 +261,7 @@ build_images_for_site ()
   # Parameters for setting buildbot signatures
   local SIGN_ARGS=""
   SIGN_ARGS+=" $(cat $SANDBOX_DIR/buildkeys/untrustworthy-buildbot-signkey.priv)"
-  SIGN_ARGS+=" $SANDBOX_DIR/images/$TEMPLATE_NAME/$SITE_CODE/sysupgrade/$RELBRANCH.manifest"
+  SIGN_ARGS+=" $SANDBOX_DIR/images/running/$TEMPLATE_NAME/$SITE_CODE/sysupgrade/$RELBRANCH.manifest"
 
   local MAKE_CMD
   local SIGN_CMD
@@ -342,7 +342,7 @@ build_images_for_site ()
   echo "$SIGN_CMD"
   eval "$SIGN_CMD"
 
-  local SITE_IMAGE_DIR="$SANDBOX_DIR/images/$TEMPLATE_NAME/$SITE_CODE/site"
+  local SITE_IMAGE_DIR="$SANDBOX_DIR/images/running/$TEMPLATE_NAME/$SITE_CODE/site"
 
   echo "Copying build result to \"$SITE_IMAGE_DIR\" ..."
   # This directory may already exist from a previous run.
@@ -379,7 +379,7 @@ build_all_images ()
 #    TARGETS+=( x86-geode )
     TARGETS+=( x86-64 )
 #    TARGETS+=( x86-legacy )
-##    TARGETS+=( ramips-mt7621 )
+    TARGETS+=( ramips-mt7621 )
 ###    TARGETS+=( rockchip-armv8 )
    fi
 
@@ -424,7 +424,7 @@ build_all_images ()
   popd >/dev/null
 
   # rename output to images with timestamp
-  mv "./images" "./images-$DATE_SUFFIX"
+  mv "./images/running" "./images/images-$DATE_SUFFIX"
 
   # I do not think that we build any modules yet.
 #  echo check for modules
@@ -446,7 +446,7 @@ build_all_images ()
   fi
   if $ARE_THERE_PACKAGES; then
     echo moving packages-dir $SANDBOX_DIR/gluon/output/packages
-    mv "$SANDBOX_DIR/gluon/output/packages" "$SANDBOX_DIR/images-$DATE_SUFFIX/."
+    mv "$SANDBOX_DIR/gluon/output/packages" "$SANDBOX_DIR/images/images-$DATE_SUFFIX/."
    fi
 
   echo "Finished building images:"
