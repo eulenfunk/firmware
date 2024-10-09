@@ -84,13 +84,15 @@ get_site_log_filename ()
 
   LOG_FILENAME="$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE/build.log"
 }
-
-SITECODE_BEFORE="coldstart"
+MAKECLEAN=true
+GITRESET=true
 #SBRANCH="$(date +%Y%m%d%H%M)"
 SBRANCH="$(date +%y%m%d%H)$(cat $1|grep -v ^#|head -1|cut -c1-3)"  
-#SBRANCH="24042218sta"
+SBRANCH="24092519sta"
 #SBRANCH="24041622"
-MAKECLEAN=false
+SITECODE_BEFORE="coldstart"
+FIRSTSITE=true
+FIRSTRUN=true
 generate_site_config ()
 {
   local RELBRANCH="${1}"
@@ -278,25 +280,50 @@ build_images_for_site ()
 
   if [[ "$PREPARED_CONTENTS" != "$TEMPLATE_NAME" ]]; then
 
-#    rm -rf .git/rebase-apply
-#    git reset --hard origin/$GLUONBRANCH
-
     for (( target_index=0; target_index < ${#TARGETS[@]}; target_index += 1 )); do
       TARGET="${TARGETS[target_index]}"
-      if [ "$SITE_CODE" != "$SITECODE_BEFORE" ] && [ "$MAKECLEAN" = true ]; then
+#      if [ "$SITE_CODE" != "$SITECODE_BEFORE" ] && [ "$MAKECLEAN" = true ] ; then
+      if [ "$GITRESET" = true ] && [ "$FIRSTRUN" = true ] ; then
+        echo "GitReset firmware for site code: $SITE_CODE, target: $TARGET ..."
+        rm -rf .git/rebase-apply
+#        git clean -xfd
+#        git submodule foreach --recursive git clean -xfd
+        git reset --hard origin/$GLUONBRANCH
+        git submodule foreach --recursive git reset --hard
+#        git submodule update --init --recursive
+        if [ -d "openwrt" ]; then
+          pushd openwrt
+#         git clean -xfd
+#         git submodule foreach --recursive git clean -xfd
+          git reset --hard 
+          git submodule foreach --recursive git reset --hard
+#          git submodule update --init --recursive
+          popd
+         else
+#          make update GLUON_TARGET=ar71xx-tiny   GLUON_SITEDIR=/home/build/firmware2021.x/firmware/assembled/43_bggl/43_bggl GLUON_IMAGEDIR=/home/build/firmware2021.x/firmware/images/running/43_bggl/43_bggl GLUON_MODULEDIR=/home/build/firmware2021.x/firmware/gluon/output/modules GLUON_PACKAGEDIR=/home/build/firmware2021.x/firmware/gluon/output/packages GLUON_SITE_VERSION=20241009 BROKEN=1 GLUON=AUTOUPDATER_ENABLED=1 GLUON_AUTOUPDATER_BRANCH=stable GLUON_BRANCH=stable
+          echo "Make update for site code: $SITE_CODE, target: $TARGET ..."
+          printf -v MAKE_CMD  "make update GLUON_TARGET=%q  %s"  "$TARGET"  "$ARGS"
+          echo "$MAKE_CMD"
+          eval "$MAKE_CMD"
+         fi
+        FIRSTRUN=false
+       fi
+      SITECODE_BEFORE=$SITE_CODE
+      if [ "$MAKECLEAN" = true ] && [ "$FIRSTSITE" = true ] ; then
         echo "Cleaning the firmware for site code: $SITE_CODE, target: $TARGET ..."
         printf -v MAKE_CMD  "make clean GLUON_TARGET=%q  %s"  "$TARGET"  "$ARGS"
         echo "$MAKE_CMD"
         eval "$MAKE_CMD"
+        FIRSTSITE=false
        fi
-    SITECODE_BEFORE=$SITE_CODE
+      SITECODE_BEFORE=$SITE_CODE
     done 
     # GLUON_DEVICES="avm-fritz-box-4020 tp-link-tl-wdr4300-v1"
-    if [ "$TARGETS" == "ramips-mt7621" ]; then
-      GLUONDEVICES+=" xiaomi-mi-router-4a-gigabit-edition"
+    if [ "$TARGETS" == "ramips-mt7621" ] && [ "$ADD_MI4G" == true ] ; then
+      GLUONDEVICES+="xiaomi-mi-router-4a-gigabit-edition"
      else 
       # unset GLUONDEVICES
-      GLUONDEVICES+=""
+      GLUONDEVICES=""
      fi
 
     echo "Site prepare.sh  $TARGET $GLUONDEVICES"
@@ -359,28 +386,29 @@ build_all_images ()
     TARGETS+=( ar71xx-tiny )
     TARGETS+=( ar71xx-generic )
     TARGETS+=( ar71xx-nand )
-#    TARGETS+=( ar71xx-mikrotik )
+    TARGETS+=( ar71xx-mikrotik )
     TARGETS+=( ath79-generic )
-###   TARGETS+=( brcm2708-bcm2708 )
-###   TARGETS+=( brcm2708-bcm2709 )
-###   TARGETS+=( brcm2708-bcm2710 )
-#    TARGETS+=( mvebu-cortexa9 )
-#    TARGETS+=( ipq40xx-generic )
-#    TARGETS+=( ipq806x-generic )
-#    TARGETS+=( lantiq-xrx200 )
-#    TARGETS+=( lantiq-xway )
-#    TARGETS+=( mpc85xx-generic )
-#    TARGETS+=( mpc85xx-p1020 )
-#    TARGETS+=( ramips-mt7620 )
-#    TARGETS+=( ramips-mt76x8 )
-#    TARGETS+=( ramips-rt305x )
-#    TARGETS+=( sunxi-cortexa7 )
-#    TARGETS+=( x86-generic )
-#    TARGETS+=( x86-geode )
+#####   TARGETS+=( brcm2708-bcm2708 )
+#####   TARGETS+=( brcm2708-bcm2709 )
+#####   TARGETS+=( brcm2708-bcm2710 )
+    TARGETS+=( mvebu-cortexa9 )
+    TARGETS+=( ipq40xx-generic )
+    TARGETS+=( ipq806x-generic )
+    TARGETS+=( lantiq-xrx200 )
+    TARGETS+=( lantiq-xway )
+    TARGETS+=( mpc85xx-generic )
+    TARGETS+=( mpc85xx-p1020 )
+    TARGETS+=( ramips-mt7620 )
+    TARGETS+=( ramips-mt76x8 )
+    TARGETS+=( ramips-rt305x )
+    TARGETS+=( sunxi-cortexa7 )
+    TARGETS+=( x86-generic )
+    TARGETS+=( x86-geode )
     TARGETS+=( x86-64 )
-#    TARGETS+=( x86-legacy )
-    TARGETS+=( ramips-mt7621 )
-###    TARGETS+=( rockchip-armv8 )
+##    TARGETS+=( x86-legacy )
+#    TARGETS+=( ramips-mt7621 )
+    ADD_MI4G=false     
+##    TARGETS+=( rockchip-armv8 )
    fi
 
   pushd "$GLUON_DIR" >/dev/null
