@@ -84,8 +84,8 @@ get_site_log_filename ()
 
   LOG_FILENAME="$SANDBOX_DIR/assembled/$TEMPLATE_NAME/$SITE_CODE/build.log"
 }
-MAKECLEAN=true
-GITRESET=true
+MAKECLEAN=false
+GITRESET=false
 #SBRANCH="$(date +%Y%m%d%H%M)"
 SBRANCH="$(date +%y%m%d%H)$(cat $1|grep -v ^#|head -1|cut -c1-3)"  
 SBRANCH="24092519sta"
@@ -383,30 +383,30 @@ build_all_images ()
 {
   local -a TARGETS=("$@")
   if (( ${#TARGETS[@]} == 0 )); then
-    TARGETS+=( ar71xx-tiny )
-    TARGETS+=( ar71xx-generic )
-    TARGETS+=( ar71xx-nand )
-    TARGETS+=( ar71xx-mikrotik )
-    TARGETS+=( ath79-generic )
-#####   TARGETS+=( brcm2708-bcm2708 )
-#####   TARGETS+=( brcm2708-bcm2709 )
-#####   TARGETS+=( brcm2708-bcm2710 )
-    TARGETS+=( mvebu-cortexa9 )
-    TARGETS+=( ipq40xx-generic )
-    TARGETS+=( ipq806x-generic )
-    TARGETS+=( lantiq-xrx200 )
-    TARGETS+=( lantiq-xway )
-    TARGETS+=( mpc85xx-generic )
-    TARGETS+=( mpc85xx-p1020 )
-    TARGETS+=( ramips-mt7620 )
-    TARGETS+=( ramips-mt76x8 )
-    TARGETS+=( ramips-rt305x )
-    TARGETS+=( sunxi-cortexa7 )
-    TARGETS+=( x86-generic )
-    TARGETS+=( x86-geode )
-    TARGETS+=( x86-64 )
+#    TARGETS+=( ar71xx-tiny )
+#    TARGETS+=( ar71xx-generic )
+#    TARGETS+=( ar71xx-nand )
+#    TARGETS+=( ar71xx-mikrotik )
+#    TARGETS+=( ath79-generic )
+######   TARGETS+=( brcm2708-bcm2708 )
+######   TARGETS+=( brcm2708-bcm2709 )
+######   TARGETS+=( brcm2708-bcm2710 )
+#    TARGETS+=( mvebu-cortexa9 )
+#    TARGETS+=( ipq40xx-generic )
+#    TARGETS+=( ipq806x-generic )
+#    TARGETS+=( lantiq-xrx200 )
+#    TARGETS+=( lantiq-xway )
+#    TARGETS+=( mpc85xx-generic )
+#    TARGETS+=( mpc85xx-p1020 )
+#    TARGETS+=( ramips-mt7620 )
+#    TARGETS+=( ramips-mt76x8 )
+#    TARGETS+=( ramips-rt305x )
+#    TARGETS+=( sunxi-cortexa7 )
+#    TARGETS+=( x86-generic )
+#    TARGETS+=( x86-geode )
+#    TARGETS+=( x86-64 )
 ##    TARGETS+=( x86-legacy )
-#    TARGETS+=( ramips-mt7621 )
+    TARGETS+=( ramips-mt7621 )
     ADD_MI4G=false     
 ##    TARGETS+=( rockchip-armv8 )
    fi
